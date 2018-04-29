@@ -1,12 +1,8 @@
 import argparse
 import datetime
 import string
-import os
 import sys
 
-
-# TODO put this into a separate database connection module
-# import _mssql
 
 def apply_template( withSql, mainSql, attributes, metrics, filters, joinSql, debug ):
     with open(mainSql) as sqlFile:
@@ -33,21 +29,13 @@ def apply_template( withSql, mainSql, attributes, metrics, filters, joinSql, deb
 
 def main(argv):
 
-    parser = argparse.ArgumentParser(description='Export database from a SQL database using SQL templates.')
-    parser.add_argument('--server',
-                        default='localhost',
-                        help='Server to connect to')
-    parser.add_argument('--database',
-                        default='TEST',
-                        help='Database to connect to')
-    parser.add_argument('--instance',
-                        default='',
-                        help='Database Instance')
+    parser = argparse.ArgumentParser(description='Create a SQL statement based on template parameters.')
+
     parser.add_argument('--attributes', default='COLUMN_1, COLUMN_2', help='Column Group by Attributes');
     parser.add_argument('--metrics', default='SUM( AMOUNT ) SUM_AMOUNT', help='Column Metrics');
     parser.add_argument('--filters', default='1 = 1', help='Filters');
 
-    parser.add_argument('--mainSql', default='sql/mainTemplate.sql',
+    parser.add_argument('--mainSql', default='sqlTemplate/mainTemplate.sql',
                         help='A SQL template containing the main portion of the SQL to run');
     parser.add_argument('--withSql');
     parser.add_argument('--joinSql', default="tables/joinAandB.sql")
@@ -62,7 +50,7 @@ def main(argv):
 
     sql = apply_template(args.withSql, args.mainSql, args.attributes, args.metrics, args.filters, args.joinSql, args.debug);
 
-    print("{ \"outFile\" : \"" + args.outFile + "\" } ");
+    print("{ \"sqlMain\" : \"" + sql + "\" } ");
 
 if __name__ == "__main__":
     main(sys.argv)
