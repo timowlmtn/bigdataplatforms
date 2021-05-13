@@ -1,1 +1,0 @@
-{ "sqlMain" : "select COLUMN_1, COLUMN_2, SUM( AMOUNT ) SUM_AMOUNT\nfrom table_a a\nLEFT join table_b on a.member_id = b.member_id\nwhere 1 = 1\ngroup by COLUMN_1, COLUMN_2" }
