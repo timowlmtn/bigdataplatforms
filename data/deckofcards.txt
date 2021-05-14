@@ -1,3 +1,4 @@
+color|suit|face
 BLACK|SPADE|2
 BLACK|SPADE|3
 BLACK|SPADE|4
