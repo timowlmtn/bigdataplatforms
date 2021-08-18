@@ -1,7 +1,6 @@
 import shutil
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
-from pyspark.sql.types import *
 
 if __name__ == "__main__":
     sc = SparkContext(appName="CSV2Parquet")
