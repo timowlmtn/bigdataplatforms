@@ -1,4 +1,4 @@
-create or replace table STAGE.SNOWFLAKE_USERS
+create or replace table ADMIN.SNOWFLAKE_USERS
 (
 	"name" VARCHAR,
 	"created_on" VARCHAR,
