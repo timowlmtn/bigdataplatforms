@@ -11,6 +11,8 @@ call ADMIN.SNAPSHOT_USER_NETWORK_POLICY();
 
 show tasks;
 
+login_history
+
 alter task ADMIN.create_snapshot_user_network_policy resume;
 
 use warehouse COMPUTE_WH;
