@@ -1,5 +1,3 @@
-use role ACCOUNTADMIN;
-
 CREATE OR REPLACE PROCEDURE ADMIN.SNAPSHOT_USER_NETWORK_POLICY()
 RETURNS VARCHAR
     LANGUAGE JAVASCRIPT
@@ -20,9 +18,15 @@ $$
                                             .replace('%s', userName)} );
 
             var insert_user_row =
-                'insert into ADMIN.SNOWFLAKE_USER_NETWORK_POLICY(NAME,KEY,VALUE,DEFAULT,LEVEL,DESCRIPTION,TYPE,CREATED_DATE,CREATED_BY) '+
-                'select \'%s\', *, CURRENT_TIMESTAMP(), CURRENT_USER() from table(result_scan(last_query_id()));'
-                 .replace('%s', userName);
+                `insert into ADMIN.SNOWFLAKE_USER_NETWORK_POLICY(NAME,KEY,VALUE,DEFAULT,LEVEL,DESCRIPTION,TYPE)
+                 select \'%s\',
+                        "key",
+                        "value",
+                        "default",
+                        "level",
+                        "description",
+                        "type"
+                 from table(result_scan(last_query_id()));`.replace('%s', userName);
             snowflake.execute( {sqlText: insert_user_row} );
 
 

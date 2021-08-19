@@ -1,7 +1,3 @@
-USE SCHEMA ADMIN;
-
-use role ACCOUNTADMIN;
-
 call ADMIN.SNAPSHOT_USER_GRANTS();
 
 select *
