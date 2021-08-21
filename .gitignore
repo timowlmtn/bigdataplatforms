@@ -1,3 +1,4 @@
 /.idea/.gitignore
 /src/security/ddl/user_role_grants.sql
 /src/security/ddl/network_policy.sql
+/ui/metabase/secrets.sh
