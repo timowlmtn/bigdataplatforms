@@ -3,7 +3,7 @@ call ADMIN.SNAPSHOT_USERS();
 select *
 from ADMIN.SNOWFLAKE_USERS;
 
-CREATE or replace TASK create_snapshot_user
+CREATE or replace TASK admin.create_snapshot_user
   WAREHOUSE = COMPUTE_WH
   SCHEDULE = 'USING CRON 0 9-17 * * SUN-SAT America/New_York'
 AS
