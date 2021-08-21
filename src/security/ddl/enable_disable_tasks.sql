@@ -8,8 +8,11 @@ select *
      result_limit => 10));
 
 
+alter task ADMIN.SNAPSHOT_USER_NETWORK_POLICY suspend;
 
 alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY resume;
+
+select * from admin.SNOWFLAKE_LOGIN_HISTORY;
 
 alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
 
