@@ -1,6 +1,6 @@
 create or replace table ADMIN.SNOWFLAKE_USER
 (
-	"name" VARCHAR,
+	"name" VARCHAR primary key ,
 	"created_on" VARCHAR,
 	"login_name" VARCHAR,
 	"display_name" VARCHAR,

@@ -10,7 +10,7 @@ select *
 
 alter task ADMIN.SNAPSHOT_USER_NETWORK_POLICY suspend;
 
-alter task APPEND_SNOWFLAKE_LOGIN_HISTORY resume;
+alter task APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
 alter task CREATE_SNAPSHOT_USER  suspend;
 alter task CREATE_SNAPSHOT_USER_GRANT  suspend;
 alter task CREATE_SNAPSHOT_USER_NETWORK_POLICY  suspend;

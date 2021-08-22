@@ -14,7 +14,8 @@ create or replace table ADMIN.SNOWFLAKE_LOGIN_HISTORY
 	ERROR_MESSAGE VARCHAR,
 	RELATED_EVENT_ID NUMBER,
 	DW_CREATE_DATE TIMESTAMPLTZ not null default current_timestamp(),
-	DW_CREATED_BY VARCHAR not null default current_user()
+	DW_CREATED_BY VARCHAR not null default current_user(),
+	FOREIGN KEY (USER_NAME) REFERENCES ADMIN.SNOWFLAKE_USER("name")
 );
 
 

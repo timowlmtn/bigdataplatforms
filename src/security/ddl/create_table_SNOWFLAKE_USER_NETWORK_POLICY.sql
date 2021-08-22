@@ -8,8 +8,7 @@ create or replace table ADMIN.SNOWFLAKE_USER_NETWORK_POLICY
     description varchar,
     type varchar,
     DW_CREATED_DATE   TIMESTAMPLTZ default CURRENT_TIMESTAMP() not null,
-    DW_CREATED_BY     VARCHAR(100) default CURRENT_USER()      not null
+    DW_CREATED_BY     VARCHAR(100) default CURRENT_USER()      not null,
+    FOREIGN KEY (name) REFERENCES ADMIN.SNOWFLAKE_USER("name")
 );
 
-select *
-from ADMIN.SNOWFLAKE_USER_NETWORK_POLICY
