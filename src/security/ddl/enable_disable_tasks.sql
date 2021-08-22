@@ -23,5 +23,5 @@ drop task CREATE_SNAPSHOT_USER;
 
 drop task CREATE_SNAPSHOT_USER_GRANTS;
 
-alter task CREATE_SNAPSHOT_USERS suspend;
+alter task CREATE_SNAPSHOT_USERsuspend;
 alter task CREATE_SNAPSHOT_USER_GRANT suspend;

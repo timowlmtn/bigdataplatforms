@@ -1,7 +1,7 @@
 call ADMIN.SNAPSHOT_USERS();
 
 select *
-from ADMIN.SNOWFLAKE_USERS;
+from ADMIN.SNOWFLAKE_USER;
 
 CREATE or replace TASK admin.create_snapshot_user
   WAREHOUSE = COMPUTE_WH

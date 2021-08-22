@@ -11,7 +11,7 @@ $$
     try {
         snowflake.execute( {sqlText: "TRUNCATE TABLE ADMIN.SNOWFLAKE_USER_GRANT;"} );
 
-        var sql_command = "select \"name\" as NAME from ADMIN.SNOWFLAKE_USERS where \"name\" <> \'SNOWFLAKE\'";
+        var sql_command = "select \"name\" as NAME from ADMIN.SNOWFLAKE_USERwhere \"name\" <> \'SNOWFLAKE\'";
         var stmt = snowflake.createStatement( {sqlText: sql_command} );
         var resultSet = stmt.execute();
         while (resultSet.next())  {

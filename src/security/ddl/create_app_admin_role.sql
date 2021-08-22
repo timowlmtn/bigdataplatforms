@@ -12,7 +12,7 @@ grant ownership on
   schema OWLMTN.ADMIN
   to role ACCOUNTADMIN;
 
-grant all privileges on table OWLMTN.ADMIN.SNOWFLAKE_USERS
+grant all privileges on table OWLMTN.ADMIN.SNOWFLAKE_USER
 to role OWLMTN_ADMIN;
 
 grant usage

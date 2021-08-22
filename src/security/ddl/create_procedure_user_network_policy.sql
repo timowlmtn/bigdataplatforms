@@ -9,7 +9,7 @@ $$
     try {
         snowflake.execute( {sqlText: "TRUNCATE TABLE ADMIN.SNOWFLAKE_USER_NETWORK_POLICY;"} );
 
-        var sql_command = "select \"name\" as NAME from ADMIN.SNOWFLAKE_USERS where \"name\" <> \'SNOWFLAKE\'";
+        var sql_command = "select \"name\" as NAME from ADMIN.SNOWFLAKE_USER where \"name\" <> \'SNOWFLAKE\'";
         var stmt = snowflake.createStatement( {sqlText: sql_command} );
         var resultSet = stmt.execute();
         while (resultSet.next())  {

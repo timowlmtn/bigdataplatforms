@@ -1,5 +1,5 @@
 select *
-from OWLMTN.ADMIN.SNOWFLAKE_USERS;
+from OWLMTN.ADMIN.SNOWFLAKE_USER;
 
 show roles;
 
@@ -12,7 +12,7 @@ show grants on database owlmtn;
 use role ACCOUNTADMIN;
 
 select *
-from admin.SNOWFLAKE_USERS;
+from ADMIN.SNOWFLAKE_USER;
 
 select *
 from admin.SNOWFLAKE_USER_GRANT;

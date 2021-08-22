@@ -1,16 +1,16 @@
 CREATE OR REPLACE PROCEDURE ADMIN.SNAPSHOT_USERS()
 RETURNS VARCHAR
     LANGUAGE JAVASCRIPT
-    COMMENT = 'Captures the snapshot of users and inserts the records into ADMIN.SNOWFLAKE_USERS'
+    COMMENT = 'Captures the snapshot of users and inserts the records into ADMIN.SNOWFLAKE_USER'
     EXECUTE AS CALLER
         AS
 $$
     var result = "SUCCESS";
     try {
-        snowflake.execute( {sqlText: "TRUNCATE TABLE ADMIN.SNOWFLAKE_USERS;"} );
+        snowflake.execute( {sqlText: "TRUNCATE TABLE ADMIN.SNOWFLAKE_USER;"} );
         snowflake.execute( {sqlText: "show users;"} );
         var dbusers_tbl_sql = `
-        insert into ADMIN.SNOWFLAKE_USERS
+        insert into ADMIN.SNOWFLAKE_USER
         select
             "name",
             "created_on",

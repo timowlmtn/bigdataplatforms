@@ -1,4 +1,4 @@
-create or replace table ADMIN.SNOWFLAKE_USERS
+create or replace table ADMIN.SNOWFLAKE_USER
 (
 	"name" VARCHAR,
 	"created_on" VARCHAR,
