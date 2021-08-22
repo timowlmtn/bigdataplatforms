@@ -1,4 +1,4 @@
-create or replace view ADMIN.SNOWFLAKE_USER_STATUS_VIEW AS
+create or replace view ADMIN.SNOWFLAKE_USER_AUTHENTICATION_VIEW AS
 with start_mfa as (
     select user_name,
            case when length(np.VALUE) > 0 then np.value else null end POLICY_VALUE,
@@ -23,3 +23,5 @@ from admin.SNOWFLAKE_LOGIN_HISTORY logins
 inner join start_mfa on logins.user_name = start_mfa.user_name
 where logins.event_timestamp >= start_mfa.last_login_event_timestamp
 order by logins.event_timestamp;
+
+drop view SNOWFLAKE_USER_STATUS_VIEW
