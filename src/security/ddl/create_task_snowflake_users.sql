@@ -9,6 +9,7 @@ CREATE or replace TASK admin.create_snapshot_user
 AS
 call ADMIN.SNAPSHOT_USERS();
 
+use schema admin;
 show tasks;
 
 alter task create_snapshot_users resume;

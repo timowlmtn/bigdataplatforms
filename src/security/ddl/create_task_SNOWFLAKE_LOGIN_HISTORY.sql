@@ -20,7 +20,7 @@ select EVENT_TIMESTAMP,
        ERROR_MESSAGE,
        RELATED_EVENT_ID
 from table (information_schema.login_history(
-        time_range_start => (select coalesce(max(DW_CREATE_DATE), dateadd('days',-6,current_timestamp()))
+        (select coalesce(max(DW_CREATE_DATE), dateadd('days',-6,current_timestamp()))
                              from admin.SNOWFLAKE_LOGIN_HISTORY
             )));
 

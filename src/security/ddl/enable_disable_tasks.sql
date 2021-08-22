@@ -18,6 +18,8 @@ alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
 
 select * from  ADMIN.SNOWFLAKE_LOGIN_HISTORY
 
+alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
+
 show tasks;
 drop task CREATE_SNAPSHOT_USER;
 
