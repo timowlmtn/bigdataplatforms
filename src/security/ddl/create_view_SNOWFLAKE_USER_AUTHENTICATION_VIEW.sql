@@ -24,4 +24,14 @@ inner join start_mfa on logins.user_name = start_mfa.user_name
 where logins.event_timestamp >= start_mfa.last_login_event_timestamp
 order by logins.event_timestamp;
 
-drop view SNOWFLAKE_USER_STATUS_VIEW
+--- Generate Dictionary Template
+select HTML from (
+                     select 0 row_idx, '<table><tr><th>COLUMN_NAME</th><th>DESCRIPTION</th><tr>' HTML
+                     UNION
+                     select row_number() over (order by COLUMN_NAME asc), '<tr><td>' || COLUMN_NAME || '</td><td></td></tr>'
+                     from INFORMATION_SCHEMA.COLUMNS
+                     where TABLE_NAME = 'SNOWFLAKE_USER_AUTHENTICATION_VIEW'
+                     union
+                     select 2000, '</table>'
+                 )
+order by row_idx
