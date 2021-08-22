@@ -12,17 +12,29 @@ with start_mfa as (
     group by lh.user_name, np.VALUE, np.default, np.level, np.DESCRIPTION
 )
 select logins.USER_NAME,
-       logins.event_timestamp,
+       logins.FIRST_AUTHENTICATION_FACTOR,
+       logins.SECOND_AUTHENTICATION_FACTOR,
+       start_mfa.POLICY_VALUE,
+       start_mfa.POLICY_DEFAULT,
+       start_mfa.POLICY_LEVEL,
+       start_mfa.POLICY_DESCRIPTION,
+       case when POLICY_VALUE is not null then True else False END as SERVICE_USER,
+       case when logins.SECOND_AUTHENTICATION_FACTOR is not null
+          then True else False end as MFA_ENABLED,
+       max(logins.event_timestamp) last_event
+from admin.SNOWFLAKE_LOGIN_HISTORY logins
+inner join start_mfa on logins.user_name = start_mfa.user_name
+where logins.event_timestamp >= start_mfa.last_login_event_timestamp
+group by logins.USER_NAME,
        logins.FIRST_AUTHENTICATION_FACTOR,
        logins.SECOND_AUTHENTICATION_FACTOR,
        start_mfa.POLICY_VALUE,
        start_mfa.POLICY_DEFAULT,
        start_mfa.POLICY_LEVEL,
        start_mfa.POLICY_DESCRIPTION
-from admin.SNOWFLAKE_LOGIN_HISTORY logins
-inner join start_mfa on logins.user_name = start_mfa.user_name
-where logins.event_timestamp >= start_mfa.last_login_event_timestamp
-order by logins.event_timestamp;
+order by logins.USER_NAME;
+
+
 
 --- Generate Dictionary Template
 select HTML from (
