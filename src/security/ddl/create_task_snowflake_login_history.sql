@@ -3,9 +3,3 @@ CREATE or replace TASK ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY
   SCHEDULE = 'USING CRON * * * * SUN-SAT America/New_York'
 AS
     call ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY();
-
-use schema admin;
-
-show tasks;
-
-alter task admin.APPEND_SNOWFLAKE_LOGIN_HISTORY resume;

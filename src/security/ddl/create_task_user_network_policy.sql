@@ -4,8 +4,4 @@ CREATE or replace TASK ADMIN.create_snapshot_user_network_policy
 AS
 call ADMIN.SNAPSHOT_USER_NETWORK_POLICY();
 
-show tasks;
-
-alter task ADMIN.create_snapshot_user_network_policy resume;
-
 

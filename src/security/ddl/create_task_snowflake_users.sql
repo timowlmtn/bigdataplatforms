@@ -5,9 +5,3 @@ AS
 call ADMIN.SNAPSHOT_USERS();
 
 
-show tasks;
-
-alter task admin.create_snapshot_user resume;
-
-
-

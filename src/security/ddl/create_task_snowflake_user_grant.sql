@@ -4,13 +4,4 @@ CREATE or replace TASK ADMIN.create_snapshot_user_grant
 AS
 call ADMIN.SNAPSHOT_USER_GRANT();
 
-show tasks;
-
-alter task ADMIN.create_snapshot_user_grant resume;
-
-use warehouse COMPUTE_WH;
-
-select *
-    from table(INFORMATION_SCHEMA.task_history(
-     result_limit => 10, task_name=>'create_snapshot_user_grant'));
 
