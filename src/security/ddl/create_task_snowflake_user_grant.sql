@@ -1,8 +1,3 @@
-call ADMIN.SNAPSHOT_USER_GRANT();
-
-select *
-from ADMIN.SNOWFLAKE_USER_GRANT;
-
 CREATE or replace TASK ADMIN.create_snapshot_user_grant
   WAREHOUSE = COMPUTE_WH
   SCHEDULE = 'USING CRON 0 9-17 * * SUN-SAT America/New_York'
@@ -11,7 +6,7 @@ call ADMIN.SNAPSHOT_USER_GRANT();
 
 show tasks;
 
-alter task create_snapshot_user_grant resume;
+alter task ADMIN.create_snapshot_user_grant resume;
 
 use warehouse COMPUTE_WH;
 

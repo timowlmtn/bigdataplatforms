@@ -10,20 +10,10 @@ select *
 
 alter task ADMIN.SNAPSHOT_USER_NETWORK_POLICY suspend;
 
-alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY resume;
+alter task APPEND_SNOWFLAKE_LOGIN_HISTORY resume;
+alter task CREATE_SNAPSHOT_USER  suspend;
+alter task CREATE_SNAPSHOT_USER_GRANT  suspend;
+alter task CREATE_SNAPSHOT_USER_NETWORK_POLICY  suspend;
 
-select * from admin.SNOWFLAKE_LOGIN_HISTORY;
-
-alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
-
-select * from  ADMIN.SNOWFLAKE_LOGIN_HISTORY
-
-alter task ADMIN.APPEND_SNOWFLAKE_LOGIN_HISTORY suspend;
-
-show tasks;
-drop task CREATE_SNAPSHOT_USER;
-
-drop task CREATE_SNAPSHOT_USER_GRANTS;
-
-alter task CREATE_SNAPSHOT_USERsuspend;
-alter task CREATE_SNAPSHOT_USER_GRANT suspend;
+select * from admin.SNOWFLAKE_LOGIN_HISTORY
+order by EVENT_TIMESTAMP desc;
