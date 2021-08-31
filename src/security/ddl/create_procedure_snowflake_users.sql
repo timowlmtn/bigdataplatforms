@@ -10,7 +10,33 @@ $$
         snowflake.execute( {sqlText: "TRUNCATE TABLE ADMIN.SNOWFLAKE_USER;"} );
         snowflake.execute( {sqlText: "show users;"} );
         var dbusers_tbl_sql = `
-        insert into ADMIN.SNOWFLAKE_USER
+        insert into ADMIN.SNOWFLAKE_USER(
+            NAME,
+            CREATED_ON,
+            LOGIN_NAME,
+            DISPLAY_NAME,
+            FIRST_NAME,
+            LAST_NAME,
+            EMAIL,
+            MINS_TO_UNLOCK,
+            DAYS_TO_EXPIRY,
+            COMMENT,
+            DISABLED,
+            MUST_CHANGE_PASSWORD,
+            SNOWFLAKE_LOCK,
+            DEFAULT_WAREHOUSE,
+            DEFAULT_NAMESPACE,
+            DEFAULT_ROLE,
+            EXT_AUTHN_DUO,
+            EXT_AUTHN_UID,
+            MINS_TO_BYPASS_MFA,
+            OWNER,
+            LAST_SUCCESS_LOGIN,
+            EXPIRES_AT_TIME,
+            LOCKED_UNTIL_TIME,
+            HAS_PASSWORD,
+            HAS_RSA_PUBLIC_KEY
+        )
         select
             "name",
             "created_on",
@@ -36,9 +62,7 @@ $$
             "expires_at_time",
             "locked_until_time",
             "has_password",
-            "has_rsa_public_key",
-            CURRENT_TIMESTAMP(),
-            CURRENT_USER()
+            "has_rsa_public_key"
             from table(result_scan(last_query_id()));`;
         snowflake.execute( {sqlText: dbusers_tbl_sql} );
     } catch (err) {

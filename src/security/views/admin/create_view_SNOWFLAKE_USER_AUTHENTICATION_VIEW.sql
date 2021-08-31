@@ -35,6 +35,8 @@ group by logins.USER_NAME,
 order by logins.USER_NAME;
 
 
+use role USER_ACCESS_VIEWER;
+select * from ADMIN.SNOWFLAKE_USER_AUTHENTICATION_VIEW;
 
 --- Generate Dictionary Template
 select HTML from (
