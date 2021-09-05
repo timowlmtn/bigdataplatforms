@@ -1,31 +1,39 @@
 create or replace view ADMIN.SNOWFLAKE_FUNCTIONAL_ROLE_EXCEPTIONS_VIEW AS
-with access_role as (
-    select created_on, role, granted_to, grantee_name, granted_by, dw_create_date, dw_created_by
-    from admin.SNOWFLAKE_GRANTS_OF_ROLE
-    where granted_to = 'ROLE'
-      and  case when length(GRANTED_BY) = 0 then null else GRANTED_BY end is not null
+with functional_role_summary as (
+    select all_roles.role,
+           all_roles.granted_to,
+           count(all_roles.grantee_name) grantee_count
+    from admin.SNOWFLAKE_GRANTS_OF_ROLE all_roles
+    where length(GRANTED_BY) > 0 and GRANTED_TO = 'ROLE'
+    group by all_roles.role, all_roles.granted_to
 ),
-functional_role as (
-    select created_on, role, granted_to, grantee_name, granted_by, dw_create_date, dw_created_by
-    from admin.SNOWFLAKE_GRANTS_OF_ROLE
-    where granted_to = 'USER'
-      and  case when length(GRANTED_BY) = 0 then null else GRANTED_BY end is not null
-    )
-select all_roles.ROLE,
+     access_role_direct as (
+        select all_roles.role,
+           all_roles.granted_to,
+           count(all_roles.grantee_name) grantee_count
+        from admin.SNOWFLAKE_GRANTS_OF_ROLE all_roles
+        where length(GRANTED_BY) > 0 and GRANTED_TO = 'USER'
+        group by all_roles.role, all_roles.granted_to
+),
+     access_grant_summary as (
+         select role, GRANTED_TO, GRANTED_BY, count(PRIVILEGE) non_role_grants
+         from admin.SNOWFLAKE_ROLE_GRANT role_grant
+         where granted_on <> 'ROLE'
+         group by role_grant.role, role_grant.GRANTED_BY, role_grant.granted_to
+     )
+select all_roles.role,
        all_roles.GRANTED_TO,
-       count(all_roles.GRANTEE_NAME) grantee_count,
-       case when length(all_roles.GRANTED_BY) = 0 then null else all_roles.GRANTED_BY end granted_by,
-       case when access_role.role is not null then True else False end is_access_role,
-       case when access_role.role is not null and all_roles.GRANTED_TO = 'USER'
-           then True else False end is_access_exception,
-       case when length(all_roles.GRANTED_BY) = 0 and all_roles.GRANTED_TO = 'USER'
-            then True else False end is_root_role_exception,
-       case when functional_role.role is null and count(all_roles.GRANTEE_NAME) > 0
-                and all_roles.GRANTED_TO = 'USER'
-            then True else False end is_functional_role_exception
+       functional_role_summary.grantee_count,
+       access_grant_summary.non_role_grants,
+       length(all_roles.GRANTED_BY) = 0     is_system_role,
+       case
+           when length(all_roles.GRANTED_BY) = 0 and all_roles.GRANTED_TO = 'USER'
+               then True
+           else False end                   is_system_role_exception,
+       access_grant_summary.role is not null is_access_role,
+       access_role_direct.role is not null is_access_role_exception
 from admin.SNOWFLAKE_GRANTS_OF_ROLE all_roles
-left outer join access_role on all_roles.role = access_role.ROLE
-left outer join functional_role on all_roles.role = functional_role.role
-group by all_roles.ROLE,
-         all_roles.GRANTED_TO, all_roles.GRANTED_BY, access_role.role, functional_role.role;
+    left outer join functional_role_summary on all_roles.ROLE = functional_role_summary.role
+         left outer join access_grant_summary on all_roles.ROLE = access_grant_summary.role
+    left outer join access_role_direct on all_roles.ROLE = access_role_direct.role;
 
