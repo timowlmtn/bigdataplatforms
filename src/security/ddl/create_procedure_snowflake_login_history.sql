@@ -7,7 +7,13 @@ RETURNS VARCHAR
 $$
         var result = "SUCCESS";
         var sql_command = `
-select to_varchar(coalesce(max(DW_CREATE_DATE), dateadd('days',-6,current_timestamp())) ,
+select to_varchar(
+    case when
+        coalesce( max(DW_CREATE_DATE), dateadd('days',-6,current_timestamp())) >
+        dateadd('days',-6,current_timestamp()) then
+        coalesce(max(DW_CREATE_DATE), dateadd('days',-6,current_timestamp()))
+        else
+        dateadd('days',-6,current_timestamp())  end,
         'YYYY-MM-DD HH:MM:SS.FF9 TZH:TZM') last_timestamp
 from admin.SNOWFLAKE_LOGIN_HISTORY;
         `
