@@ -21,6 +21,7 @@ class ScrapeKexpPlaylist(unittest.TestCase):
         page = requests.get(self.playlist_url)
         soup = BeautifulSoup(page.text, "html.parser")
 
+
         # Remove all non-word characters
         self.assertEqual("Playlist", re.sub("\\s", "", soup.title.string))
 
