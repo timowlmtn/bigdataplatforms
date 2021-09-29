@@ -1,0 +1,274 @@
+{
+  "next": "https://api.kexp.org/v2/plays/?format=json&limit=10&offset=10&ordering=-airdate",
+  "previous": null,
+  "results": [
+    {
+      "airdate": "2021-09-29T05:43:15-07:00",
+      "album": "Queen of Culture",
+      "artist": "Mumu Fresh",
+      "artist_ids": [
+        "db49a6b6-5ff4-4889-a070-d70db5a26668"
+      ],
+      "comment": null,
+      "id": 2945159,
+      "image_uri": "https://ia904504.us.archive.org/3/items/mbid-2cf0b936-258a-4b92-9c75-9559566aed40/mbid-2cf0b936-258a-4b92-9c75-9559566aed40-29655638877_thumb500.jpg",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [
+        "c094f4e0-8b3c-4324-9d60-125b2bc1e98a"
+      ],
+      "labels": [
+        "Vintage Babies II"
+      ],
+      "play_type": "trackplay",
+      "recording_id": "332f66a6-9d9c-4147-81ad-7d8692c8a458",
+      "release_date": "2021-06-18",
+      "release_group_id": "080e0f55-c09f-4253-8c7b-0bdf969edbcf",
+      "release_id": "2cf0b936-258a-4b92-9c75-9559566aed40",
+      "rotation_status": "Medium",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Love Me Now",
+      "thumbnail_uri": "https://ia804504.us.archive.org/3/items/mbid-2cf0b936-258a-4b92-9c75-9559566aed40/mbid-2cf0b936-258a-4b92-9c75-9559566aed40-29655638877_thumb250.jpg",
+      "track_id": "0bd3b8a8-a8e3-47f1-8a7d-32077148a046",
+      "uri": "https://api.kexp.org/v2/plays/2945159/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:39:13-07:00",
+      "album": "Learn To Love",
+      "artist": "anaiis feat. Azekel",
+      "artist_ids": [],
+      "comment": "More music from the London-based artist:\nhttps://anaiis.bandcamp.com/track/learn-to-love",
+      "id": 2945158,
+      "image_uri": "",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [],
+      "labels": [
+        "Thunderlightning Recordings"
+      ],
+      "play_type": "trackplay",
+      "recording_id": null,
+      "release_date": "2020-08-14",
+      "release_group_id": null,
+      "release_id": null,
+      "rotation_status": null,
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Learn To Love",
+      "thumbnail_uri": "",
+      "track_id": null,
+      "uri": "https://api.kexp.org/v2/plays/2945158/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:35:40-07:00",
+      "comment": "",
+      "id": 2945157,
+      "image_uri": "",
+      "play_type": "airbreak",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "thumbnail_uri": "",
+      "uri": "https://api.kexp.org/v2/plays/2945157/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:31:29-07:00",
+      "album": "Exrcising A Demon | Article II | Brother Hoods",
+      "artist": "Bambu",
+      "artist_ids": [
+        "ca13fd8b-c86a-4a09-90a2-408fc1d7f9f1"
+      ],
+      "comment": "Bambu is a father, Emcee and community organizer who as part of the leadership for Beatrock Music, uses his experience as a coach for the rest of the artists, helping motivate and guide them into long successful careers.\nhttps://beatrockmusic.com/collections/bambu",
+      "id": 2945156,
+      "image_uri": "",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [
+        "34086ebc-bcae-4919-b7cd-8b60af29ea18"
+      ],
+      "labels": [
+        "Beatrock Music"
+      ],
+      "play_type": "trackplay",
+      "recording_id": "a77fb2c1-da71-4115-aa39-8db9baaa23c5",
+      "release_date": "2019-06-13",
+      "release_group_id": "a8c1829d-5658-4aad-943c-eb2a14a037a6",
+      "release_id": null,
+      "rotation_status": null,
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Brother to Brother",
+      "thumbnail_uri": "",
+      "track_id": null,
+      "uri": "https://api.kexp.org/v2/plays/2945156/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:30:08-07:00",
+      "album": "Song 33",
+      "artist": "Noname",
+      "artist_ids": [
+        "1395c84b-2e84-4f25-9962-f1c0d5aa31ed"
+      ],
+      "comment": "\"got a demon on my back looks like patriarchy\" \n1 minute, 9 seconds. Produced by Madlib. \nhttps://nonameraps.bandcamp.com",
+      "id": 2945155,
+      "image_uri": "",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [
+        "157afde4-4bf5-4039-8ad2-5a15acc85176"
+      ],
+      "labels": [
+        "[no label]"
+      ],
+      "play_type": "trackplay",
+      "recording_id": "91acf691-548e-409c-afef-421daa64263f",
+      "release_date": "2020-06-18",
+      "release_group_id": "99ba751a-4901-4fc0-8ba5-1ae9343455de",
+      "release_id": "4fd69aa3-b1a3-4296-bbef-4ab3a27cb7d1",
+      "rotation_status": "Library",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Song 33",
+      "thumbnail_uri": "",
+      "track_id": "b398dd8a-e2fb-4d59-b6ec-0d2ad8b68308",
+      "uri": "https://api.kexp.org/v2/plays/2945155/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:27:53-07:00",
+      "album": "Song 32",
+      "artist": "Noname",
+      "artist_ids": [
+        "1395c84b-2e84-4f25-9962-f1c0d5aa31ed"
+      ],
+      "comment": "The last couple years, Noname has been spending as much time on her book club as she has on music.  Check out essential reads + a list of Black-owned bookstores, vital conversations, events, and more found at Noname's Book Club - an online/irl community dedicated to uplifting POC voices:\nhttps://nonamebooks.com/",
+      "id": 2945154,
+      "image_uri": "https://coverartarchive.org/release/4b2b9298-3a23-4d86-bc9c-da09f326de2a/29217437301-500.jpg",
+      "is_live": false,
+      "is_local": false,
+      "is_request": true,
+      "label_ids": [
+        "157afde4-4bf5-4039-8ad2-5a15acc85176"
+      ],
+      "labels": [
+        "[no label]"
+      ],
+      "play_type": "trackplay",
+      "recording_id": "1e785f72-836b-46bb-b821-474716e3c2fc",
+      "release_date": "2019-04-05",
+      "release_group_id": "87ed4066-8c0f-4af1-9a36-41d1ebc9e67b",
+      "release_id": null,
+      "rotation_status": null,
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Song 32",
+      "thumbnail_uri": "https://coverartarchive.org/release/4b2b9298-3a23-4d86-bc9c-da09f326de2a/29217437301-250.jpg",
+      "track_id": null,
+      "uri": "https://api.kexp.org/v2/plays/2945154/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:22:18-07:00",
+      "album": "This Here Feels Good",
+      "artist": "Kay Young",
+      "artist_ids": [
+        "7f149adb-309f-4931-8450-c580613e7067"
+      ],
+      "comment": "South London rapper/producer/singer Kay Young explores racial inequality through the perspective of her younger self.\n\n\u201c'White Teeth' is a bittersweet song and was inspired by my childhood. I wanted the listener to see the world through the eyes of an innocent child who is yet to face adversity simply for the colour of their skin. I wanted to create something catchy, almost nursery rhyme like to make it digestible. Musically, 'White Teeth' gave me space to really expand on my storytelling. It\u2019s a big sound with a strong message.\u201d\n\nCheck out the video!\nhttps://youtu.be/IMhPN2j5q-I",
+      "id": 2945152,
+      "image_uri": "",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [],
+      "labels": [
+        "Play It Again Sam"
+      ],
+      "play_type": "trackplay",
+      "recording_id": null,
+      "release_date": "2021-10-08",
+      "release_group_id": null,
+      "release_id": null,
+      "rotation_status": "R/N",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "White Teeth",
+      "thumbnail_uri": "",
+      "track_id": null,
+      "uri": "https://api.kexp.org/v2/plays/2945152/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:18:31-07:00",
+      "album": "NINE",
+      "artist": "SAULT",
+      "artist_ids": [
+        "23b19bc5-813e-4456-bbae-ac3ca118f535"
+      ],
+      "comment": "Inflo produced SAULT's first four albums - including NINE. Released on June 25 the album is available for only 99 days - only a few days remaining to pick it up - get it before October 2!\nhttps://www.sault.global/ \nhttps://saultglobal.bandcamp.com/\n\nSAULT's latest album, NINE, is available to stream or purchase for only 99 days. (until October 2)\n\nhttps://www.sault.global/",
+      "id": 2945151,
+      "image_uri": "https://ia904505.us.archive.org/24/items/mbid-620a1dbf-bffb-40f7-befb-3eff200988d5/mbid-620a1dbf-bffb-40f7-befb-3eff200988d5-30267273627_thumb500.jpg",
+      "is_live": false,
+      "is_local": false,
+      "is_request": false,
+      "label_ids": [
+        "81e61c90-28f2-4dcb-b656-cac924dfa331"
+      ],
+      "labels": [
+        "Forever Living Originals"
+      ],
+      "play_type": "trackplay",
+      "recording_id": "07358664-3540-4469-a501-3b2298500d0b",
+      "release_date": "2021-06-25",
+      "release_group_id": "f510ee22-32b9-42ce-9252-d8b1f7525622",
+      "release_id": "620a1dbf-bffb-40f7-befb-3eff200988d5",
+      "rotation_status": "R/N",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "You From London feat. Little Simz",
+      "thumbnail_uri": "https://ia804505.us.archive.org/24/items/mbid-620a1dbf-bffb-40f7-befb-3eff200988d5/mbid-620a1dbf-bffb-40f7-befb-3eff200988d5-30267273627_thumb250.jpg",
+      "track_id": "1f85a9b3-5175-4c04-acf5-3f0d54370f15",
+      "uri": "https://api.kexp.org/v2/plays/2945151/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:14:57-07:00",
+      "comment": "",
+      "id": 2945150,
+      "image_uri": "",
+      "play_type": "airbreak",
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "thumbnail_uri": "",
+      "uri": "https://api.kexp.org/v2/plays/2945150/?format=json"
+    },
+    {
+      "airdate": "2021-09-29T05:11:33-07:00",
+      "album": "Only Love",
+      "artist": "Toni Hill",
+      "artist_ids": [
+        "54fd06bd-8495-436e-b21e-5d2b7dcd924d"
+      ],
+      "comment": "\"I wanted this album to be about love\u2014like the old school music our parents listened to... I wanted it to be about love for friends, love from supporters; and most importantly about love for self, because without that you really can't love anyone else.\" \n\nSeattle artist Toni Hill's 'Only Love' includes love and support from some of Seattle\u2019s finest musicians from jazz, hip-hop, R&B, and world music that include Mark Oi, Anthony Davis, Vitamin D, Aaron Walker-Loud, Royce Shorter Jr., Ethan Lawton, Chris Littlefield, Evan Flores-Barnes and others.\n\nhttps://soundcloud.com/bgirlmedia/toni-hill-this-thing-called-love-1",
+      "id": 2945149,
+      "image_uri": "https://coverartarchive.org/release/a2538c65-cc6f-4efc-ba1d-5df6e3368066/13223028659-500.jpg",
+      "is_live": false,
+      "is_local": true,
+      "is_request": false,
+      "label_ids": [],
+      "labels": [],
+      "play_type": "trackplay",
+      "recording_id": "c06be068-8750-48a8-bfee-904311b47eae",
+      "release_date": "2009-04-09",
+      "release_group_id": "1b8987a0-1de6-49b3-8e5a-9779343722b0",
+      "release_id": null,
+      "rotation_status": null,
+      "show": 51650,
+      "show_uri": "https://api.kexp.org/v2/shows/51650/?format=json",
+      "song": "Coffee Shop",
+      "thumbnail_uri": "https://coverartarchive.org/release/a2538c65-cc6f-4efc-ba1d-5df6e3368066/13223028659-250.jpg",
+      "track_id": null,
+      "uri": "https://api.kexp.org/v2/plays/2945149/?format=json"
+    }
+  ]
+}
