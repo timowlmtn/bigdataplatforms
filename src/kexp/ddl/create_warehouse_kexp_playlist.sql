@@ -6,7 +6,15 @@ create or replace table warehouse.fact_kexp_playlist
     album   STRING        null,
     artist  STRING        null,
     song    STRING        null,
-    FOREIGN KEY (load_id) REFERENCES STAGE.kexp_playlist (LOAD_ID)
+    DW_CREATE_DATE TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP(),
+    DW_CREATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER(),
+    DW_UPDATE_DATE TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP(),
+    DW_UPDATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER()/*,
+
+    The Foreign Key here can reference either import_kexp_playlist or raw_kexp_playlsit
+
+    FOREIGN KEY (load_id) REFERENCES STAGE.import_kexp_playlist (LOAD_ID)
+                                                            */
 );
 
 

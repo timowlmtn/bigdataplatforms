@@ -1,4 +1,4 @@
-copy into stage.kexp_playlist (filename, file_row_number, value)
+copy into stage.raw_kexp_playlist (filename, file_row_number, value)
     from (
         select metadata$filename filename,
                metadata$file_row_number,

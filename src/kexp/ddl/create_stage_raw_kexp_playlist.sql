@@ -1,4 +1,4 @@
-create or replace table stage.kexp_playlist
+create or replace table stage.raw_kexp_playlist
 (
     load_id         INT primary key identity (1,1),
     filename        STRING not null,
