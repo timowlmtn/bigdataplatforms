@@ -1,0 +1,5 @@
+select *
+from WAREHOUSE.FACT_KEXP_PLAYLIST;
+
+select *
+from STAGE.RAW_KEXP_PLAYLIST;
