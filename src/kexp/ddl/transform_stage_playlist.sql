@@ -5,6 +5,6 @@ select load_id,
        tab.value:album::String,
        tab.value:artist::String,
        tab.value:song::String
-from stage.KEXP_PLAYLIST stg,
+from stage.raw_kexp_playlist stg,
      table (flatten(stg.value:results)) tab
 where load_id > (select coalesce(max(load_id), 0) from WAREHOUSE.FACT_KEXP_PLAYLIST);

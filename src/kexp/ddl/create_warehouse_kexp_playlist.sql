@@ -9,12 +9,8 @@ create or replace table warehouse.fact_kexp_playlist
     DW_CREATE_DATE TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP(),
     DW_CREATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER(),
     DW_UPDATE_DATE TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP(),
-    DW_UPDATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER()/*,
-
-    The Foreign Key here can reference either import_kexp_playlist or raw_kexp_playlsit
-
-    FOREIGN KEY (load_id) REFERENCES STAGE.import_kexp_playlist (LOAD_ID)
-                                                            */
+    DW_UPDATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER(),
+    FOREIGN KEY (load_id) REFERENCES STAGE.raw_kexp_playlist (LOAD_ID)
 );
 
 
