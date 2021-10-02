@@ -1,0 +1,65 @@
+from botocore.exceptions import ClientError
+from datetime import datetime
+import json
+import re
+import requests
+import traceback
+
+kexp_max_rows = 1000
+
+
+class KexpDataLake:
+    s3_client = None
+    s3_bucket = None
+    s3_stage = None
+
+    def __init__(self, s3_client, s3_bucket, s3_stage):
+        self.s3_client = s3_client
+        self.s3_bucket = s3_bucket
+        self.s3_stage = s3_stage
+
+    def list_object_results(self):
+        try:
+            return self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
+                                                  MaxKeys=kexp_max_rows,
+                                                  Prefix=self.s3_stage)['Contents']
+
+        except ClientError as exc:
+            raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
+
+    def get_playlist_object_map(self):
+        result = {}
+        key_regexp = r"^[\w]+/[\w]+/([\d]+)/playlist.json"
+        for list_object in self.list_object_results():
+            print(list_object)
+            match = re.match(key_regexp, list_object["Key"])
+            if match:
+                result[match.group(1)] = list_object
+            else:
+                raise ValueError(f"Failed to match {list_object} with {key_regexp}")
+
+        return result
+
+
+class KexpReader:
+    airdate_before = None
+
+    def __init__(self, airdate_before):
+        self.airdate_before = airdate_before
+
+    def get_playlist(self, read_rows=kexp_max_rows):
+
+        playlist_json = f"https://api.kexp.org/" \
+                        f"v2/plays/?format=json&" \
+                        f"limit={read_rows}&ordering=-airdate&airdate_before={self.airdate_before}"
+
+        page = requests.get(playlist_json)
+
+        # Return the result as an ordered hash map by air date.
+        result = {}
+        for playlist_obj in json.loads(page.text)["results"]:
+            air_date = datetime.strptime(playlist_obj["airdate"], "%Y-%m-%dT%H:%M:%S%z")
+            result[int(datetime.strftime(air_date, "%Y%m%d%H%M%S"))] = playlist_obj
+
+        return result
+
