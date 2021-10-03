@@ -8,16 +8,17 @@ import traceback
 
 kexp_max_rows = 1000
 
-
 class KexpDataLake:
     s3_client = None
     s3_bucket = None
     s3_stage = None
+    playlist_regexp = None
 
     def __init__(self, s3_client, s3_bucket, s3_stage):
         self.s3_client = s3_client
         self.s3_bucket = s3_bucket
         self.s3_stage = s3_stage
+        self.playlist_regexp = re.compile(f"{self.s3_stage}/playlists/([\\d]+)/playlist.*.json")
 
     def list_playlists(self):
         return self.list_object_results(f"{self.s3_stage}/playlists")
@@ -33,6 +34,32 @@ class KexpDataLake:
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
+
+    def get_newest_playlist(self):
+        """
+        Get the newest playlist date using the fact that AWS always lists alphabetically.
+        :return:
+        """
+        playlists = self.list_playlists()
+        return self.list_playlists()[len(playlists)-1]
+
+    def get_oldest_playlist_key(self):
+        oldest_playlist = self.get_oldest_playlist()
+        match = re.match(self.playlist_regexp, oldest_playlist["Key"])
+        return match.group(1)
+
+    def get_newest_playlist_key(self):
+        newest_playlist = self.get_newest_playlist()
+        match = re.match(self.playlist_regexp, newest_playlist["Key"])
+        return match.group(1)
+
+    def get_oldest_playlist(self):
+        """
+        Get the oldest playlist date using the fact that AWS always lists alphabetically.
+        :return:
+        """
+        return self.list_playlists()[0]
+
 
     def get_playlist_object_map(self):
         result = {}
@@ -70,20 +97,21 @@ class KexpApiReader:
     datetime_format_api = "%Y-%m-%dT%H:%M:%S%z"
     datetime_format_lake = "%Y%m%d%H%M%S"
 
-    # Getting the playlist will populate the dependent values shows
-    shows_map = {}
-
-    def __init__(self, airdate_before_date=datetime.now()):
-        self.airdate_before_date = airdate_before_date
-
     def date_to_api(self):
         return datetime.strftime(self.airdate_before_date, self.datetime_format_api)
 
-    def get_playlist(self, read_rows=kexp_max_rows):
+    def get_playlist(self, read_rows=kexp_max_rows, airdate_before=None):
+        if airdate_before is None:
+            airdate_before_str = datetime.strftime(datetime.now(), self.datetime_format_api)
+        else:
+            airdate_before_str = datetime.strftime(
+                datetime.strptime(airdate_before, self.datetime_format_lake),
+                self.datetime_format_api
+            )
 
         playlist_json = f"https://api.kexp.org/" \
                         f"v2/plays/?format=json&" \
-                        f"limit={read_rows}&ordering=-airdate&airdate_before={self.date_to_api()}"
+                        f"limit={read_rows}&ordering=-airdate&airdate_before={airdate_before_str}"
 
         page = requests.get(playlist_json)
 
@@ -93,16 +121,25 @@ class KexpApiReader:
             air_date = datetime.strptime(playlist_obj["airdate"], self.datetime_format_api)
             result[int(datetime.strftime(air_date, self.datetime_format_lake))] = playlist_obj
 
-            # Initialize the shows list
-            if playlist_obj["show"] not in self.shows_map:
-                self.shows_map[ playlist_obj["show"]] = None
-
         return result
 
-    def get_shows(self):
-        for show in self.shows_map:
-            if self.shows_map[show] is None:
-                page = requests.get(f"https://api.kexp.org/v2/shows/{show}/?format=json")
-                self.shows_map[show] = json.loads(page.text)
+    def get_shows(self, playlist_map):
+        """
+        Get a list of the shows given a playlist map
+        :param playlist_obj:
+        :return:
+        """
+        # Initialize the shows list
+        shows_map = {}
 
-        return self.shows_map
+        for playlist_key in playlist_map:
+            playlist_obj = playlist_map[playlist_key]
+            if playlist_obj["show"] not in shows_map:
+                shows_map[playlist_obj["show"]] = None
+
+        for show in shows_map:
+            if shows_map[show] is None:
+                page = requests.get(f"https://api.kexp.org/v2/shows/{show}/?format=json")
+                shows_map[show] = json.loads(page.text)
+
+        return shows_map

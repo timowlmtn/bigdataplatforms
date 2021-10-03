@@ -1,3 +1,5 @@
+import re
+
 import boto3
 import unittest
 import lakelayer
@@ -44,13 +46,12 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
     def test_get_kexp_data(self):
 
-        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
-                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
+        kexp_reader = lakelayer.KexpApiReader()
 
-        playlist_map = kexp_reader.get_playlist(10)
+        playlist_map = kexp_reader.get_playlist(10, airdate_before="20211003103231")
 
         # Make sure the last date is always consistent
-        overall_last_date = 20200928040741
+        overall_last_date = 20211003100054
         # Validate that the dates are in order from newest to oldest
         last_date = None
         for playlist_key in playlist_map.keys():
@@ -68,18 +69,17 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                                            s3_bucket=self.s3_bucket,
                                            s3_stage="stage/kexp_test")
 
-        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
-                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
+        kexp_reader = lakelayer.KexpApiReader()
 
-        kexp_lake.put_playlist(kexp_reader.get_playlist(10))
+        kexp_playlists = kexp_reader.get_playlist(10)
+        kexp_lake.put_playlist(kexp_playlists)
 
-        kexp_lake.put_shows(kexp_reader.get_shows())
+        kexp_lake.put_shows(kexp_reader.get_shows(kexp_playlists))
 
     def test_get_shows(self):
-        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
-                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
-        kexp_reader.get_playlist(10)
-        kexp_shows = kexp_reader.get_shows()
+        kexp_reader = lakelayer.KexpApiReader()
+
+        kexp_shows = kexp_reader.get_shows(kexp_reader.get_playlist(10, airdate_before="20200928040741"))
 
         expected_result = {48339: {'id': 48339, 'uri': 'https://api.kexp.org/v2/shows/48339/?format=json', 'program': 4,
                                    'program_uri': 'https://api.kexp.org/v2/programs/4/?format=json', 'hosts': [24],
@@ -91,13 +91,37 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
         self.assertEqual(expected_result, kexp_shows)
 
-    def test_get_all(self):
+    def test_get_recent(self):
         kexp_reader = lakelayer.KexpApiReader()
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
                                            s3_stage="stage/kexp")
-        kexp_lake.put_playlist(kexp_reader.get_playlist(10))
-        kexp_lake.put_shows(kexp_reader.get_shows())
+
+        playlist_map = kexp_reader.get_playlist(10)
+        kexp_lake.put_playlist(playlist_map)
+        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+
+    def test_get_newest_oldest(self):
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp")
+
+        oldest_playlist_key = kexp_lake.get_oldest_playlist_key()
+        print(oldest_playlist_key)
+        newest_playlist_key = kexp_lake.get_newest_playlist_key()
+
+        self.assertTrue(oldest_playlist_key < newest_playlist_key)
+
+    def test_get_historical(self):
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp")
+        kexp_reader = lakelayer.KexpApiReader()
+
+        playlist_map = kexp_reader.get_playlist(100, airdate_before=kexp_lake.get_oldest_playlist_key())
+        kexp_lake.put_playlist(playlist_map)
+        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+
 
 if __name__ == '__main__':
     unittest.main()
