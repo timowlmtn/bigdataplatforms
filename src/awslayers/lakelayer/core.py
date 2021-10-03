@@ -31,7 +31,6 @@ class KexpDataLake:
         result = {}
         key_regexp = r"^[\w]+/[\w]+/([\d]+)/playlist.json"
         for list_object in self.list_object_results():
-            print(list_object)
             match = re.match(key_regexp, list_object["Key"])
             if match:
                 result[match.group(1)] = list_object
