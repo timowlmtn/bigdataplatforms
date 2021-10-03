@@ -1,14 +1,7 @@
-import re
-import unittest
-import urllib
-import os
-import json
-import requests
 import boto3
+import unittest
+import lakelayer
 from datetime import datetime
-
-import lakelayer;
-
 
 #
 # Author: Tim Burns
@@ -20,19 +13,6 @@ import lakelayer;
 class KexpPlaylistDataLakeTest(unittest.TestCase):
     session = boto3.Session(profile_name="owlmtn")
     s3_bucket = "azri.us-data"
-
-    def test_get_playlist_api(self):
-        page = requests.get(self.playlist_json)
-
-        json_response = json.loads(page.text)
-
-        # Create a unique folder for each request data lake style
-        file_directory = f"data/kexp/{datetime.today().strftime('%Y%m%d%H%M%S')}"
-
-        os.makedirs(file_directory)
-
-        with open(f"{file_directory}/playlist.json", "w") as file_out:
-            file_out.write(json.dumps(json_response, indent=2, sort_keys=True))
 
     def test_get_s3_data(self):
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
@@ -48,6 +28,7 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         self.assertTrue(f"Expected to find {target_value} in {playlist_map}", target_value in playlist_map)
 
     def test_datetime_parse(self):
+        # Play with the date format to get it right
         self.assertEqual("2020-09-28 11:53:50+00:00",
                          str(datetime.strptime("2020-09-28T11:53:50.000Z", "%Y-%m-%dT%H:%M:%S.%f%z")))
 
@@ -56,12 +37,12 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
     def test_get_kexp_data(self):
 
-        kexp_reader = lakelayer.KexpReader(airdate_before="2020-09-28T11:53:50.000Z")
+        kexp_reader = lakelayer.KexpApiReader(airdate_before="2020-09-28T11:53:50.000Z")
 
         playlist_map = kexp_reader.get_playlist(10)
 
-        #print(playlist_map.keys())
-
+        # Make sure the last date is always consistent
+        overall_last_date = 20200928040741
         # Validate that the dates are in order from newest to oldest
         last_date = None
         for playlist_key in playlist_map.keys():
@@ -71,7 +52,17 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                 self.assertTrue(last_date > playlist_key)
                 last_date = playlist_key
 
-        print(last_date)
+        self.assertEqual(overall_last_date, last_date)
+
+    def test_put_kexp_data(self):
+        # Use the Web request and S3 objects together to dump the data
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp_test")
+
+        kexp_reader = lakelayer.KexpApiReader(airdate_before="2020-09-28T11:53:50.000Z")
+
+        kexp_lake.put_playlist(kexp_reader.get_playlist(10))
 
 
 if __name__ == '__main__':

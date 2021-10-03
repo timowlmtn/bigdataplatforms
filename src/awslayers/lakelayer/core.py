@@ -40,8 +40,16 @@ class KexpDataLake:
 
         return result
 
+    def put_playlist(self, json_playlist_map):
+        for timestamp in json_playlist_map.keys():
+            key = f"{self.s3_stage}/{timestamp}/playlist.json"
 
-class KexpReader:
+            self.s3_client.put_object(Bucket=self.s3_bucket,
+                                      Key=key,
+                                      Body=json.dumps(json_playlist_map[timestamp]))
+
+
+class KexpApiReader:
     airdate_before = None
 
     def __init__(self, airdate_before):
@@ -62,4 +70,3 @@ class KexpReader:
             result[int(datetime.strftime(air_date, "%Y%m%d%H%M%S"))] = playlist_obj
 
         return result
-
