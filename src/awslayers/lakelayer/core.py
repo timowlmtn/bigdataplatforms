@@ -8,6 +8,7 @@ import traceback
 
 kexp_max_rows = 1000
 
+
 class KexpDataLake:
     s3_client = None
     s3_bucket = None
@@ -59,7 +60,6 @@ class KexpDataLake:
         :return:
         """
         return self.list_playlists()[0]
-
 
     def get_playlist_object_map(self):
         result = {}

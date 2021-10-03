@@ -112,16 +112,6 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
         self.assertTrue(oldest_playlist_key < newest_playlist_key)
 
-    def test_get_historical(self):
-        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
-                                           s3_bucket=self.s3_bucket,
-                                           s3_stage="stage/kexp")
-        kexp_reader = lakelayer.KexpApiReader()
-
-        playlist_map = kexp_reader.get_playlist(100, airdate_before=kexp_lake.get_oldest_playlist_key())
-        kexp_lake.put_playlist(playlist_map)
-        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
-
 
 if __name__ == '__main__':
     unittest.main()
