@@ -18,9 +18,9 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
     def test_get_s3_data(self):
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
-                                           s3_stage="stage/kexp")
+                                           s3_stage="stage/kexp_test")
 
-        playlist_sets = kexp_lake.list_object_results()
+        playlist_sets = kexp_lake.list_object_results("stage/kexp_test")
 
         self.assertTrue("Expected non-empty result", len(playlist_sets) > 0)
 
@@ -72,6 +72,8 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                                                                                     "%Y-%m-%dT%H:%M:%S%z"))
 
         kexp_lake.put_playlist(kexp_reader.get_playlist(10))
+
+        kexp_lake.put_shows(kexp_reader.get_shows())
 
     def test_get_shows(self):
         kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",

@@ -1,6 +1,7 @@
 from botocore.exceptions import ClientError
 from datetime import datetime
 import json
+import mimetypes
 import re
 import requests
 import traceback
@@ -18,19 +19,25 @@ class KexpDataLake:
         self.s3_bucket = s3_bucket
         self.s3_stage = s3_stage
 
-    def list_object_results(self):
+    def list_playlists(self):
+        return self.list_object_results(f"{self.s3_stage}/playlists")
+
+    def list_shows(self):
+        return self.list_object_results(f"{self.s3_stage}/shows")
+
+    def list_object_results(self, prefix):
         try:
             return self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
                                                   MaxKeys=kexp_max_rows,
-                                                  Prefix=self.s3_stage)['Contents']
+                                                  Prefix=prefix)['Contents']
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
 
     def get_playlist_object_map(self):
         result = {}
-        key_regexp = r"^[\w]+/[\w]+/([\d]+)/playlist.json"
-        for list_object in self.list_object_results():
+        key_regexp = re.compile(f"{self.s3_stage}/playlists/([\\d]+)/playlist.*.json")
+        for list_object in self.list_object_results(f"{self.s3_stage}/playlists"):
             match = re.match(key_regexp, list_object["Key"])
             if match:
                 result[match.group(1)] = list_object
@@ -39,13 +46,22 @@ class KexpDataLake:
 
         return result
 
+    def put_object(self, key, contents):
+        mimetype, _ = mimetypes.guess_type(key)
+        self.s3_client.put_object(Bucket=self.s3_bucket,
+                                  Key=key,
+                                  Body=contents,
+                                  ContentType=mimetype)
+
     def put_playlist(self, json_playlist_map):
         for timestamp in json_playlist_map.keys():
-            key = f"{self.s3_stage}/{timestamp}/playlist.json"
+            key = f"{self.s3_stage}/playlists/{timestamp}/playlist{json_playlist_map[timestamp]['id']}.json"
+            self.put_object(key, json.dumps(json_playlist_map[timestamp]))
 
-            self.s3_client.put_object(Bucket=self.s3_bucket,
-                                      Key=key,
-                                      Body=json.dumps(json_playlist_map[timestamp]))
+    def put_shows(self, json_shows_map):
+        for show_id in json_shows_map.keys():
+            key = f"{self.s3_stage}/shows/{show_id}/show{json_shows_map[show_id]['id']}.json"
+            self.put_object(key, json.dumps(json_shows_map[show_id]))
 
 
 class KexpApiReader:
