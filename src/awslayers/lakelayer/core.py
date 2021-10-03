@@ -50,23 +50,44 @@ class KexpDataLake:
 
 
 class KexpApiReader:
-    airdate_before = None
+    airdate_before_date = None
 
-    def __init__(self, airdate_before):
-        self.airdate_before = airdate_before
+    datetime_format_api = "%Y-%m-%dT%H:%M:%S%z"
+    datetime_format_lake = "%Y%m%d%H%M%S"
+
+    # Getting the playlist will populate the dependent values shows
+    shows_map = {}
+
+    def __init__(self, airdate_before_date=datetime.now()):
+        self.airdate_before_date = airdate_before_date
+
+    def date_to_api(self):
+        return datetime.strftime(self.airdate_before_date, self.datetime_format_api)
 
     def get_playlist(self, read_rows=kexp_max_rows):
 
         playlist_json = f"https://api.kexp.org/" \
                         f"v2/plays/?format=json&" \
-                        f"limit={read_rows}&ordering=-airdate&airdate_before={self.airdate_before}"
+                        f"limit={read_rows}&ordering=-airdate&airdate_before={self.date_to_api()}"
 
         page = requests.get(playlist_json)
 
         # Return the result as an ordered hash map by air date.
         result = {}
         for playlist_obj in json.loads(page.text)["results"]:
-            air_date = datetime.strptime(playlist_obj["airdate"], "%Y-%m-%dT%H:%M:%S%z")
-            result[int(datetime.strftime(air_date, "%Y%m%d%H%M%S"))] = playlist_obj
+            air_date = datetime.strptime(playlist_obj["airdate"], self.datetime_format_api)
+            result[int(datetime.strftime(air_date, self.datetime_format_lake))] = playlist_obj
+
+            # Initialize the shows list
+            if playlist_obj["show"] not in self.shows_map:
+                self.shows_map[ playlist_obj["show"]] = None
 
         return result
+
+    def get_shows(self):
+        for show in self.shows_map:
+            if self.shows_map[show] is None:
+                page = requests.get(f"https://api.kexp.org/v2/shows/{show}/?format=json")
+                self.shows_map[show] = json.loads(page.text)
+
+        return self.shows_map

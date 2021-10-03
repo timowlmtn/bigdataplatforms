@@ -3,6 +3,7 @@ import unittest
 import lakelayer
 from datetime import datetime
 
+
 #
 # Author: Tim Burns
 # License: Apache 2.0
@@ -35,9 +36,16 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         self.assertTrue("2020-09-28 04:51:44-07:00",
                         str(datetime.strptime("2020-09-28T04:51:44-07:00", "%Y-%m-%dT%H:%M:%S%z")))
 
+        self.assertTrue("2020-09-28T04:51:44-07:00",
+                        datetime.strftime(
+                            datetime.strptime("2020-09-28T04:51:44-07:00",
+                                              "%Y-%m-%dT%H:%M:%S%z"),
+                            "%Y-%m-%dT%H:%M:%S%z"))
+
     def test_get_kexp_data(self):
 
-        kexp_reader = lakelayer.KexpApiReader(airdate_before="2020-09-28T11:53:50.000Z")
+        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
+                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
 
         playlist_map = kexp_reader.get_playlist(10)
 
@@ -60,9 +68,26 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                                            s3_bucket=self.s3_bucket,
                                            s3_stage="stage/kexp_test")
 
-        kexp_reader = lakelayer.KexpApiReader(airdate_before="2020-09-28T11:53:50.000Z")
+        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
+                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
 
         kexp_lake.put_playlist(kexp_reader.get_playlist(10))
+
+    def test_get_shows(self):
+        kexp_reader = lakelayer.KexpApiReader(airdate_before_date=datetime.strptime("2020-09-28T04:51:44-07:00",
+                                                                                    "%Y-%m-%dT%H:%M:%S%z"))
+        kexp_reader.get_playlist(10)
+        kexp_shows = kexp_reader.get_shows()
+
+        expected_result = {48339: {'id': 48339, 'uri': 'https://api.kexp.org/v2/shows/48339/?format=json', 'program': 4,
+                                   'program_uri': 'https://api.kexp.org/v2/programs/4/?format=json', 'hosts': [24],
+                                   'host_uris': ['https://api.kexp.org/v2/hosts/24/?format=json'],
+                                   'program_name': 'Jazz Theatre', 'program_tags': 'Jazz',
+                                   'host_names': ['John Gilbreath'], 'tagline': '',
+                                   'image_uri': 'https://www.kexp.org/filer/canonical/1529970959/10640/',
+                                   'start_time': '2020-09-28T03:00:50-07:00'}}
+
+        self.assertEqual(expected_result, kexp_shows)
 
 
 if __name__ == '__main__':
