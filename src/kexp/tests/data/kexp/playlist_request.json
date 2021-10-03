@@ -1,0 +1,38 @@
+{
+  "next": "https://api.kexp.org/v2/plays/?airdate_before=2021-10-03T22%3A18%3A35.000Z&format=json&limit=1&offset=1&ordering=-airdate",
+  "previous": null,
+  "results": [
+    {
+      "id": 2946863,
+      "uri": "https://api.kexp.org/v2/plays/2946863/?format=json",
+      "airdate": "2021-10-03T15:16:10-07:00",
+      "show": 51688,
+      "show_uri": "https://api.kexp.org/v2/shows/51688/?format=json",
+      "image_uri": "https://coverartarchive.org/release/e135df1f-d8b3-4998-8cb4-0834585569df/9782383097-500.jpg",
+      "thumbnail_uri": "https://coverartarchive.org/release/e135df1f-d8b3-4998-8cb4-0834585569df/9782383097-250.jpg",
+      "song": "Head Over Heels",
+      "track_id": null,
+      "recording_id": null,
+      "artist": "Tears for Fears",
+      "artist_ids": [
+        "7c7f9c94-dee8-4903-892b-6cf44652e2de"
+      ],
+      "album": "Songs From the Big Chair",
+      "release_id": null,
+      "release_group_id": "475946e9-4b00-3f7c-9bd7-c11f55740262",
+      "labels": [
+        "Mercury Records"
+      ],
+      "label_ids": [
+        "995428e7-81b6-41dd-bd38-5a7a0ece8ad6"
+      ],
+      "release_date": "1985-02-17",
+      "rotation_status": null,
+      "is_local": false,
+      "is_request": false,
+      "is_live": false,
+      "comment": null,
+      "play_type": "trackplay"
+    }
+  ]
+}

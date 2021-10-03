@@ -6,6 +6,9 @@ import re
 import requests
 import traceback
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 kexp_max_rows = 1000
 
 
@@ -81,9 +84,19 @@ class KexpDataLake:
                                   ContentType=mimetype)
 
     def put_playlist(self, json_playlist_map):
+        """
+        Put the playlist out as a set of JSON object
+        :param json_playlist_map:
+        :return:
+        """
+        json_obj = []
         for timestamp in json_playlist_map.keys():
             key = f"{self.s3_stage}/playlists/{timestamp}/playlist{json_playlist_map[timestamp]['id']}.json"
-            self.put_object(key, json.dumps(json_playlist_map[timestamp]))
+            json_obj.append(json.dumps(json_playlist_map[timestamp]))
+
+        logging.info(f"Writing out {key}")
+        # Use the \n delimiter for sets of json objects and put one per whole list
+        self.put_object(key, "\n".join(json_obj))
 
     def put_shows(self, json_shows_map):
         for show_id in json_shows_map.keys():
