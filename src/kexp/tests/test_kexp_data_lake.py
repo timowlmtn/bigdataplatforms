@@ -91,6 +91,13 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
         self.assertEqual(expected_result, kexp_shows)
 
+    def test_get_all(self):
+        kexp_reader = lakelayer.KexpApiReader()
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp")
+        kexp_lake.put_playlist(kexp_reader.get_playlist(10))
+        kexp_lake.put_shows(kexp_reader.get_shows())
 
 if __name__ == '__main__':
     unittest.main()
