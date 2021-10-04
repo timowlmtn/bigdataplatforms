@@ -3,3 +3,7 @@
 /src/security/ddl/network_policy.sql
 /ui/metabase/secrets.sh
 /src/awslayers/setenv.sh
+/src/aws_kexp_cloudformation/build/
+/src/aws_kexp_cloudformation/setenv_dev_blue.sh
+/src/kexp/aws_cloudformation/setenv_dev_blue.sh
+/src/kexp/aws_layers/setenv.sh
