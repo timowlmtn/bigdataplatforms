@@ -35,15 +35,14 @@ def sync_kexp_snowflake(event, context):
         kexp_reader = lakelayer.KexpApiReader()
         kexp_playlists = kexp_reader.get_playlist(10)
 
-
-
+        result = {}
+        return result
 
     except Exception as exception:
         message = f"ERROR in {context.function_name}: {exception} {traceback_output}"
         logger.error(message)
         raise
 
-    return result
 
 
 

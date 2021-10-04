@@ -1,0 +1,119 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Cloudformation Template to build out the KEXP Sync AWS Environment
+
+Globals:
+  #https://github.com/awslabs/serverless-application-model/blob/develop/docs/globals.rst
+  Function:
+    Runtime: python3.7
+    MemorySize: 512
+
+Parameters:
+  RestApiName:
+    Type: String
+
+  SecretsArn:
+    Type: String
+
+  ExportBucketArn:
+    Type: String
+
+  ExportBucket:
+    Type: String
+
+  EventFolder:
+    Type: String
+
+  LayerAws:
+    Type: String
+
+  LayerSnowflake:
+    Type: String
+
+  LayerLake:
+    Type: String
+
+Resources:
+  DefaultLambdaRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: "AllowMetricAdd"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "cloudwatch:PutMetricData"
+                Resource: "*"
+
+        - PolicyName: "AllowInvoke"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "lambda:InvokeFunction"
+                Resource: "*"
+
+        - PolicyName: "AllowExportBucket"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "s3:*"
+                Resource:
+                  - !Ref ExportBucketArn
+                  - !Join ["/", [!Ref ExportBucketArn, '*']]
+
+        - PolicyName: "AllowSM"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "secretsmanager:*"
+                Resource: !Ref SecretsArn
+
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Effect: "Allow"
+                Resource:
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${RestApiName}:*"
+          PolicyName: "lambda"
+
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  LambdaSyncKexpSnowflake:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: kexp_lambda_function.sync_kexp_snowflake
+      CodeUri: .
+      Description: >-
+        Synchronize the KEXP Playlist Data to Snowflake
+      Timeout: 900
+
+      Role: !GetAtt DefaultLambdaRole.Arn
+
+      Layers:
+        - !Ref LayerAws
+        - !Ref LayerSnowflake
+        - !Ref LayerLake
+
+      Environment:
+        Variables:
+          SecretsManager: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
+          SecretsArn: !Ref SecretsArn
+          ExportBucket: !Ref ExportBucket
