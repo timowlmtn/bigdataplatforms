@@ -8,11 +8,10 @@ deploy:
 		--template-file build/packaged-kexp_cloudformation.yaml \
 	    --stack-name ${API_NAME}-${COLOR} \
 	    --parameter-overrides \
-    		SecretsArn="${SECRETS_ARN}" EventFolder="events" \
     		RestApiName=${API_NAME}-Rest-${COLOR} Environment=${ENVIRONMENT} \
     		ExportBucket="${EXPORT_BUCKET}" ExportBucketArn="${EXPORT_BUCKET_ARN}" \
+    		ExportStage="stage/kexp_lake" \
     		LayerAws="${LAYER_AWS}" \
-    		LayerSnowflake=${LAYER_DB} \
     		LayerLake="${LAYER_LAKE}" \
 	    --capabilities CAPABILITY_NAMED_IAM
 

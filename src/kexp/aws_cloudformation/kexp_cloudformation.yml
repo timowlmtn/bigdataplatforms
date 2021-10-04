@@ -12,22 +12,16 @@ Parameters:
   RestApiName:
     Type: String
 
-  SecretsArn:
-    Type: String
-
   ExportBucketArn:
     Type: String
 
   ExportBucket:
     Type: String
 
-  EventFolder:
+  ExportStage:
     Type: String
 
   LayerAws:
-    Type: String
-
-  LayerSnowflake:
     Type: String
 
   LayerLake:
@@ -73,14 +67,6 @@ Resources:
                   - !Ref ExportBucketArn
                   - !Join ["/", [!Ref ExportBucketArn, '*']]
 
-        - PolicyName: "AllowSM"
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: "Allow"
-                Action: "secretsmanager:*"
-                Resource: !Ref SecretsArn
-
         - PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -99,21 +85,19 @@ Resources:
   LambdaSyncKexpSnowflake:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: kexp_lambda_function.sync_kexp_snowflake
+      Handler: kexp_lambda_function.sync_kexp_s3
       CodeUri: .
       Description: >-
-        Synchronize the KEXP Playlist Data to Snowflake
+        Synchronize the KEXP Playlist Data to S3 Data Lake
       Timeout: 900
 
       Role: !GetAtt DefaultLambdaRole.Arn
 
       Layers:
         - !Ref LayerAws
-        - !Ref LayerSnowflake
         - !Ref LayerLake
 
       Environment:
         Variables:
-          SecretsManager: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
-          SecretsArn: !Ref SecretsArn
           ExportBucket: !Ref ExportBucket
+          ExportStage: !Ref ExportStage

@@ -15,7 +15,7 @@ except Exception as global_exc:
     global_error = "ERROR: " + str(global_exc)
 
 
-def sync_kexp_snowflake(event, context):
+def sync_kexp_s3(event, context):
     """
     A Lambda function to synchronize KEXP data
 
@@ -26,14 +26,17 @@ def sync_kexp_snowflake(event, context):
     try:
         session = boto3.Session()
         export_bucket = os.getenv("ExportBucket")
-        export_stage = os.getenv("ExportBucket")
+        export_stage = os.getenv("ExportStage")
 
         kexp_lake = lakelayer.KexpDataLake(s3_client=session.client("s3"),
                                            s3_bucket=export_bucket,
                                            s3_stage=export_stage)
 
         kexp_reader = lakelayer.KexpApiReader()
-        kexp_playlists = kexp_reader.get_playlist(10)
+        playlist_map = kexp_reader.get_playlist(airdate_after_date=kexp_lake.get_newest_playlist_date(),
+                                                airdate_before_date=datetime.now())
+        kexp_lake.put_playlist(playlist_map)
+        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
 
         result = {"playlist": kexp_playlists}
         return result
