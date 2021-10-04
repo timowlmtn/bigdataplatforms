@@ -35,7 +35,7 @@ def sync_kexp_snowflake(event, context):
         kexp_reader = lakelayer.KexpApiReader()
         kexp_playlists = kexp_reader.get_playlist(10)
 
-        result = {}
+        result = {"playlist": kexp_playlists}
         return result
 
     except Exception as exception:

@@ -11,6 +11,8 @@ logging.basicConfig(level=logging.INFO)
 
 kexp_max_rows = 1000
 
+datetime_format_api = "%Y-%m-%dT%H:%M:%S%z"
+datetime_format_lake = "%Y%m%d%H%M%S"
 
 class KexpDataLake:
     s3_client = None
@@ -52,10 +54,17 @@ class KexpDataLake:
         match = re.match(self.playlist_regexp, oldest_playlist["Key"])
         return match.group(1)
 
+    def get_oldest_playlist_date(self):
+        return datetime.strptime(self.get_oldest_playlist_key(), datetime_format_lake)
+
     def get_newest_playlist_key(self):
         newest_playlist = self.get_newest_playlist()
         match = re.match(self.playlist_regexp, newest_playlist["Key"])
         return match.group(1)
+
+    def get_newest_playlist_date(self):
+        return datetime.strptime(self.get_newest_playlist_key(), datetime_format_lake)
+
 
     def get_oldest_playlist(self):
         """
@@ -107,32 +116,38 @@ class KexpDataLake:
 class KexpApiReader:
     airdate_before_date = None
 
-    datetime_format_api = "%Y-%m-%dT%H:%M:%S%z"
-    datetime_format_lake = "%Y%m%d%H%M%S"
-
     def date_to_api(self):
-        return datetime.strftime(self.airdate_before_date, self.datetime_format_api)
+        return datetime.strftime(self.airdate_before_date, datetime_format_api)
 
-    def get_playlist(self, read_rows=kexp_max_rows, airdate_before=None):
-        if airdate_before is None:
-            airdate_before_str = datetime.strftime(datetime.now(), self.datetime_format_api)
-        else:
-            airdate_before_str = datetime.strftime(
-                datetime.strptime(airdate_before, self.datetime_format_lake),
-                self.datetime_format_api
+    def get_playlist(self, read_rows=None, airdate_after_date=None, airdate_before_date=None):
+        if airdate_after_date:
+            airdate_after_str = datetime.strftime(
+                airdate_after_date,
+                datetime_format_api
             )
 
-        playlist_json = f"https://api.kexp.org/" \
-                        f"v2/plays/?format=json&" \
-                        f"limit={read_rows}&ordering=-airdate&airdate_before={airdate_before_str}"
+        if airdate_before_date:
+            airdate_before_str = datetime.strftime(
+                airdate_before_date,
+                datetime_format_api
+            )
+
+        playlist_json = f"https://api.kexp.org/v2/plays/?format=json&ordering=-airdate"
+
+        if read_rows:
+            playlist_json = playlist_json + f"&limit={read_rows}"
+        if airdate_after_date:
+            playlist_json = playlist_json + f"&airdate_after={airdate_after_str}"
+        if airdate_before_date:
+            playlist_json = playlist_json + f"&airdate_before={airdate_before_str}"
 
         page = requests.get(playlist_json)
 
         # Return the result as an ordered hash map by air date.
         result = {}
         for playlist_obj in json.loads(page.text)["results"]:
-            air_date = datetime.strptime(playlist_obj["airdate"], self.datetime_format_api)
-            result[int(datetime.strftime(air_date, self.datetime_format_lake))] = playlist_obj
+            air_date = datetime.strptime(playlist_obj["airdate"], datetime_format_api)
+            result[int(datetime.strftime(air_date, datetime_format_lake))] = playlist_obj
 
         return result
 

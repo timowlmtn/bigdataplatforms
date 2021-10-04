@@ -48,7 +48,9 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
         kexp_reader = lakelayer.KexpApiReader()
 
-        playlist_map = kexp_reader.get_playlist(10, airdate_before="20211003103231")
+        playlist_map = kexp_reader.get_playlist(10,
+                                                airdate_before_date=datetime.strptime("20211003103231",
+                                                                                      lakelayer.datetime_format_lake))
 
         # Make sure the last date is always consistent
         overall_last_date = 20211003100054
@@ -79,25 +81,35 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
     def test_get_shows(self):
         kexp_reader = lakelayer.KexpApiReader()
 
-        kexp_shows = kexp_reader.get_shows(kexp_reader.get_playlist(10, airdate_before="20200928040741"))
+        playlist_map = kexp_reader.get_playlist(1,
+                                                airdate_before_date=datetime.strptime("20211003175919",
+                                                                                      lakelayer.datetime_format_lake))
 
-        expected_result = {48339: {'id': 48339, 'uri': 'https://api.kexp.org/v2/shows/48339/?format=json', 'program': 4,
-                                   'program_uri': 'https://api.kexp.org/v2/programs/4/?format=json', 'hosts': [24],
-                                   'host_uris': ['https://api.kexp.org/v2/hosts/24/?format=json'],
-                                   'program_name': 'Jazz Theatre', 'program_tags': 'Jazz',
-                                   'host_names': ['John Gilbreath'], 'tagline': '',
-                                   'image_uri': 'https://www.kexp.org/filer/canonical/1529970959/10640/',
-                                   'start_time': '2020-09-28T03:00:50-07:00'}}
+        kexp_shows = kexp_reader.get_shows(playlist_map)
 
-        self.assertEqual(expected_result, kexp_shows)
+        expected_result = {51688: {'host_names': ['Evie'],
+                                   'host_uris': ['https://api.kexp.org/v2/hosts/19/?format=json'],
+                                   'hosts': [19],
+                                   'id': 51688,
+                                   'image_uri': 'https://www.kexp.org/filer/canonical/1529968671/10622/',
+                                   'program': 18,
+                                   'program_name': 'Variety Mix',
+                                   'program_tags': 'Rock,Eclectic,Variety Mix',
+                                   'program_uri': 'https://api.kexp.org/v2/programs/18/?format=json',
+                                   'start_time': '2021-10-03T15:03:15-07:00',
+                                   'tagline': 'Fall Fund Drive!  @djeviestokes',
+                                   'uri': 'https://api.kexp.org/v2/shows/51688/?format=json'}}
+
+        self.assertEqual(kexp_shows, expected_result)
 
     def test_get_recent(self):
         kexp_reader = lakelayer.KexpApiReader()
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
-                                           s3_stage="stage/kexp")
+                                           s3_stage="stage/kexp_test")
 
-        playlist_map = kexp_reader.get_playlist(10)
+        playlist_map = kexp_reader.get_playlist(airdate_after_date=kexp_lake.get_newest_playlist_date(),
+                                                airdate_before_date=datetime.now())
         kexp_lake.put_playlist(playlist_map)
         kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
 
