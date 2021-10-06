@@ -82,6 +82,28 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 
+  StatesExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - !Sub states.${AWS::Region}.amazonaws.com
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: StatesExecutionPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "lambda:InvokeFunction"
+                Resource: "*"
+
   LambdaSyncKexpSnowflake:
     Type: 'AWS::Serverless::Function'
     Properties:
@@ -101,3 +123,23 @@ Resources:
         Variables:
           ExportBucket: !Ref ExportBucket
           ExportStage: !Ref ExportStage
+
+  SyncKexpPipeline:
+    Type: "AWS::StepFunctions::StateMachine"
+    Properties:
+      DefinitionString:
+        !Sub
+          - |-
+            {
+              "Comment": "Save the current KEXP Playlist Resutls to S3 Data Lake",
+              "StartAt": "KexpGetcurrent",
+              "States": {
+                "KexpGetcurrent": {
+                  "Type": "Task",
+                  "Resource": "${KexpSyncS3Arn}",
+                  "End": true
+                }
+              }
+            }
+          - {KexpSyncS3Arn: !GetAtt [ LambdaSyncKexpSnowflake, Arn ]}
+      RoleArn: !GetAtt [ StatesExecutionRole, Arn ]
