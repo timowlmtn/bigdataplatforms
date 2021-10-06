@@ -124,6 +124,31 @@ Resources:
           ExportBucket: !Ref ExportBucket
           ExportStage: !Ref ExportStage
 
+  KexpSyncEventIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                  - Fn::Sub: "events.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Policies:
+        -
+          PolicyName: StateMachineExecutionPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "states:StartExecution"
+                Resource:
+                  - !Ref SyncKexpPipeline
+
   SyncKexpPipeline:
     Type: "AWS::StepFunctions::StateMachine"
     Properties:
@@ -143,3 +168,15 @@ Resources:
             }
           - {KexpSyncS3Arn: !GetAtt [ LambdaSyncKexpSnowflake, Arn ]}
       RoleArn: !GetAtt [ StatesExecutionRole, Arn ]
+
+  ScheduledKexpSync:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Description: "Scheduled event to trigger SyncKexpPipeline state machine every hour at 40 past"
+      ScheduleExpression: cron(40 * ? * MON-SUN *)
+      State: "ENABLED"
+      Targets:
+        -
+          Arn: !Ref SyncKexpPipeline
+          Id: !GetAtt SyncKexpPipeline.Name
+          RoleArn: !GetAtt KexpSyncEventIAMRole.Arn
