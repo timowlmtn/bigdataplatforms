@@ -103,15 +103,22 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         self.assertEqual(kexp_shows, expected_result)
 
     def test_get_recent(self):
-        kexp_reader = lakelayer.KexpApiReader()
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
                                            s3_stage="stage/kexp_test")
 
+        kexp_reader = lakelayer.KexpApiReader()
         playlist_map = kexp_reader.get_playlist(airdate_after_date=kexp_lake.get_newest_playlist_date(),
                                                 airdate_before_date=datetime.now())
-        kexp_lake.put_playlist(playlist_map)
-        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+        playlist_key = kexp_lake.put_playlist(playlist_map)
+
+        print(playlist_key)
+
+        self.assertTrue(playlist_key.startswith("stage/kexp_test/playlists/"))
+
+        shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+
+        self.assertTrue(shows_key.startswith("stage/kexp_test/shows/"))
 
     def test_get_newest_oldest(self):
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),

@@ -10,7 +10,7 @@ deploy:
 	    --parameter-overrides \
     		RestApiName=${API_NAME}-Rest-${COLOR} Environment=${ENVIRONMENT} \
     		ExportBucket="${EXPORT_BUCKET}" ExportBucketArn="${EXPORT_BUCKET_ARN}" \
-    		ExportStage="stage/kexp_lake" \
+    		ExportStage="stage/kexp" \
     		LayerAws="${LAYER_AWS}" \
     		LayerLake="${LAYER_LAKE}" \
 	    --capabilities CAPABILITY_NAMED_IAM

@@ -83,9 +83,14 @@ class KexpDataLake:
         :return:
         """
         try:
-            return self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
+            result = self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
                                                   MaxKeys=kexp_max_rows,
-                                                  Prefix=prefix)['Contents']
+                                                  Prefix=prefix)
+            # Return the list of keys or an empty result
+            if "Contents" in result:
+                result['Contents']
+            else:
+                return []
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
@@ -96,7 +101,10 @@ class KexpDataLake:
         :return:
         """
         playlists = self.list_playlists()
-        return self.list_playlists()[len(playlists) - 1]
+        if playlists:
+            return self.list_playlists()[len(playlists) - 1]
+        else:
+            return None
 
     def get_oldest_playlist_key(self):
         """
@@ -127,8 +135,11 @@ class KexpDataLake:
         :return:
         """
         newest_playlist = self.get_newest_playlist()
-        match = re.match(self.playlist_regexp, newest_playlist["Key"])
-        return match.group(1)
+        if newest_playlist:
+            match = re.match(self.playlist_regexp, newest_playlist["Key"])
+            return match.group(1)
+        else:
+            return None
 
     def get_newest_playlist_date(self):
         """
@@ -137,7 +148,11 @@ class KexpDataLake:
 
         :return:
         """
-        return datetime.strptime(self.get_newest_playlist_key(), datetime_format_lake)
+        playlist_key = self.get_newest_playlist_key()
+        if playlist_key:
+            return datetime.strptime(self.get_newest_playlist_key(), datetime_format_lake)
+        else:
+            return None
 
     def get_oldest_playlist(self):
         """

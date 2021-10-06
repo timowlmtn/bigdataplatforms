@@ -1,8 +1,9 @@
 import lakelayer
-
+import datetime
 import boto3
 import logging
 import os
+import traceback
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -34,15 +35,15 @@ def sync_kexp_s3(event, context):
 
         kexp_reader = lakelayer.KexpApiReader()
         playlist_map = kexp_reader.get_playlist(airdate_after_date=kexp_lake.get_newest_playlist_date(),
-                                                airdate_before_date=datetime.now())
-        kexp_lake.put_playlist(playlist_map)
-        kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+                                                airdate_before_date=datetime.datetime.now())
+        playlist_key = kexp_lake.put_playlist(playlist_map)
+        shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
 
-        result = {"playlist": kexp_playlists}
+        result = {"playlist_key": playlist_key, "shows_key": shows_key}
         return result
 
     except Exception as exception:
-        message = f"ERROR in {context.function_name}: {exception} {traceback_output}"
+        message = f"ERROR in {context.function_name}: {exception} {traceback.format_exc()}"
         logger.error(message)
         raise
 
