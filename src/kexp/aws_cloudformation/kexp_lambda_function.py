@@ -1,6 +1,7 @@
 import lakelayer
-import datetime
+from datetime import datetime
 import boto3
+import json
 import logging
 import os
 import traceback
@@ -34,12 +35,30 @@ def sync_kexp_s3(event, context):
                                            s3_stage=export_stage)
 
         kexp_reader = lakelayer.KexpApiReader()
-        playlist_map = kexp_reader.get_playlist(airdate_after_date=kexp_lake.get_newest_playlist_date(),
-                                                airdate_before_date=datetime.datetime.now())
+
+        airdate_after_date = kexp_lake.get_newest_playlist_date()
+        airdate_before_date = datetime.now()
+        playlist_map = kexp_reader.get_playlist(airdate_after_date=airdate_after_date,
+                                                airdate_before_date=airdate_before_date)
         playlist_key = kexp_lake.put_playlist(playlist_map)
         shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
 
-        result = {"playlist_key": playlist_key, "shows_key": shows_key}
+        before_date_str = None
+        after_date_str = None
+        if airdate_after_date is not None:
+            after_date_str = datetime.strftime(airdate_after_date, lakelayer.datetime_format_api)
+
+        if airdate_before_date is not None:
+            before_date_str = datetime.strftime(airdate_before_date, lakelayer.datetime_format_api)
+
+        result = {"airdate_after_date": after_date_str,
+                  "airdate_before_date": before_date_str,
+                  "playlist_key": playlist_key,
+                  "shows_key": shows_key}
+
+        for timestamp in playlist_map.keys():
+            kexp_lake.put_object(f"{export_stage}/logs/{timestamp}/api{timestamp}.json",  json.dumps(result))
+
         return result
 
     except Exception as exception:

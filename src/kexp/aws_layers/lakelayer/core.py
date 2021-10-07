@@ -61,6 +61,7 @@ class KexpDataLake:
         song, artist, and air date.
         :return:
         """
+        logging.info(f"{self.s3_stage}")
         return self.list_object_results(f"{self.s3_stage}/playlists")
 
     def list_shows(self):
@@ -83,14 +84,9 @@ class KexpDataLake:
         :return:
         """
         try:
-            result = self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
+            return self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
                                                   MaxKeys=kexp_max_rows,
-                                                  Prefix=prefix)
-            # Return the list of keys or an empty result
-            if "Contents" in result:
-                result['Contents']
-            else:
-                return []
+                                                  Prefix=prefix)['Contents']
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
@@ -117,8 +113,12 @@ class KexpDataLake:
         :return:
         """
         oldest_playlist = self.get_oldest_playlist()
-        match = re.match(self.playlist_regexp, oldest_playlist["Key"])
-        return match.group(1)
+
+        if oldest_playlist:
+            match = re.match(self.playlist_regexp, oldest_playlist["Key"])
+            return match.group(1)
+        else:
+            return None
 
     def get_oldest_playlist_date(self):
         """
@@ -159,7 +159,11 @@ class KexpDataLake:
         Get the oldest playlist date using the fact that AWS always lists alphabetically.
         :return:
         """
-        return self.list_playlists()[0]
+        playlists = self.list_playlists()
+        if playlists:
+            return self.list_playlists()[0]
+        else:
+            return None
 
     def get_playlist_object_map(self):
         """
