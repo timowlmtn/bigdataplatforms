@@ -7,3 +7,4 @@
 /src/aws_kexp_cloudformation/setenv_dev_blue.sh
 /src/kexp/aws_cloudformation/setenv_dev_blue.sh
 /src/kexp/aws_layers/setenv.sh
+/src/kexp/setenv.sh
