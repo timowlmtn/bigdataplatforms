@@ -44,7 +44,7 @@ Resources:
                   - "s3:DeleteObject"
                   - "s3:DeleteObjectVersion"
                 Resource:
-                  - !Ref StageLocationArn
+                  - !Join [ "/", [ !Ref StageLocationArn, '*' ] ]
               - Effect: "Allow"
                 Action:
                   - "s3:ListBucket"

@@ -8,3 +8,5 @@
 /src/kexp/aws_cloudformation/setenv_dev_blue.sh
 /src/kexp/aws_layers/setenv.sh
 /src/kexp/setenv.sh
+/src/kexp/snowsql_rt.log
+/src/kexp/snowsql_rt.log_bootstrap
