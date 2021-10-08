@@ -172,8 +172,8 @@ Resources:
   ScheduledKexpSync:
     Type: "AWS::Events::Rule"
     Properties:
-      Description: "Scheduled event to trigger SyncKexpPipeline state machine at 40 past"
-      ScheduleExpression: cron(40 8 ? * MON-SUN *)
+      Description: "Scheduled event to trigger SyncKexpPipeline state machine at 10 and 40 past"
+      ScheduleExpression: cron(10,40 * ? * MON-SUN *)
       State: "ENABLED"
       Targets:
         -

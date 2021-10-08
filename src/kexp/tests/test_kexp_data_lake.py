@@ -18,6 +18,19 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
     session = boto3.Session(profile_name=os.getenv("AWS_PROFILE"))
     s3_bucket = os.getenv("S3_STAGE_BUCKET")
 
+    def test_put_kexp_data(self):
+        # Use the Web request and S3 objects together to dump the data
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp_test")
+
+        kexp_reader = lakelayer.KexpApiReader()
+
+        kexp_playlists = kexp_reader.get_playlist(10)
+        kexp_lake.put_playlist(kexp_playlists)
+
+        kexp_lake.put_shows(kexp_reader.get_shows(kexp_playlists))
+
     def test_get_s3_data(self):
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
@@ -65,19 +78,6 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                 last_date = playlist_key
 
         self.assertEqual(overall_last_date, last_date)
-
-    def test_put_kexp_data(self):
-        # Use the Web request and S3 objects together to dump the data
-        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
-                                           s3_bucket=self.s3_bucket,
-                                           s3_stage="stage/kexp_test")
-
-        kexp_reader = lakelayer.KexpApiReader()
-
-        kexp_playlists = kexp_reader.get_playlist(10)
-        kexp_lake.put_playlist(kexp_playlists)
-
-        kexp_lake.put_shows(kexp_reader.get_shows(kexp_playlists))
 
     def test_get_shows(self):
         kexp_reader = lakelayer.KexpApiReader()
@@ -129,7 +129,7 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         print(oldest_playlist_key)
         newest_playlist_key = kexp_lake.get_newest_playlist_key()
 
-        self.assertTrue(oldest_playlist_key < newest_playlist_key)
+        self.assertTrue(oldest_playlist_key <= newest_playlist_key, f"Failed: {oldest_playlist_key} > {newest_playlist_key}")
 
     def test_like_lambda(self):
         export_stage = "stage/kexp_test"
@@ -154,6 +154,24 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
 
         for timestamp in playlist_map.keys():
             kexp_lake.put_object(f"{export_stage}/logs/{timestamp}/api{timestamp}.json",  json.dumps(result))
+
+    def test_get_public_stage(self):
+
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket="azri.us-data",
+                                           s3_stage="stage/kexp")
+
+        airdate_after_date = kexp_lake.get_newest_playlist_date()
+
+        print(airdate_after_date)
+
+        self.assertTrue(airdate_after_date is not None)
+
+        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
+                                           s3_bucket=self.s3_bucket,
+                                           s3_stage="stage/kexp")
+
+        print(kexp_lake.get_newest_playlist_date())
 
 
 if __name__ == '__main__':

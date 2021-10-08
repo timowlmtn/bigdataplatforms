@@ -50,14 +50,14 @@ def sync_kexp_s3(event, context):
 
         if airdate_before_date is not None:
             before_date_str = datetime.strftime(airdate_before_date, lakelayer.datetime_format_api)
+            before_date_key = datetime.strftime(airdate_before_date, lakelayer.datetime_format_lake)
 
         result = {"airdate_after_date": after_date_str,
                   "airdate_before_date": before_date_str,
                   "playlist_key": playlist_key,
                   "shows_key": shows_key}
 
-        for timestamp in playlist_map.keys():
-            kexp_lake.put_object(f"{export_stage}/logs/{timestamp}/api{timestamp}.json",  json.dumps(result))
+        kexp_lake.put_object(f"{export_stage}/logs/{before_date_key}/api{before_date_key}.json",  json.dumps(result))
 
         return result
 

@@ -84,9 +84,13 @@ class KexpDataLake:
         :return:
         """
         try:
-            return self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
-                                                  MaxKeys=kexp_max_rows,
-                                                  Prefix=prefix)['Contents']
+            client_objects = self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
+                                                            MaxKeys=kexp_max_rows,
+                                                            Prefix=prefix)
+            if 'Contents' in client_objects:
+                return client_objects['Contents']
+            else:
+                return None
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
