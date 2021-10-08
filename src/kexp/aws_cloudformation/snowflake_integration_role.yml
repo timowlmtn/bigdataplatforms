@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Role for Snowflake Storage Integration
+
+Parameters:
+  StageBucketArn:
+    Type: String
+
+  StageLocationArn:
+    Type: String
+
+  SnowflakePrincipalArn:
+    Type: String
+
+  SnowflakeExternalId:
+    Type: String
+
+Resources:
+  SnowflakeStorageIntegration:
+    Type: "AWS::IAM::Role"
+    Description: "Stage access for Snowflake"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              "AWS": !Ref SnowflakePrincipalArn
+            Action: "sts:AssumeRole"
+            Condition:
+              StringEquals:
+                sts:ExternalId: !Ref SnowflakeExternalId
+      Path: "/"
+      Policies:
+        - PolicyName: "AllowStageBucket"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "s3:PutObject"
+                  - "s3:GetObject"
+                  - "s3:GetObjectVersion"
+                  - "s3:DeleteObject"
+                  - "s3:DeleteObjectVersion"
+                Resource:
+                  - !Ref StageLocationArn
+              - Effect: "Allow"
+                Action:
+                  - "s3:ListBucket"
+                  - "s3:GetBucketLocation"
+                Resource:
+                  - !Ref StageBucketArn
+                  - !Join [ "/", [ !Ref StageBucketArn, '*' ] ]
+Outputs:
+    SnowflakeStorageIntegration:
+      Description: "Snowflake Storage Integration ARN"
+      Value: !GetAtt SnowflakeStorageIntegration.Arn

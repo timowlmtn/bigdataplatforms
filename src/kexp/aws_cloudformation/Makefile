@@ -15,7 +15,22 @@ deploy-pipeline:
     		LayerLake="${LAYER_LAKE}" \
 	    --capabilities CAPABILITY_NAMED_IAM
 
-deploy-stage:
+deploy-stage-role:
+	aws cloudformation --profile ${AWS_PROFILE} package \
+		--template-file snowflake_integration_role.yml \
+	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
+	    --output-template-file build/snowflake_integration_role.yml
+	aws cloudformation --profile ${AWS_PROFILE} deploy \
+		--template-file build/snowflake_integration_role.yml \
+	    --stack-name ${STAGE_NAME}-${COLOR} \
+	    --parameter-overrides \
+    		StageLocationArn="${STAGE_LOCATION_ARN}" ExportBucketArn="${EXPORT_BUCKET_ARN}" \
+    		SnowflakePrincipalArn="${TRUSTED_ENTITY}" \
+    		SnowflakeExternalId="${TRUSTED_CONDITION}" \
+	    --capabilities CAPABILITY_NAMED_IAM
+
+
+deploy-stage-bucket:
 	aws cloudformation --profile ${AWS_PROFILE} package \
 		--template-file aws_stage_bucket.yml \
 	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
