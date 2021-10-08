@@ -16,4 +16,4 @@ create or replace table stage.import_kexp_playlist
     DW_UPDATE_USER  VARCHAR       NOT NULL DEFAULT CURRENT_USER()
 );
 
-
+grant select on stage.IMPORT_KEXP_PLAYLIST to role KEXP_READER_ACCESS;

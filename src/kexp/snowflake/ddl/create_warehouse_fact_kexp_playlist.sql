@@ -17,4 +17,5 @@ create or replace table warehouse.fact_kexp_playlist
     FOREIGN KEY (show_id) REFERENCES warehouse.DIM_KEXP_SHOW (SHOW_ID)
 );
 
+grant select on warehouse.fact_kexp_playlist to role KEXP_READER_ACCESS;
 
