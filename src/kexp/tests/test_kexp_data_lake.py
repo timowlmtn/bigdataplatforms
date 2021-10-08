@@ -4,6 +4,7 @@ import json
 import boto3
 import unittest
 import lakelayer
+import pytz
 from datetime import datetime
 
 
@@ -17,6 +18,8 @@ from datetime import datetime
 class KexpPlaylistDataLakeTest(unittest.TestCase):
     session = boto3.Session(profile_name=os.getenv("AWS_PROFILE"))
     s3_bucket = os.getenv("S3_STAGE_BUCKET")
+
+    kexp_reader = lakelayer.KexpApiReader()
 
     def test_put_kexp_data(self):
         # Use the Web request and S3 objects together to dump the data
@@ -138,14 +141,12 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                                            s3_bucket=self.s3_bucket,
                                            s3_stage=export_stage)
 
-        kexp_reader = lakelayer.KexpApiReader()
-
         airdate_after_date = kexp_lake.get_newest_playlist_date()
         airdate_before_date = datetime.now()
-        playlist_map = kexp_reader.get_playlist(airdate_after_date=airdate_after_date,
-                                                airdate_before_date=airdate_before_date)
+        playlist_map = self.kexp_reader.get_playlist(airdate_after_date=airdate_after_date,
+                                                     airdate_before_date=airdate_before_date)
         playlist_key = kexp_lake.put_playlist(playlist_map)
-        shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+        shows_key = kexp_lake.put_shows(self.kexp_reader.get_shows(playlist_map))
 
         result = {"airdate_after_date": datetime.strftime(airdate_after_date, lakelayer.datetime_format_api),
                   "airdate_before_date": datetime.strftime(airdate_before_date, lakelayer.datetime_format_api),
@@ -158,20 +159,38 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
     def test_get_public_stage(self):
 
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
-                                           s3_bucket="azri.us-data",
+                                           s3_bucket="owlmtn-stage-data",
                                            s3_stage="stage/kexp")
 
         airdate_after_date = kexp_lake.get_newest_playlist_date()
+        airdate_before_date = datetime.now(pytz.timezone('US/Pacific'))
 
-        print(airdate_after_date)
+        if airdate_after_date is not None:
+            after_date_str = datetime.strftime(airdate_after_date, lakelayer.datetime_format_api)
 
-        self.assertTrue(airdate_after_date is not None)
+        if airdate_before_date is not None:
+            before_date_str = datetime.strftime(airdate_before_date, lakelayer.datetime_format_api)
 
-        kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
-                                           s3_bucket=self.s3_bucket,
-                                           s3_stage="stage/kexp")
+        # [
+        #   {
+        #     "AIRDATE_AFTER_DATE": "2021-10-08 11:11:55.000000000 -07:00",
+        #     "AIRDATE_BEFORE_DATE": "2021-10-08 20:12:04.000000000 -07:00"
+        #   }
+        # ]
+        print(after_date_str + " " + before_date_str)
 
-        print(kexp_lake.get_newest_playlist_date())
+        playlist_map = self.kexp_reader.get_playlist(read_rows=lakelayer.kexp_max_rows,
+                                                     airdate_after_date=airdate_after_date,
+                                                     airdate_before_date=airdate_before_date)
+
+        first = list(playlist_map.keys())[0]
+        last = list(playlist_map.keys())[len(playlist_map.keys())-1]
+
+        print(f"{first} {last}")
+
+        print(playlist_map[first])
+        print(playlist_map[last])
+        print(len(playlist_map.keys()))
 
 
 if __name__ == '__main__':

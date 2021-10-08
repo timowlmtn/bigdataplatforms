@@ -21,9 +21,6 @@ Parameters:
   ExportStage:
     Type: String
 
-  LayerAws:
-    Type: String
-
   LayerLake:
     Type: String
 
@@ -116,7 +113,6 @@ Resources:
       Role: !GetAtt DefaultLambdaRole.Arn
 
       Layers:
-        - !Ref LayerAws
         - !Ref LayerLake
 
       Environment:

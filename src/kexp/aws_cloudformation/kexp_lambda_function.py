@@ -4,6 +4,7 @@ import boto3
 import json
 import logging
 import os
+import pytz
 import traceback
 
 logger = logging.getLogger()
@@ -37,8 +38,9 @@ def sync_kexp_s3(event, context):
         kexp_reader = lakelayer.KexpApiReader()
 
         airdate_after_date = kexp_lake.get_newest_playlist_date()
-        airdate_before_date = datetime.now()
-        playlist_map = kexp_reader.get_playlist(airdate_after_date=airdate_after_date,
+        airdate_before_date = datetime.now(pytz.timezone('US/Pacific'))
+        playlist_map = kexp_reader.get_playlist(read_rows=lakelayer.kexp_max_rows,
+                                                airdate_after_date=airdate_after_date,
                                                 airdate_before_date=airdate_before_date)
         playlist_key = kexp_lake.put_playlist(playlist_map)
         shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
@@ -55,7 +57,9 @@ def sync_kexp_s3(event, context):
         result = {"airdate_after_date": after_date_str,
                   "airdate_before_date": before_date_str,
                   "playlist_key": playlist_key,
-                  "shows_key": shows_key}
+                  "shows_key": shows_key,
+                  "number_songs": len(playlist_map.keys())
+                  }
 
         kexp_lake.put_object(f"{export_stage}/logs/{before_date_key}/api{before_date_key}.json",  json.dumps(result))
 
