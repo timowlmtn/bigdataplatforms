@@ -120,45 +120,20 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         print(oldest_playlist_key)
         newest_playlist_key = kexp_lake.get_newest_playlist_key()
 
-        self.assertTrue(oldest_playlist_key <= newest_playlist_key, f"Failed: {oldest_playlist_key} > {newest_playlist_key}")
+        self.assertTrue(oldest_playlist_key <= newest_playlist_key,
+                        f"Failed: {oldest_playlist_key} > {newest_playlist_key}")
 
-    def test_get_public_stage(self):
-        print(self.s3_bucket)
-
-        airdate_after_date = datetime.now(pytz.timezone('US/Pacific')) - timedelta(minutes=10)
-        airdate_before_date = datetime.now(pytz.timezone('US/Pacific'))
-
-        print(f"{airdate_after_date} {airdate_before_date}")
-
-        playlist_map = self.kexp_reader.get_playlist(read_rows=20,
-                                                     airdate_after_date=airdate_after_date,
-                                                     airdate_before_date=airdate_before_date)
-
-        first = list(playlist_map.keys())[0]
-        last = list(playlist_map.keys())[len(playlist_map.keys())-1]
-
-        print(f"{first} {last} {len(playlist_map.keys())}")
-
+    def test_get_airdates_live(self):
         kexp_lake = lakelayer.KexpDataLake(s3_client=self.session.client("s3"),
                                            s3_bucket=self.s3_bucket,
                                            s3_stage="stage/kexp")
 
-        pacific = pytz.timezone('US/Pacific')
-        oldest_date = pacific.localize(kexp_lake.get_oldest_playlist_date())
-        newest_date = pacific.localize(kexp_lake.get_newest_playlist_date())
-        airdate_before_date = datetime.now(pytz.timezone('US/Pacific'))
+        (runtime_key, airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
+        print(f" {runtime_key}  {airdate_before_date} {airdate_after_date}")
 
-        print(f"oldest_date={oldest_date} newest_date={newest_date} airdate_before_date={airdate_before_date}")
-
-        pacific = pytz.timezone('US/Pacific')
-        now = datetime.now(tz=pytz.utc)
-        date = now.astimezone(pacific)
-
-        print(f"{now} {date}")
-
-        runtime_key = datetime.strftime(now, lakelayer.datetime_format_lake)
-
-        print(f"{runtime_key}")
+        self.assertTrue(int(runtime_key) >= 20211009051655, f"Runtime key is out of whack: {runtime_key}")
+        self.assertTrue(airdate_after_date <= airdate_before_date,
+                        f"Need to get data from {airdate_after_date} to {airdate_before_date}")
 
 
 if __name__ == '__main__':

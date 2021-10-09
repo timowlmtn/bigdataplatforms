@@ -38,17 +38,8 @@ def sync_kexp_s3(event, context):
 
         kexp_reader = lakelayer.KexpApiReader()
 
-        pacific = pytz.timezone('US/Pacific')
-        now_utc = datetime.now(tz=pytz.utc)
-        now_pst = now_utc.astimezone(pacific)
-        airdate_after_date = kexp_lake.get_newest_playlist_date()
-        if airdate_after_date is None:
-            airdate_after_date = now_pst - timedelta(days=1)
-        else:
-            airdate_after_date = pacific.localize(airdate_after_date)
+        (runtime_key, airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
 
-        airdate_before_date = now_pst
-        runtime_key = datetime.strftime(now_pst, lakelayer.datetime_format_lake)
         playlist_map = kexp_reader.get_playlist(read_rows=lakelayer.kexp_max_rows,
                                                 airdate_after_date=airdate_after_date,
                                                 airdate_before_date=airdate_before_date)

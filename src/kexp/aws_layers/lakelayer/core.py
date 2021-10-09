@@ -17,11 +17,13 @@
 
 from botocore.exceptions import ClientError
 from datetime import datetime
+from datetime import timedelta
 import json
 import mimetypes
 import re
 import requests
 import traceback
+import pytz
 
 import logging
 
@@ -94,6 +96,26 @@ class KexpDataLake:
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
+
+    def get_airdates(self, now_utc=datetime.now(tz=pytz.utc)):
+        """
+        Get the airdates and keys and ensure they timezone is all syncronized.
+
+        :return: An ordered set of the runtime_key for the data lake, the date for right now (before_date),
+          and the date of the last run
+        """
+        pacific = pytz.timezone('US/Pacific')
+        now_pst = now_utc.astimezone(pacific)
+        airdate_after_date = self.get_newest_playlist_date()
+        if airdate_after_date is None:
+            airdate_after_date = now_pst - timedelta(days=1)
+        else:
+            airdate_after_date = pacific.localize(airdate_after_date)
+
+        airdate_before_date = now_pst
+        runtime_key = datetime.strftime(now_pst, datetime_format_lake)
+
+        return runtime_key, airdate_before_date, airdate_after_date
 
     def get_newest_playlist(self):
         """
@@ -272,10 +294,14 @@ class KexpApiReader:
 
         # Return the result as an ordered hash map by air date.
         result = {}
-        for playlist_obj in json.loads(page.text)["results"]:
-            air_date = datetime.strptime(playlist_obj["airdate"], datetime_format_api)
-            result[int(datetime.strftime(air_date, datetime_format_lake))] = playlist_obj
 
+        if page.status_code == 200:
+            if "results" in json.loads(page.text):
+                for playlist_obj in json.loads(page.text)["results"]:
+                    air_date = datetime.strptime(playlist_obj["airdate"], datetime_format_api)
+                    result[int(datetime.strftime(air_date, datetime_format_lake))] = playlist_obj
+        else:
+            logging.error(f"Invalid url result {playlist_json} code {page.status_code} {page.text}")
         return result
 
     def get_shows(self, playlist_map):
