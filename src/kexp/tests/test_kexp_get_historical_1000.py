@@ -26,7 +26,7 @@ class KexpPlaylistHistoricalDataLakeTest(unittest.TestCase):
         kexp_reader = lakelayer.KexpApiReader()
 
         utc = pytz.UTC
-        time_end_date = datetime.now() - timedelta(days=365)
+        time_end_date = datetime.now() - timedelta(days=4*365)
         oldest_playlist_record = kexp_lake.list_playlists()[0]
         print(oldest_playlist_record)
         obj = self.session.client("s3").get_object(Bucket=self.s3_bucket,
