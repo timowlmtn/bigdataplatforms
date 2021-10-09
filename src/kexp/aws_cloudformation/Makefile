@@ -44,10 +44,13 @@ deploy-stage-bucket:
 
 deploy: deploy-pipeline
 
+clean-stage:
+	aws s3 rm s3://${EXPORT_BUCKET}/${EXPORT_STAGE} --recursive
+
 clean: clean-pipeline clean-stage
 
 clean-pipeline:
 	aws cloudformation --profile ${AWS_PROFILE} delete-stack --stack-name ${API_NAME}-${COLOR}
 
-clean-stage:
+clean-stage-bucket:
 	aws cloudformation --profile ${AWS_PROFILE} delete-stack --stack-name ${STAGE_NAME}-${COLOR}

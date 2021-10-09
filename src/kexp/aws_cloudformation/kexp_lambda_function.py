@@ -1,5 +1,6 @@
 import lakelayer
 from datetime import datetime
+from datetime import timedelta
 import boto3
 import json
 import logging
@@ -37,31 +38,34 @@ def sync_kexp_s3(event, context):
 
         kexp_reader = lakelayer.KexpApiReader()
 
+        pacific = pytz.timezone('US/Pacific')
+        now_utc = datetime.now(tz=pytz.utc)
+        now_pst = now_utc.astimezone(pacific)
         airdate_after_date = kexp_lake.get_newest_playlist_date()
-        airdate_before_date = datetime.now(pytz.timezone('US/Pacific'))
+        if airdate_after_date is None:
+            airdate_after_date = now_pst - timedelta(days=1)
+        else:
+            airdate_after_date = pacific.localize(airdate_after_date)
+
+        airdate_before_date = now_pst
+        runtime_key = datetime.strftime(now_pst, lakelayer.datetime_format_lake)
         playlist_map = kexp_reader.get_playlist(read_rows=lakelayer.kexp_max_rows,
                                                 airdate_after_date=airdate_after_date,
                                                 airdate_before_date=airdate_before_date)
-        playlist_key = kexp_lake.put_playlist(playlist_map)
-        shows_key = kexp_lake.put_shows(kexp_reader.get_shows(playlist_map))
+        playlist_key = kexp_lake.put_playlist(runtime_key, playlist_map)
+        shows_key = kexp_lake.put_shows(runtime_key, kexp_reader.get_shows(playlist_map))
 
-        before_date_str = None
-        after_date_str = None
-        if airdate_after_date is not None:
-            after_date_str = datetime.strftime(airdate_after_date, lakelayer.datetime_format_api)
-
-        if airdate_before_date is not None:
-            before_date_str = datetime.strftime(airdate_before_date, lakelayer.datetime_format_api)
-            before_date_key = datetime.strftime(airdate_before_date, lakelayer.datetime_format_lake)
-
-        result = {"airdate_after_date": after_date_str,
-                  "airdate_before_date": before_date_str,
+        result = {"airdate_after_date": datetime.strftime(airdate_after_date, lakelayer.datetime_format_api),
+                  "airdate_before_date": datetime.strftime(airdate_before_date, lakelayer.datetime_format_api),
+                  "run_datetime_key": datetime.strftime(airdate_before_date, lakelayer.datetime_format_lake),
+                  "run_date_key": datetime.strftime(airdate_before_date, '%Y%m%d'),
                   "playlist_key": playlist_key,
                   "shows_key": shows_key,
                   "number_songs": len(playlist_map.keys())
                   }
 
-        kexp_lake.put_object(f"{export_stage}/logs/{before_date_key}/api{before_date_key}.json",  json.dumps(result))
+        kexp_lake.put_object(f"{export_stage}/logs/{result['run_date_key']}/api{result['run_datetime_key']}.json",
+                             json.dumps(result))
 
         return result
 
@@ -69,8 +73,3 @@ def sync_kexp_s3(event, context):
         message = f"ERROR in {context.function_name}: {exception} {traceback.format_exc()}"
         logger.error(message)
         raise
-
-
-
-
-

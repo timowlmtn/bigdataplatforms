@@ -130,7 +130,11 @@ class KexpDataLake:
 
         :return:
         """
-        return datetime.strptime(self.get_oldest_playlist_key(), datetime_format_lake)
+        oldest_playlist_key = self.get_oldest_playlist_key()
+        if oldest_playlist_key is not None:
+            return datetime.strptime(self.get_oldest_playlist_key(), datetime_format_lake)
+        else:
+            return None
 
     def get_newest_playlist_key(self):
         """
@@ -200,17 +204,18 @@ class KexpDataLake:
                                   Body=contents,
                                   ContentType=mimetype)
 
-    def put_playlist(self, json_playlist_map):
+    def put_playlist(self, runtime_key, json_playlist_map):
         """
         Put the playlist out as a set of JSON object
+        :param runtime_key:
         :param json_playlist_map:
         :return:
         """
         json_obj = []
         for timestamp in json_playlist_map.keys():
-            key = f"{self.s3_stage}/playlists/{timestamp}/playlist{json_playlist_map[timestamp]['id']}.json"
             json_obj.append(json.dumps(json_playlist_map[timestamp]))
 
+        key = f"{self.s3_stage}/playlists/{runtime_key}/playlist{runtime_key}.json"
         logging.info(f"Writing out {key}")
         # Use the \n delimiter for sets of json objects and put one per whole list
         self.put_object(key, "\n".join(json_obj))
@@ -218,7 +223,7 @@ class KexpDataLake:
         # Return the location of the output
         return key
 
-    def put_shows(self, json_shows_map):
+    def put_shows(self, runtime_key, json_shows_map):
         """
         Write out the shows to the S3 bucket
 
@@ -227,8 +232,9 @@ class KexpDataLake:
         """
         json_obj = []
         for show_id in json_shows_map.keys():
-            key = f"{self.s3_stage}/shows/{show_id}/show{json_shows_map[show_id]['id']}.json"
             json_obj.append(json.dumps(json_shows_map[show_id]))
+
+        key = f"{self.s3_stage}/shows/{runtime_key}/show{runtime_key}.json"
 
         # Use a JSON object for efficient backend processing
         logging.info(f"Writing out {key}")
