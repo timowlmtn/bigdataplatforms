@@ -43,20 +43,9 @@ def sync_kexp_s3(event, context):
         playlist_map = kexp_reader.get_playlist(read_rows=lakelayer.kexp_max_rows,
                                                 airdate_after_date=airdate_after_date,
                                                 airdate_before_date=airdate_before_date)
-        playlist_key = kexp_lake.put_playlist(runtime_key, playlist_map)
-        shows_key = kexp_lake.put_shows(runtime_key, kexp_reader.get_shows(playlist_map))
+        shows_map = kexp_reader.get_shows(playlist_map)
 
-        result = {"airdate_after_date": datetime.strftime(airdate_after_date, lakelayer.datetime_format_api),
-                  "airdate_before_date": datetime.strftime(airdate_before_date, lakelayer.datetime_format_api),
-                  "run_datetime_key": datetime.strftime(airdate_before_date, lakelayer.datetime_format_lake),
-                  "run_date_key": datetime.strftime(airdate_before_date, '%Y%m%d'),
-                  "playlist_key": playlist_key,
-                  "shows_key": shows_key,
-                  "number_songs": len(playlist_map.keys())
-                  }
-
-        kexp_lake.put_object(f"{export_stage}/logs/{result['run_date_key']}/api{result['run_datetime_key']}.json",
-                             json.dumps(result))
+        result = kexp_lake.put_data(runtime_key, playlist_map, shows_map, airdate_after_date, airdate_before_date)
 
         return result
 

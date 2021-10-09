@@ -212,6 +212,24 @@ class KexpDataLake:
 
         return result
 
+    def put_data(self, runtime_key, playlist_map, shows_map, airdate_after_date, airdate_before_date):
+        shows_key = self.put_shows(runtime_key, shows_map)
+        playlist_key = self.put_playlist(runtime_key, playlist_map)
+
+        result = {"airdate_after_date": datetime.strftime(airdate_after_date, datetime_format_api),
+                  "airdate_before_date": datetime.strftime(airdate_before_date, datetime_format_api),
+                  "run_datetime_key": datetime.strftime(airdate_before_date, datetime_format_lake),
+                  "run_date_key": datetime.strftime(airdate_before_date, '%Y%m%d'),
+                  "playlist_key": playlist_key,
+                  "shows_key": shows_key,
+                  "number_songs": len(playlist_map.keys())
+                  }
+
+        self.put_object(f"{self.s3_stage}/logs/{result['run_date_key']}/api{result['run_datetime_key']}.json",
+                        json.dumps(result))
+
+        return result
+
     def put_object(self, key, contents):
         """
         Base level put object wrapper that uses mime types to mark so we can view directly in the browser.
