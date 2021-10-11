@@ -1,7 +1,8 @@
-create or replace table warehouse.dim_kexp_show
+create or replace table warehouse.dim_radio_show
 (
     show_key       INT primary key identity (1,1),
     load_id        INT           NOT NULL,
+    station_id     VARCHAR       NOT NULL,
     show_id        INT UNIQUE    NOT NULL,
     program_id     INT           NOT NULL,
     program_name   VARCHAR       NOT NULL,

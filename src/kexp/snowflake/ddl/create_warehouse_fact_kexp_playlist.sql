@@ -1,4 +1,4 @@
-create or replace table warehouse.fact_kexp_playlist
+create or replace table warehouse.fact_radio_playlist
 (
     playlist_key    INT primary key identity (1,1),
     load_id        INT           NOT NULL,

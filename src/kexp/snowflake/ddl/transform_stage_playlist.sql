@@ -1,4 +1,4 @@
-insert into WAREHOUSE.fact_kexp_playlist(LOAD_ID, PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG, SHOW_ID)
+insert into WAREHOUSE.fact_playlist(LOAD_ID, PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG, SHOW_ID)
 select stg.load_id,
        stg.value:id::Int,
        stg.value:play_type::String,
