@@ -1,12 +1,10 @@
-import lakelayer
-from datetime import datetime
-from datetime import timedelta
-import boto3
-import json
 import logging
 import os
-import pytz
 import traceback
+
+import boto3
+
+import lakelayer
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
