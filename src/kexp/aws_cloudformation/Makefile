@@ -54,3 +54,6 @@ clean-pipeline:
 
 clean-stage-bucket:
 	aws cloudformation --profile ${AWS_PROFILE} delete-stack --stack-name ${STAGE_NAME}-${COLOR}
+
+get-export-data:
+	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/ data/export
