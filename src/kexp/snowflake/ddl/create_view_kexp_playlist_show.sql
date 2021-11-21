@@ -4,7 +4,7 @@ with show as (
     select distinct show_id, program_id, program_name, program_tags, host_names, tagline, start_time
     from stage.IMPORT_KEXP_SHOW
 )
-select PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG,
+select distinct PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG,
        show.SHOW_ID, PROGRAM_ID, PROGRAM_NAME, PROGRAM_TAGS, HOST_NAMES, TAGLINE, START_TIME
 from STAGE.IMPORT_KEXP_PLAYLIST plays
 left outer join show
