@@ -1,12 +1,11 @@
-import re
-import os
 import json
-import boto3
+import os
 import unittest
-import lakelayer
-import pytz
 from datetime import datetime
-from datetime import timedelta
+
+import boto3
+
+import lakelayer
 
 
 #
@@ -65,7 +64,7 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
                                               "%Y-%m-%dT%H:%M:%S%z"),
                             "%Y-%m-%dT%H:%M:%S%z"))
 
-    def test_get_kexp_data(self):
+    def test_get_playlist(self):
 
         kexp_reader = lakelayer.KexpApiReader()
 
@@ -134,6 +133,17 @@ class KexpPlaylistDataLakeTest(unittest.TestCase):
         self.assertTrue(int(runtime_key) >= 20211009051655, f"Runtime key is out of whack: {runtime_key}")
         self.assertTrue(airdate_after_date <= airdate_before_date,
                         f"Need to get data from {airdate_after_date} to {airdate_before_date}")
+
+    def test_playlist_current(self):
+
+        kexp_reader = lakelayer.KexpApiReader()
+
+        kexp_playlists = kexp_reader.get_playlist(10)
+
+        print(kexp_playlists.keys())
+
+        with open(f"data/kexp/playlist.json", "w") as fout:
+            json.dump(kexp_playlists, fout, indent=2, sort_keys=True)
 
 
 if __name__ == '__main__':

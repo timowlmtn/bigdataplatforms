@@ -6,7 +6,11 @@ copy into stage.IMPORT_KEXP_PLAYLIST (FILENAME,
                                       ALBUM,
                                       ARTIST,
                                       SONG,
-                                      SHOW_ID)
+                                      SHOW_ID,
+                                 COMMENT,
+                                 image_uri,
+                                 labels,
+                                 release_date)
     from (
         select metadata$filename filename,
                metadata$file_row_number,
@@ -16,7 +20,11 @@ copy into stage.IMPORT_KEXP_PLAYLIST (FILENAME,
                $1:album::String,
                $1:artist::String,
                $1:song::String,
-               $1: show::INT
+               $1: show::INT,
+               $1:comment::String,
+               $1:image_uri::String,
+               $1:labels,
+               $1:release_date
         from @owlmtn.stage.KEXP_PUBLIC
     )
     pattern = 'stage/kexp/playlists/.*',
