@@ -7,6 +7,9 @@
 # Author: Tim Burns		Date: 10/04/2021
 default: get-export
 
+clean:
+	rm -f  data/export/import_kexp_playlist.csv data/export/import_kexp_playlist_0_*.csv
+
 get-export-s3:
 	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/ data/export
 
@@ -16,4 +19,4 @@ translate-comma:
 concatenat-data:
 	cat data/export/import_header.csv data/export/import_kexp_playlist_0_*.csv > data/export/import_kexp_playlist.csv
 
-get-export: get-export-s3 translate-comma concatenat-data
+get-export: clean get-export-s3 translate-comma concatenat-data
