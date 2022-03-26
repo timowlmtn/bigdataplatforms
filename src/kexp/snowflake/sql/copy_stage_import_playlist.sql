@@ -7,10 +7,10 @@ copy into stage.IMPORT_KEXP_PLAYLIST (FILENAME,
                                       ARTIST,
                                       SONG,
                                       SHOW_ID,
-                                 COMMENT,
-                                 image_uri,
-                                 labels,
-                                 release_date)
+                                      COMMENT,
+                                      image_uri,
+                                      labels,
+                                      release_date)
     from (
         select metadata$filename filename,
                metadata$file_row_number,
@@ -21,7 +21,7 @@ copy into stage.IMPORT_KEXP_PLAYLIST (FILENAME,
                $1:artist::String,
                $1:song::String,
                $1: show::INT,
-               $1:comment::String,
+               $1: comment::String,
                $1:image_uri::String,
                $1:labels,
                $1:release_date
