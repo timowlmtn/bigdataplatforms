@@ -10,3 +10,4 @@
 /src/kexp/setenv.sh
 /src/kexp/snowsql_rt.log
 /src/kexp/snowsql_rt.log_bootstrap
+/src/cms/data/source/DAC_NationalDownloadableFile.csv.gz
