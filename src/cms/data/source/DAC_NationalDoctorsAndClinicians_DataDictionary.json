@@ -1,0 +1,252 @@
+{
+  "Professional Identification": [
+    {
+      "Name": "NPI",
+      "Variable Label": "NPI",
+      "Description": "Unique clinician ID assigned by NPPES",
+      "Length": "10"
+    },
+    {
+      "Name": "Ind_PAC_ID",
+      "Variable Label": "PAC ID",
+      "Description": "Unique individual clinician ID assigned by PECOS",
+      "Length": "10"
+    },
+    {
+      "Name": "Ind_enrl_ID",
+      "Variable Label": "Clinician",
+      "Description": "Enrollment ID Unique ID for the clinician enrollment that is the source for the data in the observation",
+      "Length": "15"
+    },
+    {
+      "Name": "lst_nm",
+      "Variable Label": "Last Name",
+      "Description": "Individual clinician last name",
+      "Length": "35"
+    },
+    {
+      "Name": "frst_nm",
+      "Variable Label": "First Name",
+      "Description": "Individual clinician first name",
+      "Length": "25"
+    },
+    {
+      "Name": "mid_nm",
+      "Variable Label": "Middle Name",
+      "Description": "Individual clinician middle name",
+      "Length": "25"
+    },
+    {
+      "Name": "suff",
+      "Variable Label": "Suffix",
+      "Description": "Individual clinician suffix",
+      "Length": "10"
+    },
+    {
+      "Name": "gndr",
+      "Variable Label": "Gender",
+      "Description": "Individual clinician gender",
+      "Length": "1"
+    }
+  ],
+  "Medical Credentials": [
+    {
+      "Name": "Cred",
+      "Variable Label": "Credential",
+      "Description": "Medical credential such as MD, DO, DPM, etc.",
+      "Length": "3"
+    },
+    {
+      "Name": "Med_sch",
+      "Variable Label": " Medical school name",
+      "Description": " Individual clinician\u2019s medical school",
+      "Length": "100"
+    },
+    {
+      "Name": "Grd_yr",
+      "Variable Label": "Graduation year",
+      "Description": " Individual clinician\u2019s medical school graduation year",
+      "Length": "4"
+    },
+    {
+      "Name": "Pri_spec",
+      "Variable Label": "Primary specialty",
+      "Description": "Primary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "60"
+    },
+    {
+      "Name": "Sec_spec_1",
+      "Variable Label": "Secondary specialty 1",
+      "Description": "First secondary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "60"
+    },
+    {
+      "Name": "Sec_spec_2",
+      "Variable Label": "Secondary specialty 2",
+      "Description": "Second secondary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "60"
+    },
+    {
+      "Name": "Sec_spec_3",
+      "Variable Label": "Secondary specialty 3",
+      "Description": "Third secondary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "60"
+    },
+    {
+      "Name": "Sec_spec_4",
+      "Variable Label": "Secondary specialty 4",
+      "Description": "Fourth secondary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "60"
+    },
+    {
+      "Name": "Sec_spec_all",
+      "Variable Label": "All secondary specialties",
+      "Description": "All secondary medical specialty reported by the individual clinician in the selected enrollment",
+      "Length": "200"
+    }
+  ],
+  "Medical Practice": [
+    {
+      "Name": "Org_nm",
+      "Variable Label": "Organization legal name",
+      "Description": " Legal name of the group that the individual clinician works with \u2013 will be blank if the address is not linked to a group",
+      "Length": "70"
+    },
+    {
+      "Name": "Org_PAC_ID",
+      "Variable Label": "Group PAC ID",
+      "Description": "Unique group ID assigned by PECOS to the group that the individual clinician works with \u2013 will be blank if the address is not linked to a group",
+      "Length": "10"
+    },
+    {
+      "Name": "num_org_mem",
+      "Variable Label": " Number of Group Members",
+      "Description": "Total number of individual clinicians affiliated with the group based on Group Practice PAC ID",
+      "Length": "8"
+    },
+    {
+      "Name": "adr_ln_1",
+      "Variable Label": "Line 1 Street Address",
+      "Description": "Group or individual's line 1 address",
+      "Length": "55"
+    },
+    {
+      "Name": "adr_ln_2",
+      "Variable Label": "Line 2 Street Address",
+      "Description": "Group or individual's line 2 address",
+      "Length": "55"
+    },
+    {
+      "Name": "ln_2_sprs",
+      "Variable Label": "Marker of address line 2 suppression",
+      "Description": "Marker that address as reported may be incomplete",
+      "Length": "1"
+    },
+    {
+      "Name": "cty",
+      "Variable Label": " City",
+      "Description": "Group or individual's city",
+      "Length": "30"
+    },
+    {
+      "Name": "st",
+      "Variable Label": "State",
+      "Description": "Group or individual's state",
+      "Length": " 2"
+    },
+    {
+      "Name": "zip",
+      "Variable Label": " ZIP code",
+      "Description": "Group or individual's ZIP code (9 digits when available)",
+      "Length": "9"
+    },
+    {
+      "Name": "phn_numbr",
+      "Variable Label": "Phone Number",
+      "Description": "Phone number is listed only when there is a single phone number available for the address",
+      "Length": "20"
+    },
+    {
+      "Name": "hosp_afl_1",
+      "Variable Label": "Hospital affiliation CCN 1",
+      "Description": "Medicare CCN of hospital where individual clinician provides service",
+      "Length": "6"
+    },
+    {
+      "Name": "hosp_afl_lbn_1",
+      "Variable Label": "Name of affiliated hospital 1",
+      "Description": "Name of hospital, as it appears on Care Compare, where individual clinician provides service",
+      "Length": "200"
+    },
+    {
+      "Name": "hosp_afl_2",
+      "Variable Label": "Hospital affiliation CCN 2",
+      "Description": "Medicare CCN of hospital where individual clinician provides service",
+      "Length": "6"
+    },
+    {
+      "Name": "hosp_afl_lbn_2",
+      "Variable Label": "Name of affiliated hospital 2",
+      "Description": "Name of hospital, as it appears on Care Compare, where individual clinician provides service",
+      "Length": "200"
+    },
+    {
+      "Name": "hosp_afl_3",
+      "Variable Label": "Hospital affiliation CCN 3",
+      "Description": "Medicare CCN of hospital where individual clinician provides service",
+      "Length": "6"
+    },
+    {
+      "Name": "hosp_afl_lbn_3",
+      "Variable Label": "Name of affiliated hospital 3",
+      "Description": "Name of hospital, as it appears on Care Compare, where individual clinician provides service",
+      "Length": "200"
+    },
+    {
+      "Name": "hosp_afl_4",
+      "Variable Label": "Hospital affiliation CCN 4",
+      "Description": "Medicare CCN of hospital where individual clinician provides service",
+      "Length": "6"
+    },
+    {
+      "Name": "hosp_afl_lbn_4",
+      "Variable Label": "Name of affiliated hospital 4",
+      "Description": "Name of hospital, as it appears on Care Compare, where individual clinician provides service",
+      "Length": "200"
+    },
+    {
+      "Name": "hosp_afl_5",
+      "Variable Label": "Hospital affiliation CCN 5",
+      "Description": "Medicare CCN of hospital where individual clinician provides service",
+      "Length": "6"
+    },
+    {
+      "Name": "hosp_afl_lbn_5",
+      "Variable Label": "Name of affiliated hospital 5",
+      "Description": "Name of hospital, as it appears on Care Compare, where individual clinician provides service",
+      "Length": "200"
+    }
+  ],
+  "Medicare Assignment": [
+    {
+      "Name": "assgn",
+      "Variable Label": "Clinician accepts Medicare Assignment",
+      "Description": "Indicator for whether clinician accepts Medicare approved amount as payment in full Y = Clinician accepts Medicare approved amount as payment in full M = Clinician may accept Medicare Assignment",
+      "Length": "1"
+    },
+    {
+      "Name": "grp_assgn",
+      "Variable Label": "Group accepts Medicare Assignment",
+      "Description": "Indicator for whether group accepts Medicare approved amount as payment in full Y = Group accepts Medicare approved amount as payment in full M = Group may accept Medicare Assignment",
+      "Length": "1"
+    }
+  ],
+  "Reference": [
+    {
+      "Name": "adrs_id",
+      "Variable Label": " Address ID",
+      "Description": "Unique identifier for the practice location; offices within the same building, but varied by suite or floor will have the same Address ID aside from the final two characters",
+      "Length": "25"
+    }
+  ]
+}

@@ -23,3 +23,7 @@ get-export: clean get-export-s3 translate-comma concatenat-data
 get-schemas:
 	curl -X 'GET' 'https://data.cms.gov/provider-data/api/1/metastore/schemas' -H 'accept: application/json' \
 		> data/source/provider-data-schemas.json
+
+convert-dd:
+	python python/raw_dd_to_json.py --in_csv data/source/DAC_NationalDoctorsAndClinicians_DataDictionary.csv \
+			--out_json data/source/DAC_NationalDoctorsAndClinicians_DataDictionary.json
