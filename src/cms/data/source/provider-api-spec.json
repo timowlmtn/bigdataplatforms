@@ -1,0 +1,2074 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "API Documentation",
+    "version": "Alpha"
+  },
+  "components": {
+    "responses": {
+      "400BadJson": {
+        "description": "Bad request, usually JSON schema validation failure.",
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/errorResponse"
+            },
+            "example": {
+              "message": "JSON Schema validation failed.",
+              "status": 400,
+              "timestamp": "2021-06-14T13:46:06+00:00",
+              "data": {
+                "keyword": "type",
+                "pointer": "path\/to\/invalid\/json\/property",
+                "message": "The attribute expected to be of type \u0027\u0027object\u0027\u0027 but \u0027array\u0027 given."
+              }
+            }
+          }
+        }
+      },
+      "404IdNotFound": {
+        "description": "Not found, usually due to incorrect identifier.",
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/errorResponse"
+            },
+            "example": {
+              "message": "Error retrieving metadata: 00000000-0000-0000-0000-000000000000 not found.",
+              "status": 400,
+              "timestamp": "2021-06-14T13:46:06+00:00"
+            }
+          }
+        }
+      },
+      "200DatastoreCsvOk": {
+        "description": "Ok, CSV successfully generated.",
+        "content": {
+          "text\/csv": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "200JsonOrCsvQueryOk": {
+        "description": "Ok. JSON or CSV datastore response, depending on query.",
+        "content": {
+          "application\/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "count": {
+                  "type": "integer"
+                },
+                "schema": {
+                  "type": "object",
+                  "description": "Schema of all resources queries, keyed by ID."
+                },
+                "query": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "text\/csv": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "412MetadataObjectNotFound": {
+        "description": "Missing object, usually due to incorrect identifier.",
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/errorResponse"
+            },
+            "example": {
+              "message": "No data with the identifier 00000000-0000-0000-0000-000000000000 was found.",
+              "status": 412,
+              "timestamp": "2021-06-14T13:46:06+00:00"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "errorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "status": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data": {
+            "type": "object",
+            "description": "Arbitrary object storing more detailed data on the error message."
+          }
+        }
+      },
+      "datastoreQuery": {
+        "title": "Datastore Query",
+        "description": "Schema for DKAN datastore queries",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "title": "Resources",
+            "description": "Resources to query against and aliases. Usually you will add only one resource to this array, but if performing a join, list the primary resource first and then add resources to be used in the joins array.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "alias": {
+                  "type": "string",
+                  "description": "Alias to use to refer to this resource elsewhere in the query."
+                }
+              }
+            }
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryResource"
+                },
+                {
+                  "type": "object",
+                  "title": "Aliased property from specific resource",
+                  "properties": {
+                    "resource": {
+                      "$ref": "#\/components\/schemas\/datastoreQueryResource"
+                    },
+                    "property": {
+                      "$ref": "#\/components\/schemas\/datastoreQueryProperty"
+                    },
+                    "alias": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "resource",
+                    "property"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "title": "Aliased expression",
+                  "properties": {
+                    "expression": {
+                      "$ref": "#\/components\/schemas\/datastoreQueryExpression"
+                    },
+                    "alias": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "expression",
+                    "alias"
+                  ]
+                }
+              ]
+            }
+          },
+          "conditions": {
+            "type": "array",
+            "description": "Conditions or groups of conditions for the query, bound by \u0027and\u0027 operator.",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryCondition"
+                },
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryConditionGroup"
+                }
+              ]
+            }
+          },
+          "joins": {
+            "type": "array",
+            "description": "Joins",
+            "items": {
+              "type": "object",
+              "properties": {
+                "resource": {
+                  "$ref": "#\/components\/schemas\/datastoreQueryResource"
+                },
+                "condition": {
+                  "$ref": "#\/components\/schemas\/datastoreQueryCondition"
+                }
+              },
+              "required": [
+                "resource",
+                "condition"
+              ]
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Limit for maximum number of records returned. Pass zero for no limit (may be restricted by user permissions)."
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Number of records to offset by or skip before returning first record.",
+            "default": 0
+          },
+          "sorts": {
+            "type": "array",
+            "description": "Result sorting directives.",
+            "items": {
+              "$ref": "#\/components\/schemas\/datastoreQuerySort"
+            }
+          },
+          "count": {
+            "description": "Return a count of the total rows returned by the query, ignoring the limit\/offset.",
+            "type": "boolean",
+            "default": true
+          },
+          "results": {
+            "description": "Return the result set. Set to false and set count to true to receive only a count of matches.",
+            "type": "boolean",
+            "default": true
+          },
+          "schema": {
+            "description": "Return the schema for the datastore collection.",
+            "type": "boolean",
+            "default": true
+          },
+          "keys": {
+            "description": "Return results as an array of keyed objects, with the column machine names as keys. If false, results will be an array of simple arrays of values.",
+            "type": "boolean",
+            "default": true
+          },
+          "format": {
+            "type": "string",
+            "description": "Format to return data in. Default is JSON, can be set to CSV.",
+            "enum": [
+              "csv",
+              "json"
+            ],
+            "default": "json"
+          },
+          "rowIds": {
+            "description": "Flag to include the result_number column in output. Default is FALSE",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "datastoreQueryResource": {
+        "type": "string",
+        "description": "Alias to resource set in resources array. Not needed when only querying against one resource.",
+        "title": "Datastore Query: resource"
+      },
+      "datastoreQueryProperty": {
+        "type": "string",
+        "description": "The property\/column or alias to filter by. Should not include collection\/table alias.",
+        "pattern": "^[^.]+$",
+        "title": "Datastore Query: property"
+      },
+      "datastoreQueryResourceProperty": {
+        "type": "object",
+        "description": "Property name with optional collection\/table alias.",
+        "properties": {
+          "resource": {
+            "$ref": "#\/components\/schemas\/datastoreQueryResource"
+          },
+          "property": {
+            "$ref": "#\/components\/schemas\/datastoreQueryProperty"
+          }
+        },
+        "required": [
+          "property"
+        ],
+        "title": "Datastore Query: resourceProperty"
+      },
+      "datastoreQueryConditionGroup": {
+        "type": "object",
+        "title": "Datastore Query: Conditional group",
+        "description": "Group of conditions bound by \u0027and\u0027\/\u0027or\u0027 operators.",
+        "properties": {
+          "groupOperator": {
+            "type": "string",
+            "enum": [
+              "and",
+              "or"
+            ]
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryCondition"
+                },
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryConditionGroup"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "datastoreQueryCondition": {
+        "type": "object",
+        "title": "Datastore Query: Condition",
+        "description": "Condition object including property, value and operator. If querying only one resource, the \u0022resource\u0022 does not need to be specified.",
+        "properties": {
+          "resource": {
+            "$ref": "#\/components\/schemas\/datastoreQueryResource"
+          },
+          "property": {
+            "$ref": "#\/components\/schemas\/datastoreQueryProperty"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                }
+              },
+              {
+                "$ref": "#\/components\/schemas\/datastoreQueryResourceProperty"
+              }
+            ],
+            "description": "The value to filter against."
+          },
+          "operator": {
+            "type": "string",
+            "description": "Condition operator",
+            "enum": [
+              "=",
+              "\u003C\u003E",
+              "\u003C",
+              "\u003C=",
+              "\u003E",
+              "\u003E=",
+              "like",
+              "between",
+              "in",
+              "not in"
+            ],
+            "default": "="
+          }
+        },
+        "required": [
+          "property",
+          "value"
+        ]
+      },
+      "datastoreQueryExpression": {
+        "type": "object",
+        "title": "Datastore Query: Expression",
+        "description": "Arithmetic or aggregate expression performed on one or more properties.",
+        "properties": {
+          "operator": {
+            "type": "string",
+            "description": "Expression operator. Note that performing expressions on text or other non-numeric data types my yeild unexpected results.",
+            "enum": [
+              "+",
+              "-",
+              "*",
+              "\/",
+              "%",
+              "sum",
+              "count",
+              "avg",
+              "max",
+              "min"
+            ]
+          },
+          "operands": {
+            "type": "array",
+            "description": "Arithmetic operators will require two operands, aggregate operators should take only one. Do not combine arithmetic and aggregate operators in a single query.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "title": "Number"
+                },
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryProperty"
+                },
+                {
+                  "$ref": "#\/components\/schemas\/datastoreQueryResourceProperty"
+                },
+                {
+                  "type": "object",
+                  "title": "Expression",
+                  "properties": {
+                    "expression": {
+                      "$ref": "#\/components\/schemas\/datastoreQueryExpression"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "datastoreQuerySort": {
+        "type": "object",
+        "description": "Properties to sort by in a particular order.",
+        "properties": {
+          "resource": {
+            "$ref": "#\/components\/schemas\/datastoreQueryResource"
+          },
+          "property": {
+            "$ref": "#\/components\/schemas\/datastoreQueryProperty"
+          },
+          "order": {
+            "type": "string",
+            "description": "Order to sort in, lowercase.",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          }
+        },
+        "title": "Datastore Query: sort"
+      },
+      "dataset": {
+        "title": "Project Open Data Dataset",
+        "description": "The metadata format for all federal open data. Validates a single JSON object entry (as opposed to entire Data.json catalog).",
+        "type": "object",
+        "required": [
+          "bureauCode",
+          "programCode",
+          "title",
+          "description",
+          "keyword",
+          "modified",
+          "publisher",
+          "contactPoint",
+          "identifier",
+          "accessLevel"
+        ],
+        "properties": {
+          "@type": {
+            "title": "Metadata Context",
+            "description": "IRI for the JSON-LD data type. This should be dcat:Dataset for each Dataset",
+            "enum": [
+              "dcat:Dataset"
+            ]
+          },
+          "accessLevel": {
+            "description": "The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public)",
+            "title": "Public Access Level",
+            "enum": [
+              "public",
+              "restricted public",
+              "private",
+              "non-public"
+            ]
+          },
+          "rights": {
+            "title": "Rights",
+            "description": "This may include information regarding access or restrictions based on privacy, security, or other policies. This should also provide an explanation for the selected \u0022accessLevel\u0022 including instructions for how to access a restricted file, if applicable, or explanation for why a \u0022non-public\u0022 or \u0022restricted public\u0022 data assetis not \u0022public,\u0022 if applicable. Text, 255 characters.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "accrualPeriodicity": {
+            "title": "Frequency",
+            "description": "Frequency with which dataset is published.",
+            "anyOf": [
+              {
+                "enum": [
+                  "irregular"
+                ]
+              },
+              {
+                "type": "string",
+                "pattern": "^R\\\/P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              }
+            ],
+            "nullable": true
+          },
+          "bureauCode": {
+            "title": "Bureau Code",
+            "description": "Federal agencies, combined agency and bureau code from \u003Ca href=\u0022http:\/\/www.whitehouse.gov\/sites\/default\/files\/omb\/assets\/a11_current_year\/app_c.pdf\u0022\u003EOMB Circular A-11, Appendix C\u003C\/a\u003E in the format of \u003Ccode\u003E015:010\u003C\/code\u003E.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "[0-9]{3}:[0-9]{2}"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "contactPoint": {
+            "title": "Project Open Data ContactPoint vCard",
+            "description": "A Dataset ContactPoint as a vCard object",
+            "type": "object",
+            "required": [
+              "fn"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "hasEmail"
+                ]
+              },
+              {
+                "required": [
+                  "hasURL"
+                ]
+              }
+            ],
+            "properties": {
+              "@type": {
+                "title": "Metadata Context",
+                "description": "IRI for the JSON-LD data type. This should be vcard:Contact for contactPoint",
+                "enum": [
+                  "vcard:Contact"
+                ]
+              },
+              "fn": {
+                "title": "Contact Name",
+                "description": "A full formatted name, eg Firstname Lastname",
+                "type": "string",
+                "minLength": 1
+              },
+              "hasEmail": {
+                "title": "Email",
+                "description": "Email address for the contact",
+                "pattern": "^mailto:[\\w\\_\\~\\!\\$\\\u0026\\\u0027\\(\\)\\*\\+\\,\\;\\=\\:.-]+@[\\w.-]+\\.[\\w.-]+?$",
+                "type": "string"
+              },
+              "hasURL": {
+                "title": "URL",
+                "description": "URL for the contact",
+                "format": "uri",
+                "type": "string"
+              }
+            }
+          },
+          "describedBy": {
+            "title": "Data Dictionary",
+            "description": "URL to the data dictionary for the dataset or API. Note that documentation other than a data dictionary can be referenced using Related Documents as shown in the expanded fields.",
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "describedByType": {
+            "title": "Data Dictionary Type",
+            "description": "The machine-readable file format (IANA Media Type or MIME Type) of the distribution\u2019s describedBy URL",
+            "type": "string",
+            "pattern": "^[-\\w]+\/[-\\w]+(\\.[-\\w]+)*([+][-\\w]+)?$",
+            "nullable": true
+          },
+          "conformsTo": {
+            "title": "Data Standard",
+            "description": "URI used to identify a standardized specification the dataset conforms to",
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "dataQuality": {
+            "title": "Data Quality",
+            "description": "Whether the dataset meets the agency\u2019s Information Quality Guidelines (true\/false).",
+            "type": "boolean",
+            "nullable": true
+          },
+          "description": {
+            "title": "Description",
+            "description": "Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest.",
+            "type": "string",
+            "minLength": 1
+          },
+          "distribution": {
+            "title": "Distribution",
+            "description": "A container for the array of Distribution objects",
+            "type": "array",
+            "items": {
+              "title": "Project Open Data Distribution",
+              "description": "Validates an entire collection of common core metadata JSON objects. Agencies produce said collections in the form of Data.json files.",
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "title": "Metadata Context",
+                  "description": "IRI for the JSON-LD data type. This should be dcat:Distribution for each Distribution",
+                  "enum": [
+                    "dcat:Distribution"
+                  ]
+                },
+                "downloadURL": {
+                  "title": "Download URL",
+                  "description": "URL providing direct access to a downloadable file of a dataset",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "format": "uri"
+                    },
+                    {
+                      "pattern": "s3:\/\/pdc-s3-helpful-contacts-data"
+                    }
+                  ]
+                },
+                "mediaType": {
+                  "title": "Media Type",
+                  "description": "The machine-readable file format (IANA Media Type or MIME Type) of the distribution\u2019s downloadURL",
+                  "type": "string",
+                  "pattern": "^[-\\w]+\/[-\\w]+(\\.[-\\w]+)*([+][-\\w]+)?$",
+                  "nullable": true
+                },
+                "format": {
+                  "title": "Format",
+                  "description": "A human-readable description of the file format of a distribution",
+                  "type": "string",
+                  "minLength": 1,
+                  "nullable": true
+                },
+                "accessURL": {
+                  "title": "Access URL",
+                  "description": "URL providing indirect access to a dataset",
+                  "type": "string",
+                  "format": "uri",
+                  "nullable": true
+                },
+                "description": {
+                  "title": "Description",
+                  "description": "Human-readable description of the distribution",
+                  "type": "string",
+                  "minLength": 1,
+                  "nullable": true
+                },
+                "title": {
+                  "title": "Title",
+                  "description": "Human-readable name of the distribution",
+                  "type": "string",
+                  "minLength": 1,
+                  "nullable": true
+                },
+                "conformsTo": {
+                  "title": "Data Standard",
+                  "description": "URL providing indirect access to a dataset",
+                  "type": "string",
+                  "format": "uri",
+                  "nullable": true
+                },
+                "describedBy": {
+                  "title": "Data Dictionary",
+                  "description": "URL to the data dictionary for the distribution found at the downloadURL",
+                  "type": "string",
+                  "format": "uri",
+                  "nullable": true
+                },
+                "describedByType": {
+                  "title": "Data Dictionary Type",
+                  "description": "The machine-readable file format (IANA Media Type or MIME Type) of the distribution\u2019s describedBy URL",
+                  "type": "string",
+                  "pattern": "^[-\\w]+\/[-\\w]+(\\.[-\\w]+)*([+][-\\w]+)?$",
+                  "nullable": true
+                }
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "nullable": true
+          },
+          "identifier": {
+            "title": "Unique Identifier",
+            "description": "A unique identifier for the dataset or API as maintained within an Agency catalog or database.",
+            "type": "string",
+            "minLength": 1
+          },
+          "issued": {
+            "title": "Issue Date",
+            "description": "Date of formal issuance.",
+            "type": "string",
+            "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$",
+            "nullable": true
+          },
+          "keyword": {
+            "title": "Tags",
+            "description": "Tags (or keywords) help users discover your dataset; please include terms that would be used by technical and non-technical users.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "landingPage": {
+            "title": "Homepage URL",
+            "description": "Alternative landing page used to redirect user to a contextual, Agency-hosted \u201chomepage\u201d for the Dataset or API when selecting this resource from the Data.gov user interface.",
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "language": {
+            "title": "Language",
+            "description": "The language of the dataset.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(((([A-Za-z]{2,3}(-([A-Za-z]{3}(-[A-Za-z]{3}){0,2}))?)|[A-Za-z]{4}|[A-Za-z]{5,8})(-([A-Za-z]{4}))?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-([0-9A-WY-Za-wy-z](-[A-Za-z0-9]{2,8})+))*(-(x(-[A-Za-z0-9]{1,8})+))?)|(x(-[A-Za-z0-9]{1,8})+)|((en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)|(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang)))$"
+            },
+            "nullable": true
+          },
+          "license": {
+            "title": "License",
+            "description": "The license dataset or API is published with. See \u003Ca href=\u0022https:\/\/project-open-data.cio.gov\/open-licenses\/\u0022\u003EOpen Licenses\u003C\/a\u003E for more information.",
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "modified": {
+            "title": "Last Modified",
+            "description": "Most recent date on which the dataset was changed, updated or modified.",
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\\/)P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              }
+            ]
+          },
+          "released": {
+            "title": "Release Date",
+            "description": "Date on which the dataset is scheduled to be published.",
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\\/)P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              }
+            ]
+          },
+          "archiveExclude": {
+            "title": "Archive exclude",
+            "description": "For excluding this dataset from its provider\u0027s \u0027download all datasets\u0027.",
+            "type": "boolean"
+          },
+          "primaryITInvestmentUII": {
+            "title": "Primary IT Investment UII",
+            "description": "For linking a dataset with an IT Unique Investment Identifier (UII)",
+            "type": "string",
+            "pattern": "[0-9]{3}-[0-9]{9}",
+            "nullable": true
+          },
+          "programCode": {
+            "title": "Program Code",
+            "description": "Federal agencies, list the primary program related to this data asset, from the \u003Ca href=\u0022http:\/\/goals.performance.gov\/sites\/default\/files\/images\/FederalProgramInventory_FY13_MachineReadable_091613.xls\u0022\u003EFederal Program Inventory\u003C\/a\u003E. Use the format of \u003Ccode\u003E015:001\u003C\/code\u003E",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "[0-9]{3}:[0-9]{3}"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "publisher": {
+            "title": "Organization",
+            "description": "A Dataset Publisher Organization.",
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "@type": {
+                "title": "Metadata Context",
+                "description": "IRI for the JSON-LD data type. This should be org:Organization for each publisher",
+                "type": "string",
+                "default": "org:Organization"
+              },
+              "name": {
+                "title": "Publisher Name",
+                "description": "",
+                "type": "string",
+                "minLength": 1
+              },
+              "subOrganizationOf": {
+                "title": "Parent Organization",
+                "type": "string"
+              }
+            }
+          },
+          "references": {
+            "title": "Related Documents",
+            "description": "Related documents such as technical information about a dataset, developer documentation, etc.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "minItems": 1,
+            "uniqueItems": true,
+            "nullable": true
+          },
+          "spatial": {
+            "title": "Spatial",
+            "description": "The range of spatial applicability of a dataset. Could include a spatial region like a bounding box or a named place.",
+            "type": "string",
+            "minLength": 1,
+            "nullable": true
+          },
+          "systemOfRecords": {
+            "title": "System of Records",
+            "description": "If the systems is designated as a system of records under the Privacy Act of 1974, provide the URL to the System of Records Notice related to this dataset.",
+            "type": "string",
+            "minLength": 1,
+            "nullable": true
+          },
+          "temporal": {
+            "title": "Temporal",
+            "description": "The range of temporal applicability of a dataset (i.e., a start and end date of applicability for the data).",
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\\/)([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\\/)P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+              },
+              {
+                "type": "string",
+                "pattern": "^(R\\d*\\\/)?P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?\\\/([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+              }
+            ],
+            "nullable": true
+          },
+          "isPartOf": {
+            "title": "Collection",
+            "description": "The collection of which the dataset is a subset",
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              }
+            ]
+          },
+          "theme": {
+            "title": "Category",
+            "description": "Main thematic category of the dataset.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "title": {
+            "title": "Title",
+            "description": "Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "distribution": {
+        "title": "Distribution",
+        "description": "Distribution object, based on DCAT-US.",
+        "type": "object",
+        "required": [
+          "identifier",
+          "data"
+        ],
+        "properties": {
+          "identifier": {
+            "title": "Identifier",
+            "type": "string"
+          },
+          "data": {
+            "title": "Project Open Data Distribution",
+            "type": "object",
+            "properties": {
+              "@type": {
+                "title": "Metadata Context",
+                "description": "IRI for the JSON-LD data type. This should be dcat:Distribution for each Distribution.",
+                "default": "dcat:Distribution",
+                "type": "string",
+                "readOnly": true
+              },
+              "title": {
+                "title": "Title",
+                "description": "Human-readable name of the distribution.",
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "title": "Description",
+                "description": "Human-readable description of the distribution.",
+                "type": "string",
+                "minLength": 1
+              },
+              "format": {
+                "title": "Format",
+                "description": "A human-readable description of the file format of a distribution (i.e. csv, pdf, xml, kml, etc.).",
+                "type": "string"
+              },
+              "mediaType": {
+                "title": "Media Type",
+                "description": "The machine-readable file format (\u003Ca href=\u0022https:\/\/www.iana.org\/assignments\/media-types\/media-types.xhtml\u0022\u003EIANA Media Type or MIME Type\u003C\/a\u003E) of the distribution\u2019s downloadURL.",
+                "type": "string"
+              },
+              "downloadURL": {
+                "title": "Download URL",
+                "description": "URL providing direct access to a downloadable file of a dataset.",
+                "type": "string",
+                "anyOf": [
+                  {
+                    "format": "uri"
+                  },
+                  {
+                    "pattern": "s3:\/\/pdc-s3-helpful-contacts-data"
+                  }
+                ]
+              },
+              "accessURL": {
+                "title": "Access URL",
+                "description": "URL providing indirect access to a dataset.",
+                "type": "string",
+                "format": "uri"
+              },
+              "conformsTo": {
+                "title": "Data Standard",
+                "description": "URL providing indirect access to a dataset.",
+                "type": "string",
+                "format": "uri"
+              },
+              "describedBy": {
+                "title": "Data Dictionary",
+                "description": "URL to the data dictionary for the distribution found at the downloadURL.",
+                "type": "string",
+                "format": "uri"
+              },
+              "describedByType": {
+                "title": "Data Dictionary Type",
+                "description": "The machine-readable file format (IANA Media Type or MIME Type) of the distribution\u2019s describedBy URL.",
+                "pattern": "^[a-z]+?$",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "data-dictionary": {
+        "title": "Data Dictionary",
+        "type": "object",
+        "required": [
+          "identifier",
+          "title"
+        ],
+        "properties": {
+          "identifier": {
+            "title": "Identifier",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "data": {
+            "title": "Project Open Data Data-Dictionary",
+            "description": "A data dictionary for this resource, compliant with the [Table Schema](https:\/\/specs.frictionlessdata.io\/table-schema\/) specification.",
+            "type": "object",
+            "required": [
+              "fields"
+            ],
+            "properties": {
+              "fields": {
+                "title": "Dictionary Fields",
+                "type": "array",
+                "items": {
+                  "title": "Dictionary Field",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "type"
+                  ],
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "description": "A name for this field.",
+                      "type": "string"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "description": "A human-readable title.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "description": "The type keyword, which `MUST` be a value of `string`.",
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "integer",
+                        "date",
+                        "time",
+                        "datetime",
+                        "year",
+                        "yearmonth",
+                        "boolean",
+                        "object",
+                        "geopoint",
+                        "geojson",
+                        "array",
+                        "duration"
+                      ]
+                    },
+                    "format": {
+                      "title": "Format",
+                      "description": "Supported formats depend on the specified field type:\n* For `string` the supported formats are `default`, `email`, `uri`, `binary`, and `uuid`:\n  - **default**: any valid string.\n  - **email**: A valid email address.\n  - **uri**: A valid URI.\n  - **binary**: A base64 encoded string representing binary data.\n  - **uuid**: A string that is a uuid.\n* For `number` only `default` is allowed.\n* For `integer` only `default` is allowed.\n* For `date` the supported formats are `default`, `any`, and `{PATTERN}`:\n  - **default**: An ISO8601 format string of YYYY-MM-DD.\n  - **any**: Any parsable representation of a date. The implementing library can attempt to parse the datetime via a range of strategies.\n  - **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C \/ Python [strftime](http:\/\/strftime.org\/).\n* For `time` the supported formats are `default`, `any`, and `{PATTERN}`:\n  - **default**: An ISO8601 format string for time.\n  - **any**: Any parsable representation of a date. The implementing library can attempt to parse the datetime via a range of strategies.\n  - **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C \/ Python [strftime](http:\/\/strftime.org\/).\n* For `datetime` the supported formats are `default`, `any`, and `{PATTERN}`:\n  - **default**: An ISO8601 format string for datetime.\n  - **any**: Any parsable representation of a date. The implementing library can attempt to parse the datetime via a range of strategies.\n  - **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C \/ Python [strftime](http:\/\/strftime.org\/).\n* For `year` only `default` is allowed.\n* For `yearmonth` only `default` is allowed.\n* For `boolean` only `default` is allowed.\n* For `object` only `default` is allowed.\n* For `geopoint` the supported formats are `default`, `array`, and `object`:\n  - **default**: A string of the pattern \u0027lon, lat\u0027, where `lon` is the longitude and `lat` is the latitude.\n  - **array**: An array of exactly two items, where each item is either a number, or a string parsable as a number, and the first item is `lon` and the second item is `lat`.\n  - **object**: A JSON object with exactly two keys, `lat` and `lon`\n* For `geojson` the supported formats are `default` and `topojson`:\n  - **default**: A geojson object as per the [GeoJSON spec](http:\/\/geojson.org\/).\n  - **topojson**: A topojson object as per the [TopoJSON spec](https:\/\/github.com\/topojson\/topojson-specification\/blob\/master\/README.md).\n* For `array` only `default` is allowed.\n* For `duration` only `default` is allowed.",
+                      "type": "string",
+                      "default": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "facets": {
+        "type": "array",
+        "description": "Array of facet values.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Machine name for the metastore property to filter on."
+            },
+            "name": {
+              "type": "string",
+              "description": "The facet filter value, for instance, the tet of a keyword to filter by"
+            },
+            "total": {
+              "type": "integer",
+              "description": "Number of results in the current result set that match this filter."
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "datastoreUuid": {
+        "name": "identifier",
+        "in": "path",
+        "description": "A datastore id. Note: there is an inconsistency in this API that will be addressed in the future: The expected format is different from the format supplied in \/api\/1\/datastore\/imports.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "datastoreDistributionUuid": {
+        "name": "distributionId",
+        "in": "path",
+        "description": "A distribution ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "26a87e89-7652-5a97-9c0f-5c5712c8d4f5"
+      },
+      "datastoreDatasetUuid": {
+        "name": "datasetId",
+        "in": "path",
+        "description": "A dataset ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "qctf-kbs8"
+      },
+      "datastoreDistributionIndex": {
+        "name": "index",
+        "in": "path",
+        "description": "The index of a distribution in a dataset\u0027s distribution array. For instance, the first distribution in a dataset would have an index of \u00220,\u0022 the second would have \u00221\u0022, etc.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "0"
+      },
+      "datastoreQueryLimit": {
+        "name": "limit",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/limit"
+        }
+      },
+      "datastoreQueryOffset": {
+        "name": "offset",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/offset"
+        }
+      },
+      "datastoreQueryCount": {
+        "name": "count",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/count"
+        }
+      },
+      "datastoreQueryResults": {
+        "name": "results",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/results"
+        }
+      },
+      "datastoreQuerySchema": {
+        "name": "schema",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/schema"
+        }
+      },
+      "datastoreQueryKeys": {
+        "name": "keys",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/keys"
+        }
+      },
+      "datastoreQueryFormat": {
+        "name": "format",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/format"
+        }
+      },
+      "datastoreQueryRowIds": {
+        "name": "rowIds",
+        "in": "query",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#\/components\/schemas\/datastoreQuery\/properties\/rowIds"
+        }
+      },
+      "harvestPlanId": {
+        "name": "plan_id",
+        "in": "path",
+        "description": "A harvest plan identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "contacts__data"
+      },
+      "harvestPlanIdQuery": {
+        "name": "plan",
+        "in": "query",
+        "description": "A harvest plan identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "form",
+        "example": "contacts__data"
+      },
+      "harvestRunId": {
+        "name": "run_id",
+        "in": "path",
+        "description": "A harvest run identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "HARVEST-RUN-ID"
+      },
+      "showReferenceIds": {
+        "name": "show-reference-ids",
+        "in": "query",
+        "description": "Metastore objects often include references to other objects stored in other schemas. These references are usually hidden in responses. Some identifiers are necessary to work with other API endpoints (e.g. datastore endpoints may require the distribution identifier). Add `?show-reference-ids` to show the identifiers generated by DKAN.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "style": "form",
+        "allowEmptyValue": true
+      },
+      "schemaId": {
+        "name": "schema_id",
+        "in": "path",
+        "description": "The name a of a specific schema. For instance, \u0022dataset.\u0022",
+        "schema": {
+          "type": "string",
+          "example": "dataset"
+        },
+        "required": true,
+        "allowEmptyValue": false,
+        "examples": {
+          "dataset": {
+            "value": "dataset"
+          },
+          "distribution": {
+            "value": "distribution"
+          },
+          "data-dictionary": {
+            "value": "data-dictionary"
+          }
+        }
+      },
+      "datasetUuid": {
+        "name": "identifier",
+        "in": "path",
+        "description": "A dataset identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "qctf-kbs8"
+      },
+      "distributionUuid": {
+        "name": "identifier",
+        "in": "path",
+        "description": "A distribution identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "00000000-0000-0000-0000-000000000000"
+      },
+      "data-dictionaryUuid": {
+        "name": "identifier",
+        "in": "path",
+        "description": "A data-dictionary identifier",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "00000000-0000-0000-0000-000000000000"
+      }
+    }
+  },
+  "paths": {
+    "\/provider-data\/api\/1\/datastore\/imports\/{identifier}": {
+      "get": {
+        "operationId": "datastore-get",
+        "summary": "Datastore statistics",
+        "description": "Returns the numbers of rows and columns, and a list of columns headers from the datastore.\n",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreUuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "numOfRows",
+                    "numOfColumns",
+                    "columns"
+                  ],
+                  "properties": {
+                    "numOfRows": {
+                      "type": "integer"
+                    },
+                    "numOfColumns": {
+                      "type": "integer"
+                    },
+                    "columns": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query": {
+      "get": {
+        "operationId": "datastore-query-get",
+        "summary": "Query one or more datastore resources",
+        "description": "Simple GET equivalent of a POST query. Note that parameters containing arrays or objects are not yet supported by SwaggerUI. For conditions, sorts, and other complex parameters, write your query in JSON and then convert to a nested query string. See [this web tool](https:\/\/www.convertonline.io\/convert\/json-to-query-string) for an example.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryLimit"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryOffset"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryCount"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryResults"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQuerySchema"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryKeys"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryFormat"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryRowIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200JsonOrCsvQueryOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query\/download": {
+      "get": {
+        "operationId": "datastore-query-download-get",
+        "summary": "Query one or more datastore resources for file download with get",
+        "description": "Simple GET equivalent of a POST query. Note that parameters containing arrays or objects are not yet supported by SwaggerUI. For conditions, sorts, and other complex parameters, write your query in JSON and then convert to a nested query string. See [this web tool](https:\/\/www.convertonline.io\/convert\/json-to-query-string) for an example.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryLimit"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryOffset"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryCount"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryResults"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQuerySchema"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryKeys"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryFormat"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryRowIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200DatastoreCsvOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query\/{distributionId}": {
+      "get": {
+        "operationId": "datastore-datasetindex-query-get",
+        "summary": "Query a single datastore resource with get",
+        "description": "Simple GET equivalent of a POST query. Note that parameters containing arrays or objects are not yet supported by SwaggerUI. For conditions, sorts, and other complex parameters, write your query in JSON and then convert to a nested query string. See [this web tool](https:\/\/www.convertonline.io\/convert\/json-to-query-string) for an example.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreDistributionUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryLimit"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryOffset"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryCount"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryResults"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQuerySchema"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryKeys"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryFormat"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryRowIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200JsonOrCsvQueryOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query\/{datasetId}\/{index}": {
+      "get": {
+        "operationId": "datastore-resource-query-get",
+        "summary": "Query a single datastore resource with get",
+        "description": "Simple GET equivalent of a POST query -- see the POST endpoint documentation for full query schema. A few basic parameters are provided here as examples. For more reliable queries, write your query in JSON and then convert to a query string. See [this web tool](https:\/\/www.convertonline.io\/convert\/json-to-query-string) for an example.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreDatasetUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreDistributionIndex"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryLimit"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryOffset"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryCount"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryResults"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQuerySchema"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryKeys"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryFormat"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreQueryRowIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200JsonOrCsvQueryOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query\/{distributionId}\/download": {
+      "get": {
+        "operationId": "datastore-resource-query-download-get",
+        "summary": "Query a single datastore resource for file download",
+        "description": "Like the other datastore query GET endpoints, additional parameters may be added by serializing a query JSON object (documented in the POST endpoints) into a query string.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreDistributionUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreDownload"
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "csv",
+            "description": "Response format. Currently, only csv is supported.",
+            "style": "deepObject"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200DatastoreCsvOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/query\/{datasetId}\/{index}\/download": {
+      "get": {
+        "operationId": "datastore-datasetindex-query-download-get",
+        "summary": "Query a single datastore resource for file download",
+        "description": "Like the other datastore query GET endpoints, additional parameters may be added by serializing a query JSON object (documented in the POST endpoints) into a query string.",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datastoreDatasetUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/datastoreDistributionIndex"
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "csv",
+            "description": "Response format. Currently, only csv is supported.",
+            "style": "deepObject"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/200DatastoreCsvOk"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/400BadJson"
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/datastore\/sql": {
+      "get": {
+        "operationId": "datastore-sql",
+        "summary": "Query resources in datastore",
+        "description": "Interact with resources in the datastore using an SQL-like syntax.\n",
+        "tags": [
+          "Datastore"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A SQL-like query.\n\nA `SELECT` using the `show_db_columns` parameter will make it easier to build queries against the data as\nit returns columns without spaces and in some cases, truncated names where the human readable column header\nis very long.\n\n`\/api\/1\/datastore\/sql?query=[SELECT * FROM DATASTORE_UUID][LIMIT 1 OFFSET 0];\u0026show_db_columns`\n\nYou can then build the `SELECT` part of the query. Do not use spaces between its arguments.\n\n`\/api\/1\/datastore\/sql?query=[SELECT a,b,c, FROM DATASTORE_UUID]`\n\n`WHERE` can use any column in the data.\n\n`\/api\/1\/datastore\/sql?query=[SELECT a,b FROM DATASTORE_UUID][WHERE c = \u0022CCC\u0022];\u0026show_db_columns`\n\n`LIMIT` and `OFFSET` allow you to get more than the 500 record limit, by using successive queries:\n\n`\/api\/1\/datastore\/sql?query=[SELECT a,b,c FROM DATASTORE_UUID][WHERE d = \u0022CCC\u0022][LIMIT 500 OFFSET 0];\u0026show_db_columns`\n\n`\/api\/1\/datastore\/sql?query=[SELECT a,b,c FROM DATASTORE_UUID][WHERE d = \u0022DDD\u0022][LIMIT 500 OFFSET 500];\u0026show_db_columns`\n\nNote: `SELECT`, `WHERE` and `LIMIT...OFFSET` clauses must each be included within brackets `[ ]`.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "form",
+            "example": "[SELECT * FROM 26a87e89-7652-5a97-9c0f-5c5712c8d4f5][LIMIT 2]"
+          },
+          {
+            "name": "show_db_columns",
+            "in": "query",
+            "description": "Add `\u0026show_db_columns` to return columns without spaces and in some cases, truncated names where the human\nreadable column header is very long.\n",
+            "schema": {
+              "type": "boolean"
+            },
+            "style": "form",
+            "allowEmptyValue": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok. Query successful.",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Simple result row, key\/value pairs."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas": {
+      "get": {
+        "operationId": "metastore-get-schemas",
+        "summary": "Get list of all schemas",
+        "tags": [
+          "Metastore"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of metastore schemas.",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Full collection of available metastore schemas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/{schema_id}": {
+      "get": {
+        "operationId": "metastore-get-schema",
+        "summary": "Get a specific schema",
+        "tags": [
+          "Metastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/schemaId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "description": "A schema definition, see https:\/\/json-schema.org\/",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schema not found"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/{schema_id}\/items": {
+      "get": {
+        "operationId": "metastore-get-all",
+        "summary": "Get all items for a specific schema (e.g., \u0022dataset\u0022)",
+        "tags": [
+          "Metastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/schemaId"
+          },
+          {
+            "$ref": "#\/components\/parameters\/showReferenceIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "Array of metastore items matching the chosen schema.",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1": {
+      "get": {
+        "operationId": "docs-get-complete",
+        "summary": "Complete json documentation",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/dataset\/items\/{identifier}\/docs": {
+      "get": {
+        "operationId": "docs-get-dataset-specific",
+        "summary": "Dataset-specific json documentation",
+        "tags": [
+          "Documentation"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datasetUuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/dataset\/items\/{identifier}": {
+      "get": {
+        "operationId": "dataset-get-item",
+        "summary": "Get a single dataset.",
+        "tags": [
+          "Metastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/datasetUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/showReferenceIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full dataset item.",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "$ref": "#\/components\/schemas\/dataset"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/distribution\/items\/{identifier}": {
+      "get": {
+        "operationId": "distribution-get-item",
+        "summary": "Get a single distribution.",
+        "tags": [
+          "Metastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/distributionUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/showReferenceIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full distribution item.",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "$ref": "#\/components\/schemas\/distribution"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/metastore\/schemas\/data-dictionary\/items\/{identifier}": {
+      "get": {
+        "operationId": "data-dictionary-get-item",
+        "summary": "Get a single data-dictionary.",
+        "tags": [
+          "Metastore"
+        ],
+        "parameters": [
+          {
+            "$ref": "#\/components\/parameters\/data-dictionaryUuid"
+          },
+          {
+            "$ref": "#\/components\/parameters\/showReferenceIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full data-dictionary item.",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "$ref": "#\/components\/schemas\/data-dictionary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#\/components\/responses\/404IdNotFound"
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/search": {
+      "get": {
+        "operationId": "search",
+        "summary": "Search the DKAN catalog",
+        "description": "Search description.\n",
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "fulltext",
+            "in": "query",
+            "description": "Full-text search to run against any metadata fields indexed for fulltext searches.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "allowEmptyValue": true,
+            "style": "form"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page of the result set.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "example": 1,
+            "style": "form"
+          },
+          {
+            "name": "page-size",
+            "in": "query",
+            "description": "How many results per page.",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            },
+            "example": 20,
+            "style": "form"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Which property to sort results on.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "access_level",
+                "description",
+                "keyword",
+                "modified",
+                "theme",
+                "title",
+                "search_api_relevance"
+              ]
+            },
+            "style": "form"
+          },
+          {
+            "name": "sort-order",
+            "in": "query",
+            "description": "Sort results in ascending or descending order.",
+            "schema": {
+              "type": "string",
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "example": "desc",
+            "style": "form"
+          },
+          {
+            "name": "facets",
+            "in": "query",
+            "required": false,
+            "allowEmptyValue": true,
+            "description": "Request information on facets. Pass a comma-separated list to get specific facets. Pass an empty value or \u00220\u0022 for no facet infrmation. Omit this parameter to get all facet information.",
+            "schema": {
+              "type": "string"
+            },
+            "style": "form",
+            "explode": false
+          },
+          {
+            "name": "theme",
+            "in": "query",
+            "description": "Filter results using \u003Cem class=\u0022placeholder\u0022\u003Etheme\u003C\/em\u003E facet.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Medicare plan finder",
+            "style": "form"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Filter results using \u003Cem class=\u0022placeholder\u0022\u003Ekeyword\u003C\/em\u003E facet.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "plan finder",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "Total search results for query."
+                    },
+                    "results": {
+                      "type": "object",
+                      "description": "An object with keys following the format \u0022dkan_dataset\/[uuid]\u0022, containing full dataset objects from the DKAN metastore."
+                    },
+                    "facets": {
+                      "$ref": "#\/components\/schemas\/facets"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "$ref": "#\/components\/schemas\/errorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/provider-data\/api\/1\/search\/facets": {
+      "get": {
+        "operationId": "search-facets",
+        "summary": "Retrieve search facet information",
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "facets": {
+                      "$ref": "#\/components\/schemas\/facets"
+                    },
+                    "time": {
+                      "type": "number",
+                      "description": "Execution time."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

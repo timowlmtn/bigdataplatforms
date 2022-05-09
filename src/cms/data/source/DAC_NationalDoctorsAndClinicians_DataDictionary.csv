@@ -1,0 +1,46 @@
+ Name   Variable    Label   Description Length  Values
+ Professional Identification
+ NPI    NPI Unique clinician ID assigned by NPPES   10  string
+ Ind_PAC_ID PAC ID  Unique individual clinician ID assigned by PECOS    10  string
+ Ind_enrl_ID    Clinician   Enrollment ID Unique ID for the clinician enrollment that is the source for the data in the observation 15  string
+ lst_nm Last Name Individual clinician last name 35 string
+ frst_nm First Name Individual clinician first name 25 string
+ mid_nm Middle Name Individual clinician middle name 25 string
+ suff Suffix Individual clinician suffix 10 string
+ gndr Gender Individual clinician gender 1 M/F/U
+ Medical Credentials
+Cred    Credential  Medical credential such as MD, DO, DPM, etc.    3   string
+Med_sch     Medical school name     Individual clinician’s medical school   100     string
+Grd_yr  Graduation year     Individual clinician’s medical school graduation year   4   numeric
+Pri_spec    Primary specialty   Primary medical specialty reported by the individual clinician in the selected enrollment   60  string
+Sec_spec_1  Secondary specialty 1   First secondary medical specialty reported by the individual clinician in the selected enrollment   60  string
+Sec_spec_2  Secondary specialty 2   Second secondary medical specialty reported by the individual clinician in the selected enrollment  60  string
+Sec_spec_3  Secondary specialty 3   Third secondary medical specialty reported by the individual clinician in the selected enrollment   60  string
+Sec_spec_4  Secondary specialty 4   Fourth secondary medical specialty reported by the individual clinician in the selected enrollment  60  string
+Sec_spec_all    All secondary specialties   All secondary medical specialty reported by the individual clinician in the selected enrollment 200     string
+Medical Practice
+Org_nm  Organization legal name     Legal name of the group that the individual clinician works with – will be blank if the address is not linked to a group    70  string
+Org_PAC_ID  Group PAC ID    Unique group ID assigned by PECOS to the group that the individual clinician works with – will be blank if the address is not linked to a group 10  string
+num_org_mem     Number of Group Members Total number of individual clinicians affiliated with the group based on Group Practice PAC ID  8   numeric
+adr_ln_1    Line 1 Street Address   Group or individual's line 1 address    55  string
+adr_ln_2    Line 2 Street Address Group or individual's line 2 address  55  string
+ln_2_sprs   Marker of address line 2 suppression    Marker that address as reported may be incomplete   1   Y
+cty     City    Group or individual's city  30  string
+st  State   Group or individual's state     2   string
+zip     ZIP code    Group or individual's ZIP code (9 digits when available)    9   string
+phn_numbr   Phone Number    Phone number is listed only when there is a single phone number available for the address   20  string
+hosp_afl_1  Hospital affiliation CCN 1  Medicare CCN of hospital where individual clinician provides service    6   string
+hosp_afl_lbn_1  Name of affiliated hospital 1   Name of hospital, as it appears on Care Compare, where individual clinician provides service    200     string
+hosp_afl_2  Hospital affiliation CCN 2  Medicare CCN of hospital where individual clinician provides service    6   string
+hosp_afl_lbn_2  Name of affiliated hospital 2   Name of hospital, as it appears on Care Compare, where individual clinician provides service    200     string
+hosp_afl_3  Hospital affiliation CCN 3  Medicare CCN of hospital where individual clinician provides service    6   string
+hosp_afl_lbn_3  Name of affiliated hospital 3   Name of hospital, as it appears on Care Compare, where individual clinician provides service    200     string
+hosp_afl_4  Hospital affiliation CCN 4  Medicare CCN of hospital where individual clinician provides service    6   string
+hosp_afl_lbn_4  Name of affiliated hospital 4   Name of hospital, as it appears on Care Compare, where individual clinician provides service    200     string
+hosp_afl_5  Hospital affiliation CCN 5  Medicare CCN of hospital where individual clinician provides service    6   string
+hosp_afl_lbn_5  Name of affiliated hospital 5   Name of hospital, as it appears on Care Compare, where individual clinician provides service    200     string
+Medicare Assignment
+assgn   Clinician accepts Medicare Assignment   Indicator for whether clinician accepts Medicare approved amount as payment in full Y = Clinician accepts Medicare approved amount as payment in full M = Clinician may accept Medicare Assignment  1   Y/M
+grp_assgn   Group accepts Medicare Assignment   Indicator for whether group accepts Medicare approved amount as payment in full Y = Group accepts Medicare approved amount as payment in full M = Group may accept Medicare Assignment  1   Y/M
+Reference
+adrs_id     Address ID  Unique identifier for the practice location; offices within the same building, but varied by suite or floor will have the same Address ID aside from the final two characters   25  string
