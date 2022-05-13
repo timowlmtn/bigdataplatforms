@@ -27,3 +27,17 @@ get-schemas:
 convert-dd:
 	python python/raw_dd_to_json.py --in_csv data/source/DAC_NationalDoctorsAndClinicians_DataDictionary.csv \
 			--out_json data/source/DAC_NationalDoctorsAndClinicians_DataDictionary.json
+
+sync-s3:
+	aws s3 sync data/source s3://${EXPORT_BUCKET}/stage/cms --exclude="*" \
+		--include="*DAC_NationalDownloadableFile.csv.gz" # --dryrun
+
+create-provider: create-provider-table
+
+create-provider-table: create-provider-stage
+	snowsql -f sql/ddl/create_cms_provider_table.sql
+
+create-provider-stage:
+	snowsql -D STORAGE_INTEGRATION_NAME=${CMS_STORAGE_INTEGRATION} \
+	 		-D EXPORT_BUCKET=${EXPORT_BUCKET}  \
+	 		-f sql/ddl/create_cms_provider_stage.sql -o log_level=DEBUG
