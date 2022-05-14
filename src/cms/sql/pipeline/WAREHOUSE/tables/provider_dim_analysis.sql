@@ -1,82 +1,66 @@
 -- Create a MERGE statement
-with all_columns as (
-    with metadata as (
-        select ORDINAL_POSITION, DATA_TYPE, COLUMN_NAME
-        from INFORMATION_SCHEMA.COLUMNS
-        where TABLE_SCHEMA = 'WAREHOUSE'
-          and TABLE_NAME = 'PROVIDER_DIM'
-          and COLUMN_NAME not like 'DW_%'
-          and COLUMN_NAME not like 'SCD_%'
-          AND COLUMN_NAME not like '%_KEY'
-        order by ORDINAL_POSITION
+with sql_fragments as (
+    with all_columns as (
+        with metadata as (
+            select ORDINAL_POSITION, DATA_TYPE, COLUMN_NAME
+            from INFORMATION_SCHEMA.COLUMNS
+            where TABLE_SCHEMA = 'WAREHOUSE'
+              and TABLE_NAME = 'PROVIDER_DIM'
+              and COLUMN_NAME not like 'DW_%'
+              and COLUMN_NAME not like 'SCD_%'
+              AND COLUMN_NAME not like '%_KEY'
+            order by ORDINAL_POSITION
+        ), scd_metadata as (
+                 select ORDINAL_POSITION, DATA_TYPE, COLUMN_NAME
+                 from INFORMATION_SCHEMA.COLUMNS
+                 where TABLE_SCHEMA = 'WAREHOUSE'
+                   and TABLE_NAME = 'PROVIDER_DIM'
+                   and COLUMN_NAME not like 'DW_%'
+                   and COLUMN_NAME not like 'SCD_%'
+                   AND COLUMN_NAME not like '%_KEY'
+                   AND COLUMN_NAME not like 'STAGE_%'
+                 order by ORDINAL_POSITION
+             )
+        select listagg(md.COLUMN_NAME, '\n  ,') within group ( order by md.ORDINAL_POSITION ) columns
+            , listagg('  stg.' || md.COLUMN_NAME, '\n  ,') within group ( order by md.ORDINAL_POSITION ) stage_columns
+            , listagg('  tar.' || md.COLUMN_NAME || ' = src.' || md.COLUMN_NAME, '\n  ,') within group ( order by md.ORDINAL_POSITION ) update_columns,
+               listagg('  src.' || md.COLUMN_NAME, '\n  ,') within group ( order by md.ORDINAL_POSITION ) insert_columns
+             , listagg('  stg.' || scd.COLUMN_NAME, '\n  ,') within group ( order by scd.ORDINAL_POSITION ) scd_columns
+             , listagg('  src.' || scd.COLUMN_NAME, '\n  ,') within group ( order by scd.ORDINAL_POSITION ) src_scd_columns
+
+        from metadata md
+        left outer join scd_metadata scd on md.column_name = scd.column_name
     )
-    select listagg('  stg.' || COLUMN_NAME, '\n  ,')
-                   within group ( order by ORDINAL_POSITION )
-               select_columns
-    from metadata
+    select 'with tip as (\n' ||
+           '     select ID, MAX(DW_MODIFIED_DATE) last_modified\n' ||
+           '     from  WAREHOUSE.PROVIDER_DIM\n' ||
+           '     where SCD_IS_ACTIVE = TRUE\n' ||
+           '     group by ID)' ||
+           'SELECT\n' || stage_columns || '\n' ||
+           '  , hash(' || scd_columns || ') SCD_HASH_ID' ||
+           '  , row_number() over ( partition by stg.ID order by stg.STAGE_FILE_DATE desc ) row_number' ||
+           ' FROM\n' ||
+           ' STAGE.CMS_PROVIDER stg\n' ||
+           '    left outer join tip on tip.ID = stg.ID\n' ||
+           '    where stg.DW_MODIFIED_DATE > coalesce(tip.last_modified, ''1900-01-01'')\n' ||
+           '      and DW_IS_ACTIVE\n' ||
+           '    qualify row_number = 1\n'
+               stage_sql,
+           columns,
+           update_columns,
+           insert_columns,
+           scd_columns,
+           src_scd_columns
+    from all_columns
 )
-select 'with tip as (\n' ||
-       '     select ID, MAX(DW_MODIFIED_DATE) last_modified\n' ||
-       '     from  WAREHOUSE.PROVIDER_DIM\n' ||
-       '     where SCD_IS_ACTIVE = TRUE\n'||
-       '     group by ID)' ||
-       'SELECT\n' || select_columns || '\n' ||
-       ' FROM\n' ||
-       ' STAGE.CMS_PROVIDER stg'||
-       ' left outer join tip on tip.ID = stg.ID;'
-from all_columns;
+select 'merge into WAREHOUSE.PROVIDER_DIM tar\n' ||
+       ' using (\n' ||
+       '       ' || stage_sql ||
+       ' )' ||
+       'as src on src.ID = tar.ID and src.SCD_HASH_ID = tar.SCD_HASH_ID and tar.SCD_IS_ACTIVE = True \n' ||
+       ' when matched then update set\n' ||
+       update_columns || '\n' ||
+       ' when not matched then insert (' || columns || '\n  ,\n  SCD_IS_ACTIVE, SCD_HASH_ID)' ||
+       '     values (' || insert_columns || ', false, hash(' ||  src_scd_columns || ')\n);'
+from sql_fragments;
 
-
---- Output
-with tip as (
-     select ID, MAX(DW_MODIFIED_DATE) last_modified
-     from  WAREHOUSE.PROVIDER_DIM
-     where SCD_IS_ACTIVE = TRUE
-     group by ID)SELECT
-  stg.ID
-  ,  stg.NPI
-  ,  stg.SOURCE
-  ,  stg.IND_PAC_ID
-  ,  stg.IND_ENRL_ID
-  ,  stg.LST_NM
-  ,  stg.FRST_NM
-  ,  stg.MID_NM
-  ,  stg.SUFF
-  ,  stg.GNDR
-  ,  stg.CRED
-  ,  stg.MED_SCH
-  ,  stg.GRD_YR
-  ,  stg.PRI_SPEC
-  ,  stg.SEC_SPEC_1
-  ,  stg.SEC_SPEC_2
-  ,  stg.SEC_SPEC_3
-  ,  stg.SEC_SPEC_4
-  ,  stg.SEC_SPEC_ALL
-  ,  stg.ORG_NM
-  ,  stg.ORG_PAC_ID
-  ,  stg.NUM_ORG_MEM
-  ,  stg.ADR_LN_1
-  ,  stg.ADR_LN_2
-  ,  stg.LN_2_SPRS
-  ,  stg.CTY
-  ,  stg.ST
-  ,  stg.ZIP
-  ,  stg.PHN_NUMBR
-  ,  stg.HOSP_AFL_1
-  ,  stg.HOSP_AFL_LBN_1
-  ,  stg.HOSP_AFL_2
-  ,  stg.HOSP_AFL_LBN_2
-  ,  stg.HOSP_AFL_3
-  ,  stg.HOSP_AFL_LBN_3
-  ,  stg.HOSP_AFL_4
-  ,  stg.HOSP_AFL_LBN_4
-  ,  stg.HOSP_AFL_5
-  ,  stg.HOSP_AFL_LBN_5
-  ,  stg.IND_ASSGN
-  ,  stg.GRP_ASSGN
-  ,  stg.ADRS_ID
-  ,  stg.STAGE_FILENAME
-  ,  stg.STAGE_FILE_ROW_NUMBER
-  ,  stg.STAGE_FILE_DATE
- FROM
- STAGE.CMS_PROVIDER stg left outer join tip on tip.ID = stg.ID;
