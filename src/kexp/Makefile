@@ -20,7 +20,7 @@ concatenat-data:
 	cat data/export/import_header.csv data/export/import_kexp_playlist_0_*.csv > data/export/import_kexp_playlist.csv
 
 compress-data:
-	gzip data/export/import_kexp_playlist.csv
+	gzip -f data/export/import_kexp_playlist.csv
 
 pipeline:
 	snowsql -f snowflake/sql/copy_stage_import_playlist.sql
