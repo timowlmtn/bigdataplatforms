@@ -1,4 +1,4 @@
-create table if not exists STAGE.COPY_STATISTICS
+create or replace table STAGE.COPY_STATISTICS
 (
     TABLE_NAME VARCHAR(12),
     QUERY_ID   VARCHAR,
