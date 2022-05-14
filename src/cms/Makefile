@@ -32,12 +32,20 @@ sync-s3:
 	aws s3 sync data/source s3://${EXPORT_BUCKET}/stage/cms --exclude="*" \
 		--include="*DAC_NationalDownloadableFile.csv.gz" # --dryrun
 
+create-db: create-statistics-table create-provider
+
+create-statistics-table:
+	snowsql -f sql/ddl/STAGE/tables/create_copy_statistics.sql
+
 create-provider: create-provider-table
 
 create-provider-table: create-provider-stage
-	snowsql -f sql/ddl/create_cms_provider_table.sql
+	snowsql -f sql/ddl/STAGE/tables/create_cms_provider_table.sql
 
 create-provider-stage:
 	snowsql -D STORAGE_INTEGRATION_NAME=${CMS_STORAGE_INTEGRATION} \
 	 		-D EXPORT_BUCKET=${EXPORT_BUCKET}  \
-	 		-f sql/ddl/create_cms_provider_stage.sql -o log_level=DEBUG
+	 		-f sql/ddl/STAGE/tables/create_cms_provider_stage.sql -o log_level=DEBUG
+
+pipeline:
+	snowsql -f sql/pipeline/STAGE/tables/cms_provider_copy.sql
