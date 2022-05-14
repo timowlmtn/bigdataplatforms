@@ -59,3 +59,5 @@ create-provider-dim:
 
 pipeline:
 	snowsql -f sql/pipeline/STAGE/tables/cms_provider_copy.sql
+	snowsql -f sql/pipeline/WAREHOUSE/tables/provider_dim_merge.sql
+	snowsql -f sql/pipeline/WAREHOUSE/tables/provider_dim_update.sql

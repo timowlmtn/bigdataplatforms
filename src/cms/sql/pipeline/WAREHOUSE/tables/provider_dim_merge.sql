@@ -195,7 +195,8 @@ merge into WAREHOUSE.PROVIDER_DIM tar
                                                                      , src.ADRS_ID
                                                                      , src.STAGE_FILENAME
                                                                      , src.STAGE_FILE_ROW_NUMBER
-                                                                     , src.STAGE_FILE_DATE, false, hash(src.ID
+                                                                     , src.STAGE_FILE_DATE
+                                                                     , false, hash(src.ID
                                                                            , src.NPI
                                                                            , src.SOURCE
                                                                            , src.IND_PAC_ID
