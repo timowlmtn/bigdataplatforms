@@ -45,7 +45,10 @@ class CmsApiReader:
 
         file_out = self.open_file()
 
-        while offset < max_rows:
+        last_count = None
+
+        while offset < max_rows and (last_count is not None and last_count > 0):
+
             params_url = f"limit={limit}&offset={offset}&" \
                          f"count=true&results=true&schema=true&keys=true&format=json&rowIds=false"
             api_url = f"{self.api_endpoint}/{dataset_id}/{index}?{params_url}"
@@ -56,7 +59,12 @@ class CmsApiReader:
 
             if page.status_code == 200:
                 if "results" in json.loads(page.text):
+
                     json_obj = json.loads(page.text)["results"]
+
+                    last_count = len(json_obj)
+                    print(f"\tWriting {offset} of {max_rows} ({100 * offset / max_rows}%) with last_count={last_count}")
+
                     for json_line in json_obj:
                         file_out.write(f"{json.dumps(json_line)}\n")
             else:

@@ -69,4 +69,4 @@ get-api-datastore-imports:
 	  -H 'accept: application/json'
 
 get-api-provider:
-	python python/cms_api.py --dataset mj5m-pzi6 --index 0 # --dryrun
+	python python/cms_api.py --dataset mj5m-pzi6 # --dryrun
