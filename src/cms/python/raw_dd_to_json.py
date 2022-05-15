@@ -2,6 +2,7 @@ import csv
 import json
 import argparse
 
+
 def make_json(csv_path, json_path):
     """
     Function to take the Tab separated Data Dictionary and turn into a JSON Data Dictionary

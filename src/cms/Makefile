@@ -57,7 +57,16 @@ create-provider-stage:
 create-provider-dim:
 	snowsql -f sql/ddl/WAREHOUSE/tables/provider_dim_create.sql
 
+
 pipeline:
 	snowsql -f sql/pipeline/STAGE/tables/cms_provider_copy.sql
 	snowsql -f sql/pipeline/WAREHOUSE/tables/provider_dim_merge.sql
 	snowsql -f sql/pipeline/WAREHOUSE/tables/provider_dim_update.sql
+
+get-api-datastore-imports:
+	curl -X 'GET' \
+	  'https://data.cms.gov/provider-data/api/1/datastore/imports/26a87e89-7652-5a97-9c0f-5c5712c8d4f5' \
+	  -H 'accept: application/json'
+
+get-api-provider:
+	python python/cms_api.py --dataset mj5m-pzi6 --index 0 # --dryrun

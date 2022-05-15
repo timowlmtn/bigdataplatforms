@@ -1,11 +1,19 @@
 -- List the stage files
 list @stage.CMS_PROVIDER_STG;
 
+-- Get the counts
+select STAGE_FILENAME, count(*)
+from STAGE.CMS_PROVIDER
+group by STAGE_FILENAME;
+
+
 -- Query the data structure
 select t."$1"
 from @stage.CMS_PROVIDER_STG (file_format => 'CSV_ZIP') t;
 
 describe file format csv_zip;
+
+
 
 
 -- Generate the copy based on the table DDL
