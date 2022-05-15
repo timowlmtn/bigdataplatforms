@@ -47,7 +47,7 @@ class CmsApiReader:
 
         last_count = None
 
-        while offset < max_rows and (last_count is not None and last_count > 0):
+        while offset <= max_rows or last_count is None:
 
             params_url = f"limit={limit}&offset={offset}&" \
                          f"count=true&results=true&schema=true&keys=true&format=json&rowIds=false"
@@ -60,12 +60,16 @@ class CmsApiReader:
             if page.status_code == 200:
                 if "results" in json.loads(page.text):
 
-                    json_obj = json.loads(page.text)["results"]
+                    json_obj = json.loads(page.text)
 
-                    last_count = len(json_obj)
-                    print(f"\tWriting {offset} of {max_rows} ({100 * offset / max_rows}%) with last_count={last_count}")
+                    total_count = json_obj["count"]
+                    max_rows = total_count
+                    last_count = len(json_obj["results"])
+                    percentage = "{:.2%}".format(offset / total_count)
+                    print(f"\tWriting {offset} of {max_rows} ({percentage}) "
+                          f"with last_count={last_count}")
 
-                    for json_line in json_obj:
+                    for json_line in json_obj["results"]:
                         file_out.write(f"{json.dumps(json_line)}\n")
             else:
                 error = f"Invalid url result {api_url} code {page.status_code} {page.text}"
