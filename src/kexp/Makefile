@@ -27,7 +27,7 @@ pipeline:
 	snowsql -f snowflake/sql/copy_stage_import_show.sql
 	snowsql -f snowflake/sql/extract_playlist_show.sql
 
-get-export: clean pipeline get-export-s3 translate-comma concatenat-data compress-data
+get-export: clean pipeline get-export-s3 translate-comma concatenat-data # compress-data
 
 install:
 	pip3 install -r requirements.txt

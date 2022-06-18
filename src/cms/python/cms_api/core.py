@@ -45,9 +45,7 @@ class CmsApiReader:
 
         file_out = self.open_file()
 
-        last_count = None
-
-        while offset <= max_rows or last_count is None:
+        while offset <= max_rows:
 
             params_url = f"limit={limit}&offset={offset}&" \
                          f"count=true&results=true&schema=true&keys=true&format=json&rowIds=false"
