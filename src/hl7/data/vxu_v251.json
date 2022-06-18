@@ -1,0 +1,724 @@
+{
+  "msh": {
+    "field_separator": {
+      "st": {
+        "st": "\\F\\"
+      }
+    },
+    "encoding_characters": {
+      "st": {
+        "st": "\\S\\\\R\\\\E\\\\T\\"
+      }
+    },
+    "sending_application": {
+      "namespace_id": {
+        "is": "EPIC"
+      }
+    },
+    "sending_facility": {
+      "namespace_id": {
+        "is": "SIISCLIENT818"
+      },
+      "universal_id": {
+        "st": "LINDAS TEST ORGANIZATION"
+      }
+    },
+    "receiving_application": {
+      "universal_id": {
+        "st": "SIIS"
+      }
+    },
+    "date_time_of_message": {
+      "time": {
+        "dtm": "20150202115044"
+      }
+    },
+    "message_type": {
+      "message_code": {
+        "id": "VXU"
+      },
+      "trigger_event": {
+        "id": "V04"
+      },
+      "message_structure": {
+        "id": "VXU_V04"
+      }
+    },
+    "message_control_id": {
+      "st": {
+        "st": "225"
+      }
+    },
+    "processing_id": {
+      "processing_id": {
+        "id": "P"
+      }
+    },
+    "version_id": {
+      "version_id": {
+        "id": "2.5.1"
+      }
+    },
+    "application_acknowledgment_type": {
+      "id": {
+        "id": "AL"
+      }
+    },
+    "country_code": {
+      "id": {
+        "id": "PID"
+      }
+    },
+    "character_set": {
+      "id": {
+        "id": "1"
+      }
+    },
+    "alternate_character_set_handling_scheme": {
+      "id": [
+        {
+          "id": "E46700"
+        },
+        {
+          "id": ""
+        },
+        {
+          "id": ""
+        },
+        {
+          "id": ""
+        },
+        {
+          "id": "MR"
+        },
+        {
+          "id": ""
+        }
+      ]
+    },
+    "none": [
+      {
+        "varies_1": {
+          "st": "DOE"
+        },
+        "varies_2": {
+          "st": "JOHN"
+        },
+        "varies_3": {
+          "st": "C"
+        },
+        "varies_4": {
+          "st": "JR"
+        },
+        "varies_5": {
+          "st": ""
+        },
+        "varies_6": {
+          "st": ""
+        },
+        "varies_7": {
+          "st": "L"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "SMITH"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "20140515"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "M"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "SMITH"
+        },
+        "varies_2": {
+          "st": "JOHN"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "2106-3"
+        },
+        "varies_2": {
+          "st": "WHITE"
+        },
+        "varies_3": {
+          "st": "HL70005"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "115 MAINSTREET"
+        },
+        "varies_2": {
+          "st": ""
+        },
+        "varies_3": {
+          "st": "GOODTOWN"
+        },
+        "varies_4": {
+          "st": "KY"
+        },
+        "varies_5": {
+          "st": "42010"
+        },
+        "varies_6": {
+          "st": "USA"
+        },
+        "varies_7": {
+          "st": "L"
+        },
+        "varies_8": {
+          "st": "010"
+        }
+      },
+      {
+        "varies_1": {
+          "st": ""
+        },
+        "varies_2": {
+          "st": "PRN"
+        },
+        "varies_3": {
+          "st": "PH"
+        },
+        "varies_4": {
+          "st": ""
+        },
+        "varies_5": {
+          "st": ""
+        },
+        "varies_6": {
+          "st": "270"
+        },
+        "varies_7": {
+          "st": "6009800"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "EN"
+        },
+        "varies_2": {
+          "st": "ENGLISH"
+        },
+        "varies_3": {
+          "st": "HL70296"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "523968712"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "2186-5"
+        },
+        "varies_2": {
+          "st": "NOT HISPANIC OR LATINO"
+        },
+        "varies_3": {
+          "st": "HL70012"
+        }
+      },
+      {
+        "varies_1": {
+          "st": "N"
+        }
+      }
+    ]
+  },
+  "pd1": {
+    "living_dependency": {
+      "is": [
+        {
+          "is": "02"
+        },
+        {
+          "is": "Reminder/recall-any method"
+        },
+        {
+          "is": "HL70215"
+        }
+      ]
+    },
+    "living_arrangement": {
+      "is": [
+        {
+          "is": "A"
+        },
+        {
+          "is": "Active"
+        },
+        {
+          "is": "HL70441"
+        }
+      ]
+    },
+    "patient_primary_facility": {
+      "organization_name": {
+        "st": "20150202"
+      },
+      "organization_name_type_code": {
+        "is": "20150202 NK1"
+      }
+    },
+    "patient_primary_care_provider_name_id_no": {
+      "id_number": {
+        "st": "1"
+      }
+    },
+    "student_indicator": {
+      "is": [
+        {
+          "is": "DOE"
+        },
+        {
+          "is": "MARY"
+        }
+      ]
+    },
+    "handicap": {
+      "is": [
+        {
+          "is": "MTH"
+        },
+        {
+          "is": "MOTHER"
+        },
+        {
+          "is": "HL70063"
+        }
+      ]
+    }
+  },
+  "vxu_v04_order": {
+    "orc": {
+      "order_control": {
+        "id": {
+          "id": "RE"
+        }
+      },
+      "placer_order_number": {
+        "entity_identifier": {
+          "st": "9645"
+        },
+        "namespace_id": {
+          "is": "SIISCLIENT818"
+        }
+      },
+      "filler_order_number": {
+        "entity_identifier": {
+          "st": "20150202111146"
+        }
+      },
+      "placer_group_number": {
+        "entity_identifier": {
+          "st": "2001"
+        },
+        "namespace_id": {
+          "is": "HARVEY"
+        },
+        "universal_id": {
+          "st": "MARVIN"
+        },
+        "universal_id_type": {
+          "id": "K"
+        }
+      },
+      "order_status": {
+        "id": {
+          "id": "RXA"
+        }
+      },
+      "response_flag": {
+        "id": {
+          "id": "0"
+        }
+      },
+      "quantity_timing": {
+        "quantity": {
+          "quantity": "1"
+        }
+      },
+      "parent": {
+        "placer_assigned_identifier": {
+          "entity_identifier": "20150202"
+        }
+      },
+      "date_time_of_transaction": {
+        "time": {
+          "dtm": "20150202"
+        }
+      },
+      "entered_by": {
+        "id_number": {
+          "st": "20"
+        },
+        "family_name": {
+          "surname": "DTaP"
+        },
+        "given_name": {
+          "st": "CVX"
+        },
+        "second_and_further_given_names_or_initials_thereof": {
+          "st": "90700"
+        },
+        "suffix_e_g_jr_or_iii": {
+          "st": "DTAP"
+        },
+        "prefix_e_g_dr": {
+          "st": "CPT"
+        }
+      },
+      "verified_by": {
+        "id_number": {
+          "st": ".5"
+        }
+      },
+      "ordering_provider": {
+        "id_number": {
+          "st": "ML"
+        },
+        "family_name": {
+          "surname": "mL"
+        },
+        "given_name": {
+          "st": "ISO+ "
+        }
+      },
+      "enterer_s_location": {
+        "point_of_care": {
+          "is": "00"
+        },
+        "room": {
+          "is": "New immunization record"
+        },
+        "bed": {
+          "is": "NIP001"
+        }
+      },
+      "call_back_phone_number": {
+        "telephone_number": {
+          "st": "JONES"
+        },
+        "telecommunication_use_code": {
+          "id": "MARK"
+        }
+      },
+      "order_effective_date_time": {
+        "none": {
+          "st": "SIISCLIENT818"
+        }
+      },
+      "order_control_code_reason": {
+        "identifier": {
+          "st": "A7894-2"
+        }
+      },
+      "entering_organization": {
+        "identifier": {
+          "st": "20161115"
+        }
+      },
+      "entering_device": {
+        "identifier": {
+          "st": "PMC"
+        },
+        "text": {
+          "st": "SANOFI PASTEUR"
+        },
+        "name_of_coding_system": {
+          "id": "MVX"
+        }
+      },
+      "action_by": {
+        "id_number": {
+          "st": "A RXR"
+        }
+      },
+      "advanced_beneficiary_notice_code": {
+        "identifier": {
+          "st": "ID"
+        },
+        "text": {
+          "st": "INTRADERMAL"
+        },
+        "name_of_coding_system": {
+          "id": "HL70162"
+        }
+      },
+      "ordering_facility_name": {
+        "organization_name": {
+          "st": "LD"
+        },
+        "organization_name_type_code": {
+          "is": "LEFT"
+        }
+      }
+    },
+    "vxu_v04_observation": [
+      {
+        "obx": {
+          "set_id_obx": {
+            "si": {
+              "si": "1"
+            }
+          },
+          "value_type": {
+            "id": {
+              "id": "CE"
+            }
+          },
+          "observation_identifier": {
+            "identifier": {
+              "st": "64994-7"
+            },
+            "text": {
+              "st": "VACCINE FUNDING PROGRAM ELIGIBILITY CATEGORY"
+            },
+            "name_of_coding_system": {
+              "id": "LN"
+            }
+          },
+          "observation_sub_id": {
+            "st": {
+              "st": "1"
+            }
+          },
+          "observation_value": {
+            "varies_1": {
+              "st": " V02"
+            },
+            "varies_2": {
+              "st": "MEDICAID"
+            },
+            "varies_3": {
+              "st": "HL70064"
+            }
+          },
+          "units": {
+            "identifier": {
+              "st": "F"
+            }
+          },
+          "references_range": {
+            "st": {
+              "st": "20150202"
+            }
+          },
+          "abnormal_flags": {
+            "is": [
+              {
+                "is": "VXC40"
+              },
+              {
+                "is": "ELIGIBILITY CAPTURED AT THE IMMUNIZATION LEVEL"
+              },
+              {
+                "is": "CDCPHINVS"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "obx": {
+          "set_id_obx": {
+            "si": {
+              "si": "2"
+            }
+          },
+          "value_type": {
+            "id": {
+              "id": "CE"
+            }
+          },
+          "observation_identifier": {
+            "identifier": {
+              "st": "30956-7"
+            },
+            "text": {
+              "st": "VACCINE TYPE"
+            },
+            "name_of_coding_system": {
+              "id": "LN"
+            }
+          },
+          "observation_sub_id": {
+            "st": {
+              "st": "2"
+            }
+          },
+          "observation_value": {
+            "varies_1": {
+              "st": "88"
+            },
+            "varies_2": {
+              "st": "FLU"
+            },
+            "varies_3": {
+              "st": "CVX"
+            }
+          },
+          "units": {
+            "identifier": {
+              "st": "F"
+            }
+          },
+          "references_range": {
+            "st": {
+              "st": "20150202102525 OBX"
+            }
+          },
+          "abnormal_flags": {
+            "is": {
+              "is": "3"
+            }
+          },
+          "probability": {
+            "nm": {
+              "nm": "TS"
+            }
+          },
+          "nature_of_abnormal_test": {
+            "id": [
+              {
+                "id": "29768-9"
+              },
+              {
+                "id": "Date vaccine information statement published"
+              },
+              {
+                "id": "LN"
+              }
+            ]
+          },
+          "observation_result_status": {
+            "id": {
+              "id": "2"
+            }
+          },
+          "effective_date_of_reference_range_values": {
+            "time": {
+              "dtm": "20120702"
+            }
+          },
+          "user_defined_access_checks": {
+            "st": {
+              "st": "F OBX"
+            }
+          },
+          "date_time_of_the_observation": {
+            "time": {
+              "dtm": "4"
+            }
+          },
+          "producer_s_reference": {
+            "identifier": {
+              "st": "TS"
+            }
+          },
+          "responsible_observer": {
+            "id_number": {
+              "st": "29769-7"
+            },
+            "family_name": {
+              "surname": "Date vaccine information statement presented"
+            },
+            "given_name": {
+              "st": "LN"
+            }
+          },
+          "observation_method": {
+            "identifier": {
+              "st": "2"
+            }
+          },
+          "equipment_instance_identifier": {
+            "entity_identifier": {
+              "st": "20120202"
+            }
+          },
+          "date_time_of_the_analysis": {
+            "time": {
+              "dtm": "F"
+            }
+          }
+        }
+      }
+    ],
+    "rxa": {
+      "give_sub_id_counter": {
+        "nm": {
+          "nm": "0"
+        }
+      },
+      "administration_sub_id_counter": {
+        "nm": {
+          "nm": "1"
+        }
+      },
+      "date_time_start_of_administration": {
+        "time": {
+          "dtm": "20141215"
+        }
+      },
+      "date_time_end_of_administration": {
+        "time": {
+          "dtm": "20141115"
+        }
+      },
+      "administered_code": {
+        "identifier": {
+          "st": "141"
+        },
+        "text": {
+          "st": "influenza, SEASONAL 36"
+        },
+        "name_of_coding_system": {
+          "id": "CVX"
+        },
+        "alternate_identifier": {
+          "st": "90658"
+        },
+        "alternate_text": {
+          "st": "Influenza Split"
+        },
+        "name_of_alternate_coding_system": {
+          "id": "CPT"
+        }
+      },
+      "administered_amount": {
+        "nm": {
+          "nm": "999"
+        }
+      },
+      "administered_units": {
+        "identifier": {
+          "st": "01"
+        },
+        "text": {
+          "st": "HISTORICAL INFORMATION \u2013 SOURCE UNSPECIFIED"
+        },
+        "name_of_coding_system": {
+          "id": " NIP001"
+        }
+      },
+      "administered_dosage_form": {
+        "identifier": {
+          "st": "A"
+        }
+      }
+    }
+  }
+}
