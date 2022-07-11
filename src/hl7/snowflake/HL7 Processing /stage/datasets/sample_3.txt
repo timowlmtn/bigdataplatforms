@@ -1,0 +1,21 @@
+MSH|^~\&|SIMHOSP|SFAC|RAPP|RFAC|20220127224049||ADT^A01|1|T|2.3|||AL||44|ASCII
+EVN|A01|20220127224049|||C007^Litherland^Natasha^^^Dr^^^DRNBR^PRSNL^^^ORGDR|
+PID|1|1552363679^^^SIMULATOR MRN^MRN|1552363679^^^SIMULATOR MRN^MRN~3541824271^^^NHSNBR^NHSNMBR||Goodwin^Gordon^Arnold^^Mr^^CURRENT||19321129000000|M|||64 Styling Road^^Wembley^^EY45 8CT^GBR^HOME||020 3341 8079^HOME|||||||||A^White - British^^^||||||||
+PD1|||FAMILY PRACTICE^^12345|
+PV1|1|I|OtherWard^MainRoom^Bed 1^Simulated Hospital^^BED^Main Building^4|28b|||C007^Litherland^Natasha^^^Dr^^^DRNBR^PRSNL^^^ORGDR|||SUR|||||||||4806730525338157012^^^^visitid||||||||||||||||||||||ARRIVED|||20220127224049||
+PV2|||||||||
+AL1|0|FA|59037007^Drug intolerance (disorder)^SNM3^^|MO|Shortness of breath|20210603224050
+AL1|1|MA|418038007^Propensity to adverse reactions to substance (disorder)^SNM3^^|MI|Wheezing|20210129224050
+
+MSH|^~\&|SIMHOSP|SFAC|RAPP|RFAC|20220127224049||ORU^R01|2|T|2.3|||AL||44|ASCII
+PID|1|1552363679^^^SIMULATOR MRN^MRN|1552363679^^^SIMULATOR MRN^MRN~3541824271^^^NHSNBR^NHSNMBR||Goodwin^Gordon^Arnold^^Mr^^CURRENT||19321129000000|M|||64 Styling Road^^Wembley^^EY45 8CT^GBR^HOME||020 3341 8079^HOME|||||||||A^White - British^^^||||||||
+PV1|1|I|OtherWard^MainRoom^Bed 1^Simulated Hospital^^BED^Main Building^4|28b|||C007^Litherland^Natasha^^^Dr^^^DRNBR^PRSNL^^^ORGDR|||SUR|||||||||4806730525338157012^^^^visitid||||||||||||||||||||||ARRIVED|||20220127224049||
+ORC|RE|522748127|3034730878||CM||||20220127224049
+OBR|1|522748127|3034730878|us-0001^LIPID^WinPath^^||20220127224049|20220127224049|||||||20220127224049||||||||20220127224049|||F||1
+OBX|1|NM|tt-0001-01^Cholesterol^WinPath^^||2.95|mmol/L|[ < 4.5]||||F|||20220127224049||
+NTE|0||Azimuth crawdad anxiety season glasses farm discovery shortwave|
+OBX|2|NM|tt-0001-02^Triglyceride^WinPath^^||0.01|mmol/L|[ < 2.0]||||F|||20220127224049||
+OBX|3|NM|tt-0001-03^HDL Cholesterol^WinPath^^||10.56|mmol/L|[ > 1.5]||||F|||20220127224049||
+NTE|0||Equal wampum desk crop chef alcohol pinto|
+OBX|4|NM|tt-0001-04^LDL Chol. (calc)^WinPath^^||1.82|mmol/L|[ < 3.0]||||F|||20220127224049||
+NTE|0||Stamina kleenex pond hearth weird pneumonia pizza diarist earmuffs|
