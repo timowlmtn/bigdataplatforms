@@ -1,34 +1,61 @@
 create or replace view stage.KEXP_PLAYLIST_SHOW
 as
 with show as (
-    select distinct show_id,
-                    program_id,
-                    program_name,
-                    program_tags,
-                    host_names,
-                    tagline,
-                    start_time
+    select show_id,
+           program_id,
+           program_name,
+           program_tags,
+           host_names,
+           tagline,
+           start_time,
+           max(DW_UPDATE_DATE) LAST_UPDATED
     from stage.IMPORT_KEXP_SHOW
+    group by show_id,
+             program_id,
+             program_name,
+             program_tags,
+             host_names,
+             tagline,
+             start_time
 )
-select distinct PLAYLIST_ID,
-                PLAY_TYPE,
-                AIRDATE,
-                ALBUM,
-                ARTIST,
-                SONG,
-                show.SHOW_ID,
-                PROGRAM_ID,
-                PROGRAM_NAME,
-                PROGRAM_TAGS,
-                HOST_NAMES,
-                TAGLINE,
-                START_TIME,
-                try_to_date(RELEASE_DATE, 'YYYY-MM-DD') RELEASE_DATE,
-                COMMENT,
-                LABELS
+select PLAYLIST_ID,
+       PLAY_TYPE,
+       AIRDATE,
+       ALBUM,
+       ARTIST,
+       SONG,
+       show.SHOW_ID,
+       PROGRAM_ID,
+       PROGRAM_NAME,
+       PROGRAM_TAGS,
+       HOST_NAMES,
+       TAGLINE,
+       START_TIME,
+       try_to_date(RELEASE_DATE, 'YYYY-MM-DD') RELEASE_DATE,
+       COMMENT,
+       LABELS,
+       show.LAST_UPDATED                       show_last_updated,
+       max(DW_UPDATE_DATE)                     playlist_last_updated
 from STAGE.IMPORT_KEXP_PLAYLIST plays
          left outer join show
                          on plays.SHOW_ID = show.SHOW_ID
+group by PLAYLIST_ID,
+         PLAY_TYPE,
+         AIRDATE,
+         ALBUM,
+         ARTIST,
+         SONG,
+         show.SHOW_ID,
+         PROGRAM_ID,
+         PROGRAM_NAME,
+         PROGRAM_TAGS,
+         HOST_NAMES,
+         TAGLINE,
+         START_TIME,
+         RELEASE_DATE,
+         COMMENT,
+         LABELS,
+         show.LAST_UPDATED
 order by PLAYLIST_ID desc;
 
 grant select on stage.KEXP_PLAYLIST_SHOW to role KEXP_READER_ACCESS;

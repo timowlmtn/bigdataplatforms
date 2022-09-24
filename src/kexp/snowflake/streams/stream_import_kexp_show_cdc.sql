@@ -1,0 +1,2 @@
+create or replace stream STAGE.STREAM_IMPORT_KEXP_SHOW_CDC
+ on table STAGE.IMPORT_KEXP_SHOW;

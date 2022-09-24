@@ -63,7 +63,6 @@ class KexpDataLake:
         song, artist, and air date.
         :return:
         """
-        logging.info(f"{self.s3_stage}")
         return self.list_object_results(f"{self.s3_stage}/playlists")
 
     def list_shows(self):
@@ -78,21 +77,20 @@ class KexpDataLake:
         """
         Fundamental interface with the S3 client.  This will return a list of objects from S3.
 
-        See: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
-
-        Will return up to 1000 objects per request in ascending order of the key names.
-
         :param prefix:
         :return:
         """
         try:
-            client_objects = self.s3_client.list_objects_v2(Bucket=self.s3_bucket,
-                                                            MaxKeys=kexp_max_rows,
-                                                            Prefix=prefix)
-            if 'Contents' in client_objects:
-                return client_objects['Contents']
-            else:
-                return None
+            result = []
+
+            paginator = self.s3_client.get_paginator('list_objects_v2')
+            pages = paginator.paginate(Bucket=self.s3_bucket, Prefix=prefix)
+
+            for page in pages:
+                for obj in page['Contents']:
+                    result.append(obj)
+
+            return result
 
         except ClientError as exc:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
@@ -287,6 +285,7 @@ class KexpApiReader:
     api_endpoint = "https://api.kexp.org/v2"
 
     def get_playlist(self, read_rows=None, airdate_after_date=None, airdate_before_date=None):
+        logging.debug(f"get_playlist: {read_rows}, {airdate_after_date}, {airdate_before_date}")
         if airdate_after_date:
             airdate_after_str = datetime.strftime(
                 airdate_after_date,

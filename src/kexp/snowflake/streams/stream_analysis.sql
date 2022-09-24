@@ -1,0 +1,8 @@
+select count(*)
+from  STAGE.STREAM_IMPORT_KEXP_PLAYLIST_CDC;
+
+select count(*)
+from  STAGE.STREAM_IMPORT_KEXP_SHOW_CDC;
+
+select *
+from  STAGE.STREAM_IMPORT_KEXP_SHOW_CDC;
