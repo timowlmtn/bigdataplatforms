@@ -5,6 +5,9 @@
 # It is used to upload to Tableau
 #
 # Author: Tim Burns		Date: 10/04/2021
+#
+# Revised 9/25/022 - Refactor to support STREAMS article on Medium.
+#
 default: get-export
 
 clean:
