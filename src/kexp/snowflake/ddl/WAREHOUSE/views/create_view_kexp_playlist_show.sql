@@ -1,4 +1,4 @@
-create or replace view stage.KEXP_PLAYLIST_SHOW
+create or replace view WAREHOUSE.VIEW_KEXP_PLAYLIST_SHOW
 as
 with show as (
     select show_id,
@@ -9,7 +9,7 @@ with show as (
            tagline,
            start_time,
            max(DW_UPDATE_DATE) LAST_UPDATED
-    from stage.IMPORT_KEXP_SHOW
+    from WAREHOUSE.DIM_KEXP_SHOW
     group by show_id,
              program_id,
              program_name,
@@ -36,7 +36,7 @@ select PLAYLIST_ID,
        LABELS,
        show.LAST_UPDATED                       show_last_updated,
        max(DW_UPDATE_DATE)                     playlist_last_updated
-from STAGE.IMPORT_KEXP_PLAYLIST plays
+from WAREHOUSE.FACT_KEXP_PLAYLIST plays
          left outer join show
                          on plays.SHOW_ID = show.SHOW_ID
 group by PLAYLIST_ID,
@@ -57,5 +57,3 @@ group by PLAYLIST_ID,
          LABELS,
          show.LAST_UPDATED
 order by PLAYLIST_ID desc;
-
-grant select on stage.KEXP_PLAYLIST_SHOW to role KEXP_READER_ACCESS;

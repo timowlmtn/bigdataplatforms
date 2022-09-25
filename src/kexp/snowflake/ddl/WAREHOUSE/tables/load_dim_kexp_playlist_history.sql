@@ -1,0 +1,19 @@
+insert into WAREHOUSE.FACT_KEXP_PLAYLIST(LOAD_ID, PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG, SHOW_ID,
+                                         COMMENT, IMAGE_URI, LABELS, RELEASE_DATE)
+select max(LOAD_ID),
+       PLAYLIST_ID,
+       PLAY_TYPE,
+       AIRDATE,
+       ALBUM,
+       ARTIST,
+       SONG,
+       SHOW_ID,
+       COMMENT,
+       IMAGE_URI,
+       LABELS,
+       RELEASE_DATE
+from STAGE.IMPORT_KEXP_PLAYLIST
+where SHOW_ID is not null
+  and AIRDATE is not null
+group by PLAYLIST_ID, PLAY_TYPE, AIRDATE, ALBUM, ARTIST, SONG, SHOW_ID, COMMENT, IMAGE_URI, LABELS, RELEASE_DATE
+;

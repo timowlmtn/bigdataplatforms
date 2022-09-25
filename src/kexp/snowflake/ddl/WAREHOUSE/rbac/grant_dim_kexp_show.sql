@@ -1,0 +1,1 @@
+grant select on warehouse.dim_kexp_show to role KEXP_READER_ACCESS;
