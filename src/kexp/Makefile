@@ -30,10 +30,12 @@ pipeline: sync-kexp-api
 	snowsql -f snowflake/sql/copy_stage_import_playlist.sql
 	snowsql -f snowflake/sql/merge_stream_dim_kexp_show.sql
 	snowsql -f snowflake/sql/merge_stream_dim_kexp_playlist.sql
+
+export_data: pipeline
 	snowsql -f snowflake/sql/extract_playlist_show.sql
 
 
-get-export: clean pipeline get-export-s3 translate-comma concatenat-data # compress-data
+get-export: clean export_data get-export-s3 translate-comma concatenat-data # compress-data
 
 install:
 	pip3 install -r requirements.txt
