@@ -1,6 +1,6 @@
-create or replace table warehouse.fact_radio_playlist
+create or replace table warehouse.FACT_KEXP_PLAYLIST
 (
-    playlist_key    INT primary key identity (1,1),
+    playlist_key   INT primary key identity (1,1),
     load_id        INT           NOT NULL,
     playlist_id    INT UNIQUE    NOT NULL,
     play_type      string        NOT NULL,
@@ -8,7 +8,11 @@ create or replace table warehouse.fact_radio_playlist
     album          STRING        null,
     artist         STRING        null,
     song           STRING        null,
-    show_id        INT NOT NULL,
+    show_id        INT           NOT NULL,
+    COMMENT        varchar,
+    IMAGE_URI      varchar,
+    LABELS         variant,
+    RELEASE_DATE   varchar,
     DW_CREATE_DATE TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
     DW_CREATE_USER VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
     DW_UPDATE_DATE TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
