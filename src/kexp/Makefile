@@ -22,6 +22,9 @@ concatenat-data:
 compress-data:
 	gzip -f data/export/import_kexp_playlist.csv
 
+sync-kexp-api:
+	python python/sync_kexp_s3.py
+
 pipeline:
 	snowsql -f snowflake/sql/copy_stage_import_playlist.sql
 	snowsql -f snowflake/sql/copy_stage_import_show.sql

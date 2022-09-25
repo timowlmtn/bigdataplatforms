@@ -14,11 +14,12 @@
 # Email: timburnsowlmtn@gmail.com
 # Status: Demo Code
 # ------------------------------------------------
-
+import boto3
 from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
 import json
+import os
 import mimetypes
 import re
 import requests
@@ -341,3 +342,31 @@ class KexpApiReader:
                 shows_map[show] = json.loads(page.text)
 
         return shows_map
+
+
+def sync_kexp_s3():
+    """
+    A Lambda function to synchronize KEXP data
+
+    :return:
+    """
+    session = boto3.Session()
+    export_bucket = os.getenv("ExportBucket")
+    export_stage = os.getenv("ExportStage")
+
+    kexp_lake = KexpDataLake(s3_client=session.client("s3"),
+                             s3_bucket=export_bucket,
+                             s3_stage=export_stage)
+
+    kexp_reader = KexpApiReader()
+
+    (runtime_key, airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
+
+    playlist_map = kexp_reader.get_playlist(read_rows=kexp_max_rows,
+                                            airdate_after_date=airdate_after_date,
+                                            airdate_before_date=airdate_before_date)
+    shows_map = kexp_reader.get_shows(playlist_map)
+
+    result = kexp_lake.put_data(runtime_key, playlist_map, shows_map, airdate_after_date, airdate_before_date)
+
+    return result
