@@ -25,10 +25,13 @@ compress-data:
 sync-kexp-api:
 	python python/sync_kexp_s3.py
 
-pipeline:
-	snowsql -f snowflake/sql/copy_stage_import_playlist.sql
+pipeline: sync-kexp-api
 	snowsql -f snowflake/sql/copy_stage_import_show.sql
+	snowsql -f snowflake/sql/copy_stage_import_playlist.sql
+	snowsql -f snowflake/sql/merge_stream_dim_kexp_show.sql
+	snowsql -f snowflake/sql/merge_stream_dim_kexp_playlist.sql
 	snowsql -f snowflake/sql/extract_playlist_show.sql
+
 
 get-export: clean pipeline get-export-s3 translate-comma concatenat-data # compress-data
 
