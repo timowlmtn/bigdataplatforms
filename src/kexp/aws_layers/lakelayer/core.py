@@ -382,9 +382,14 @@ def sync_kexp_s3():
     playlist_map = kexp_reader.get_playlist(read_rows=kexp_max_rows,
                                             airdate_after_date=airdate_after_date,
                                             airdate_before_date=airdate_before_date)
+
+    logging.debug(f"{json.dumps(playlist_map, indent=2)}")
+
     shows_map = kexp_reader.get_shows(playlist_map)
 
-    while len(shows_map.keys()) > 1:
+    logging.debug(f"{json.dumps(shows_map, indent=2)}")
+
+    while len(playlist_map.keys()) > 1:
 
         result.append(kexp_lake.put_data(playlist_map, shows_map, airdate_after_date, airdate_before_date))
 
