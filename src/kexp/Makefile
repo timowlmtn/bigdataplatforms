@@ -26,13 +26,21 @@ compress-data:
 	gzip -f data/export/import_kexp_playlist.csv
 
 sync-kexp-api:
-	python python/sync_kexp_s3.py
+	python3 python/sync_kexp_s3.py
 
-pipeline: sync-kexp-api
+pipeline-import-playlist:
 	snowsql -f snowflake/pipeline/0_copy_stage_import_playlist.sql
+
+pipeline-import-show:
 	snowsql -f snowflake/pipeline/0_copy_stage_import_show.sql
+
+pipeline-merge-playlist:
 	snowsql -f snowflake/pipeline/1_merge_stream_dim_kexp_playlist.sql
+
+pipeline-merge-show:
 	snowsql -f snowflake/pipeline/1_merge_stream_dim_kexp_show.sql
+
+pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show pipeline-merge-playlist pipeline-merge-show
 
 export_data: pipeline
 	snowsql -f snowflake/pipeline/2_extract_playlist_show.sql

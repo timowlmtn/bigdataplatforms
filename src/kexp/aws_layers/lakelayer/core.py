@@ -111,10 +111,14 @@ class KexpDataLake:
         else:
             airdate_after_date = pacific.localize(airdate_after_date)
 
-        airdate_before_date = now_pst
-        runtime_key = datetime.strftime(now_pst, datetime_format_lake)
+        if now_pst < airdate_after_date + timedelta(days=1):
+            airdate_before_date = now_pst
+        else:
+            airdate_before_date = airdate_after_date + timedelta(days=1)
 
-        return runtime_key, airdate_before_date, airdate_after_date
+        # runtime_key = datetime.strftime(self.get_oldest_playlist_date(), datetime_format_lake)
+
+        return airdate_before_date, airdate_after_date
 
     def get_newest_playlist(self):
         """
@@ -211,7 +215,11 @@ class KexpDataLake:
 
         return result
 
-    def put_data(self, runtime_key, playlist_map, shows_map, airdate_after_date, airdate_before_date):
+    def put_data(self, playlist_map, shows_map, airdate_after_date, airdate_before_date):
+
+        runtime_key = next(iter(playlist_map))
+        logging.debug(f"{json.dumps(playlist_map, indent=2)}")
+
         shows_key = self.put_shows(runtime_key, shows_map)
         playlist_key = self.put_playlist(runtime_key, playlist_map)
 
@@ -223,6 +231,8 @@ class KexpDataLake:
                   "shows_key": shows_key,
                   "number_songs": len(playlist_map.keys())
                   }
+
+        logging.info(f"result = {json.dumps(result, indent=2)}")
 
         self.put_object(f"{self.s3_stage}/logs/{result['run_date_key']}/api{result['run_datetime_key']}.json",
                         json.dumps(result))
@@ -255,7 +265,7 @@ class KexpDataLake:
             json_obj.append(json.dumps(json_playlist_map[timestamp]))
 
         key = f"{self.s3_stage}/playlists/{runtime_key}/playlist{runtime_key}.json"
-        logging.info(f"Writing out {key}")
+        logging.info(f"Writing out s3://{self.s3_bucket}/{key}")
         # Use the \n delimiter for sets of json objects and put one per whole list
         self.put_object(key, "\n".join(json_obj))
 
@@ -276,7 +286,6 @@ class KexpDataLake:
         key = f"{self.s3_stage}/shows/{runtime_key}/show{runtime_key}.json"
 
         # Use a JSON object for efficient backend processing
-        logging.info(f"Writing out {key}")
         self.put_object(key, "\n".join(json_obj))
 
         return key
@@ -307,6 +316,8 @@ class KexpApiReader:
             playlist_json = playlist_json + f"&airdate_after={airdate_after_str}"
         if airdate_before_date:
             playlist_json = playlist_json + f"&airdate_before={airdate_before_str}"
+
+        logging.info(f"{playlist_json}")
 
         page = requests.get(playlist_json)
 
@@ -360,13 +371,28 @@ def sync_kexp_s3():
 
     kexp_reader = KexpApiReader()
 
-    (runtime_key, airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
+    now_utc = datetime.now(tz=pytz.utc)
+    pacific = pytz.timezone('US/Pacific')
+    now_pst = now_utc.astimezone(pacific)
+
+    (airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
+
+    result = []
 
     playlist_map = kexp_reader.get_playlist(read_rows=kexp_max_rows,
                                             airdate_after_date=airdate_after_date,
                                             airdate_before_date=airdate_before_date)
     shows_map = kexp_reader.get_shows(playlist_map)
 
-    result = kexp_lake.put_data(runtime_key, playlist_map, shows_map, airdate_after_date, airdate_before_date)
+    while len(shows_map.keys()) > 1:
+
+        result.append(kexp_lake.put_data(playlist_map, shows_map, airdate_after_date, airdate_before_date))
+
+        (airdate_before_date, airdate_after_date) = kexp_lake.get_airdates()
+
+        playlist_map = kexp_reader.get_playlist(read_rows=kexp_max_rows,
+                                                airdate_after_date=airdate_after_date,
+                                                airdate_before_date=airdate_before_date)
+        shows_map = kexp_reader.get_shows(playlist_map)
 
     return result
