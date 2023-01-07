@@ -13,3 +13,4 @@
 /src/cms/data/source/DAC_NationalDownloadableFile.csv.gz
 /src/snowsql_rt.log
 /src/snowsql_rt.log_bootstrap
+/vpc_endpoints/build/
