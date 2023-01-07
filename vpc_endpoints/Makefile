@@ -58,5 +58,14 @@ create-simple-stage:
 	 		-f src/snowflake/create_simple_stage.sql
 
 
+create-simple-table:
+	snowsql --connection ${CONNECTION} \
+			--rolename ${DATABASE_ADMIN_ROLE} \
+			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
+	 		-D EXPORT_BUCKET=${EXPORT_BUCKET} \
+	 		-D STAGE_SCHEMA=${STAGE_SCHEMA} \
+	 		-D STAGE_ENDPOINT=${STAGE_ENDPOINT} \
+	 		-f src/snowflake/create_simple_table.sql
+
 deploy-test-data:
-	aws --profile ${AWS_PROFILE} s3 sync data s3://${EXPORT_BUCKET}/prototype # --dryrun
+	aws --profile ${AWS_PROFILE} s3 sync data s3://${EXPORT_BUCKET}/stage/prototype # --dryrun
