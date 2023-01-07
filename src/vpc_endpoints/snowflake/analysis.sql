@@ -1,0 +1,1 @@
+select system$get_snowflake_platform_info();
