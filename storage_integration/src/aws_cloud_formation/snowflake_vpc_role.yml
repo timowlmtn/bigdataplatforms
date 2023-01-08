@@ -6,7 +6,7 @@ Parameters:
   SnowflakeRoleName:
     Type: String
 
-  StageBucketArn:
+  SnowflakeBucketArn:
     Type: String
 
   SnowflakePrincipalArn:
@@ -45,8 +45,8 @@ Resources:
                   - "s3:GetObject"
                   - "s3:DeleteObject"
                 Resource:
-                  - !Ref StageBucketArn
-                  - !Join [ "/", [ !Ref StageBucketArn, '*' ] ]
+                  - !Ref SnowflakeBucketArn
+                  - !Join [ "/", [ !Ref SnowflakeBucketArn, '*' ] ]
 Outputs:
     SnowflakeStorageIntegration:
       Description: "Snowflake Storage Integration ARN"

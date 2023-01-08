@@ -4,8 +4,8 @@ source ../../setenv.sh
 export STACK_NAME=snowflake-storage-integration
 export S3_DEPLOYMENT_BUCKET=${S3_DEPLOYMENT_BUCKET}
 export SNOWFLAKE_BUCKET=customer-acme-data-lake
-export SNOWFLAKE_ROLE_NAME=role-${EXPORT_BUCKET}
-export EXPORT_STAGE=bigdata_example
+export SNOWFLAKE_ROLE_NAME=role-${SNOWFLAKE_BUCKET}
+
 export CONNECTION=${DATABASE}
 export DATABASE=${DATABASE}
 

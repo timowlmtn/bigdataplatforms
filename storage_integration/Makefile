@@ -10,8 +10,7 @@ create-role:
 	    --stack-name ${STACK_NAME}-role \
 	    --parameter-overrides \
 	    	SnowflakeRoleName="${SNOWFLAKE_ROLE_NAME}" \
-    		StageBucketArn="arn:aws:s3:::${EXPORT_BUCKET}" \
-    		ExportBucketArn="arn:aws:s3:::${EXPORT_BUCKET}" \
+	    	SnowflakeBucketArn="arn:aws:s3:::${SNOWFLAKE_BUCKET}" \
     		SnowflakePrincipalArn="${TRUSTED_ENTITY}" \
     		SnowflakeExternalId="${TRUSTED_CONDITION}" \
 	    --capabilities CAPABILITY_NAMED_IAM
