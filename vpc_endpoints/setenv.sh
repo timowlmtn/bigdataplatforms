@@ -3,7 +3,7 @@ source ../../setenv.sh
 
 export STACK_NAME=vpc-endpoints
 export S3_DEPLOYMENT_BUCKET=${S3_DEPLOYMENT_BUCKET}
-export EXPORT_BUCKET=${EXPORT_BUCKET}
+export SNOWFLAKE_BUCKET=customer-acme-snowflake
 export SNOWFLAKE_ROLE_NAME=role-${EXPORT_BUCKET}
 export EXPORT_STAGE=bigdata_example
 export CONNECTION=${DATABASE}

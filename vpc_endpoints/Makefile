@@ -23,7 +23,7 @@ clean-role:
 install-snowsql:
 	brew install --cask snowflake-snowsql
 
-deploy-bucket:
+create-bucket:
 	aws cloudformation --profile ${AWS_PROFILE} package \
 		--template-file src/aws_cloud_formation/aws_stage_bucket.yml \
 	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
@@ -32,8 +32,7 @@ deploy-bucket:
 		--template-file build/aws_stage_bucket.yml \
 	    --stack-name ${STACK_NAME}-bucket \
 	    --parameter-overrides \
-    		ExportBucket="${EXPORT_BUCKET}" ExportBucketArn="arn:aws:s3:::${EXPORT_BUCKET}" \
-    		ExportStage=${EXPORT_STAGE} \
+    		SnowflakeBucket="${SNOWFLAKE_BUCKET}" \
 	    --capabilities CAPABILITY_NAMED_IAM
 
 clean-bucket:

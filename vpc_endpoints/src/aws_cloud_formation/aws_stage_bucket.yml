@@ -2,12 +2,9 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Cloudformation Template for the Staging location
 Parameters:
-  ExportBucketArn:
+  SnowflakeBucket:
     Type: String
-  ExportBucket:
-    Type: String
-  ExportStage:
-    Type: String
+
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
@@ -19,5 +16,5 @@ Resources:
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
       BucketName:
-        Ref: ExportBucket
+        Ref: SnowflakeBucket
 
