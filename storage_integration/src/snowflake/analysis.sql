@@ -1,8 +1,23 @@
+
+
+use role ACCOUNTADMIN;
+select parse_json(SYSTEM$GET_PRIVATELINK_CONFIG());
+
 select system$get_snowflake_platform_info();
 
 desc integration STORAGE_INTEGRATION_ACME_CUSTOMER;
 
 list @SIMPLE_STAGE;
+
+create storage integration s3_int
+  type = external_stage
+  storage_provider = 'S3'
+  storage_aws_role_arn = 'arn:aws:iam::001234567890:role/myrole'
+  enabled = true
+  storage_allowed_locations = ('*')
+  storage_blocked_locations = ('s3://mybucket3/path3/', 's3://mybucket4/path4/');
+
+drop storage integration s3_int
 
 select *
 from @SIMPLE_STAGE

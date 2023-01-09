@@ -6,6 +6,8 @@ export S3_DEPLOYMENT_BUCKET=${S3_DEPLOYMENT_BUCKET}
 export SNOWFLAKE_BUCKET=customer-acme-data-lake
 export SNOWFLAKE_ROLE_NAME=role-${SNOWFLAKE_BUCKET}
 
+export SNOWFLAKE_INTEGRATION_ROLE=${SNOWFLAKE_INTEGRATION_ROLE}
+
 export CONNECTION=${DATABASE}
 export DATABASE=${DATABASE}
 
@@ -15,11 +17,11 @@ export STAGE_ENDPOINT=SIMPLE_STAGE
 export CUSTOMER_VPC_ROLE_NAME=customer-acme-vpc-role
 
 # The Snowflake Account ARN is unique to your Snowflake account
-export TRUSTED_ENTITY=${SNOWFLAKE_ACCOUNT_ARN}
+export STORAGE_AWS_IAM_USER_ARN=${SNOWFLAKE_ACCOUNT_ARN}
 
 # The trusted condition is unique to each created Storage Integration
 # Example: MyAccount_SFCRole=StorageIntegrationCode=
-export TRUSTED_CONDITION=MyAccount_SFCRole=StorageIntegrationCode=
+export STORAGE_AWS_EXTERNAL_ID=CBA79392_SFCRole=2_LkuvROxjMplC2o0+XgyhFpIpUuU=
 
 export S3_STORAGE_INTEGRATION=storage_integration_acme_customer
 

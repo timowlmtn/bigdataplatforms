@@ -1,6 +1,6 @@
 default: create-storage-integration
 
-create-role:
+deploy-role:
 	aws cloudformation --profile ${AWS_PROFILE} package \
 		--template-file src/aws_cloud_formation/snowflake_vpc_role.yml \
 	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
@@ -11,8 +11,8 @@ create-role:
 	    --parameter-overrides \
 	    	SnowflakeRoleName="${SNOWFLAKE_ROLE_NAME}" \
 	    	SnowflakeBucketArn="arn:aws:s3:::${SNOWFLAKE_BUCKET}" \
-    		SnowflakePrincipalArn="${TRUSTED_ENTITY}" \
-    		SnowflakeExternalId="${TRUSTED_CONDITION}" \
+    		SnowflakePrincipalArn="${STORAGE_AWS_IAM_USER_ARN}" \
+    		SnowflakeExternalId="${STORAGE_AWS_EXTERNAL_ID}" \
 	    --capabilities CAPABILITY_NAMED_IAM
 
 clean-role:
@@ -40,7 +40,7 @@ clean-bucket:
 create-storage-integration:
 	snowsql --connection ${CONNECTION} \
 			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
-	 		-D EXPORT_BUCKET=${EXPORT_BUCKET} \
+	 		-D SNOWFLAKE_BUCKET=${SNOWFLAKE_BUCKET} \
 	 		-D SNOWFLAKE_INTEGRATION_ROLE=${SNOWFLAKE_INTEGRATION_ROLE} \
 	 		-D DATABASE=${DATABASE} \
 	 		-D DATABASE_ADMIN_ROLE=${DATABASE_ADMIN_ROLE} \
@@ -50,7 +50,7 @@ create-simple-stage:
 	snowsql --connection ${CONNECTION} \
 			--rolename ${DATABASE_ADMIN_ROLE} \
 			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
-	 		-D EXPORT_BUCKET=${EXPORT_BUCKET} \
+	 		-D SNOWFLAKE_BUCKET=${SNOWFLAKE_BUCKET} \
 	 		-D STAGE_SCHEMA=${STAGE_SCHEMA} \
 	 		-D STAGE_ENDPOINT=${STAGE_ENDPOINT} \
 	 		-f src/snowflake/create_simple_stage.sql
@@ -60,7 +60,6 @@ create-simple-table:
 	snowsql --connection ${CONNECTION} \
 			--rolename ${DATABASE_ADMIN_ROLE} \
 			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
-	 		-D EXPORT_BUCKET=${EXPORT_BUCKET} \
 	 		-D STAGE_SCHEMA=${STAGE_SCHEMA} \
 	 		-D STAGE_ENDPOINT=${STAGE_ENDPOINT} \
 	 		-f src/snowflake/create_simple_table.sql
