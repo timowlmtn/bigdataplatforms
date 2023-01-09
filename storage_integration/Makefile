@@ -1,6 +1,6 @@
 default: create-storage-integration
 
-deploy-role:
+create-role:
 	aws cloudformation --profile ${AWS_PROFILE} package \
 		--template-file src/aws_cloud_formation/snowflake_vpc_role.yml \
 	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
@@ -61,8 +61,8 @@ create-simple-table:
 			--rolename ${DATABASE_ADMIN_ROLE} \
 			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
 	 		-D STAGE_SCHEMA=${STAGE_SCHEMA} \
-	 		-D STAGE_ENDPOINT=${STAGE_ENDPOINT} \
+	 		-D STAGE_TABLE=${STAGE_TABLE} \
 	 		-f src/snowflake/create_simple_table.sql
 
 deploy-test-data:
-	aws --profile ${AWS_PROFILE} s3 sync data s3://${EXPORT_BUCKET}/stage/prototype # --dryrun
+	aws --profile ${AWS_PROFILE} s3 sync data s3://${SNOWFLAKE_BUCKET}/stage/prototype # --dryrun

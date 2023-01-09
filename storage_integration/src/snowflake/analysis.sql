@@ -7,6 +7,8 @@ select system$get_snowflake_platform_info();
 
 desc integration STORAGE_INTEGRATION_ACME_CUSTOMER;
 
+use role APPADMIN;
+use schema STAGE;
 list @SIMPLE_STAGE;
 
 create storage integration s3_int
