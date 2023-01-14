@@ -22,7 +22,7 @@ export STORAGE_AWS_IAM_USER_ARN=${SNOWFLAKE_ACCOUNT_ARN}
 
 # The trusted condition is unique to each created Storage Integration
 # Example: MyAccount_SFCRole=StorageIntegrationCode=
-export STORAGE_AWS_EXTERNAL_ID=CBA79392_SFCRole=2_G2RbYwuF3NY84WQBS/B+rkT3K3Q=
+export STORAGE_AWS_EXTERNAL_ID=MyAccount_SFCRole=StorageIntegrationCode=
 
 export S3_STORAGE_INTEGRATION=storage_integration_acme_customer
 
