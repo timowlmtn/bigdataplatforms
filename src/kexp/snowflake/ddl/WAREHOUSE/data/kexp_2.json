@@ -1,0 +1,167 @@
+{
+    "count": 50,
+    "next": "https://api.kexp.org/v2/hosts/?is_active=true&limit=20&offset=40",
+    "previous": "https://api.kexp.org/v2/hosts/?is_active=true&limit=20",
+    "results": [
+        {
+            "id": 20,
+            "uri": "https://api.kexp.org/v2/hosts/20/",
+            "name": "Greg Vandy",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968467/10620/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 48,
+            "uri": "https://api.kexp.org/v2/hosts/48/",
+            "name": "Greta Rose",
+            "image_uri": "https://www.kexp.org/media/filer_public_thumbnails/filer_public/6c/f1/6cf1f42b-6733-4b22-be94-48a54fb841bc/greta_rose.jpg__100x100_q85_crop_subsampling-2.jpg",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 21,
+            "uri": "https://api.kexp.org/v2/hosts/21/",
+            "name": "Guest DJ",
+            "image_uri": "https://www.kexp.org/static/assets/img/host_default.png",
+            "thumbnail_uri": "https://www.kexp.org/static/assets/img/host_default.png",
+            "is_active": true
+        },
+        {
+            "id": 22,
+            "uri": "https://api.kexp.org/v2/hosts/22/",
+            "name": "Hans",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968407/10619/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 23,
+            "uri": "https://api.kexp.org/v2/hosts/23/",
+            "name": "Jenn",
+            "image_uri": "https://www.kexp.org/filer/canonical/1657839127/27335/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 24,
+            "uri": "https://api.kexp.org/v2/hosts/24/",
+            "name": "John Gilbreath",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970959/10640/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 25,
+            "uri": "https://api.kexp.org/v2/hosts/25/",
+            "name": "Johnny Horn",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970853/10639/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 26,
+            "uri": "https://api.kexp.org/v2/hosts/26/",
+            "name": "John Richards",
+            "image_uri": "https://www.kexp.org/filer/canonical/1676669191/28465/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 89,
+            "uri": "https://api.kexp.org/v2/hosts/89/",
+            "name": "Kennady Quille",
+            "image_uri": "https://www.kexp.org/filer/canonical/1608049789/24272/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 27,
+            "uri": "https://api.kexp.org/v2/hosts/27/",
+            "name": "Kevin Cole",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968117/10616/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 28,
+            "uri": "https://api.kexp.org/v2/hosts/28/",
+            "name": "Kid Hops",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968015/10615/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 84,
+            "uri": "https://api.kexp.org/v2/hosts/84/",
+            "name": "Lace Cadence",
+            "image_uri": "https://www.kexp.org/filer/canonical/1595547636/23072/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 55,
+            "uri": "https://api.kexp.org/v2/hosts/55/",
+            "name": "Larry Mizell, Jr.",
+            "image_uri": "https://www.kexp.org/filer/canonical/1669673896/28158/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 29,
+            "uri": "https://api.kexp.org/v2/hosts/29/",
+            "name": "Larry Rose",
+            "image_uri": "https://www.kexp.org/filer/canonical/1653970038/27097/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 90,
+            "uri": "https://api.kexp.org/v2/hosts/90/",
+            "name": "Lisa LeClair",
+            "image_uri": "https://www.kexp.org/filer/canonical/1608066564/24278/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 51,
+            "uri": "https://api.kexp.org/v2/hosts/51/",
+            "name": "Marco Collins",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367593/22026/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 30,
+            "uri": "https://api.kexp.org/v2/hosts/30/",
+            "name": "Masa",
+            "image_uri": "https://www.kexp.org/filer/canonical/1496251603/850/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 53,
+            "uri": "https://api.kexp.org/v2/hosts/53/",
+            "name": "Michele Myers",
+            "image_uri": "https://www.kexp.org/filer/canonical/1597079830/23205/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 33,
+            "uri": "https://api.kexp.org/v2/hosts/33/",
+            "name": "Mike Ramos",
+            "image_uri": "https://www.kexp.org/filer/canonical/1661184077/27584/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 34,
+            "uri": "https://api.kexp.org/v2/hosts/34/",
+            "name": "Morgan",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367848/22028/",
+            "thumbnail_uri": "",
+            "is_active": true
+        }
+    ]
+}

@@ -1,0 +1,167 @@
+{
+    "count": 50,
+    "next": "https://api.kexp.org/v2/hosts/?is_active=true&limit=20&offset=20",
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "uri": "https://api.kexp.org/v2/hosts/1/",
+            "name": "Abbie",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367137/22022/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 85,
+            "uri": "https://api.kexp.org/v2/hosts/85/",
+            "name": "Albina Cabrera",
+            "image_uri": "https://www.kexp.org/filer/canonical/1595547860/23074/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "uri": "https://api.kexp.org/v2/hosts/2/",
+            "name": "Atticus",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367421/22023/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "uri": "https://api.kexp.org/v2/hosts/3/",
+            "name": "Brian Foss",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969446/10628/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 49,
+            "uri": "https://api.kexp.org/v2/hosts/49/",
+            "name": "Brit Hansen",
+            "image_uri": "https://www.kexp.org/media/filer_public/96/b6/96b62c4d-3f2f-4b24-a560-8bd79bf3c232/brit_hansen_2_of_3_thumbnail.jpg",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "uri": "https://api.kexp.org/v2/hosts/4/",
+            "name": "Cheryl Waters",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969358/10627/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "uri": "https://api.kexp.org/v2/hosts/5/",
+            "name": "Chilly",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969228/10626/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 6,
+            "uri": "https://api.kexp.org/v2/hosts/6/",
+            "name": "Darek Mazzone",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367478/22024/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 8,
+            "uri": "https://api.kexp.org/v2/hosts/8/",
+            "name": "DJ Alex",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969764/10631/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 11,
+            "uri": "https://api.kexp.org/v2/hosts/11/",
+            "name": "DJ Miss Ashley",
+            "image_uri": "https://www.kexp.org/filer/canonical/1657727406/27321/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 12,
+            "uri": "https://api.kexp.org/v2/hosts/12/",
+            "name": "DJ Rhythma",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968860/10624/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 13,
+            "uri": "https://api.kexp.org/v2/hosts/13/",
+            "name": "DJ Riz",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367907/22029/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 15,
+            "uri": "https://api.kexp.org/v2/hosts/15/",
+            "name": "DJ Sharlese",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970346/10635/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 88,
+            "uri": "https://api.kexp.org/v2/hosts/88/",
+            "name": "DJ Yaddy",
+            "image_uri": "https://www.kexp.org/filer/canonical/1606171054/24065/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 17,
+            "uri": "https://api.kexp.org/v2/hosts/17/",
+            "name": "Don Slack",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968748/10623/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 45,
+            "uri": "https://api.kexp.org/v2/hosts/45/",
+            "name": "Dr. West",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529971187/10642/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 52,
+            "uri": "https://api.kexp.org/v2/hosts/52/",
+            "name": "Emily Fox",
+            "image_uri": "https://www.kexp.org/filer/canonical/1550087339/17820/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 50,
+            "uri": "https://api.kexp.org/v2/hosts/50/",
+            "name": "Eva Walker",
+            "image_uri": "https://www.kexp.org/filer/canonical/1583367534/22025/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 19,
+            "uri": "https://api.kexp.org/v2/hosts/19/",
+            "name": "Evie",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968671/10622/",
+            "thumbnail_uri": "",
+            "is_active": true
+        },
+        {
+            "id": 44,
+            "uri": "https://api.kexp.org/v2/hosts/44/",
+            "name": "Gabriel Teodros",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968564/10621/",
+            "thumbnail_uri": "",
+            "is_active": true
+        }
+    ]
+}
