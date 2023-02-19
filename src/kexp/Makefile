@@ -35,10 +35,10 @@ pipeline-import-show:
 	snowsql -f snowflake/pipeline/0_copy_stage_import_show.sql
 
 pipeline-merge-playlist:
-	snowsql -f snowflake/pipeline/1_merge_stream_dim_kexp_playlist.sql
+	snowsql -f snowflake/pipeline/1_merge_stream_kexp_playlist.sql
 
 pipeline-merge-show:
-	snowsql -f snowflake/pipeline/1_merge_stream_dim_kexp_show.sql
+	snowsql -f snowflake/pipeline/1_merge_stream_kexp_show.sql
 
 pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show pipeline-merge-playlist pipeline-merge-show
 

@@ -14,7 +14,7 @@ copy into @owlmtn.stage.KEXP_PUBLIC/export/import_kexp_playlist
                TAGLINE,
                START_TIME,
                RELEASE_DATE
-        from WAREHOUSE.VIEW_KEXP_PLAYLIST_SHOW
+        from STAGE.VIEW_KEXP_PLAYLIST_SHOW
         where song is not null
           and artist is not null
           and AIRDATE is not null

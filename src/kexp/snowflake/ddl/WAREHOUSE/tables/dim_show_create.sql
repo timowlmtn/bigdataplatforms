@@ -1,6 +1,6 @@
-create table if not exists warehouse.dim_kexp_show
+create table if not exists warehouse.dim_show
 (
-    show_key       INT primary key autoincrement start 1 increment 1,
+    dim_show_key       INT primary key autoincrement start 1 increment 1,
     load_id        INT           NULL,
     station_id     VARCHAR       NULL,
     show_id        INT UNIQUE    NOT NULL,

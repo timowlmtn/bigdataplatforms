@@ -1,4 +1,4 @@
-create or replace table warehouse.FACT_KEXP_PLAYLIST
+create table if not exists warehouse.FACT_PLAYLIST
 (
     playlist_key   INT primary key identity (1,1),
     load_id        INT           NOT NULL,
@@ -8,7 +8,7 @@ create or replace table warehouse.FACT_KEXP_PLAYLIST
     album          STRING        null,
     artist         STRING        null,
     song           STRING        null,
-    show_id        INT           NOT NULL,
+    dim_show_key   INT           NOT NULL,
     COMMENT        varchar,
     IMAGE_URI      varchar,
     LABELS         variant,
@@ -21,6 +21,6 @@ create or replace table warehouse.FACT_KEXP_PLAYLIST
     DW_CREATE_USER VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
     DW_UPDATE_DATE TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
     DW_UPDATE_USER VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
-    FOREIGN KEY (show_id) REFERENCES warehouse.DIM_KEXP_SHOW (SHOW_ID)
+    FOREIGN KEY (dim_show_key) REFERENCES warehouse.DIM_SHOW (dim_show_key)
 );
 

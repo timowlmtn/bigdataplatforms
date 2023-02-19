@@ -1,4 +1,4 @@
-merge into WAREHOUSE.FACT_KEXP_PLAYLIST fact
+merge into STAGE.KEXP_PLAYLIST fact
     using STAGE.STREAM_IMPORT_KEXP_PLAYLIST_CDC str on fact.PLAYLIST_ID = str.PLAYLIST_ID
     when matched and str.metadata$action = 'DELETE' AND metadata$isupdate = 'FALSE'
         then delete

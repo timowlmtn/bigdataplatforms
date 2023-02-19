@@ -1,4 +1,4 @@
-create or replace table stage.import_kexp_playlist
+create table if not exists stage.import_kexp_playlist
 (
     load_id         INT primary key identity (1,1),
     filename        string        not null,
@@ -15,11 +15,3 @@ create or replace table stage.import_kexp_playlist
     DW_UPDATE_DATE  TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
     DW_UPDATE_USER  VARCHAR       NOT NULL DEFAULT CURRENT_USER()
 );
-
-grant select on stage.IMPORT_KEXP_PLAYLIST to role KEXP_READER_ACCESS;
-
-alter table stage.import_kexp_playlist add column comment varchar;
-
-alter table stage.import_kexp_playlist add column image_uri varchar;
-alter table stage.import_kexp_playlist add column labels variant;
-alter table stage.import_kexp_playlist add column release_date varchar;

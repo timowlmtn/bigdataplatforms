@@ -1,4 +1,4 @@
-create or replace table stage.import_kexp_show
+create table if not exists stage.import_kexp_show
 (
     load_id         INT primary key identity (1,1),
     filename        string     not null,
@@ -15,6 +15,3 @@ create or replace table stage.import_kexp_show
     DW_UPDATE_DATE  TIMESTAMPTZ         DEFAULT CURRENT_TIMESTAMP(),
     DW_UPDATE_USER  VARCHAR    NOT NULL DEFAULT CURRENT_USER()
 );
-
-
-grant select on stage.IMPORT_KEXP_SHOW to role KEXP_READER_ACCESS;
