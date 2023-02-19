@@ -1,15 +1,15 @@
--- Created by ChatGPT
+-- CREATED BY CHATGPT
 CREATE TABLE IF NOT EXISTS WAREHOUSE.DIM_STATION
 (
     DIM_STATION_KEY INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1,
-    station_id      INT UNIQUE     NOT NULL default WAREHOUSE.ID_SEQUENCE.nextval,
-    station_name    VARCHAR UNIQUE NOT NULL,
-    frequency       FLOAT,
-    location        VARCHAR,
-    owner           VARCHAR,
-    format          VARCHAR,
-    api             VARCHAR,
-    uri             VARCHAR,
+    STATION_ID      INT UNIQUE     NOT NULL DEFAULT WAREHOUSE.ID_SEQUENCE.NEXTVAL,
+    STATION_NAME    VARCHAR UNIQUE NOT NULL,
+    FREQUENCY       FLOAT,
+    LOCATION        VARCHAR,
+    OWNER           VARCHAR,
+    FORMAT          VARCHAR,
+    API             VARCHAR,
+    URI             VARCHAR,
     IS_ACTIVE       BOOLEAN        NULL,
     DW_ACTIVE       BOOLEAN                 DEFAULT TRUE NOT NULL,
     DW_FROM_DATE    TIMESTAMPLTZ,

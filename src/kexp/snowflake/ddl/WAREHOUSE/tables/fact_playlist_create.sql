@@ -1,26 +1,25 @@
-create table if not exists warehouse.FACT_PLAYLIST
+CREATE TABLE IF NOT EXISTS WAREHOUSE.FACT_PLAYLIST
 (
-    playlist_key   INT primary key identity (1,1),
-    load_id        INT           NOT NULL,
-    playlist_id    INT UNIQUE    NOT NULL,
-    play_type      string        NULL,
-    airdate        TIMESTAMP_LTZ not null,
-    album          STRING        null,
-    artist         STRING        null,
-    song           STRING        null,
-    dim_show_key   INT           NOT NULL,
-    COMMENT        varchar,
-    IMAGE_URI      varchar,
-    LABELS         variant,
-    RELEASE_DATE   varchar,
-    DW_ACTIVE      BOOLEAN                default TRUE not null,
-    DW_MATCH_HASH  VARCHAR                default md5(playlist_id),
-    DW_FROM_DATE   TIMESTAMPLTZ,
-    DW_TO_DATE     TIMESTAMPLTZ           default CAST('2099-12-31 00:00:00' AS TIMESTAMP_LTZ(9)) not null,
-    DW_CREATE_DATE TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
-    DW_CREATE_USER VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
-    DW_UPDATE_DATE TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
-    DW_UPDATE_USER VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
-    FOREIGN KEY (dim_show_key) REFERENCES warehouse.DIM_SHOW (dim_show_key)
+    FACT_PLAYLIST_KEY INT PRIMARY KEY IDENTITY (1,1),
+    DIM_SHOW_KEY      INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_SHOW (DIM_SHOW_KEY),
+    DIM_STATION_KEY   INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_STATION (DIM_STATION_KEY),
+
+    LOAD_ID           INT           NOT NULL,
+    PLAYLIST_ID       INT UNIQUE    NOT NULL,
+    PLAY_TYPE         STRING        NULL,
+    AIRDATE           TIMESTAMP_LTZ NOT NULL,
+    ALBUM             STRING        NULL,
+    ARTIST            STRING        NULL,
+    SONG              STRING        NULL,
+
+    COMMENT           VARCHAR,
+    IMAGE_URI         VARCHAR,
+    LABELS            VARIANT,
+    RELEASE_DATE      VARCHAR,
+    DW_CREATE_DATE    TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
+    DW_CREATE_USER    VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
+    DW_UPDATE_DATE    TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
+    DW_UPDATE_USER    VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
+    FOREIGN KEY (DIM_SHOW_KEY) REFERENCES WAREHOUSE.DIM_SHOW (DIM_SHOW_KEY)
 );
 

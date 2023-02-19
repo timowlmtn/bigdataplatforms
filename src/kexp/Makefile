@@ -35,15 +35,21 @@ pipeline-import-show:
 	snowsql -f snowflake/pipeline/0_copy_stage_import_show.sql
 
 pipeline-merge-playlist:
-	snowsql -f snowflake/pipeline/1_merge_stream_kexp_playlist.sql
+	snowsql -f snowflake/pipeline/1_merge_stream_warehouse_playlist.sql
 
 pipeline-merge-show:
-	snowsql -f snowflake/pipeline/1_merge_stream_kexp_show.sql
+	snowsql -f snowflake/pipeline/1_merge_stream_warehouse_show.sql
 
 pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show pipeline-merge-playlist pipeline-merge-show
 
-export_data: pipeline
-	snowsql -f snowflake/pipeline/2_extract_playlist_show.sql
+pipeline-extract-data:
+	snowsql -f snowflake/pipeline/2_extract_playlist_show_data.sql
+
+pipeline-extract-header:
+	snowsql -f snowflake/pipeline/2_extract_playlist_show_header.sql
+
+export_data: pipeline pipeline-extract-data pipeline-extract-header
+
 
 
 get-export: clean export_data get-export-s3 translate-comma concatenat-data # compress-data

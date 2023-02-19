@@ -1,4 +1,4 @@
-create or replace view STAGE.VIEW_KEXP_PLAYLIST_SHOW
+create or replace view ANALYTICS.VIEW_KEXP_PLAYLIST_SHOW
 as
 with show as (
     select show_id,
