@@ -14,3 +14,6 @@
 /src/snowsql_rt.log
 /src/snowsql_rt.log_bootstrap
 /storage_integration/build/
+/src/kexp/data/export/
+/snowsql_rt.log_bootstrap
+/snowsql_rt.log
