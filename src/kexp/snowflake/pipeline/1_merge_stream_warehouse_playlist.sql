@@ -1,5 +1,19 @@
-merge into STAGE.KEXP_PLAYLIST fact
-    using STAGE.STREAM_IMPORT_KEXP_PLAYLIST_CDC str on fact.PLAYLIST_ID = str.PLAYLIST_ID
+merge into WAREHOUSE.FACT_PLAYLIST fact
+    using (
+        with show as (
+            select DIM_SHOW_KEY, SHOW_ID
+            from WAREHOUSE.DIM_SHOW
+        ), station as (
+            select DIM_STATION_KEY
+            from WAREHOUSE.DIM_STATION
+            where STATION_NAME = 'KEXP'
+        )
+        select sh.DIM_SHOW_KEY, str.*
+        from STAGE.STREAM_IMPORT_KEXP_PLAYLIST_CDC str
+        inner join show sh on str.show_id = sh.SHOW_ID
+        cross join station
+    )
+    on fact.PLAYLIST_ID = str.PLAYLIST_ID
     when matched and str.metadata$action = 'DELETE' AND metadata$isupdate = 'FALSE'
         then delete
     when matched and str.metadata$action = 'INSERT' AND metadata$isupdate = 'TRUE'

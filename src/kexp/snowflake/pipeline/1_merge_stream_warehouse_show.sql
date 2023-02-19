@@ -1,4 +1,4 @@
-merge into STAGE.KEXP_SHOW dim
+merge into WAREHOUSE.DIM_SHOW dim
     using STAGE.STREAM_IMPORT_KEXP_SHOW_CDC str on dim.SHOW_ID = str.SHOW_ID
     when matched and str.metadata$action = 'DELETE' AND metadata$isupdate = 'FALSE'
         then delete
