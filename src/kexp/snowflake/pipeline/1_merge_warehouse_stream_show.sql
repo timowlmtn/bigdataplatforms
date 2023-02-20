@@ -1,4 +1,4 @@
-merge into WAREHOUSE.DIM_SHOW dim
+merge into WAREHOUSE.FACT_RADIO_SHOW dim
     using (
         with station as (
             select DIM_STATION_KEY, STATION_NAME
