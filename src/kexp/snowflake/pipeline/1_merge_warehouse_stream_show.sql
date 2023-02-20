@@ -16,10 +16,11 @@ merge into WAREHOUSE.DIM_SHOW dim
              , show.START_TIME
              , sta.DIM_STATION_KEY
         from
-        STAGE.IMPORT_KEXP_SHOW show
+        STAGE.STREAM_IMPORT_KEXP_SHOW show
         inner join station sta on 'KEXP' = sta.STATION_NAME
         ) str on dim.SHOW_ID = str.SHOW_ID
     when matched
+        and str.metadata$action = 'INSERT' AND metadata$isupdate = 'TRUE'
         then UPDATE SET
         dim.LOAD_ID = str.LOAD_ID
         , dim.DIM_STATION_KEY = str.DIM_STATION_KEY
@@ -33,6 +34,7 @@ merge into WAREHOUSE.DIM_SHOW dim
         , DW_UPDATE_DATE = current_timestamp
         , DW_UPDATE_USER = current_user
     when not matched
+        and metadata$action = 'INSERT' and metadata$isupdate = 'FALSE'
         then INSERT (DIM_STATION_KEY, LOAD_ID, SHOW_ID, PROGRAM_ID, PROGRAM_NAME, PROGRAM_TAGS, HOST_NAMES, TAGLINE, START_TIME)
         values (str.DIM_STATION_KEY, str.LOAD_ID, str.SHOW_ID, str.PROGRAM_ID, str.PROGRAM_NAME, str.PROGRAM_TAGS, str.HOST_NAMES,
                 str.TAGLINE, str.START_TIME);
