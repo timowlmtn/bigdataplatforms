@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS WAREHOUSE.DIM_HOST
+CREATE TABLE IF NOT EXISTS warehouse.dim_radio_host
 (
     DIM_HOST_KEY   INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1,
     HOST_ID        INT     NOT NULL,
@@ -8,11 +8,11 @@ CREATE TABLE IF NOT EXISTS WAREHOUSE.DIM_HOST
 
     THUMBNAIL_URI  VARCHAR NULL,
     IS_ACTIVE      BOOLEAN NULL,
-    DW_ACTIVE      BOOLEAN          DEFAULT TRUE NOT NULL,
-    DW_FROM_DATE   TIMESTAMPLTZ,
-    DW_TO_DATE     TIMESTAMPLTZ     DEFAULT CAST('2099-12-31 00:00:00' AS TIMESTAMP_LTZ(9)) NOT NULL,
-    DW_CREATE_DATE TIMESTAMPTZ      DEFAULT CURRENT_TIMESTAMP(),
-    DW_CREATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER(),
-    DW_UPDATE_DATE TIMESTAMPTZ      DEFAULT CURRENT_TIMESTAMP(),
-    DW_UPDATE_USER VARCHAR NOT NULL DEFAULT CURRENT_USER()
+    dw_current            BOOLEAN             DEFAULT TRUE NOT NULL comment 'A flag that indicates whether the row is the current version of the dimension entity.',
+    dw_start_date         TIMESTAMPLTZ comment 'The date on which the dimension row becomes valid.',
+    dw_end_date           TIMESTAMPLTZ        DEFAULT CAST('2099-12-31 00:00:00' AS TIMESTAMP_LTZ(9)) NOT NULL comment 'The date on which the dimension row becomes invalid.',
+    dw_create_date        TIMESTAMPTZ         DEFAULT CURRENT_TIMESTAMP() comment 'The date on which the dimension row was loaded into the data warehouse.',
+    dw_create_user        VARCHAR    NOT NULL DEFAULT CURRENT_USER() comment 'The user loading the data',
+    dw_update_date        TIMESTAMPTZ         DEFAULT CURRENT_TIMESTAMP() comment 'The date on which the dimension row was last updated.',
+    dw_update_user        VARCHAR    NOT NULL DEFAULT CURRENT_USER() comment 'The user updating the data'
 );

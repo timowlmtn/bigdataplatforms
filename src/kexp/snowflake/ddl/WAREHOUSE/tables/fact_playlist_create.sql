@@ -1,10 +1,18 @@
 CREATE TABLE IF NOT EXISTS WAREHOUSE.FACT_PLAYLIST
 (
-    FACT_PLAYLIST_KEY INT PRIMARY KEY IDENTITY (1,1),
-    DIM_SHOW_KEY      INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_SHOW (DIM_SHOW_KEY),
-    DIM_STATION_KEY   INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_STATION (DIM_STATION_KEY),
+    FACT_PLAYLIST_KEY INT PRIMARY KEY IDENTITY (1,1)
+        comment 'A unique identifier for the fact table row.',
 
-    LOAD_ID           INT           NOT NULL,
+    DIM_CALENDAR_KEY  INT           NOT NULL FOREIGN KEY REFERENCES warehouse.DIM_CALENDAR(DIM_CALENDAR_KEY)
+        comment 'A foreign key that references the dimension table containing date ',
+
+    DIM_PROGRAM_KEY      INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_PROGRAM (DIM_PROGRAM_KEY)
+        comment 'A foreign key to the program dimension',
+    DIM_STATION_KEY   INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_STATION (DIM_STATION_KEY)
+        comment 'A foreign key to the station dimension',
+
+    LOAD_ID           INT           NOT NULL
+        comment 'A key referencing the LOAD_ID on the table from the STAGE schema where the fact originated.',
     PLAYLIST_ID       INT UNIQUE    NOT NULL,
     PLAY_TYPE         STRING        NULL,
     AIRDATE           TIMESTAMP_LTZ NOT NULL,
@@ -20,6 +28,6 @@ CREATE TABLE IF NOT EXISTS WAREHOUSE.FACT_PLAYLIST
     DW_CREATE_USER    VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
     DW_UPDATE_DATE    TIMESTAMPTZ            DEFAULT CURRENT_TIMESTAMP(),
     DW_UPDATE_USER    VARCHAR       NOT NULL DEFAULT CURRENT_USER(),
-    FOREIGN KEY (DIM_SHOW_KEY) REFERENCES WAREHOUSE.DIM_SHOW (DIM_SHOW_KEY)
+
 );
 
