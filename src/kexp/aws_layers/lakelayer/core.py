@@ -28,7 +28,7 @@ import pytz
 
 import logging
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 # Max rows is 1000 because AWS has a max row count of 1000 and for networking purposes, 1000 is a very
 # good choice of chunk when accessing an API over the internet.
@@ -353,6 +353,48 @@ class KexpApiReader:
                 shows_map[show] = json.loads(page.text)
 
         return shows_map
+
+
+def sync_django_s3():
+    """
+    A generic routine to sync a Django rest endpoint
+
+    :return: A summary of the synchronized data .
+    """
+    session = boto3.Session()
+    export_bucket = os.getenv("ExportBucket")
+    export_stage = os.getenv("ExportStage")
+
+    django_root = {
+        "hosts": "https://api.kexp.org/v2/hosts/",
+        "programs": "https://api.kexp.org/v2/programs/",
+        "shows": "https://api.kexp.org/v2/shows/",
+        "plays": "https://api.kexp.org/v2/plays/",
+        "timeslots": "https://api.kexp.org/v2/timeslots/"
+    }
+
+    pacific = pytz.timezone('US/Pacific')
+
+    for api_key in django_root.keys():
+        api_call = f"{django_root[api_key]}?format=json"
+        logging.debug(f"{api_call}\n")
+
+        page = requests.get(api_call)
+
+        now_utc = datetime.now(tz=pytz.utc)
+        now_pst = now_utc.astimezone(pacific)
+        runtime_key = datetime.strftime(now_pst, datetime_format_lake)
+
+        key = f"{export_stage}/{api_key}/{runtime_key}/{api_key}_{runtime_key}.json"
+
+        body_object = json.dumps(page.text)
+
+        logging.debug(f"{body_object}\n  ---> {export_bucket}/{key}")
+
+        mimetype, _ = mimetypes.guess_type(key)
+        session.client("s3").put_object(Bucket=export_bucket, Key=key, Body=body_object, ContentType=mimetype)
+
+    return django_root
 
 
 def sync_kexp_s3():

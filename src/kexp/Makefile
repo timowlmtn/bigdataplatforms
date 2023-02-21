@@ -14,7 +14,7 @@ clean:
 	rm -f  data/export/import_kexp_playlist.csv data/export/import_kexp_playlist_0_*.csv
 
 get-export-s3:
-	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/ data/export
+	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/data/export
 
 translate-comma:
 	sed 's/\\,/,/g' data/export/import_kexp_playlist_header_0_0_0.csv > data/export/import_header.csv
