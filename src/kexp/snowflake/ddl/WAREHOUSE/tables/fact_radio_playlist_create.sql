@@ -6,8 +6,6 @@ CREATE TABLE IF NOT EXISTS WAREHOUSE.FACT_RADIO_PLAYLIST
     DIM_CALENDAR_KEY  INT           NOT NULL FOREIGN KEY REFERENCES warehouse.DIM_CALENDAR(DIM_CALENDAR_KEY)
         comment 'A foreign key that references the dimension table containing date ',
 
-    DIM_RADIO_PROGRAM_KEY      INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_RADIO_PROGRAM (DIM_RADIO_PROGRAM_KEY)
-        comment 'A foreign key to the program dimension',
     DIM_RADIO_STATION_KEY   INT           NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_RADIO_STATION (DIM_RADIO_STATION_KEY)
         comment 'A foreign key to the station dimension',
 

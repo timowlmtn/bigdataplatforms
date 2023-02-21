@@ -1,8 +1,11 @@
 CREATE TABLE IF NOT EXISTS warehouse.dim_radio_program
 (
     dim_radio_program_key INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1 comment ' A unique identifier for the dimension row.',
+    dim_radio_station_key INT        NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_RADIO_STATION (DIM_RADIO_STATION_KEY)
+        comment 'A foreign key to the station dimension',
+    load_id               INT NOT NULL comment 'Global unique load id.',
     program_id            INT UNIQUE NOT NULL comment 'A business key (natural key) that uniquely identifies the dimension entity.',
-    title                 VARCHAR(255) comment 'A unique identifier for each program',
+    name                  VARCHAR(255) comment 'A unique identifier for each program',
     description           TEXT comment 'A brief description of the program''s content',
     host                  VARCHAR(255) comment 'The name of the person or people who host the program',
     producer              VARCHAR(255) comment 'The name of the person or people who produce the program',
@@ -10,6 +13,7 @@ CREATE TABLE IF NOT EXISTS warehouse.dim_radio_program
     start_time            DATETIME comment 'The start time of the program',
     end_time              DATETIME comment 'The end time of the program',
     target_audience       VARCHAR(255) comment 'The intended audience for the program',
+    tags                  VARCHAR comment 'Arbitrary tags assigned to the show',
     genre                 VARCHAR(255) comment 'The genre or type of program (e.g. news, talk, music, etc.)',
     language              VARCHAR(255) comment 'The language in which the program is broadcast',
     website_url           VARCHAR(255) comment 'The website URL for the program (if applicable)',
