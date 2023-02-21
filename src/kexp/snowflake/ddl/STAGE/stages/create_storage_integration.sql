@@ -4,7 +4,7 @@
 --
 --   https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration.html
 --
-USE ROLE ACCOUNTADMIN;
+use role &{DATABASE_ADMIN_ROLE};
 
 CREATE or REPLACE STORAGE INTEGRATION &{STORAGE_INTEGRATION_NAME}
   TYPE = EXTERNAL_STAGE

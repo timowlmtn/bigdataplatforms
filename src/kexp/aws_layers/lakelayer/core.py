@@ -366,35 +366,47 @@ def sync_django_s3():
     export_stage = os.getenv("ExportStage")
 
     django_root = {
-        "hosts": "https://api.kexp.org/v2/hosts/",
-        "programs": "https://api.kexp.org/v2/programs/",
-        "shows": "https://api.kexp.org/v2/shows/",
-        "plays": "https://api.kexp.org/v2/plays/",
-        "timeslots": "https://api.kexp.org/v2/timeslots/"
+        # "hosts": "https://api.kexp.org/v2/hosts/",
+        "programs": "https://api.kexp.org/v2/programs/"#,
+        # "shows": "https://api.kexp.org/v2/shows/",
+        # "plays": "https://api.kexp.org/v2/plays/",
+        # "timeslots": "https://api.kexp.org/v2/timeslots/"
     }
 
+    result = {}
+
     pacific = pytz.timezone('US/Pacific')
+    now_utc = datetime.now(tz=pytz.utc)
+    now_pst = now_utc.astimezone(pacific)
+    runtime_key = datetime.strftime(now_pst, datetime_format_lake)
 
     for api_key in django_root.keys():
         api_call = f"{django_root[api_key]}?format=json"
         logging.debug(f"{api_call}\n")
 
         page = requests.get(api_call)
+        body_object = json.loads(page.text)
+        idx = 0
+        api_idx = 0
+        result[api_key] = []
+        while body_object['count'] > 0:
 
-        now_utc = datetime.now(tz=pytz.utc)
-        now_pst = now_utc.astimezone(pacific)
-        runtime_key = datetime.strftime(now_pst, datetime_format_lake)
+            for jsonl in body_object['results']:
+                idx = idx + 1
+                key = f"{export_stage}/{api_key}/{runtime_key}/{api_key}_{runtime_key}_{api_idx}_{idx}.jsonl"
+                logging.debug(
+                    f"{body_object['count']} {body_object['next']} {len(body_object['results'])}\n  ---> {export_bucket}/{key}")
+                result[api_key].append(key)
+                session.client("s3").put_object(Bucket=export_bucket, Key=key,
+                                                Body=json.dumps(jsonl), ContentType='bytes')
+            if body_object['next'] is not None:
+                api_idx = api_idx + 1
+                page = requests.get(body_object['next'])
+                body_object = json.loads(page.text)
+            else:
+                break
 
-        key = f"{export_stage}/{api_key}/{runtime_key}/{api_key}_{runtime_key}.json"
-
-        body_object = json.dumps(page.text)
-
-        logging.debug(f"{body_object}\n  ---> {export_bucket}/{key}")
-
-        mimetype, _ = mimetypes.guess_type(key)
-        session.client("s3").put_object(Bucket=export_bucket, Key=key, Body=body_object, ContentType=mimetype)
-
-    return django_root
+    return result
 
 
 def sync_kexp_s3():

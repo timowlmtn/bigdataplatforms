@@ -15,7 +15,7 @@ def main():
         print("and the stage folder configured in the Snowflake Storage Integration")
     else:
         print(f'Running with {os.getenv("ExportBucket")} and {os.getenv("ExportStage")}')
-        print(json.dumps(lakelayer.sync_kexp_s3(), indent=2))
+        # print(json.dumps(lakelayer.sync_kexp_s3(), indent=2))
         print(json.dumps(lakelayer.sync_django_s3(), indent=2))
 
 

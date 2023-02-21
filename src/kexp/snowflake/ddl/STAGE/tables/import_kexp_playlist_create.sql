@@ -1,6 +1,7 @@
 create table if not exists stage.import_kexp_playlist
 (
-    load_id         INT primary key identity (1,1),
+    IMPORT_KEXP_PLAYLIST_KEY INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1,
+    LOAD_ID        INT UNIQUE NOT NULL DEFAULT STAGE.LOAD_ID_SEQUENCE.nextval, -- A load id
     filename        string        not null,
     file_row_number int           not null,
     playlist_id     INT UNIQUE    NOT NULL,

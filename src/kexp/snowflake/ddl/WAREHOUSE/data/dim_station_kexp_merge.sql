@@ -1,4 +1,4 @@
-merge into WAREHOUSE.DIM_STATION tar
+merge into WAREHOUSE.DIM_RADIO_STATION tar
     using (select 'KEXP'                                                                                     STATION_NAME,
                   97.3                                                                                       FREQUENCY,
                   'Seattle, WA'                                                                              LOCATION,
@@ -14,7 +14,9 @@ merge into WAREHOUSE.DIM_STATION tar
         tar.OWNER = src.OWNER,
         tar.API = src.API,
         tar.URI = src.URI,
-        tar.IS_ACTIVE = src.is_active
+        tar.DW_CURRENT = src.is_active,
+        tar.DW_UPDATE_DATE = current_timestamp,
+        tar.DW_UPDATE_USER = current_user
     when not matched then insert (STATION_NAME,
                                   FREQUENCY,
                                   LOCATION,
@@ -22,7 +24,7 @@ merge into WAREHOUSE.DIM_STATION tar
                                   FORMAT,
                                   API,
                                   URI,
-                                  IS_ACTIVE)
+                                  DW_CURRENT)
         values (src.STATION_NAME,
                 src.FREQUENCY,
                 src.LOCATION,

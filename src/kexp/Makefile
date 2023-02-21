@@ -35,10 +35,10 @@ pipeline-import-show:
 	snowsql -f snowflake/pipeline/0_copy_stage_import_show.sql
 
 pipeline-merge-playlist:
-	snowsql -f snowflake/pipeline/1_merge_stream_warehouse_playlist.sql
+	snowsql -f snowflake/pipeline/1_merge_warehouse_playlist.sql
 
 pipeline-merge-show:
-	snowsql -f snowflake/pipeline/1_merge_stream_warehouse_show.sql
+	snowsql -f snowflake/pipeline/1_merge_warehouse_show.sql
 
 pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show pipeline-merge-playlist pipeline-merge-show
 
@@ -50,7 +50,14 @@ pipeline-extract-header:
 
 export_data: pipeline pipeline-extract-data pipeline-extract-header
 
+stage-kexp:
+	make -f snowflake/Makefile create-kexp-program-stage
 
+import-kexp:
+	make -f snowflake/Makefile create-kexp-program-import
+
+pipeline-kexp-program:
+	snowsql -f snowflake/pipeline/1_merge_warehouse_program.sql
 
 get-export: clean export_data get-export-s3 translate-comma concatenat-data # compress-data
 
