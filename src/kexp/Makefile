@@ -14,7 +14,7 @@ clean:
 	rm -f  data/export/import_kexp_playlist.csv data/export/import_kexp_playlist_0_*.csv
 
 get-export-s3:
-	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/data/export
+	aws s3 sync s3://owlmtn-stage-data/stage/kexp/export/ data/export
 
 translate-comma:
 	sed 's/\\,/,/g' data/export/import_kexp_playlist_header_0_0_0.csv > data/export/import_header.csv
@@ -40,13 +40,15 @@ pipeline-merge-playlist:
 pipeline-merge-show:
 	snowsql -f snowflake/pipeline/3_merge_warehouse_show.sql
 
-pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show pipeline-merge-playlist pipeline-merge-show
+pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show
+
+pipeline-warehouse: pipeline-merge-playlist pipeline-merge-show
 
 pipeline-extract-data:
-	snowsql -f snowflake/pipeline/2_extract_playlist_show_data.sql
+	snowsql -f snowflake/pipeline/7_extract_playlist_show_data.sql
 
 pipeline-extract-header:
-	snowsql -f snowflake/pipeline/2_extract_playlist_show_header.sql
+	snowsql -f snowflake/pipeline/7_extract_playlist_show_header.sql
 
 export_data: pipeline pipeline-extract-data pipeline-extract-header
 

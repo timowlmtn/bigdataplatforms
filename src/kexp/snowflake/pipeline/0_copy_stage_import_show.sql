@@ -20,8 +20,5 @@ copy into stage.IMPORT_KEXP_SHOW (FILENAME,
         from @owlmtn.stage.KEXP_PUBLIC
     )
     pattern = 'stage/kexp/shows/.*',
-    file_format = (type = json);
-
-
-
-
+    file_format = (type = json)
+    ON_ERROR = CONTINUE ;
