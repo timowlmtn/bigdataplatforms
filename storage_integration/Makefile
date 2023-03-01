@@ -1,6 +1,6 @@
 default: create-storage-integration
 
-create-role:
+update-role:
 	aws cloudformation --profile ${AWS_PROFILE} package \
 		--template-file src/aws_cloud_formation/snowflake_vpc_role.yml \
 	    --s3-bucket ${S3_DEPLOYMENT_BUCKET} \
@@ -40,6 +40,7 @@ clean-bucket:
 create-storage-integration:
 	snowsql --connection ${CONNECTION} \
 			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
+			-D STORAGE_ALLOWED_LOCATIONS=${STORAGE_ALLOWED_LOCATIONS} \
 	 		-D SNOWFLAKE_BUCKET=${SNOWFLAKE_BUCKET} \
 	 		-D SNOWFLAKE_INTEGRATION_ROLE=${SNOWFLAKE_INTEGRATION_ROLE} \
 	 		-D DATABASE=${DATABASE} \
