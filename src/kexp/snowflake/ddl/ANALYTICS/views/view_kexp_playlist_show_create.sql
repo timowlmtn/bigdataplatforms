@@ -9,7 +9,7 @@ with show as (
            tagline,
            start_time,
            max(DW_UPDATE_DATE) LAST_UPDATED
-    from STAGE.KEXP_SHOW
+    from STAGE.IMPORT_KEXP_SHOW
     group by show_id,
              program_id,
              program_name,
@@ -36,7 +36,7 @@ select PLAYLIST_ID,
        LABELS,
        show.LAST_UPDATED                       show_last_updated,
        max(DW_UPDATE_DATE)                     playlist_last_updated
-from STAGE.KEXP_PLAYLIST plays
+from STAGE.IMPORT_KEXP_PLAYLIST plays
          left outer join show
                          on plays.SHOW_ID = show.SHOW_ID
 group by PLAYLIST_ID,

@@ -40,7 +40,7 @@ pipeline-merge-playlist:
 pipeline-merge-show:
 	snowsql -f snowflake/pipeline/3_merge_warehouse_show.sql
 
-pipeline: sync-kexp-api pipeline-import-playlist pipeline-import-show
+pipeline-simple: sync-kexp-api pipeline-import-playlist pipeline-import-show
 
 pipeline-warehouse: pipeline-merge-playlist pipeline-merge-show
 
@@ -50,7 +50,7 @@ pipeline-extract-data:
 pipeline-extract-header:
 	snowsql -f snowflake/pipeline/7_extract_playlist_show_header.sql
 
-export_data: pipeline pipeline-extract-data pipeline-extract-header
+export_data: pipeline-simple pipeline-extract-data pipeline-extract-header
 
 create-ddl-stage-kexp:
 	make -f snowflake/Makefile create-kexp-program-stage
