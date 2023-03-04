@@ -68,26 +68,19 @@ create-simple-table:
 deploy-test-data:
 	aws --profile ${AWS_PROFILE} s3 sync data s3://${SNOWFLAKE_BUCKET}/stage/prototype # --dryrun
 
-
 # -------------------------------------- terraform
 
 # Create Snowflake user Private key and password
-terraform-create-private-key:
-	openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out snowflake_tf_snow_key.p8 -nocrypt
-	openssl rsa -in snowflake_tf_snow_key.p8 -pubout -out snowflake_tf_snow_key.pub
-
+tf-create-private-key:
+	openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out ~/.snowsql/snowflake_tf_snow_key.p8 -nocrypt
+	openssl rsa -in ~/.snowsql/snowflake_tf_snow_key.p8 -pubout -out ./snowflake_tf_snow_key.pub
 
 # remove opening and ending brackets in key
-create-terraform-user:
+tf-create-user:
 	snowsql --connection ${CONNECTION} \
 			--rolename ${DATABASE_ADMIN_ROLE} \
-			-D STORAGE_INTEGRATION_NAME=${S3_STORAGE_INTEGRATION} \
-	 		-D STAGE_SCHEMA=${STAGE_SCHEMA} \
-	 		-D STAGE_TABLE=${STAGE_TABLE} \
-	 		-f src/snowflake/cterraform_create_user.sql
+			-D TF_USER=${TF_USER} \
+			-D TF_PASSWORD=${TF_PASSWORD} \
+			-D TF_PUBLIC_KEY=${TF_PUBLIC_KEY} \
+	 		-f src/snowflake/terraform_create_user.sql
 
-
-export SNOWFLAKE_USER="tf-snow"
-export SNOWFLAKE_PRIVATE_KEY_PATH="~/Documents/snowflake/tf-snow/snowflake_tf_snow_key.p8"
-export SNOWFLAKE_ACCOUNT="XXXXXX"
-export SNOWFLAKE_REGION="AWS_EU_WEST_1"

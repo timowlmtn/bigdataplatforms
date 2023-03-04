@@ -17,3 +17,4 @@
 /src/kexp/data/export/
 /snowsql_rt.log_bootstrap
 /snowsql_rt.log
+/storage_integration/snowflake_tf_snow_key.pub
