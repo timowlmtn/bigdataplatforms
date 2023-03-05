@@ -84,3 +84,19 @@ tf-create-user:
 			-D TF_PUBLIC_KEY=${TF_PUBLIC_KEY} \
 	 		-f src/snowflake/terraform_create_user.sql
 
+tf-install:
+	brew tap hashicorp/tap
+	brew install hashicorp/tap/terraform
+
+tf-init:
+	terraform -chdir="./src/terraform"  init
+
+tf-plan:
+	terraform -chdir="./src/terraform" plan -var "storage_integration_name=${S3_TF_STORAGE_INTEGRATION}"
+
+tf-validate:
+	terraform -chdir="./src/terraform" validate
+
+tf-apply:
+	terraform -chdir="./src/terraform" apply -var "storage_integration_name=${S3_TF_STORAGE_INTEGRATION}" -auto-approve
+

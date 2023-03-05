@@ -40,3 +40,8 @@ copy into SIMPLE_TABLE (ID,
 
 select *
 from simple_table;
+
+
+use role APPADMIN;
+
+describe user "tf-snow";

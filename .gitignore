@@ -18,3 +18,5 @@
 /snowsql_rt.log_bootstrap
 /snowsql_rt.log
 /storage_integration/snowflake_tf_snow_key.pub
+/storage_integration/src/terraform/.terraform/
+/storage_integration/src/terraform/.terraform.lock.hcl

@@ -32,6 +32,7 @@ export STORAGE_AWS_IAM_USER_ARN=${SNOWFLAKE_ACCOUNT_ARN}
 export STORAGE_AWS_EXTERNAL_ID=MyAccount_SFCRole=StorageIntegrationCode=
 
 export S3_STORAGE_INTEGRATION=storage_integration_acme_customer
+export S3_TF_STORAGE_INTEGRATION=storage_integration_terraform_customer
 
 export DATABASE_ADMIN_ROLE=${DATABASE_ADMIN_ROLE}
 
