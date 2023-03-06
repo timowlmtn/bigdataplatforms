@@ -89,14 +89,14 @@ tf-install:
 	brew install hashicorp/tap/terraform
 
 tf-init:
-	terraform -chdir="./src/terraform"  init
+	terraform -chdir="./src/terraform"  init -upgrade
 
 tf-plan:
-	terraform -chdir="./src/terraform" plan -var "storage_integration_name=${S3_TF_STORAGE_INTEGRATION}"
+	terraform -chdir="./src/terraform" plan -var "storage-integration-name=${S3_TF_STORAGE_INTEGRATION}"
 
 tf-validate:
 	terraform -chdir="./src/terraform" validate
 
 tf-apply:
-	terraform -chdir="./src/terraform" apply -var "storage_integration_name=${S3_TF_STORAGE_INTEGRATION}" -auto-approve
+	terraform -chdir="./src/terraform" apply -var "storage-integration-name=${S3_TF_STORAGE_INTEGRATION}" -auto-approve
 
