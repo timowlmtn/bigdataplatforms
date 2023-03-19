@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     sqlContext = SQLContext(sc)
     # to read parquet file
-    df = sqlContext.read.parquet('../../data/out/deckofcards.parquet')
+    df = sqlContext.read.parquet('../../../data/spark/out/deckofcards.parquet')
 
     df.cache()
 
