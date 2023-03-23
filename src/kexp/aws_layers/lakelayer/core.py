@@ -10,7 +10,7 @@
 # Copyright: 2021, Big Data Platforms
 # Credits: [KEXP and developers]
 # Version: 0.0.1
-# Mmaintainer: Tim Burns
+# Maintainer: Tim Burns
 # Email: timburnsowlmtn@gmail.com
 # Status: Demo Code
 # ------------------------------------------------
