@@ -22,3 +22,4 @@
 /storage_integration/src/terraform/.terraform.lock.hcl
 /storage_integration/src/terraform/terraform.tfstate
 /src/kexp/spark/bronze/import_kexp_playlist/
+/data/spark/kexp/

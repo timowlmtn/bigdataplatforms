@@ -4,3 +4,4 @@ export PYTHONPATH=../aws_layers
 source ../../../../setenv.sh
 
 export RAW_DATA_FOLDER=../data/export
+export DELTA_LAKE_FOLDER=../../../data/spark/kexp
