@@ -14,6 +14,8 @@
 # Email: timburnsowlmtn@gmail.com
 # Status: Demo Code
 # ------------------------------------------------
+import json
+import os
 
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
@@ -25,7 +27,7 @@ import fnmatch
 import shutil
 
 
-class SparkCore:
+class SparkCatalog:
     app_name = None
     bronze_location = None
     silver_location = None
@@ -33,6 +35,9 @@ class SparkCore:
 
     spark = None
     sql_context = None
+
+    catalog = {}
+    catalog_metadata = {}
 
     def __init__(self, app_name, lake_location):
         self.app_name = app_name
@@ -46,6 +51,38 @@ class SparkCore:
 
         self.spark = configure_spark_with_delta_pip(builder).getOrCreate()
         self.sql_context = SQLContext(self.spark.sparkContext)
+
+    def get_table(self, table_path):
+        if table_path in self.catalog:
+            result = self.catalog[table_path]
+        else:
+            self.catalog[table_path] = DeltaTable.forPath(self.spark, table_path)
+            result = self.catalog[table_path]
+        return result
+
+    def get_metadata(self, table_path):
+        if table_path not in self.catalog_metadata:
+            delta_dir = join(table_path, "_delta_log")
+            for file in os.listdir(delta_dir):
+                if file.endswith(".json"):
+
+                    with open(join(delta_dir, file)) as json_file:
+
+                        for json_line in json_file:
+                            json_obj = json.loads(json_line)
+                            if "metaData" in json_obj:
+                                self.catalog_metadata[table_path] = json_obj["metaData"]
+                                break
+
+        return self.catalog_metadata[table_path]
+
+    def get_schema(self, table_path):
+        metadata = self.get_metadata(table_path)
+        if metadata is not None:
+            schema_string = metadata["schemaString"]
+            result = json.JSONDecoder().decode(schema_string)
+
+        return result
 
     def process_raw_to_bronze(self, raw_data_folder, file_match, replace=True):
         """
