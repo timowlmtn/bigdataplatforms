@@ -78,6 +78,7 @@ class SparkCatalog:
 
     def get_schema(self, table_path):
         metadata = self.get_metadata(table_path)
+        result = None
         if metadata is not None:
             schema_string = metadata["schemaString"]
             result = json.JSONDecoder().decode(schema_string)
