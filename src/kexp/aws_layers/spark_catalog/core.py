@@ -20,11 +20,15 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
 from delta import *
+from pyspark.sql.functions import col, explode, regexp_replace, split
 
 from os import listdir
 from os.path import join
 import fnmatch
 import shutil
+
+
+
 
 
 class SparkCatalog:
@@ -52,12 +56,26 @@ class SparkCatalog:
         self.spark = configure_spark_with_delta_pip(builder).getOrCreate()
         self.sql_context = SQLContext(self.spark.sparkContext)
 
+    def delete(self, file_full_path):
+        try:
+            shutil.rmtree(join(self.bronze_location, file_full_path))
+        except OSError as e:
+            print("Warning: %s : %s" % (join(self.bronze_location, file_full_path), e.strerror))
+
     def get_table(self, table_path):
         if table_path in self.catalog:
             result = self.catalog[table_path]
         else:
             self.catalog[table_path] = DeltaTable.forPath(self.spark, table_path)
             result = self.catalog[table_path]
+        return result
+
+    def get_data_frame(self, table_path):
+        table = self.get_table(table_path)
+        if table is not None:
+            result = table.toDF()
+        else:
+            result = None
         return result
 
     def get_metadata(self, table_path):
@@ -103,10 +121,8 @@ class SparkCatalog:
                                  format=file_type, inferSchema="true", header="true")
 
             if replace:
-                try:
-                    shutil.rmtree(join(self.bronze_location, file_name))
-                except OSError as e:
-                    print("Warning: %s : %s" % (join(self.bronze_location, file_name), e.strerror))
+                self.delete(join(self.bronze_location, file_name))
+
 
             df.write.format("delta").save(join(self.bronze_location, file_name))
 
@@ -116,3 +132,14 @@ class SparkCatalog:
 
     def sql(self, sql_statement):
         return self.sql_context.sql(sql_statement)
+
+    def explode(self, table_df, column_name, target_name, column_separating=", ", replace=True):
+
+        if replace:
+            self.delete(join(self.silver_location, target_name))
+
+        table_df.withColumn(
+            column_name,
+            explode(split(regexp_replace(col(column_name), "(^\[)|(\]$)", ""), column_separating))
+        ).write.format("delta").save(join(self.silver_location, target_name))
+

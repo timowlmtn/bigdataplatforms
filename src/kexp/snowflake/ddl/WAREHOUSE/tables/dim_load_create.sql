@@ -1,7 +1,7 @@
 create table if not exists WAREHOUSE.DIM_LOAD
 (
     load_key       INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1
-        comment 'A unique identifier for each load, used as a foreign key in the fact table.',
+        comment 'A surrogate keyfor each load, used as a foreign key in the fact table.',
     load_id         INT UNIQUE comment 'A natural key referencing the LOAD_ID from the STAGE table',
     load_date_time TIMESTAMPTZ not null
         comment 'The date timestamp on which the data was loaded into the data warehouse.',

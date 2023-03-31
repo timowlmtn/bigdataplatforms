@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS warehouse.dim_radio_program
 (
-    dim_radio_program_key INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1 comment ' A unique identifier for the dimension row.',
+    dim_radio_program_key INT PRIMARY KEY AUTOINCREMENT START 1 INCREMENT 1 comment ' A surrogate key for the dimension row.',
     dim_radio_station_key INT        NOT NULL FOREIGN KEY REFERENCES WAREHOUSE.DIM_RADIO_STATION (DIM_RADIO_STATION_KEY)
         comment 'A foreign key to the station dimension',
     load_id               INT NOT NULL comment 'Global unique load id.',
