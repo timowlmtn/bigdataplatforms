@@ -20,6 +20,7 @@ import os
 import shutil
 from os import listdir
 from os.path import join
+import re
 
 from delta import *
 from pyspark.sql import SQLContext
@@ -57,12 +58,13 @@ class SparkCatalog:
         self.sql_context = SQLContext(self.spark.sparkContext)
 
     def append_bronze(self, raw_file_match, table_name, change_column_id):
-        spark = SparkSession.builder.getOrCreate()
         for file in fnmatch.filter(listdir(self.raw_location), raw_file_match):
             print(f"Found: {file}")
 
-            source_data = spark.read.load(join(self.raw_location, file),
-                                          format=self.get_file_type(file), inferSchema="true", header="true")
+            source_data = self.spark.read.load(join(self.raw_location, file),
+                                               format=self.get_file_type(file), inferSchema="true", header="true")
+
+            schema = self.infer_schema_raw(file)
 
             target_table = self.get_bronze_data_frame(table_name)
 
@@ -70,8 +72,10 @@ class SparkCatalog:
             if target_table:
                 max_id = self.get_max_integer(target_table, column_name=change_column_id)
 
-            new_data = source_data.filter(f'{change_column_id} > {max_id}')\
-                .withColumn(change_column_id, source_data[change_column_id].cast(IntegerType()))
+            for column in source_data.columns:
+                source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
+
+            new_data = source_data.filter(f'{change_column_id} > {max_id}')
 
             if new_data.count() > 0:
                 print(f"Saving {new_data.count()} records to {join(self.bronze_location, table_name)}")
@@ -104,7 +108,7 @@ class SparkCatalog:
         return result
 
     def get_bronze_data_frame(self, table_name):
-        table = self.get_table( join(self.bronze_location, table_name))
+        table = self.get_table(join(self.bronze_location, table_name))
         if table is not None:
             result = table.toDF()
         else:
@@ -113,8 +117,8 @@ class SparkCatalog:
 
     @staticmethod
     def get_file_type(file):
-        (file_name, file_type) = file.split(".")
-        return file_type
+        split_file = re.match(r"(.*)\.([a-z]+)$", file)
+        return split_file.group(2)
 
     @staticmethod
     def get_max_integer(df, column_name):
@@ -146,6 +150,38 @@ class SparkCatalog:
         if metadata is not None:
             schema_string = metadata["schemaString"]
             result = json.JSONDecoder().decode(schema_string)
+
+        return result
+
+    def infer_schema_raw(self, raw_file_match):
+        file = join(self.raw_location, raw_file_match)
+        source_data = self.sql_context.read.load(file,
+                                                 format=self.get_file_type(file),
+                                                 inferSchema="true",
+                                                 header="true").limit(3)
+        result = {}
+
+        for row in source_data.collect():
+            for column in row.asDict():
+                if column not in result:
+                    default_type = "string"
+                    if column.endswith("_DATE"):
+                        default_type = "date"
+                    elif column.endswith("_TIMESTAMP"):
+                        default_type = "timestamp"
+                    elif column.endswith("_DATETIME"):
+                        default_type = "datetime"
+                    elif column.endswith("_ID" or column.endswith("_KEY")):
+                        default_type = "integer"
+                    result[column] = default_type
+
+                # print(f"{column}: {row[column]}")
+
+                # Update timestamp if it matches
+                if row[column]:
+                    if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
+                                row[column]):
+                        result[column] = "timestamp"
 
         return result
 
@@ -189,5 +225,3 @@ class SparkCatalog:
 
     def truncate_silver(self, table_name):
         self.delete(join(self.silver_location, table_name))
-
-

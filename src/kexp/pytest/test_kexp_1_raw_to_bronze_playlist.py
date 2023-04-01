@@ -6,7 +6,7 @@
 # https://www.owlmountain.net/
 # If you like this, donate to KEXP: https://www.kexp.org/donate/
 import unittest
-
+import re
 from pyspark import Row
 from pyspark.sql.functions import col, regexp_replace
 
@@ -42,3 +42,27 @@ class SparkCatalogTest(unittest.TestCase):
         df.printSchema()
         # Assertions on the schema
         self.assertEqual("StructField('PLAYLIST_ID', IntegerType(), True)", str(df.schema["PLAYLIST_ID"]))
+
+    def test_infer_schema(self):
+        self.assertEqual("csv", self.catalog.get_file_type("../data/export/import_kexp_playlist.csv"))
+
+        # Quick test on a regexp
+        self.assertTrue(re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
+                                 "2023-04-01 07:32:22.000 -0700"))
+        schema = self.catalog.infer_schema_raw(raw_file_match="import_kexp_playlist.csv")
+
+        expected_result = {"AIRDATE": "timestamp",
+                           "ALBUM": "string",
+                           "ARTIST": "string",
+                           "HOST_NAMES": "string",
+                           "PLAYLIST_ID": "integer",
+                           "PLAY_TYPE": "string",
+                           "PROGRAM_ID": "integer",
+                           "PROGRAM_NAME": "string",
+                           "PROGRAM_TAGS": "string",
+                           "RELEASE_DATE": "date",
+                           "SHOW_ID": "integer",
+                           "SONG": "string",
+                           "START_TIME": "timestamp",
+                           "TAGLINE": "string"}
+        self.assertEqual(expected_result, schema)
