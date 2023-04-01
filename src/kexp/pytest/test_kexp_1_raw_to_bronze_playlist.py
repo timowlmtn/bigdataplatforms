@@ -33,6 +33,6 @@ class SparkCatalogTest(unittest.TestCase):
         self.catalog.truncate_bronze(table_name="import_kexp_playlist")
 
     def test_raw_playlist_to_bronze(self):
-        self.catalog.append(raw_file_match="import_kexp_playlist.csv",
-                            table_name="import_kexp_playlist",
-                            change_column_id="PLAYLIST_ID")
+        self.catalog.append_bronze(raw_file_match="import_kexp_playlist.csv",
+                                   table_name="import_kexp_playlist",
+                                   change_column_id="PLAYLIST_ID")

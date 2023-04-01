@@ -56,7 +56,7 @@ class SparkCatalog:
         self.spark = configure_spark_with_delta_pip(builder).getOrCreate()
         self.sql_context = SQLContext(self.spark.sparkContext)
 
-    def append(self, raw_file_match, table_name, change_column_id):
+    def append_bronze(self, raw_file_match, table_name, change_column_id):
         spark = SparkSession.builder.getOrCreate()
         for file in fnmatch.filter(listdir(self.raw_location), raw_file_match):
             print(f"Found: {file}")
