@@ -14,25 +14,24 @@
 # Email: timburnsowlmtn@gmail.com
 # Status: Demo Code
 # ------------------------------------------------
+import fnmatch
 import json
 import os
-
-from pyspark.sql import SparkSession
-from pyspark.sql import SQLContext
-from delta import *
-from pyspark.sql.functions import col, explode, regexp_replace, split
-
+import shutil
 from os import listdir
 from os.path import join
-import fnmatch
-import shutil
 
-
-
+from delta import *
+from pyspark.sql import SQLContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, explode, regexp_replace, split
+from pyspark.sql.types import IntegerType
 
 
 class SparkCatalog:
     app_name = None
+
+    raw_location = None
     bronze_location = None
     silver_location = None
     gold_location = None
@@ -43,8 +42,9 @@ class SparkCatalog:
     catalog = {}
     catalog_metadata = {}
 
-    def __init__(self, app_name, lake_location):
+    def __init__(self, app_name, lake_location, raw_location):
         self.app_name = app_name
+        self.raw_location = raw_location
         self.bronze_location = f"{lake_location}/bronze"
         self.silver_location = f"{lake_location}/silver"
         self.gold_location = f"{lake_location}/gold"
@@ -56,6 +56,28 @@ class SparkCatalog:
         self.spark = configure_spark_with_delta_pip(builder).getOrCreate()
         self.sql_context = SQLContext(self.spark.sparkContext)
 
+    def append(self, raw_file_match, table_name, change_column_id):
+        spark = SparkSession.builder.getOrCreate()
+        for file in fnmatch.filter(listdir(self.raw_location), raw_file_match):
+            print(f"Found: {file}")
+
+            source_data = spark.read.load(join(self.raw_location, file),
+                                          format=self.get_file_type(file), inferSchema="true", header="true")
+
+            target_table = self.get_bronze_table(table_name)
+
+            max_id = 0
+            if target_table:
+                max_id = self.get_max_integer(target_table, column_name=change_column_id)
+
+            new_data = source_data.filter(f'{change_column_id} > {max_id}')
+
+            if new_data.count() > 0:
+                print(f"Saving {new_data.count()} records to {join(self.bronze_location, table_name)}")
+                new_data.write.mode("append").format("delta").save(join(self.bronze_location, table_name))
+            else:
+                print(f"No new data found")
+
     def delete(self, file_full_path):
         try:
             shutil.rmtree(file_full_path)
@@ -63,11 +85,13 @@ class SparkCatalog:
             print("Warning: %s : %s" % (join(self.bronze_location, file_full_path), e.strerror))
 
     def get_table(self, table_path):
+        result = None
         if table_path in self.catalog:
             result = self.catalog[table_path]
         else:
-            self.catalog[table_path] = DeltaTable.forPath(self.spark, table_path)
-            result = self.catalog[table_path]
+            if os.path.exists(table_path):
+                self.catalog[table_path] = DeltaTable.forPath(self.spark, table_path)
+                result = self.catalog[table_path]
         return result
 
     def get_data_frame(self, table_path):
@@ -77,6 +101,24 @@ class SparkCatalog:
         else:
             result = None
         return result
+
+    def get_bronze_table(self, table_name):
+        table = self.get_table( join(self.bronze_location, table_name))
+        if table is not None:
+            result = table.toDF()
+        else:
+            result = None
+        return result
+
+    @staticmethod
+    def get_file_type(file):
+        (file_name, file_type) = file.split(".")
+        return file_type
+
+    @staticmethod
+    def get_max_integer(df, column_name):
+        row = df.withColumn(column_name, df[column_name].cast(IntegerType())).agg({column_name: "max"}).first()
+        return row[0]
 
     def get_silver_df(self, table_name):
         return self.get_data_frame(join(self.silver_location, table_name))
@@ -109,23 +151,22 @@ class SparkCatalog:
     def process_raw_to_bronze(self, raw_data_folder, file_match, replace=True):
         """
         Process the raw data and if replace is true, then delete the existing object.
+
+        deprecation: This needs to be fixed to be more generic (TB 4/1/23)
         """
 
         result = {"raw": [], "bronze": []}
 
         spark = SparkSession.builder.getOrCreate()
 
-        for file in fnmatch.filter(listdir(raw_data_folder), file_match):
-            result["raw"].append(join(raw_data_folder, file))
+        for file_name in fnmatch.filter(listdir(raw_data_folder), file_match):
+            result["raw"].append(join(raw_data_folder, file_name))
 
-            (file_name, file_type) = file.split(".")
-
-            df = spark.read.load(join(raw_data_folder, file),
-                                 format=file_type, inferSchema="true", header="true")
+            df = spark.read.load(join(raw_data_folder, file_name),
+                                 format=self.get_file_type(file_name), inferSchema="true", header="true")
 
             if replace:
                 self.delete(join(self.bronze_location, file_name))
-
 
             df.write.format("delta").save(join(self.bronze_location, file_name))
 
@@ -147,4 +188,5 @@ class SparkCatalog:
 
     def truncate_silver(self, table_name):
         self.delete(join(self.silver_location, table_name))
+
 
