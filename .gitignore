@@ -23,3 +23,5 @@
 /storage_integration/src/terraform/terraform.tfstate
 /src/kexp/spark/bronze/import_kexp_playlist/
 /data/spark/kexp/
+/snowsql_rt 2.log
+/snowsql_rt 2.log_bootstrap

@@ -64,13 +64,14 @@ class SparkCatalog:
             source_data = spark.read.load(join(self.raw_location, file),
                                           format=self.get_file_type(file), inferSchema="true", header="true")
 
-            target_table = self.get_bronze_table(table_name)
+            target_table = self.get_bronze_data_frame(table_name)
 
             max_id = 0
             if target_table:
                 max_id = self.get_max_integer(target_table, column_name=change_column_id)
 
-            new_data = source_data.filter(f'{change_column_id} > {max_id}')
+            new_data = source_data.filter(f'{change_column_id} > {max_id}')\
+                .withColumn(change_column_id, source_data[change_column_id].cast(IntegerType()))
 
             if new_data.count() > 0:
                 print(f"Saving {new_data.count()} records to {join(self.bronze_location, table_name)}")
@@ -102,7 +103,7 @@ class SparkCatalog:
             result = None
         return result
 
-    def get_bronze_table(self, table_name):
+    def get_bronze_data_frame(self, table_name):
         table = self.get_table( join(self.bronze_location, table_name))
         if table is not None:
             result = table.toDF()

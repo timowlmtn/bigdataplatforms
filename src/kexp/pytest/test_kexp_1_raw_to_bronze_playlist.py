@@ -6,15 +6,14 @@
 # https://www.owlmountain.net/
 # If you like this, donate to KEXP: https://www.kexp.org/donate/
 import unittest
-import os
-import json
-import spark_catalog
-from delta import DeltaTable
+
 from pyspark import Row
-from pyspark.sql.functions import col, explode, regexp_replace, split
+from pyspark.sql.functions import col, regexp_replace
+
+import spark_catalog
+
 
 class SparkCatalogTest(unittest.TestCase):
-
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
     RAW_DATA_FOLDER = "../data/export"
     catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=DELTA_LAKE_FOLDER, raw_location=RAW_DATA_FOLDER)
@@ -36,3 +35,10 @@ class SparkCatalogTest(unittest.TestCase):
         self.catalog.append_bronze(raw_file_match="import_kexp_playlist.csv",
                                    table_name="import_kexp_playlist",
                                    change_column_id="PLAYLIST_ID")
+
+    def test_get_show_kexp_playlist(self):
+        df = self.catalog.get_bronze_data_frame(table_name="import_kexp_playlist")
+        df.show()
+        df.printSchema()
+        # Assertions on the schema
+        self.assertEqual("StructField('PLAYLIST_ID', IntegerType(), True)", str(df.schema["PLAYLIST_ID"]))
