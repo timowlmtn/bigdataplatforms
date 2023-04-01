@@ -58,7 +58,7 @@ class SparkCatalog:
 
     def delete(self, file_full_path):
         try:
-            shutil.rmtree(join(self.bronze_location, file_full_path))
+            shutil.rmtree(file_full_path)
         except OSError as e:
             print("Warning: %s : %s" % (join(self.bronze_location, file_full_path), e.strerror))
 
@@ -77,6 +77,9 @@ class SparkCatalog:
         else:
             result = None
         return result
+
+    def get_silver_df(self, table_name):
+        return self.get_data_frame(join(self.silver_location, table_name))
 
     def get_metadata(self, table_path):
         if table_path not in self.catalog_metadata:
@@ -133,13 +136,15 @@ class SparkCatalog:
     def sql(self, sql_statement):
         return self.sql_context.sql(sql_statement)
 
-    def explode(self, table_df, column_name, target_name, column_separating=", ", replace=True):
-
-        if replace:
-            self.delete(join(self.silver_location, target_name))
-
+    def explode(self, table_df, column_name, target_name, column_separating=", "):
         table_df.withColumn(
             column_name,
             explode(split(regexp_replace(col(column_name), "(^\[)|(\]$)", ""), column_separating))
-        ).write.format("delta").save(join(self.silver_location, target_name))
+        ).write.mode("overwrite").format("delta").save(join(self.silver_location, target_name))
+
+    def truncate_bronze(self, table_name):
+        self.delete(join(self.bronze_location, table_name))
+
+    def truncate_silver(self, table_name):
+        self.delete(join(self.silver_location, table_name))
 
