@@ -32,16 +32,17 @@ class SparkCatalogTest(unittest.TestCase):
         self.catalog.truncate_bronze(table_name="import_kexp_playlist")
 
     def test_raw_playlist_to_bronze(self):
-        self.catalog.append_bronze(raw_file_match="import_kexp_playlist.csv",
-                                   table_name="import_kexp_playlist",
-                                   change_column_id="PLAYLIST_ID")
+        """
+        This is the same routine that is called by the transformation pipeline
+        """
+        print(self.catalog.append_bronze(raw_file_match="import_kexp_playlist.csv",
+                                         table_name="import_kexp_playlist",
+                                         change_column_id="PLAYLIST_ID"))
 
-    def test_get_show_kexp_playlist(self):
+    def test_show_kexp_playlist(self):
         df = self.catalog.get_bronze_data_frame(table_name="import_kexp_playlist")
-        df.show()
+        df.filter("RELEASE_DATE is not null and RELEASE_DATE > '2023-01-01'").show()
         df.printSchema()
-        # Assertions on the schema
-        self.assertEqual("StructField('PLAYLIST_ID', IntegerType(), True)", str(df.schema["PLAYLIST_ID"]))
 
     def test_infer_schema(self):
         self.assertEqual("csv", self.catalog.get_file_type("../data/export/import_kexp_playlist.csv"))

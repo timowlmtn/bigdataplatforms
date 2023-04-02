@@ -1,8 +1,13 @@
+default: transform-raw-bronze
+
 analyze-bronze:
 	python3 kexp_analyze.py
 
-process-row-bronze:
-	python3 kexp_process_raw_to_bronze.py
+transform-raw-bronze:
+	python3 ./kexp_transform_raw_to_bronze.py
+
+transform-bronze-silver:
+	python3 kexp_transform_bronze_silver.py
 
 upgrade-pyspark:
 	pip install pyspark --upgrade

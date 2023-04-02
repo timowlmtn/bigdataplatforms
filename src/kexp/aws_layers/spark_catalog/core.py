@@ -43,7 +43,7 @@ class SparkCatalog:
     catalog = {}
     catalog_metadata = {}
 
-    def __init__(self, app_name, lake_location, raw_location):
+    def __init__(self, app_name, lake_location, raw_location=None):
         self.app_name = app_name
         self.raw_location = raw_location
         self.bronze_location = f"{lake_location}/bronze"
@@ -58,8 +58,10 @@ class SparkCatalog:
         self.sql_context = SQLContext(self.spark.sparkContext)
 
     def append_bronze(self, raw_file_match, table_name, change_column_id):
+        result = {"raw": [], "bronze": []}
         for file in fnmatch.filter(listdir(self.raw_location), raw_file_match):
-            print(f"Found: {file}")
+
+            result["raw"].append(file)
 
             source_data = self.spark.read.load(join(self.raw_location, file),
                                                format=self.get_file_type(file), inferSchema="true", header="true")
@@ -78,10 +80,14 @@ class SparkCatalog:
             new_data = source_data.filter(f'{change_column_id} > {max_id}')
 
             if new_data.count() > 0:
-                print(f"Saving {new_data.count()} records to {join(self.bronze_location, table_name)}")
-                new_data.write.mode("append").format("delta").save(join(self.bronze_location, table_name))
+                table_full_path = join(self.bronze_location, table_name)
+                result["bronze"].append(table_full_path)
+                result["status"] = f"Saving {new_data.count()} records to {table_full_path}."
+                new_data.write.mode("append").format("delta").save(table_full_path)
             else:
-                print(f"No new data found")
+                result["status"] = f"No new data found for {raw_file_match}."
+
+        return result
 
     def delete(self, file_full_path):
         try:
@@ -182,32 +188,6 @@ class SparkCatalog:
                     if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
                                 row[column]):
                         result[column] = "timestamp"
-
-        return result
-
-    def process_raw_to_bronze(self, raw_data_folder, file_match, replace=True):
-        """
-        Process the raw data and if replace is true, then delete the existing object.
-
-        deprecation: This needs to be fixed to be more generic (TB 4/1/23)
-        """
-
-        result = {"raw": [], "bronze": []}
-
-        spark = SparkSession.builder.getOrCreate()
-
-        for file_name in fnmatch.filter(listdir(raw_data_folder), file_match):
-            result["raw"].append(join(raw_data_folder, file_name))
-
-            df = spark.read.load(join(raw_data_folder, file_name),
-                                 format=self.get_file_type(file_name), inferSchema="true", header="true")
-
-            if replace:
-                self.delete(join(self.bronze_location, file_name))
-
-            df.write.format("delta").save(join(self.bronze_location, file_name))
-
-            result["bronze"].append(join(self.bronze_location, file_name))
 
         return result
 
