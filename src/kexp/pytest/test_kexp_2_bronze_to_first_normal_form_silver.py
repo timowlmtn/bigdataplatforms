@@ -7,7 +7,6 @@
 # If you like this, donate to KEXP: https://www.kexp.org/donate/
 
 import unittest
-import os
 import spark_catalog
 
 from pyspark import Row
