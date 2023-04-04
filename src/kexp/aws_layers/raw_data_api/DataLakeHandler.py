@@ -1,5 +1,6 @@
 from botocore.exceptions import ClientError
 import traceback
+from datetime import datetime
 
 
 class DataLakeHandler:
@@ -7,7 +8,9 @@ class DataLakeHandler:
     s3_bucket = None
     s3_stage = None
 
-    def __init__(self, s3_client, s3_bucket, s3_stage):
+    datetime_format_lake = None
+
+    def __init__(self, s3_client, s3_bucket, s3_stage, datetime_format_lake="%Y%m%d%H%M%S"):
         """
         The Client, Bucket, and Stage are considered stateful and we reuse these values every time
         the KexpDataLake object is called.
@@ -19,6 +22,7 @@ class DataLakeHandler:
         self.s3_client = s3_client
         self.s3_bucket = s3_bucket
         self.s3_stage = s3_stage
+        self.datetime_format_lake = datetime_format_lake
 
     def list_objects(self, prefix):
         """
@@ -46,3 +50,16 @@ class DataLakeHandler:
     def get_object_last_source_timestamp(self, prefix):
         return self.list_objects(prefix)
 
+    def get_raw_output(self, default_start_date):
+
+        airdate_before_str = datetime.strftime(default_start_date, self.datetime_format_lake)
+
+        template = f"s3://{self.s3_bucket}/{self.s3_stage}/template/{airdate_before_str}/" \
+                   f"template_{airdate_before_str}.json"
+
+        keys = ["hosts", "programs", "shows", "plays", "timeslots"]
+        raw_output = {}
+        for key in keys:
+            raw_output[key] = template.replace("template", key)
+
+        return raw_output
