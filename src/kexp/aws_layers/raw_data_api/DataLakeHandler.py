@@ -49,21 +49,21 @@ class DataLakeHandler:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
 
     def get_object_last_source_timestamp(self, prefix):
-        list_objects = self.list_objects(prefix)
+        list_objects = self.list_objects(f"s3://{self.s3_bucket}/{prefix}")
         if len(list_objects) > 0:
             return list_objects[0]
         else:
             return None
 
-    def get_raw_output(self, default_start_date):
+    def get_raw_folders(self, default_end_date):
 
-        airdate_before_str = datetime.strftime(default_start_date, self.datetime_format_lake)
+        airdate_after_str = datetime.strftime(default_end_date, self.datetime_format_lake)
 
         regexp = r"([\d]{4})([\d]{2})([\d]{2}).*"
-        match = re.match(regexp, airdate_before_str)
+        match = re.match(regexp, airdate_after_str)
 
-        template = f"s3://{self.s3_bucket}/{self.s3_stage}/template/{match.group(1)}/{match.group(2)}/{match.group(3)}/" \
-                   f"{airdate_before_str}_template.json"
+        template = f"{self.s3_stage}/template/{match.group(1)}/{match.group(2)}/{match.group(3)}/" \
+                   f"{airdate_after_str}"
 
         keys = ["hosts", "programs", "shows", "plays", "timeslots"]
         raw_output = {}

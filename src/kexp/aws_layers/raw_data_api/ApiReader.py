@@ -21,9 +21,9 @@ class ApiReader:
         )
 
         api_requests = {
-            "hosts": f"{self.source_api_url}/hosts/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            "programs": f"{self.source_api_url}/programs/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            "shows": f"{self.source_api_url}/shows/?airdate_before={airdate_before_str}&limit={self.max_rows}",
+            # "hosts": f"{self.source_api_url}/hosts/?airdate_before={airdate_before_str}&limit={self.max_rows}",
+            # "programs": f"{self.source_api_url}/programs/?airdate_before={airdate_before_str}&limit={self.max_rows}",
+            # "shows": f"{self.source_api_url}/shows/?airdate_before={airdate_before_str}&limit={self.max_rows}",
             "plays": f"{self.source_api_url}/plays/?airdate_before={airdate_before_str}&limit={self.max_rows}",
             "timeslots": f"{self.source_api_url}/timeslots/?airdate_before={airdate_before_str}&limit={self.max_rows}"
         }
@@ -32,5 +32,19 @@ class ApiReader:
 
     def get_default_start_date(self):
         now_pst = datetime.now(tz=self.timezone)
-        return now_pst - timedelta(days=7)
+        return now_pst - timedelta(days=1)
 
+    def get_default_end_date(self):
+        return datetime.now(tz=self.timezone)
+
+    @staticmethod
+    def get_start_time_keys():
+        start_times = {
+            "hosts": None,
+            "programs": None,
+            "shows": "start_time",
+            "plays": "airdate",
+            "timeslots": None
+        }
+
+        return start_times
