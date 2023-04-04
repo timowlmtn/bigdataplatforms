@@ -1,5 +1,6 @@
 from botocore.exceptions import ClientError
 import traceback
+import re
 from datetime import datetime
 
 
@@ -48,14 +49,21 @@ class DataLakeHandler:
             raise ValueError(f"Failed to read: {self.s3_bucket} {self.s3_stage}: {exc}\n{traceback.format_exc()}")
 
     def get_object_last_source_timestamp(self, prefix):
-        return self.list_objects(prefix)
+        list_objects = self.list_objects(prefix)
+        if len(list_objects) > 0:
+            return list_objects[0]
+        else:
+            return None
 
     def get_raw_output(self, default_start_date):
 
         airdate_before_str = datetime.strftime(default_start_date, self.datetime_format_lake)
 
-        template = f"s3://{self.s3_bucket}/{self.s3_stage}/template/{airdate_before_str}/" \
-                   f"template_{airdate_before_str}.json"
+        regexp = r"([\d]{4})([\d]{2})([\d]{2}).*"
+        match = re.match(regexp, airdate_before_str)
+
+        template = f"s3://{self.s3_bucket}/{self.s3_stage}/template/{match.group(1)}/{match.group(2)}/{match.group(3)}/" \
+                   f"{airdate_before_str}_template.json"
 
         keys = ["hosts", "programs", "shows", "plays", "timeslots"]
         raw_output = {}
@@ -63,3 +71,6 @@ class DataLakeHandler:
             raw_output[key] = template.replace("template", key)
 
         return raw_output
+
+    def get_root_folder(self):
+        return f"s3://{self.s3_bucket}/{self.s3_stage}"
