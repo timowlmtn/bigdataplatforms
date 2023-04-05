@@ -43,10 +43,8 @@ class RawDataWriter:
                     idx = idx + 1
                     folder = output_folders[api_key]
                     file_name = f"{folder}/{api_key}_{idx}.jsonl"
-                    self.data_lake_handler.s3_client.put_object(Bucket=self.data_lake_handler.s3_bucket,
-                                                                Key=file_name,
-                                                                Body=json.dumps(jsonl),
-                                                                ContentType='bytes')
+                    self.data_lake_handler.storage_provider.put_object(file_name=file_name,
+                                                                       body=json.dumps(jsonl))
                     if start_time_keys[api_key]:
                         if datetime.strptime(jsonl[start_time_keys[api_key]],
                                              self.api_reader.datetime_format_api) < start_date:
