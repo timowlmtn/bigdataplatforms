@@ -40,32 +40,28 @@ class RawDataWriter:
 
             page = requests.get(api_call)
             body_object = json.loads(page.text)
-            idx = 0
             api_idx = 0
 
             while api_idx == 0 or body_object['next'] is not None:
 
-                # print(f"\n{api_idx} {api_call} {api_key} {len(body_object['results'])}")
+                print(f"\n{api_idx} {api_call} {api_key} {len(body_object['results'])}")
 
-                for jsonl in body_object['results']:
-                    idx = idx + 1
-                    folder = output_folders[api_key]
-                    file_name = f"{folder}/{api_key}_{idx}.jsonl"
+                folder = output_folders[api_key]
+                file_name = f"{folder}/{api_key}.jsonl"
 
-                    self.data_lake_handler.storage_provider.put_object(file_name=file_name,
-                                                                       body=json.dumps(jsonl))
+                self.data_lake_handler.storage_provider.put_object(file_name=file_name,
+                                                                   body=body_object['results'])
+                result[api_key].append(file_name)
 
-                    result[api_key].append(file_name)
-
-                # print(body_object['next'])
-                if body_object['next'] is not None and len(body_object['results']) > 0:
+                if body_object['next'] is not None:
                     page = requests.get(body_object['next'])
                     body_object = json.loads(page.text)
-                else:
-                    break
 
                 api_idx = api_idx + 1
                 if api_idx > self.break_handler:
                     raise Exception("Max api exceeded")
+
+                if len(body_object['results']) == 0 or body_object['next'] is None:
+                    break
 
         return result

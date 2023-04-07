@@ -1,4 +1,4 @@
-default: transform-raw-bronze
+default: extract-kexp-api
 
 extract-kexp-api:
 	python3 ./kexp_sync_api_to_raw.py

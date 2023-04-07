@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 import re
-import time
+import json
 
 
 class LocalStorageProvider:
@@ -58,4 +58,5 @@ class LocalStorageProvider:
             os.makedirs(folder)
 
         with open(file_path, write_code) as file_out:
-            file_out.write(body)
+            for row in body:
+                file_out.write(f"{json.dumps(row)}\n")
