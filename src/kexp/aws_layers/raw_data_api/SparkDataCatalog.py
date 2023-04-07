@@ -4,19 +4,19 @@ import re
 from datetime import datetime
 
 
-class DataLakeHandler:
+class SparkDataCatalog:
     storage_provider = None
 
     datetime_format_lake = None
+    keys = ["hosts", "programs", "shows", "plays", "timeslots"]
 
     def __init__(self, storage_provider, datetime_format_lake="%Y%m%d%H%M%S"):
         """
         The Client, Bucket, and Stage are considered stateful, and we reuse these values every time
         the KexpDataLake object is called.
 
-        :param s3_client:
-        :param s3_bucket:
-        :param s3_stage:
+        :param storage_provider:
+        :param datetime_format_lake:
         """
         self.storage_provider = storage_provider
         self.datetime_format_lake = datetime_format_lake
@@ -31,7 +31,8 @@ class DataLakeHandler:
         return self.storage_provider.list_objects(prefix)
 
     def get_object_last_source_timestamp(self, prefix):
-        return self.storage_provider.get_object_last_source_timestamp(prefix)
+        return self.storage_provider.get_object_last_source_timestamp(
+            f"{self.get_root_folder()}/{self.get_stage_folder()}/{prefix}")
 
     def get_raw_folders(self, default_end_date):
 
@@ -43,9 +44,8 @@ class DataLakeHandler:
         template = f"{self.storage_provider.get_stage_folder()}/template/{match.group(1)}/{match.group(2)}/{match.group(3)}/" \
                    f"{airdate_after_str}"
 
-        keys = ["hosts", "programs", "shows", "plays", "timeslots"]
         raw_output = {}
-        for key in keys:
+        for key in self.keys:
             raw_output[key] = template.replace("template", key)
 
         return raw_output
@@ -55,3 +55,16 @@ class DataLakeHandler:
 
     def get_stage_folder(self):
         return self.storage_provider.get_stage_folder()
+
+    def timestamp_to_datetime(self, timestamp: int):
+        if timestamp is not None:
+            return datetime.strptime(str(timestamp), self.datetime_format_lake)
+        else:
+            return None
+
+    def get_sync_timestamps(self):
+        result = {}
+        for object_folder in self.keys:
+            result[object_folder] = self.get_object_last_source_timestamp(f"{object_folder}")
+
+        return result

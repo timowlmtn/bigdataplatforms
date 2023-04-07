@@ -1,4 +1,4 @@
 from .ApiReader import *
-from .DataLakeHandler import *
+from .SparkDataCatalog import *
 from .LocalStorageProvider import *
 from .RawDataWriter import *

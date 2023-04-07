@@ -1,12 +1,12 @@
 import pytz
 from datetime import datetime
 from datetime import timedelta
+from tzlocal import get_localzone
 
 
 class ApiReader:
     source_api_url = None
     timezone = None
-    max_rows = 100
     datetime_format_api = None
 
     def __init__(self, source_api_url, timezone='US/Pacific', datetime_format_api="%Y-%m-%dT%H:%M:%S%z"):
@@ -14,25 +14,39 @@ class ApiReader:
         self.timezone = pytz.timezone(timezone)
         self.datetime_format_api = datetime_format_api
 
-    def get_sync_api_calls(self, source_start_date):
+    def get_sync_api_calls(self, source_start_date_map, source_end_date, max_rows=100):
+
         airdate_before_str = datetime.strftime(
-            source_start_date,
-            self.datetime_format_api
+            source_end_date, self.datetime_format_api
         )
 
         api_requests = {
             # "hosts": f"{self.source_api_url}/hosts/?airdate_before={airdate_before_str}&limit={self.max_rows}",
             # "programs": f"{self.source_api_url}/programs/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            # "shows": f"{self.source_api_url}/shows/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            "plays": f"{self.source_api_url}/plays/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            "timeslots": f"{self.source_api_url}/timeslots/?airdate_before={airdate_before_str}&limit={self.max_rows}"
+            "shows": f"{self.source_api_url}"
+                     f"/shows/?start_time_before={airdate_before_str}"
+                     f"&start_time_after={datetime.strftime(source_start_date_map['shows'], self.datetime_format_api)}"
+                     f"&limit={max_rows}",
+            # "plays": f"{self.source_api_url}"
+            #          f"/plays/?airdate_before={airdate_before_str}&airdate_after={airdate_after_str}"
+            #          f"&limit={self.max_rows}",
+            "timeslots": f"{self.source_api_url}"
+                         f"/timeslots/?start_time_before={airdate_before_str}"
+                         f"&start_time_after="
+                         f"{datetime.strftime(source_start_date_map['timeslots'], self.datetime_format_api)}"
+                         f"&limit={max_rows}"
         }
 
         return api_requests
 
-    def get_default_start_date(self):
-        now_pst = datetime.now(tz=self.timezone)
-        return now_pst - timedelta(days=1)
+    def get_default_start_date(self, date_timestamp):
+        if date_timestamp is None:
+            now_pst = datetime.now(tz=self.timezone)
+            return now_pst - timedelta(days=1)
+        else:
+            current_tz = get_localzone()
+            target_dt = current_tz.localize(date_timestamp).astimezone(self.timezone)
+            return target_dt
 
     def get_default_end_date(self):
         return datetime.now(tz=self.timezone)

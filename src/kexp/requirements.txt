@@ -2,7 +2,7 @@ beautifulsoup4
 lxml
 html5lib
 requests
-
-
-
-
+boto3
+pytz
+pytest
+tzlocal

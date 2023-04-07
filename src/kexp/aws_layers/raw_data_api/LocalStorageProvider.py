@@ -1,5 +1,7 @@
+from datetime import datetime
 import os
 import re
+import time
 
 
 class LocalStorageProvider:
@@ -30,12 +32,13 @@ class LocalStorageProvider:
         except FileNotFoundError:
             return None
 
-    def get_object_last_source_timestamp(self, prefix):
-        list_objects = self.list_objects(prefix)
-        if list_objects and len(list_objects) > 0:
-            return list_objects[0]
-        else:
-            return None
+    def get_object_last_source_timestamp(self, prefix) -> int:
+        result = None
+        if os.path.exists(prefix):
+            mtime = max(os.stat(root).st_mtime for [root, _, _] in os.walk(prefix))
+            result = int(datetime.fromtimestamp(mtime).strftime(self.datetime_format_lake))
+
+        return result
 
     def get_root_folder(self):
         return self.root_folder
