@@ -16,24 +16,22 @@ class SparkCatalogTest(unittest.TestCase):
     raw_data_writer = raw_data_api.RawDataWriter(api_reader=api_reader, data_lake_handler=data_lake_handler)
 
     def test_sync_kexp_api(self):
-        default_start_date = self.api_reader.get_default_start_date()
+        last_sync_max_dates = self.data_lake_handler.get_sync_timestamps()
+
+        play_last_date = self.data_lake_handler.timestamp_to_datetime(last_sync_max_dates["plays"])
+        print(play_last_date)
+
         default_end_date = self.api_reader.get_default_end_date()
-        print(json.dumps(self.api_reader.get_sync_api_calls(default_start_date, default_end_date), indent=2))
+
+        start_date_map = {}
+        for key in last_sync_max_dates:
+            start_date_map[key] = self.api_reader.get_default_start_date(
+                self.data_lake_handler.timestamp_to_datetime(last_sync_max_dates[key]))
+
+        print(json.dumps(self.api_reader.get_sync_api_calls(start_date_map, default_end_date), indent=2))
 
     def test_get_start_keys(self):
         print(json.dumps(self.api_reader.get_start_time_keys(), indent=2))
-
-    def test_get_object_last_source_timestamp(self):
-        self.assertEqual("../../../data", self.data_lake_handler.get_root_folder())
-        self.assertEqual("raw/kexp", self.data_lake_handler.get_stage_folder())
-        last_timestamp = self.data_lake_handler.get_object_last_source_timestamp("shows")
-        print(f'\nDelete all files for none {last_timestamp}')
-
-        print(f'None type defaults {self.api_reader.get_default_start_date(last_timestamp)}')
-
-        print(f'Shows: {self.data_lake_handler.get_object_last_source_timestamp("shows")}')
-        default_end_date = self.api_reader.get_default_end_date()
-        print(json.dumps(self.data_lake_handler.get_raw_folders(default_end_date), indent=2))
 
     def test_default_timestamps(self):
         """
@@ -80,6 +78,6 @@ class SparkCatalogTest(unittest.TestCase):
         if last_source_timestamp is not None:
             self.assertTrue(last_source_timestamp >= 20230407074041, "Expected increasing timestamp")
 
-        print(json.dumps(self.raw_data_writer.write_raw_data(self.data_lake_handler.get_root_folder(), 50), indent=2))
+        print(json.dumps(self.raw_data_writer.write_raw_data(self.data_lake_handler.get_root_folder(), 100), indent=2))
 
 

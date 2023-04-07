@@ -8,6 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 class RawDataWriter:
     api_reader = None
     data_lake_handler = None
+    break_handler = 100
 
     def __init__(self, api_reader, data_lake_handler):
         self.api_reader = api_reader
@@ -44,7 +45,7 @@ class RawDataWriter:
 
             while api_idx == 0 or body_object['next'] is not None:
 
-                # print(f"\n{api_idx} {last_sync_max_date} {api_key} {len(body_object['results'])}")
+                # print(f"\n{api_idx} {api_call} {api_key} {len(body_object['results'])}")
 
                 for jsonl in body_object['results']:
                     idx = idx + 1
@@ -56,10 +57,15 @@ class RawDataWriter:
 
                     result[api_key].append(file_name)
 
-                if body_object['next'] is not None:
+                # print(body_object['next'])
+                if body_object['next'] is not None and len(body_object['results']) > 0:
                     page = requests.get(body_object['next'])
                     body_object = json.loads(page.text)
                 else:
                     break
+
+                api_idx = api_idx + 1
+                if api_idx > self.break_handler:
+                    raise Exception("Max api exceeded")
 
         return result

@@ -16,7 +16,7 @@ class ApiReader:
 
     def get_sync_api_calls(self, source_start_date_map, source_end_date, max_rows=100):
 
-        airdate_before_str = datetime.strftime(
+        source_date_before_str = datetime.strftime(
             source_end_date, self.datetime_format_api
         )
 
@@ -24,14 +24,15 @@ class ApiReader:
             # "hosts": f"{self.source_api_url}/hosts/?airdate_before={airdate_before_str}&limit={self.max_rows}",
             # "programs": f"{self.source_api_url}/programs/?airdate_before={airdate_before_str}&limit={self.max_rows}",
             "shows": f"{self.source_api_url}"
-                     f"/shows/?start_time_before={airdate_before_str}"
+                     f"/shows/?start_time_before={source_date_before_str}"
                      f"&start_time_after={datetime.strftime(source_start_date_map['shows'], self.datetime_format_api)}"
                      f"&limit={max_rows}",
-            # "plays": f"{self.source_api_url}"
-            #          f"/plays/?airdate_before={airdate_before_str}&airdate_after={airdate_after_str}"
-            #          f"&limit={self.max_rows}",
+            "plays": f"{self.source_api_url}"
+                     f"/plays/?airdate_before={source_date_before_str}"
+                     f"&airdate_after={datetime.strftime(source_start_date_map['plays'], self.datetime_format_api)}"
+                     f"&limit={max_rows}",
             "timeslots": f"{self.source_api_url}"
-                         f"/timeslots/?start_time_before={airdate_before_str}"
+                         f"/timeslots/?start_time_before={source_date_before_str}"
                          f"&start_time_after="
                          f"{datetime.strftime(source_start_date_map['timeslots'], self.datetime_format_api)}"
                          f"&limit={max_rows}"
