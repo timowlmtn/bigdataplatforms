@@ -44,14 +44,15 @@ class RawDataWriter:
 
             while api_idx == 0 or body_object['next'] is not None:
 
-                print(f"\n{api_idx} {api_call} {api_key} {len(body_object['results'])}")
+                # print(f"\n{api_idx} {api_call} {api_key} {len(body_object['results'])}")
 
-                folder = output_folders[api_key]
-                file_name = f"{folder}/{api_key}.jsonl"
+                if len(body_object["results"]) > 0:
+                    folder = output_folders[api_key]
+                    file_name = f"{folder}/{api_key}.jsonl"
 
-                self.data_lake_handler.storage_provider.put_object(file_name=file_name,
-                                                                   body=body_object['results'])
-                result[api_key].append(file_name)
+                    self.data_lake_handler.storage_provider.put_object(file_name=file_name,
+                                                                       body=body_object['results'])
+                    result[api_key].append(file_name)
 
                 if body_object['next'] is not None:
                     page = requests.get(body_object['next'])
