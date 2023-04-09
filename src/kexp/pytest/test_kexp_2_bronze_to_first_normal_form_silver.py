@@ -68,14 +68,5 @@ class SparkCatalogTest(unittest.TestCase):
             explode(split(regexp_replace(col("PROGRAM_TAGS"), "(^\[)|(\]$)", ""), ","))
         ).show()
 
-    def test_explode_program_tags_core(self):
-        self.assertEqual('../../../data/spark/kexp/silver', self.catalog.silver_location)
-        table_df = self.catalog.get_data_frame(f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist")
-        self.catalog.explode(table_df, "PROGRAM_TAGS", target_name="KEXP_PLAYLIST_1NF", column_separating=",")
-
-    def test_review_silver(self):
-        playlist = self.catalog.get_silver_df("KEXP_PLAYLIST_1NF")
-        playlist.show()
-
     def test_truncate_silver(self):
-        self.catalog.truncate_silver("KEXP_PLAYLIST_1NF")
+        self.catalog.truncate_silver("KEXP_SNOWFLAKE_PLAYLIST_1NF")

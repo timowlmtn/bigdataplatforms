@@ -59,34 +59,49 @@ class SparkCatalog:
         self.sql_context = SQLContext(self.spark.sparkContext)
 
     def append_bronze(self, raw_file_match, table_name, change_column_id):
+        """
+        Appends to the bronze location.
+
+        @param raw_file_match: A regular expression in the raw directory to match.
+        @param table_name: The table_name (folder) in the bronze output.
+        @param change_column_id: A change column from the raw_file_match folder to indicate changes.
+
+        @return: A JSON object describing the files affected the operation.
+
+        """
         result = {"raw": [], "bronze": []}
-        for file in fnmatch.filter(listdir(self.raw_location), raw_file_match):
 
-            result["raw"].append(file)
+        (root_folder, target_file) = raw_file_match.split("/**/")
+        for root, folder, files in os.walk(os.path.join(self.raw_location, root_folder)):
+            for item in fnmatch.filter(files, target_file):
+                file = os.path.join(root, item)
+                result["raw"].append(file)
+                print(f"FIXME: {file}")
+                source_data = self.spark.read.load(file,
+                                                   format=self.get_file_type(file),
+                                                   inferSchema="true",
+                                                   header="true")
 
-            source_data = self.spark.read.load(join(self.raw_location, file),
-                                               format=self.get_file_type(file), inferSchema="true", header="true")
+                schema = self.infer_schema_raw(file)
 
-            schema = self.infer_schema_raw(file)
+                target_table = self.get_bronze_data_frame(table_name)
 
-            target_table = self.get_bronze_data_frame(table_name)
+                max_id = 0
+                if target_table:
+                    max_id = self.get_max_integer(target_table, column_name=change_column_id)
 
-            max_id = 0
-            if target_table:
-                max_id = self.get_max_integer(target_table, column_name=change_column_id)
+                for column in source_data.columns:
+                    source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
 
-            for column in source_data.columns:
-                source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
+                new_data = source_data.filter(f'{change_column_id} > {max_id}')
 
-            new_data = source_data.filter(f'{change_column_id} > {max_id}')
-
-            if new_data.count() > 0:
-                table_full_path = join(self.bronze_location, table_name)
-                result["bronze"].append(table_full_path)
-                result["status"] = f"Saving {new_data.count()} records to {table_full_path}."
-                new_data.write.mode("append").format("delta").save(table_full_path)
-            else:
-                result["status"] = f"No new data found for {raw_file_match}."
+                if new_data.count() > 0:
+                    table_full_path = join(self.bronze_location, table_name)
+                    result["bronze"].append(table_full_path)
+                    result["status"] = f"Saving {new_data.count()} records to {table_full_path}."
+                    new_data.write.mode("append").format("delta").save(table_full_path)
+                else:
+                    result["status"] = f"No new data found for {raw_file_match}."
 
         return result
 
@@ -125,7 +140,11 @@ class SparkCatalog:
     @staticmethod
     def get_file_type(file):
         split_file = re.match(r"(.*)\.([a-z]+)$", file)
-        return split_file.group(2)
+        result = split_file.group(2)
+        if result == "jsonl":
+            result = "json"
+
+        return result
 
     @staticmethod
     def get_max_integer(df, column_name):
@@ -186,9 +205,10 @@ class SparkCatalog:
 
                 # Update timestamp if it matches
                 if row[column]:
-                    if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
-                                row[column]):
-                        result[column] = "timestamp"
+                    if type(row[column]) == str:
+                        if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
+                                    row[column]):
+                            result[column] = "timestamp"
 
         return result
 
