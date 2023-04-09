@@ -27,6 +27,7 @@ from pyspark.sql import SQLContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, explode, regexp_replace, split
 from pyspark.sql.types import IntegerType
+from delta.tables import *
 
 
 class SparkCatalog:
