@@ -18,13 +18,11 @@ import fnmatch
 import json
 import os
 import shutil
-from os import listdir
 from os.path import join
 import re
 
 from delta import *
 from pyspark.sql import SQLContext
-from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, explode, regexp_replace, split
 from pyspark.sql.types import IntegerType
 from delta.tables import *
@@ -76,7 +74,6 @@ class SparkCatalog:
             for item in fnmatch.filter(files, target_file):
                 file = os.path.join(root, item)
                 result["raw"].append(file)
-                print(f"FIXME: {file}")
                 source_data = self.spark.read.load(file,
                                                    format=self.get_file_type(file),
                                                    inferSchema="true",
@@ -84,14 +81,14 @@ class SparkCatalog:
 
                 schema = self.infer_schema_raw(file)
 
-                target_table = self.get_bronze_data_frame(table_name)
+                max_id = self.max(table_name=table_name, column_name=change_column_id)
 
-                max_id = 0
-                if target_table:
-                    max_id = self.get_max_integer(target_table, column_name=change_column_id)
+                if max_id is None:
+                    max_id = 0
 
                 for column in source_data.columns:
                     source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
+
 
                 new_data = source_data.filter(f'{change_column_id} > {max_id}')
 
@@ -226,3 +223,12 @@ class SparkCatalog:
 
     def truncate_silver(self, table_name):
         self.delete(join(self.silver_location, table_name))
+
+    def max(self, table_name, column_name):
+        data_frame = self.get_bronze_data_frame(table_name)
+
+        max_id = None
+        if data_frame:
+            max_id = self.get_max_integer(data_frame, column_name=column_name)
+
+        return max_id
