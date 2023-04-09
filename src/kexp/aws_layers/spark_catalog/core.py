@@ -73,7 +73,6 @@ class SparkCatalog:
         for root, folder, files in os.walk(os.path.join(self.raw_location, root_folder)):
             for item in fnmatch.filter(files, target_file):
                 file = os.path.join(root, item)
-                result["raw"].append(file)
                 source_data = self.spark.read.load(file,
                                                    format=self.get_file_type(file),
                                                    inferSchema="true",
@@ -89,16 +88,13 @@ class SparkCatalog:
                 for column in source_data.columns:
                     source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
 
-
                 new_data = source_data.filter(f'{change_column_id} > {max_id}')
 
                 if new_data.count() > 0:
                     table_full_path = join(self.bronze_location, table_name)
-                    result["bronze"].append(table_full_path)
-                    result["status"] = f"Saving {new_data.count()} records to {table_full_path}."
+                    result["raw"].append(file)
+                    result["bronze"].append(f"Saving {new_data.count()} records to {table_full_path}")
                     new_data.write.mode("append").format("delta").save(table_full_path)
-                else:
-                    result["status"] = f"No new data found for {raw_file_match}."
 
         return result
 
