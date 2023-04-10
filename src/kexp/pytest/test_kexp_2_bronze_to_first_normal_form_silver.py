@@ -58,7 +58,6 @@ where artist is not null
 order by artist
         """)
         artist_df = artist_df.withColumn("id", explode(artist_df.id))
-        artist_df = self.catalog.add_default_columns(artist_df)
 
         self.assertEqual(['id', 'artist', 'catalog_source', 'catalog_timestamp'], artist_df.columns)
         self.assertEqual(['df.id', 'df.artist', 'df.catalog_source', 'df.catalog_timestamp'],
@@ -69,4 +68,31 @@ order by artist
         print(self.catalog.append_changed(data_frame=artist_df,
                                           table_schema="silver",
                                           table_name="ARTIST",
-                                          identifier_column="id"))
+                                          identifier_columns=["id"]))
+
+    def test_identifier_logic(self):
+        identifier_columns = ["genre", "program_id"]
+        self.assertEqual(["df1.genre != df2.genre", "df1.program_id != df2.program_id"],
+                         list(map(lambda x: f'df1.{x} != df2.{x}', identifier_columns)))
+        identifier_values = list(map(lambda x: f'df1.{x} != df2.{x}', identifier_columns))
+        self.assertEqual("df1.genre != df2.genre and df1.program_id != df2.program_id",
+                         " and ".join(identifier_values))
+
+    def test_explode_program_tags(self):
+        self.catalog.get_data_frame("bronze", "KEXP_PROGRAM")
+        genre_df = self.catalog.sql("""
+        select tags genre, id program_id
+        from KEXP_PROGRAM 
+        where is_active = true
+                """)
+
+        genre_df = genre_df\
+            .withColumn("genre_splitted",  split(col("genre"), ","))\
+            .withColumn("genre", explode("genre_splitted"))\
+            .drop("genre_splitted")
+        genre_df.show()
+
+        print(self.catalog.append_changed(data_frame=genre_df,
+                                          table_schema="silver",
+                                          table_name="GENRE",
+                                          identifier_columns=["genre", "program_id"]))

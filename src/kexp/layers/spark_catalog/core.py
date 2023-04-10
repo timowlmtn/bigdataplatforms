@@ -268,22 +268,26 @@ class SparkCatalog:
                                    unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
         return result
 
-    def append_changed(self, data_frame, table_schema, table_name, identifier_column):
-
+    def append_changed(self, data_frame, table_schema, table_name, identifier_columns):
         data_frame = data_frame.alias('df1')
-        new_dataframe = self.get_data_frame(table_schema, table_name)
-        new_dataframe = new_dataframe.alias('df2')
 
+        new_dataframe = self.get_data_frame(table_schema, table_name)
         changes = data_frame
         if new_dataframe is not None:
-            all_data = data_frame.join(new_dataframe, identifier_column, "outer")
-            changes = all_data.filter(data_frame.id != new_dataframe.id)
-            changes = changes.select("df1.*")
-
-        output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
-        changes.write.mode("append").format("delta").save(output_file)
+            new_dataframe = new_dataframe.alias('df2')
+            all_data = data_frame.join(new_dataframe, identifier_columns, "outer")
+            identifier_values = list(map(lambda x: f'df1.{x} != df2.{x}', identifier_columns))
+            identifier_columns = " and ".join(identifier_values)
+            changes = all_data.select("df1.*").filter(identifier_columns)
 
         result = {table_schema: []}
-        result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
+        if changes.count() > 0:
+            output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
+            changes = self.add_default_columns(changes)
+            changes.write.mode("append").format("delta").save(output_file)
+            result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
+        else:
+            result[table_schema].append(f"No changes detected for {table_name}")
+
         return result
 
