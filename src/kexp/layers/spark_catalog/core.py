@@ -47,9 +47,7 @@ class SparkCatalog:
     def __init__(self, source_name, lake_location, raw_location=None):
         self.source_name = source_name
         self.raw_location = raw_location
-        self.bronze_location = f"{lake_location}/bronze"
-        self.silver_location = f"{lake_location}/silver"
-        self.gold_location = f"{lake_location}/gold"
+        self.lake_location = lake_location
 
         builder = SparkSession.builder.appName(source_name) \
             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
@@ -112,9 +110,9 @@ class SparkCatalog:
 
     def get_table_path(self, table_schema, table_name):
         table_path_lookup = {
-            "bronze": self.bronze_location,
-            "silver": self.silver_location,
-            "gold": self.gold_location
+            "bronze": os.path.join(self.lake_location, "bronze"),
+            "silver": os.path.join(self.lake_location, "silver"),
+            "gold": os.path.join(self.lake_location, "gold")
         }
 
         table_path = os.path.join(table_path_lookup[table_schema], table_name)
@@ -269,3 +267,23 @@ class SparkCatalog:
         result = result.withColumn("catalog_timestamp",
                                    unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
         return result
+
+    def append_changed(self, data_frame, table_schema, table_name, identifier_column):
+
+        data_frame = data_frame.alias('df1')
+        new_dataframe = self.get_data_frame(table_schema, table_name)
+        new_dataframe = new_dataframe.alias('df2')
+
+        changes = data_frame
+        if new_dataframe is not None:
+            all_data = data_frame.join(new_dataframe, identifier_column, "outer")
+            changes = all_data.filter(data_frame.id != new_dataframe.id)
+            changes = changes.select("df1.*")
+
+        output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
+        changes.write.mode("append").format("delta").save(output_file)
+
+        result = {table_schema: []}
+        result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
+        return result
+

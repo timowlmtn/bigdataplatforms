@@ -59,6 +59,14 @@ order by artist
         """)
         artist_df = artist_df.withColumn("id", explode(artist_df.id))
         artist_df = self.catalog.add_default_columns(artist_df)
-        artist_df.show()
 
-        # self.catalog.append_changed(artist_df, table_schema="silver", table_name="ARTIST", id="id")
+        self.assertEqual(['id', 'artist', 'catalog_source', 'catalog_timestamp'], artist_df.columns)
+        self.assertEqual(['df.id', 'df.artist', 'df.catalog_source', 'df.catalog_timestamp'],
+                         list(map(lambda x: 'df.' + x, artist_df.columns)))
+        self.assertEqual("df.id, df.artist, df.catalog_source, df.catalog_timestamp",
+                         ", ".join(list(map(lambda x: 'df.' + x, artist_df.columns))))
+
+        print(self.catalog.append_changed(data_frame=artist_df,
+                                          table_schema="silver",
+                                          table_name="ARTIST",
+                                          identifier_column="id"))
