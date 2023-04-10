@@ -59,10 +59,10 @@ order by artist
         """)
         artist_df = artist_df.withColumn("id", explode(artist_df.id))
 
-        self.assertEqual(['id', 'artist', 'catalog_source', 'catalog_timestamp'], artist_df.columns)
-        self.assertEqual(['df.id', 'df.artist', 'df.catalog_source', 'df.catalog_timestamp'],
+        self.assertEqual(['id', 'artist'], artist_df.columns)
+        self.assertEqual(['df.id', 'df.artist'],
                          list(map(lambda x: 'df.' + x, artist_df.columns)))
-        self.assertEqual("df.id, df.artist, df.catalog_source, df.catalog_timestamp",
+        self.assertEqual("df.id, df.artist",
                          ", ".join(list(map(lambda x: 'df.' + x, artist_df.columns))))
 
         print(self.catalog.append_changed(data_frame=artist_df,
