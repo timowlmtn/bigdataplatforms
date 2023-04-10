@@ -1,4 +1,4 @@
-export PYTHONPATH=../aws_layers:.
+export PYTHONPATH=../layers:.
 
 # Here is where I set my private S3 Bucket and stage locations
 source ../../../../setenv.sh

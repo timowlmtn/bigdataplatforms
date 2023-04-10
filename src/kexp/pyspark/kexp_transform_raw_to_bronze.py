@@ -18,8 +18,11 @@ def main():
                                          raw_location=f'{os.getenv("RAW_DATA_FOLDER")}/kexp')
 
     kexp_transform = {
+        "hosts": {"table_name": "KEXP_HOST", "change_column_id": "ID"},
+        "plays": {"table_name": "KEXP_PLAYLIST", "change_column_id": "ID"},
+        "programs": {"table_name": "KEXP_PROGRAM", "change_column_id": "ID"},
         "shows": {"table_name": "KEXP_SHOW", "change_column_id": "ID"},
-        "plays": {"table_name": "KEXP_PLAYLIST", "change_column_id": "ID"}
+        "timeslots": {"table_name": "KEXP_TIMESLOT", "change_column_id": "ID"}
     }
 
     for raw_folder in kexp_transform.keys():

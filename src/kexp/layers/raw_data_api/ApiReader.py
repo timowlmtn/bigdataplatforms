@@ -21,8 +21,8 @@ class ApiReader:
         )
 
         api_requests = {
-            # "hosts": f"{self.source_api_url}/hosts/?airdate_before={airdate_before_str}&limit={self.max_rows}",
-            # "programs": f"{self.source_api_url}/programs/?airdate_before={airdate_before_str}&limit={self.max_rows}",
+            "hosts": f"{self.source_api_url}/hosts/?limit={max_rows}",
+            "programs": f"{self.source_api_url}/programs/?limit={max_rows}",
             "shows": f"{self.source_api_url}"
                      f"/shows/?start_time_before={source_date_before_str}"
                      f"&start_time_after={datetime.strftime(source_start_date_map['shows'], self.datetime_format_api)}"
