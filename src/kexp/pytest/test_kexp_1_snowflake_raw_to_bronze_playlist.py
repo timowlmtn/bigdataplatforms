@@ -85,4 +85,4 @@ class SparkCatalogTest(unittest.TestCase):
                           'thumbnail_uri': 'string',
                           'track_id': 'integer',
                           'uri': 'string'},
-                         self.snowflake_catalog.infer_schema_raw(raw_file_match=test_file))
+                         self.snowflake_catalog.infer_schema_raw(table_name="KEXP_PLAYLIST", raw_file_match=test_file))

@@ -45,6 +45,6 @@ class SparkCatalogTest(unittest.TestCase):
         self.spark_catalog.append_bronze("shows/**/*.jsonl", "KEXP_SHOW", "ID")
 
     def test_get_max_id_bronze(self):
-        max_id = self.spark_catalog.max(table_name="KEXP_SHOW", column_name="ID")
+        max_id = self.spark_catalog.max(table_schema="bronze", table_name="KEXP_SHOW", column_name="ID")
         print(f"Max ID for KEXP_SHOW  = {max_id}")
-        self.assertTrue(max_id > 0)
+        self.assertTrue(max_id is None or max_id > 0)

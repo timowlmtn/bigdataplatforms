@@ -41,6 +41,7 @@ class SparkCatalog:
 
     catalog = {}
     catalog_metadata = {}
+    catalog_schemas = {}
 
     def __init__(self, app_name, lake_location, raw_location=None):
         self.app_name = app_name
@@ -70,7 +71,8 @@ class SparkCatalog:
         result = {"raw": [], "bronze": []}
 
         (root_folder, target_file) = raw_file_match.split("/**/")
-        for root, folder, files in os.walk(os.path.join(self.raw_location, root_folder)):
+        for root, folder, files in sorted(os.walk(os.path.join(self.raw_location, root_folder))):
+            # print(f"DEBUG: {root} {folder}")
             for item in fnmatch.filter(files, target_file):
                 file = os.path.join(root, item)
                 source_data = self.spark.read.load(file,
@@ -78,7 +80,7 @@ class SparkCatalog:
                                                    inferSchema="true",
                                                    header="true")
 
-                schema = self.infer_schema_raw(file)
+                schema = self.infer_schema_raw(table_name, file)
 
                 max_id = self.max(table_schema="bronze", table_name=table_name, column_name=change_column_id)
 
@@ -90,6 +92,8 @@ class SparkCatalog:
                     source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
 
                 new_data = source_data.filter(f'{change_column_id} > {max_id}')
+
+                # print(f"DEBUG: {file} {max_id} {new_data.count()} --> {table_name}")
 
                 if new_data.count() > 0:
                     table_full_path = join(self.bronze_location, table_name)
@@ -179,53 +183,58 @@ class SparkCatalog:
 
         return result
 
-    def infer_schema_raw(self, raw_file_match):
-        file = join(self.raw_location, raw_file_match)
-        source_data = self.sql_context.read.load(file,
-                                                 format=self.get_file_type(file),
-                                                 inferSchema="true",
-                                                 header="true").limit(3)
-        result = {}
+    def infer_schema_raw(self, table_name, raw_file_match):
+        if table_name in self.catalog_schemas:
+            return self.catalog_schemas[table_name]
+        else:
+            file = join(self.raw_location, raw_file_match)
+            source_data = self.sql_context.read.load(file,
+                                                     format=self.get_file_type(file),
+                                                     inferSchema="true",
+                                                     header="true").limit(20)
+            result = {}
 
-        for row in source_data.collect():
-            for column in row.asDict():
-                if column not in result:
-                    if row[column] is not None:
-                        if type(row[column]) == str:
-                            default_type = "string"
-                        elif type(row[column]) == int:
-                            default_type = "integer"
-                        elif type(row[column]) == bool:
-                            default_type = "boolean"
-                        elif type(row[column]) == list:
-                            default_type = "array<string>"
+            for row in source_data.collect():
+                for column in row.asDict():
+                    if column not in result:
+                        if row[column] is not None:
+                            if type(row[column]) == str:
+                                default_type = "string"
+                            elif type(row[column]) == int:
+                                default_type = "integer"
+                            elif type(row[column]) == bool:
+                                default_type = "boolean"
+                            elif type(row[column]) == list:
+                                default_type = "array<string>"
+                            else:
+                                default_type = type(row[column]).__name__
                         else:
-                            default_type = type(row[column]).__name__
-                    else:
-                        default_type = "string"
+                            default_type = "string"
 
-                    if column.upper().endswith("_DATE"):
-                        default_type = "date"
-                    elif column.upper().endswith("_TIMESTAMP"):
-                        default_type = "timestamp"
-                    elif column.upper().endswith("_DATETIME"):
-                        default_type = "datetime"
-                    elif column.upper().endswith("_ID" or column.endswith("_KEY")):
-                        default_type = "integer"
+                        if column.upper().endswith("_DATE"):
+                            default_type = "date"
+                        elif column.upper().endswith("_TIMESTAMP"):
+                            default_type = "timestamp"
+                        elif column.upper().endswith("_DATETIME"):
+                            default_type = "datetime"
+                        elif column.upper().endswith("_ID" or column.endswith("_KEY")):
+                            default_type = "integer"
 
-                    result[column] = default_type
+                        result[column] = default_type
 
-                # Update timestamp if it matches
-                if row[column]:
-                    if type(row[column]) == str:
-                        if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
-                                    row[column]):
-                            result[column] = "timestamp"
-                        elif re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}[\-\+]?[0-9]{2}:[0-9]{2}",
-                                      row[column]):
-                            result[column] = "timestamp"
+                    # Update timestamp if it matches
+                    if row[column]:
+                        if type(row[column]) == str:
+                            if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
+                                        row[column]):
+                                result[column] = "timestamp"
+                            elif re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}[\-\+]?[0-9]{2}:[0-9]{2}",
+                                          row[column]):
+                                result[column] = "timestamp"
 
-                # print(f"DEBUG: {column}: {row[column]} {type(row[column])} --> {result[column]}")
+                    # print(f"DEBUG: {column}: {row[column]} {type(row[column])} --> {result[column]}")
+            # Cache the schema definitions
+            self.catalog_schemas[table_name] = result
 
         return result
 
