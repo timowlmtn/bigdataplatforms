@@ -80,7 +80,7 @@ class SparkCatalog:
 
                 schema = self.infer_schema_raw(file)
 
-                max_id = self.max(table_name=table_name, column_name=change_column_id)
+                max_id = self.max(table_schema="bronze", table_name=table_name, column_name=change_column_id)
 
                 if max_id is None:
                     max_id = 0
@@ -226,8 +226,8 @@ class SparkCatalog:
     def truncate_silver(self, table_name):
         self.delete(join(self.silver_location, table_name))
 
-    def max(self, table_name, column_name):
-        data_frame = self.get_bronze_data_frame(table_name)
+    def max(self, table_schema, table_name, column_name):
+        data_frame = self.get_data_frame(table_schema, table_name)
 
         max_id = None
         if data_frame:
