@@ -19,7 +19,7 @@ class SparkCatalogTest(unittest.TestCase):
     catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=DELTA_LAKE_FOLDER)
 
     def test_get_table(self):
-        table = self.catalog.get_table("bronze", "KEXP_PLAYLIST")
+        table = self.catalog.get_delta_table("bronze", "KEXP_PLAYLIST")
         print(table)
         self.assertFalse(table is None)
 
@@ -39,7 +39,7 @@ class SparkCatalogTest(unittest.TestCase):
         self.assertTrue(table_schema is not None)
 
     def test_get_schema_api(self):
-        delta_table = self.catalog.get_table("bronze", "KEXP_PLAYLIST")
+        delta_table = self.catalog.get_delta_table("bronze", "KEXP_PLAYLIST")
         table_df = delta_table.toDF()
         table_df.show()
         table_df.printSchema()  # Good

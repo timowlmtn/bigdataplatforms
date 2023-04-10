@@ -115,7 +115,7 @@ class SparkCatalog:
 
         return table_path
 
-    def get_table(self, table_schema, table_name):
+    def get_delta_table(self, table_schema, table_name):
         result = None
 
         table_path = self.get_table_path(table_schema, table_name)
@@ -130,7 +130,7 @@ class SparkCatalog:
         return result
 
     def get_data_frame(self, table_schema, table_name):
-        table = self.get_table(table_schema, table_name)
+        table = self.get_delta_table(table_schema, table_name)
         if table is not None:
             data_frame = table.toDF()
             data_frame.createOrReplaceTempView(table_name)

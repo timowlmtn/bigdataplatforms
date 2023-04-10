@@ -61,7 +61,7 @@ class SparkCatalogTest(unittest.TestCase):
 
     def test_explode_program_tags_delta(self):
         table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        table = self.catalog.get_table(table_path)
+        table = self.catalog.get_delta_table(table_path)
         table_flattened = table.toDF()
         table_flattened.withColumn(
              "PROGRAM_TAGS",
