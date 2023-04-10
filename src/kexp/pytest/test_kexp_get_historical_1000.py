@@ -1,5 +1,3 @@
-import re
-
 import boto3
 import unittest
 import lakelayer

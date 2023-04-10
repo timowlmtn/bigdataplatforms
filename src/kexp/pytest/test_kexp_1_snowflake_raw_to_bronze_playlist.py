@@ -33,19 +33,6 @@ class SparkCatalogTest(unittest.TestCase):
     def test_truncate_bronze_kexp_playlist(self):
         self.snowflake_catalog.truncate_bronze(table_name="import_kexp_playlist")
 
-    def test_raw_playlist_to_bronze(self):
-        """
-        This is the same routine that is called by the transformation pipeline
-        """
-        print(self.snowflake_catalog.append_bronze(raw_file_match="import_kexp_playlist.csv",
-                                                   table_name="import_kexp_playlist",
-                                                   change_column_id="PLAYLIST_ID"))
-
-    def test_show_kexp_playlist(self):
-        df = self.snowflake_catalog.get_bronze_data_frame(table_name="import_kexp_playlist")
-        df.filter("RELEASE_DATE is not null and RELEASE_DATE > '2023-01-01'").show()
-        df.printSchema()
-
     def test_infer_schema(self):
         self.assertEqual("csv", self.snowflake_catalog.get_file_type("../data/export/import_kexp_playlist.csv"))
 
@@ -69,3 +56,33 @@ class SparkCatalogTest(unittest.TestCase):
                            "START_TIME": "timestamp",
                            "TAGLINE": "string"}
         self.assertEqual(expected_result, schema)
+
+    def test_infer_schema_raw(self):
+        test_file = "../pytest/20230410061327/plays.jsonl"
+        self.assertEqual("json", self.snowflake_catalog.get_file_type(test_file))
+
+        self.assertEqual({'airdate': 'timestamp',
+                          'album': 'string',
+                          'artist': 'string',
+                          'artist_ids': 'array<string>',
+                          'comment': 'string',
+                          'id': 'integer',
+                          'image_uri': 'string',
+                          'is_live': 'boolean',
+                          'is_local': 'boolean',
+                          'is_request': 'boolean',
+                          'label_ids': 'array<string>',
+                          'labels': 'array<string>',
+                          'play_type': 'string',
+                          'recording_id': 'integer',
+                          'release_date': 'date',
+                          'release_group_id': 'integer',
+                          'release_id': 'integer',
+                          'rotation_status': 'string',
+                          'show': 'integer',
+                          'show_uri': 'string',
+                          'song': 'string',
+                          'thumbnail_uri': 'string',
+                          'track_id': 'integer',
+                          'uri': 'string'},
+                         self.snowflake_catalog.infer_schema_raw(raw_file_match=test_file))

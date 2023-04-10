@@ -1,8 +1,6 @@
 import unittest
-import os
 import json
 import spark_catalog
-from delta import DeltaTable
 
 
 #

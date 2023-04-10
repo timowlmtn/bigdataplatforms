@@ -13,16 +13,11 @@ def main():
         exit("run: export RAW_DATA_FOLDER=<your data> and DELTA_LAKE_FOLDER=<your lake location>")
 
     result = {
-        "sources": {
-            "lake_location": f'{os.getenv("DELTA_LAKE_FOLDER")}/kexp',
-            "raw_location": f'{os.getenv("RAW_DATA_FOLDER")}/kexp'
-        }
     }
 
-    print(f'Running with {os.getenv("RAW_DATA_FOLDER")}')
     catalog = spark_catalog.SparkCatalog(app_name="kexp",
-                                         lake_location=result["sources"]["lake_location"],
-                                         raw_location=result["sources"]["raw_location"])
+                                         lake_location=f'{os.getenv("DELTA_LAKE_FOLDER")}/kexp',
+                                         raw_location=f'{os.getenv("RAW_DATA_FOLDER")}/kexp')
 
     kexp_transform = {
         "hosts": {"table_name": "KEXP_HOST", "change_column_id": "ID"},

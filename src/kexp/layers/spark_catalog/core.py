@@ -86,6 +86,7 @@ class SparkCatalog:
                     max_id = 0
 
                 for column in source_data.columns:
+                    # print(f"DEBUG: {column} {source_data[column]} --> {schema[column]} {file}")
                     source_data = source_data.withColumn(column, source_data[column].cast(schema[column]))
 
                 new_data = source_data.filter(f'{change_column_id} > {max_id}')
@@ -189,18 +190,30 @@ class SparkCatalog:
         for row in source_data.collect():
             for column in row.asDict():
                 if column not in result:
-                    default_type = "string"
-                    if column.endswith("_DATE"):
-                        default_type = "date"
-                    elif column.endswith("_TIMESTAMP"):
-                        default_type = "timestamp"
-                    elif column.endswith("_DATETIME"):
-                        default_type = "datetime"
-                    elif column.endswith("_ID" or column.endswith("_KEY")):
-                        default_type = "integer"
-                    result[column] = default_type
+                    if row[column] is not None:
+                        if type(row[column]) == str:
+                            default_type = "string"
+                        elif type(row[column]) == int:
+                            default_type = "integer"
+                        elif type(row[column]) == bool:
+                            default_type = "boolean"
+                        elif type(row[column]) == list:
+                            default_type = "array<string>"
+                        else:
+                            default_type = type(row[column]).__name__
+                    else:
+                        default_type = "string"
 
-                # print(f"{column}: {row[column]}")
+                    if column.upper().endswith("_DATE"):
+                        default_type = "date"
+                    elif column.upper().endswith("_TIMESTAMP"):
+                        default_type = "timestamp"
+                    elif column.upper().endswith("_DATETIME"):
+                        default_type = "datetime"
+                    elif column.upper().endswith("_ID" or column.endswith("_KEY")):
+                        default_type = "integer"
+
+                    result[column] = default_type
 
                 # Update timestamp if it matches
                 if row[column]:
@@ -208,6 +221,11 @@ class SparkCatalog:
                         if re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} [\-\+]?[0-9]{4}",
                                     row[column]):
                             result[column] = "timestamp"
+                        elif re.match(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}[\-\+]?[0-9]{2}:[0-9]{2}",
+                                      row[column]):
+                            result[column] = "timestamp"
+
+                # print(f"DEBUG: {column}: {row[column]} {type(row[column])} --> {result[column]}")
 
         return result
 
