@@ -95,7 +95,7 @@ class SparkCatalog:
                 # print(f"DEBUG: {file} {max_id} {new_data.count()} --> {table_name}")
 
                 if new_data.count() > 0:
-                    table_full_path = join(self.bronze_location, table_name)
+                    table_full_path = os.path.join(os.path.join(self.lake_location, "bronze"), table_name)
                     result["raw"].append(file)
                     result["bronze"].append(f"Saving {new_data.count()} records to {table_full_path}")
                     new_data.write.mode("append").format("delta").save(table_full_path)

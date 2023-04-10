@@ -15,7 +15,7 @@ def main():
     result = {
     }
 
-    catalog = spark_catalog.SparkCatalog(app_name="kexp",
+    catalog = spark_catalog.SparkCatalog(source_name="kexp",
                                          lake_location=f'{os.getenv("DELTA_LAKE_FOLDER")}/kexp',
                                          raw_location=f'{os.getenv("RAW_DATA_FOLDER")}/kexp')
 
