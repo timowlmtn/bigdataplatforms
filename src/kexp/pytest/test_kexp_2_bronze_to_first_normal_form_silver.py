@@ -16,7 +16,7 @@ from pyspark.sql.functions import col, explode, regexp_replace, split
 class SparkCatalogTest(unittest.TestCase):
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
 
-    catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=DELTA_LAKE_FOLDER)
+    catalog = spark_catalog.SparkCatalog(source_name="kexp", lake_location=DELTA_LAKE_FOLDER)
 
     def test_regexp_replace(self):
         df = self.catalog.sql_context.createDataFrame([Row(col1='z1', col2='[a1, b2, c3]', col3='foo')])
@@ -49,24 +49,16 @@ class SparkCatalogTest(unittest.TestCase):
             explode(split(regexp_replace(col("col2"), "(^\[)|(\]$)", ""), ", "))
         ).show()
 
-    def test_explode_program_tags(self):
-        df = self.catalog.sql_context.createDataFrame(
-            [Row(ARTIST='R.E.M.',
-                 PROGRAM_TAGS='Rock,Eclectic,Variety Mix',
-                 HOST_NAMES='"[:"Cheryl Waters"",""Eva Walker""]"')])
-        df.withColumn(
-            "PROGRAM_TAGS",
-            explode(split(regexp_replace(col("PROGRAM_TAGS"), "(^\[)|(\]$)", ""), ","))
-        ).show()
+    def test_explode_artist(self):
+        self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
+        artist_df = self.catalog.sql("""
+select artist_ids id, artist
+from KEXP_PLAYLIST 
+where artist is not null 
+order by artist
+        """)
+        artist_df = artist_df.withColumn("id", explode(artist_df.id))
+        artist_df = self.catalog.add_default_columns(artist_df)
+        artist_df.show()
 
-    def test_explode_program_tags_delta(self):
-        table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        table = self.catalog.get_delta_table(table_path)
-        table_flattened = table.toDF()
-        table_flattened.withColumn(
-             "PROGRAM_TAGS",
-            explode(split(regexp_replace(col("PROGRAM_TAGS"), "(^\[)|(\]$)", ""), ","))
-        ).show()
-
-    def test_truncate_silver(self):
-        self.catalog.truncate_silver("KEXP_SNOWFLAKE_PLAYLIST_1NF")
+        # self.catalog.append_changed(artist_df, table_schema="silver", table_name="ARTIST", id="id")

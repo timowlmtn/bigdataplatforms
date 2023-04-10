@@ -14,7 +14,7 @@ class SparkCatalogTest(unittest.TestCase):
 
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
 
-    catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=DELTA_LAKE_FOLDER)
+    catalog = spark_catalog.SparkCatalog(source_name="kexp", lake_location=DELTA_LAKE_FOLDER)
 
     def test_get_table(self):
         table = self.catalog.get_delta_table("bronze", "KEXP_PLAYLIST")

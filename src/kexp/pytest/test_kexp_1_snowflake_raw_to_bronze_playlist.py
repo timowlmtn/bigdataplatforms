@@ -16,7 +16,7 @@ import spark_catalog
 class SparkCatalogTest(unittest.TestCase):
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
     SNOWFLAKE_RAW_DATA_FOLDER = "../data/export"
-    snowflake_catalog = spark_catalog.SparkCatalog(app_name="kexp",
+    snowflake_catalog = spark_catalog.SparkCatalog(source_name="kexp",
                                                    lake_location=DELTA_LAKE_FOLDER,
                                                    raw_location=SNOWFLAKE_RAW_DATA_FOLDER)
 

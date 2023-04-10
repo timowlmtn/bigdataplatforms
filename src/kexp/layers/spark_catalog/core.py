@@ -23,13 +23,14 @@ import re
 
 from delta import *
 from pyspark.sql import SQLContext
-from pyspark.sql.functions import col, explode, regexp_replace, split
+from pyspark.sql.functions import col, explode, regexp_replace, split, lit, unix_timestamp
 from pyspark.sql.types import IntegerType
 from delta.tables import *
-
+import time
+import datetime
 
 class SparkCatalog:
-    app_name = None
+    source_name = None
 
     raw_location = None
     bronze_location = None
@@ -43,14 +44,14 @@ class SparkCatalog:
     catalog_metadata = {}
     catalog_schemas = {}
 
-    def __init__(self, app_name, lake_location, raw_location=None):
-        self.app_name = app_name
+    def __init__(self, source_name, lake_location, raw_location=None):
+        self.source_name = source_name
         self.raw_location = raw_location
         self.bronze_location = f"{lake_location}/bronze"
         self.silver_location = f"{lake_location}/silver"
         self.gold_location = f"{lake_location}/gold"
 
-        builder = SparkSession.builder.appName(app_name) \
+        builder = SparkSession.builder.appName(source_name) \
             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
             .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
 
@@ -261,3 +262,10 @@ class SparkCatalog:
             max_id = self.get_max_integer(data_frame, column_name=column_name)
 
         return max_id
+
+    def add_default_columns(self, table_data_frame):
+        result = table_data_frame.withColumn("catalog_source", lit(self.source_name))
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+        result = result.withColumn("catalog_timestamp",
+                                   unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
+        return result
