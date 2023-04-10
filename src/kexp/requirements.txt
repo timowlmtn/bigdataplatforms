@@ -8,3 +8,7 @@ pytest==7.3.0
 tzlocal
 pyspark==3.3.2
 delta-spark
+ipykernel
+jupyterlab
+notebook
+duckdb

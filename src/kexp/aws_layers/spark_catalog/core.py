@@ -104,31 +104,39 @@ class SparkCatalog:
         except OSError as e:
             print("Warning: %s : %s" % (join(self.bronze_location, file_full_path), e.strerror))
 
-    def get_table(self, table_path):
+    def get_table_path(self, table_schema, table_name):
+        table_path_lookup = {
+            "bronze": self.bronze_location,
+            "silver": self.silver_location,
+            "gold": self.gold_location
+        }
+
+        table_path = os.path.join(table_path_lookup[table_schema], table_name)
+
+        return table_path
+
+    def get_table(self, table_schema, table_name):
         result = None
+
+        table_path = self.get_table_path(table_schema, table_name)
+
         if table_path in self.catalog:
             result = self.catalog[table_path]
         else:
             if os.path.exists(table_path):
-                self.catalog[table_path] = DeltaTable.forPath(self.spark, table_path)
+                delta_table = DeltaTable.forPath(self.spark, table_path)
+                self.catalog[table_path] = delta_table
                 result = self.catalog[table_path]
         return result
 
-    def get_data_frame(self, table_path):
-        table = self.get_table(table_path)
+    def get_data_frame(self, table_schema, table_name):
+        table = self.get_table(table_schema, table_name)
         if table is not None:
-            result = table.toDF()
+            data_frame = table.toDF()
+            data_frame.createOrReplaceTempView(table_name)
         else:
-            result = None
-        return result
-
-    def get_bronze_data_frame(self, table_name):
-        table = self.get_table(join(self.bronze_location, table_name))
-        if table is not None:
-            result = table.toDF()
-        else:
-            result = None
-        return result
+            data_frame = None
+        return data_frame
 
     @staticmethod
     def get_file_type(file):
@@ -144,10 +152,8 @@ class SparkCatalog:
         row = df.withColumn(column_name, df[column_name].cast(IntegerType())).agg({column_name: "max"}).first()
         return row[0]
 
-    def get_silver_df(self, table_name):
-        return self.get_data_frame(join(self.silver_location, table_name))
-
-    def get_metadata(self, table_path):
+    def get_metadata(self, table_schema, table_name):
+        table_path = self.get_table_path(table_schema, table_name)
         if table_path not in self.catalog_metadata:
             delta_dir = join(table_path, "_delta_log")
             for file in os.listdir(delta_dir):
@@ -163,8 +169,8 @@ class SparkCatalog:
 
         return self.catalog_metadata[table_path]
 
-    def get_schema(self, table_path):
-        metadata = self.get_metadata(table_path)
+    def get_schema(self, table_schema, table_name):
+        metadata = self.get_metadata(table_schema, table_name)
         result = None
         if metadata is not None:
             schema_string = metadata["schemaString"]

@@ -16,29 +16,35 @@ class SparkCatalogTest(unittest.TestCase):
 
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
 
-    catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=os.getenv("DELTA_LAKE_FOLDER"))
+    catalog = spark_catalog.SparkCatalog(app_name="kexp", lake_location=DELTA_LAKE_FOLDER)
 
     def test_get_table(self):
-        table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        table = self.catalog.get_table(table_path)
+        table = self.catalog.get_table("bronze", "KEXP_PLAYLIST")
         print(table)
+        self.assertFalse(table is None)
+
+    def test_get_data_frame(self):
+        df = self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
+        df.show()
+        self.assertFalse(df is None)
 
     def test_get_metadata(self):
-        table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        metadata = self.catalog.get_metadata(table_path)
+        metadata = self.catalog.get_metadata("bronze", "KEXP_PLAYLIST")
         print(json.dumps(metadata, indent=2))
         self.assertTrue(metadata is not None)
 
     def test_get_schema(self):
-        table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        table_schema = self.catalog.get_schema(table_path)
+        table_schema = self.catalog.get_schema("bronze", "KEXP_PLAYLIST")
         print(json.dumps(table_schema, indent=2))
         self.assertTrue(table_schema is not None)
 
     def test_get_schema_api(self):
-        table_path = f"{self.DELTA_LAKE_FOLDER}/bronze/import_kexp_playlist"
-        delta_table = self.catalog.get_table(table_path)
+        delta_table = self.catalog.get_table("bronze", "KEXP_PLAYLIST")
         table_df = delta_table.toDF()
         table_df.show()
         table_df.printSchema()  # Good
         print(table_df.schema)
+
+    def test_sql(self):
+        self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
+        self.catalog.sql("select count(*) as counts from KEXP_PLAYLIST").show()
