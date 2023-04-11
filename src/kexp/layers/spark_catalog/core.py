@@ -322,10 +322,11 @@ class SparkCatalog:
 
         result = {table_schema: []}
         if changes.count() > 0:
+            record_count = changes.count()
             output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
             changes = self.add_default_columns(table_schema, source_temp_view_name, changes)
             changes.write.mode("append").format("delta").save(output_file)
-            result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
+            result[table_schema].append(f"Saving {record_count} records to {output_file}")
         else:
             result[table_schema].append(f"No changes detected for {table_name}")
 
