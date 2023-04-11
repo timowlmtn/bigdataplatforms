@@ -1,19 +1,80 @@
 {
   "kexp": {
     "ARTIST": {
-          "source_columns": ["artist_ids id", "artist"],
-          "source_table": "KEXP_PLAYLIST",
-          "source_filter": "artist is not null",
-          "source_order": "order by artist",
-          "target_identifier_columns": ["id"],
-          "explode_array": ["id"]
+      "source_columns": [
+        "artist_ids id",
+        "artist"
+      ],
+      "source_table": "KEXP_PLAYLIST",
+      "source_filter": "artist is not null",
+      "source_order": "order by artist",
+      "target_identifier_columns": [
+        "id"
+      ],
+      "explode_array": [
+        "id"
+      ]
+    },
+    "PLAYLIST": {
+      "source_columns": [
+        "airdate",
+        "album",
+        "artist",
+        "comment",
+        "id",
+        "image_uri",
+        "is_live",
+        "is_local",
+        "is_request",
+        "play_type",
+        "recording_id",
+        "release_date",
+        "release_group_id",
+        "release_id",
+        "rotation_status",
+        "show",
+        "show_uri",
+        "song",
+        "thumbnail_uri",
+        "track_id",
+        "uri"
+      ],
+      "source_table": "KEXP_PLAYLIST",
+      "target_identifier_columns": [
+        "id"
+      ]
     },
     "PROGRAM_GENRE": {
-          "source_columns": ["tags genre", "id program_id"],
-          "source_table": "KEXP_PROGRAM",
-          "source_filter": "is_active = true",
-          "target_identifier_columns": ["genre", "program_id"],
-          "explode_string": ["genre"]
+      "source_columns": [
+        "tags genre",
+        "id program_id"
+      ],
+      "source_table": "KEXP_PROGRAM",
+      "source_filter": "is_active = true",
+      "target_identifier_columns": [
+        "genre",
+        "program_id"
+      ],
+      "explode_string": [
+        "genre"
+      ]
+    },
+    "SHOW": {
+      "source_columns": [
+        "id",
+        "image_uri",
+        "program",
+        "program_name",
+        "program_tags",
+        "program_uri",
+        "start_time",
+        "tagline",
+        "uri"
+      ],
+      "source_table": "KEXP_SHOW",
+      "target_identifier_columns": [
+        "id"
+      ]
     }
   }
 }

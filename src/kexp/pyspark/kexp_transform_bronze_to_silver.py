@@ -24,7 +24,12 @@ def main():
     for table_name in transform[source]:
         source_columns = ', '.join(transform[source][table_name]["source_columns"])
         source_table = transform[source][table_name]["source_table"]
-        source_filter = transform[source][table_name]["source_filter"]
+
+        if "source_filter" in transform[source][table_name]:
+            source_filter = f'where {transform[source][table_name]["source_filter"]}'
+        else:
+            source_filter = ""
+
         if "source_order" in transform[source][table_name]:
             source_order = f'{transform[source][table_name]["source_order"]}'
         else:
@@ -33,7 +38,7 @@ def main():
         result[source][table_name] = {}
 
         result[source][table_name]["sql"] = \
-            f"select {source_columns} from {source_table} where {source_filter} {source_order}"
+            f"select distinct {source_columns} from {source_table} {source_filter} {source_order}"
 
         catalog = spark_catalog.SparkCatalog(source_name=source,
                                              lake_location=f'{os.getenv("DELTA_LAKE_FOLDER")}/{source}',
@@ -54,10 +59,10 @@ def main():
                     data_frame = catalog.explode_string(data_frame, column_name)
 
             result[source][table_name]["export"] = catalog.append_changed(data_frame,
-                                                                  "silver",
-                                                                  table_name,
-                                                                  transform[source][table_name][
-                                                                      "target_identifier_columns"])
+                                                                          "silver",
+                                                                          table_name,
+                                                                          transform[source][table_name][
+                                                                              "target_identifier_columns"])
         else:
             print(f"WARNING: Could not find {transform[source][table_name]['source_table']}")
 
