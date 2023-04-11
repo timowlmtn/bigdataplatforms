@@ -57,7 +57,10 @@ from KEXP_PLAYLIST
 where artist is not null 
 order by artist
         """)
-        artist_df = artist_df.withColumn("id", explode(artist_df.id))
+
+        artist_df = self.catalog.explode_array(artist_df, "id")
+
+        artist_df.show()
 
         self.assertEqual(['id', 'artist'], artist_df.columns)
         self.assertEqual(['df.id', 'df.artist'],
@@ -81,18 +84,15 @@ order by artist
     def test_explode_program_tags(self):
         self.catalog.get_data_frame("bronze", "KEXP_PROGRAM")
         genre_df = self.catalog.sql("""
-        select tags genre, id program_id
-        from KEXP_PROGRAM 
-        where is_active = true
+select tags genre, id program_id
+from KEXP_PROGRAM 
+where is_active = true
                 """)
 
-        genre_df = genre_df\
-            .withColumn("genre_splitted",  split(col("genre"), ","))\
-            .withColumn("genre", explode("genre_splitted"))\
-            .drop("genre_splitted")
+        genre_df = self.catalog.explode_string(genre_df, "genre")
         genre_df.show()
 
         print(self.catalog.append_changed(data_frame=genre_df,
                                           table_schema="silver",
-                                          table_name="GENRE",
+                                          table_name="PROGRAM_GENRE",
                                           identifier_columns=["genre", "program_id"]))

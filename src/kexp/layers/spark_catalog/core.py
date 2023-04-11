@@ -291,3 +291,14 @@ class SparkCatalog:
 
         return result
 
+    @staticmethod
+    def explode_array(data_frame, column_name):
+        return data_frame.withColumn(column_name, explode(col(column_name)))
+
+    @staticmethod
+    def explode_string(data_frame, column_name, delimiter=","):
+        return data_frame \
+            .withColumn(f"{column_name}_splitted", split(col(column_name), delimiter)) \
+            .withColumn(column_name, explode(f"{column_name}_splitted")) \
+            .drop(f"{column_name}_splitted")
+

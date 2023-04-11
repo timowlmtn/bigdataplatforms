@@ -12,8 +12,9 @@ transform-raw-bronze:
 
 list-bronze:
 	ls -l ${DELTA_LAKE_FOLDER}/kexp/bronze
+
 transform-bronze-silver:
-	python3 kexp_transform_bronze_silver.py
+	python3 kexp_transform_bronze_to_silver.py
 
 install-pyspark:
 	pip install pyspark --upgrade

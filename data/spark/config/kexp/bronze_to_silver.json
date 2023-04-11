@@ -1,0 +1,19 @@
+{
+  "kexp": {
+    "ARTIST": {
+          "source_columns": ["artist_ids id", "artist"],
+          "source_table": "KEXP_PLAYLIST",
+          "source_filter": "artist is not null",
+          "source_order": "order by artist",
+          "target_identifier_columns": ["id"],
+          "explode_array": ["id"]
+    },
+    "PROGRAM_GENRE": {
+          "source_columns": ["tags genre", "id program_id"],
+          "source_table": "KEXP_PROGRAM",
+          "source_filter": "is_active = true",
+          "target_identifier_columns": ["genre", "program_id"],
+          "explode_string": ["genre"]
+    }
+  }
+}
