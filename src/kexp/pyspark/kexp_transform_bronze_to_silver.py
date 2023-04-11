@@ -22,49 +22,52 @@ def main():
         transform = json.load(transform_file)
 
     for table_name in transform[source]:
-        source_columns = ', '.join(transform[source][table_name]["source_columns"])
-        source_table = transform[source][table_name]["source_table"]
+        if transform[source][table_name]["enabled"]:
+            source_columns = ', '.join(transform[source][table_name]["source_columns"])
+            source_table = transform[source][table_name]["source_table"]
 
-        if "source_filter" in transform[source][table_name]:
-            source_filter = f'where {transform[source][table_name]["source_filter"]}'
-        else:
-            source_filter = ""
+            if "source_filter" in transform[source][table_name]:
+                source_filter = f'where {transform[source][table_name]["source_filter"]}'
+            else:
+                source_filter = ""
 
-        if "source_order" in transform[source][table_name]:
-            source_order = f'{transform[source][table_name]["source_order"]}'
-        else:
-            source_order = ""
+            if "source_order" in transform[source][table_name]:
+                source_order = f'{transform[source][table_name]["source_order"]}'
+            else:
+                source_order = ""
 
-        result[source][table_name] = {}
+            result[source][table_name] = {}
 
-        result[source][table_name]["sql"] = \
-            f"select distinct {source_columns} from {source_table} {source_filter} {source_order}"
+            result[source][table_name]["sql"] = \
+                f"select distinct {source_columns} from {source_table} {source_filter} {source_order}"
 
-        catalog = spark_catalog.SparkCatalog(source_name=source,
-                                             lake_location=f'{os.getenv("DELTA_LAKE_FOLDER")}/{source}',
-                                             raw_location=f'{os.getenv("RAW_DATA_FOLDER")}/{source}')
+            catalog = spark_catalog.SparkCatalog(source_name=source,
+                                                 lake_location=f'{os.getenv("DELTA_LAKE_FOLDER")}/{source}',
+                                                 raw_location=f'{os.getenv("RAW_DATA_FOLDER")}/{source}')
 
-        print(result[source][table_name]["sql"])
+            print(result[source][table_name]["sql"])
 
-        if catalog.get_data_frame("bronze", transform[source][table_name]["source_table"]) is not None:
+            if catalog.get_data_frame("bronze", transform[source][table_name]["source_table"]) is not None:
 
-            data_frame = catalog.sql(result[source][table_name]["sql"])
+                data_frame = catalog.sql(result[source][table_name]["sql"])
 
-            if "explode_array" in transform[source][table_name]:
-                for column_name in transform[source][table_name]["explode_array"]:
-                    data_frame = catalog.explode_array(data_frame, column_name)
+                if "explode_array" in transform[source][table_name]:
+                    for column_name in transform[source][table_name]["explode_array"]:
+                        data_frame = catalog.explode_array(data_frame, column_name)
 
-            if "explode_string" in transform[source][table_name]:
-                for column_name in transform[source][table_name]["explode_string"]:
-                    data_frame = catalog.explode_string(data_frame, column_name)
+                if "explode_string" in transform[source][table_name]:
+                    for column_name in transform[source][table_name]["explode_string"]:
+                        data_frame = catalog.explode_string(data_frame, column_name)
 
-            result[source][table_name]["export"] = catalog.append_changed(data_frame,
-                                                                          "silver",
-                                                                          table_name,
-                                                                          transform[source][table_name][
-                                                                              "target_identifier_columns"])
-        else:
-            print(f"WARNING: Could not find {transform[source][table_name]['source_table']}")
+                result[source][table_name]["export"] = \
+                    catalog.append_changed(data_frame,
+                                           "bronze",
+                                           transform[source][table_name]["source_table"],
+                                           "silver",
+                                           table_name,
+                                           source_columns)
+            else:
+                print(f"WARNING: Could not find {transform[source][table_name]['source_table']}")
 
     print(json.dumps(result, indent=2))
 

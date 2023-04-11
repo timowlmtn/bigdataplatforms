@@ -98,6 +98,8 @@ class SparkCatalog:
                     table_full_path = os.path.join(os.path.join(self.lake_location, "bronze"), table_name)
                     result["raw"].append(file)
                     result["bronze"].append(f"Saving {new_data.count()} records to {table_full_path}")
+                    new_data = self.add_default_columns("bronze", self.source_name, new_data)
+
                     new_data.write.mode("append").format("delta").save(table_full_path)
 
         return result
@@ -238,6 +240,13 @@ class SparkCatalog:
         return result
 
     def sql(self, sql_statement):
+        """
+        Run the SQL against the temporary review.  Requires the table is created as a dataframe within
+        this context.
+
+        @param sql_statement:
+        @return:
+        """
         return self.sql_context.sql(sql_statement)
 
     def explode(self, table_df, column_name, target_name, column_separating=", "):
@@ -261,29 +270,60 @@ class SparkCatalog:
 
         return max_id
 
-    def add_default_columns(self, table_data_frame):
-        result = table_data_frame.withColumn("catalog_source", lit(self.source_name))
+    @staticmethod
+    def add_default_columns(table_stage, table_source, table_data_frame):
+        """
+        The default columns help track the lineage of the data through the system.  They are
+
+            bronze_source (example value: 'kexp')
+            bronze_created_timestamp
+            bronze_modified_timestamp
+            silver_source (example value: 'KEXP_PLAYLIST')
+            silver_created_timestamp
+            silver_modified_timestamp
+            ...
+
+        @param table_stage: bronze, silver, or gold
+        @param table_source: (source name for raw), bronze table name for silver, etc
+        @param table_data_frame: the data frame to append the columns
+        @return: the modified data frame
+        """
+        result = table_data_frame.withColumn(f"{table_stage}_source", lit(table_source))
+
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        result = result.withColumn("catalog_timestamp",
+        result = result.withColumn(f"{table_stage}_created_timestamp",
+                                   unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
+        result = result.withColumn(f"{table_stage}_modified_timestamp",
                                    unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
         return result
 
-    def append_changed(self, data_frame, table_schema, table_name, identifier_columns):
+    def append_changed(self, data_frame, source_schema, source_temp_view_name, table_schema, table_name,
+                       table_columns='*'):
+        """
+        For silver or gold levels - Append the changes to the data frame
+
+        @param data_frame: The data frame from the source to append
+        @param source_schema: The source schema
+        @param source_temp_view_name: The source temp view table name
+        @param table_schema: The target schema
+        @param table_name: The target table
+        @param table_columns: A string with the table columns, defaults to *
+
+        @return:
+        """
         data_frame = data_frame.alias('df1')
 
         new_dataframe = self.get_data_frame(table_schema, table_name)
         changes = data_frame
         if new_dataframe is not None:
-            new_dataframe = new_dataframe.alias('df2')
-            all_data = data_frame.join(new_dataframe, identifier_columns, "outer")
-            identifier_values = list(map(lambda x: f'df1.{x} != df2.{x}', identifier_columns))
-            identifier_columns = " and ".join(identifier_values)
-            changes = all_data.select("df1.*").filter(identifier_columns)
+            changes = self.sql(f"select {table_columns} from {source_temp_view_name} "
+                               f" where {source_schema}_modified_timestamp > "
+                               f"   (select max({table_schema}_modified_timestamp) from {table_name})")
 
         result = {table_schema: []}
         if changes.count() > 0:
             output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
-            changes = self.add_default_columns(changes)
+            changes = self.add_default_columns(table_schema, source_temp_view_name, changes)
             changes.write.mode("append").format("delta").save(output_file)
             result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
         else:

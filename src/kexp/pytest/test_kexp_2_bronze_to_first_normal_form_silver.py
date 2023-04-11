@@ -69,9 +69,10 @@ order by artist
                          ", ".join(list(map(lambda x: 'df.' + x, artist_df.columns))))
 
         print(self.catalog.append_changed(data_frame=artist_df,
+                                          source_schema="bronze",
+                                          source_temp_view_name="KEXP_PLAYLIST",
                                           table_schema="silver",
-                                          table_name="ARTIST",
-                                          identifier_columns=["id"]))
+                                          table_name="ARTIST"))
 
     def test_identifier_logic(self):
         identifier_columns = ["genre", "program_id"]
@@ -82,17 +83,52 @@ order by artist
                          " and ".join(identifier_values))
 
     def test_explode_program_tags(self):
-        self.catalog.get_data_frame("bronze", "KEXP_PROGRAM")
-        genre_df = self.catalog.sql("""
-select tags genre, id program_id
-from KEXP_PROGRAM 
-where is_active = true
-                """)
+        kexp_program = self.catalog.get_data_frame("bronze", "KEXP_PROGRAM")
+
+        kexp_program.agg({"bronze_modified_timestamp": "max"}).show()
+
+        genre_df = self.catalog.sql(
+            "select tags genre, id program_id from KEXP_PROGRAM where is_active = true")
 
         genre_df = self.catalog.explode_string(genre_df, "genre")
         genre_df.show()
 
         print(self.catalog.append_changed(data_frame=genre_df,
+                                          source_schema="bronze",
+                                          source_temp_view_name="KEXP_PROGRAM",
                                           table_schema="silver",
-                                          table_name="PROGRAM_GENRE",
-                                          identifier_columns=["genre", "program_id"]))
+                                          table_name="PROGRAM_GENRE"))
+
+    def test_append_show(self):
+        show_bronze = self.catalog.get_data_frame("bronze", "KEXP_SHOW")
+        show_bronze.agg({"id": "max"}).show()
+        show_silver = self.catalog.get_data_frame("silver", "SHOW")
+        show_silver.agg({"id": "max"}).show()
+
+    def test_subquery(self):
+        kexp_program = self.catalog.get_data_frame("bronze", "KEXP_PROGRAM")
+        kexp_program = kexp_program.alias('df1')
+        kexp_program.agg({"bronze_modified_timestamp": "max"}).show()
+        changes = self.catalog.sql('select max(bronze_modified_timestamp) from KEXP_PROGRAM')
+        changes = self.catalog.add_default_columns("bronze", "kexp", changes)
+        changes.show()
+
+        self.catalog.get_data_frame("silver", "PROGRAM_GENRE")
+        changes = self.catalog.sql('select * from PROGRAM_GENRE')
+        changes.show()
+
+        changes = self.catalog.sql(f"select * from KEXP_PROGRAM"
+                                   f" where bronze_modified_timestamp > "
+                                   f"   (select max(silver_modified_timestamp) from PROGRAM_GENRE)")
+
+        changes.show()
+
+    def test_append_playlist(self):
+        self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
+        kexp_playlist = self.catalog.sql(
+            "select distinct artist_ids id, artist from KEXP_PLAYLIST where artist is not null order by artist")
+        kexp_playlist.printSchema()
+
+        self.catalog.get_data_frame("silver", "ARTIST")
+        artist = self.catalog.sql("select * from ARTIST")
+        artist.printSchema()
