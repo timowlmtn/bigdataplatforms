@@ -297,8 +297,8 @@ class SparkCatalog:
                                    unix_timestamp(lit(timestamp), 'yyyy-MM-dd HH:mm:ss').cast("timestamp"))
         return result
 
-    def append_changed(self, data_frame, source_schema, source_temp_view_name, table_schema, table_name,
-                       table_columns='*'):
+    def append_incremental(self, data_frame, source_schema, source_temp_view_name, table_schema, table_name,
+                           table_columns='*'):
         """
         For silver or gold levels - Append the changes to the data frame
 
@@ -329,6 +329,35 @@ class SparkCatalog:
         else:
             result[table_schema].append(f"No changes detected for {table_name}")
 
+        return result
+
+    def append_transformed(self, data_frame, table_schema, table_name, identifier_columns):
+        """
+        The append_transformed is for appending transformed entity (exploded)
+
+        @param data_frame:
+        @param table_schema:
+        @param table_name:
+        @param identifier_columns:
+        @return:
+        """
+        data_frame = data_frame.alias('df1')
+        new_dataframe = self.get_data_frame(table_schema, table_name)
+        new_dataframe = new_dataframe.alias('df2')
+
+        changes = data_frame
+        if new_dataframe is not None:
+            new_dataframe = new_dataframe.alias('df2')
+            all_data = data_frame.join(new_dataframe, identifier_columns, "outer")
+            identifier_values = list(map(lambda x: f'df1.{x} != df2.{x}', identifier_columns))
+            identifier_columns = " and ".join(identifier_values)
+            changes = all_data.select("df1.*").filter(identifier_columns)
+
+        output_file = os.path.join(os.path.join(self.lake_location, table_schema), table_name)
+        changes.write.mode("append").format("delta").save(output_file)
+
+        result = {table_schema: []}
+        result[table_schema].append(f"Saving {changes.count()} records to {output_file}")
         return result
 
     @staticmethod

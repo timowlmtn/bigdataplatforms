@@ -51,21 +51,33 @@ def main():
 
                 data_frame = catalog.sql(result[source][table_name]["sql"])
 
+                transformed = False
                 if "explode_array" in transform[source][table_name]:
+                    transformed = True
                     for column_name in transform[source][table_name]["explode_array"]:
                         data_frame = catalog.explode_array(data_frame, column_name)
 
                 if "explode_string" in transform[source][table_name]:
+                    transformed = True
                     for column_name in transform[source][table_name]["explode_string"]:
                         data_frame = catalog.explode_string(data_frame, column_name)
 
-                result[source][table_name]["export"] = \
-                    catalog.append_changed(data_frame,
-                                           "bronze",
-                                           transform[source][table_name]["source_table"],
-                                           "silver",
-                                           table_name,
-                                           source_columns)
+                # During the transform, columns are changed so we have two separate append mechanisms
+                if transformed:
+                    result[source][table_name]["export"] = \
+                        catalog.append_transformed(data_frame,
+                                                   "silver",
+                                                   table_name,
+                                                   transform[source][table_name][
+                                                       "target_identifier_columns"])
+                else:
+                    result[source][table_name]["export"] = \
+                        catalog.append_incremental(data_frame,
+                                                   "bronze",
+                                                   transform[source][table_name]["source_table"],
+                                                   "silver",
+                                                   table_name,
+                                                   source_columns)
             else:
                 print(f"WARNING: Could not find {transform[source][table_name]['source_table']}")
 
