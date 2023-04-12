@@ -11,3 +11,6 @@ export ExportBucket=$EXPORT_BUCKET
 
 # Here I set the root location to for all KEXP Stages in Snowflake
 export ExportStage=stage/raw/kexp
+export SNOWFLAKE_LANDING_ZONE=STAGE
+
+export DELTA_LAKE_S3=stage/kexp/delta

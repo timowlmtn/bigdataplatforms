@@ -14,3 +14,6 @@ transform-bronze-silver:
 
 deploy-s3:
 	aws s3 cp ${DELTA_LAKE_FOLDER}/kexp s3://${ExportBucket}/stage/kexp/delta/ --recursive # --dryrun
+
+generate-ddl:
+	python3 create_snowflake_external_tables.py
