@@ -49,12 +49,24 @@ class SparkCatalogTest(unittest.TestCase):
             explode(split(regexp_replace(col("col2"), "(^\[)|(\]$)", ""), ", "))
         ).show()
 
+    def test_get_artist_ids(self):
+        self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
+        artist_df = self.catalog.sql("select artist_ids, artist "
+                                     "from KEXP_PLAYLIST "
+                                     "where artist is not null "
+                                     "order by artist")
+        artist_df.show()
+        artist_df.printSchema()
+
     def test_explode_artist(self):
         self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
         artist_df = self.catalog.sql("select artist_ids id, artist "
                                      "from KEXP_PLAYLIST "
                                      "where artist is not null "
                                      "order by artist")
+        artist_df.show()
+
+        artist_df.printSchema()
 
         artist_df = self.catalog.explode_array(artist_df, "id")
 

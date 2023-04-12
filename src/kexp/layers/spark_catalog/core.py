@@ -197,6 +197,7 @@ class SparkCatalog:
             result = {}
 
             for row in source_data.collect():
+                # print(f"\nDEBUG: {row}\n\t{result}")
                 for column in row.asDict():
                     if column not in result:
                         if row[column] is not None:
@@ -211,7 +212,7 @@ class SparkCatalog:
                             else:
                                 default_type = type(row[column]).__name__
                         else:
-                            default_type = "string"
+                            default_type = None
 
                         if column.upper().endswith("_DATE"):
                             default_type = "date"
@@ -222,7 +223,8 @@ class SparkCatalog:
                         elif column.upper().endswith("_ID" or column.endswith("_KEY")):
                             default_type = "integer"
 
-                        result[column] = default_type
+                        if default_type is not None:
+                            result[column] = default_type
 
                     # Update timestamp if it matches
                     if row[column]:
