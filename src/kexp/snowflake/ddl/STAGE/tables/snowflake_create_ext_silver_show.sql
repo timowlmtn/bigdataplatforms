@@ -2,7 +2,7 @@
 --------------------------------------- SHOW
 create or replace stage STAGE.STG_SILVER_SHOW
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/SHOW';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/SHOW/';
     
 list @STAGE.STG_SILVER_SHOW;
 

@@ -2,7 +2,7 @@
 --------------------------------------- KEXP_PROGRAM
 create or replace stage STAGE.STG_BRONZE_KEXP_PROGRAM
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_PROGRAM';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_PROGRAM/';
     
 list @STAGE.STG_BRONZE_KEXP_PROGRAM;
 

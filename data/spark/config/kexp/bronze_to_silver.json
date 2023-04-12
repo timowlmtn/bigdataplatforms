@@ -46,6 +46,21 @@
       ],
       "enabled": true
     },
+    "PROGRAM": {
+      "source_columns": [
+        "id",
+        "description",
+        "is_active",
+        "name",
+        "tags",
+        "uri"
+      ],
+      "source_table": "KEXP_PROGRAM",
+      "target_identifier_columns": [
+        "id"
+      ],
+      "enabled": true
+    },
     "PROGRAM_GENRE": {
       "source_columns": [
         "tags genre",

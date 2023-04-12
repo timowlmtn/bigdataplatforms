@@ -2,7 +2,7 @@
 --------------------------------------- ARTIST
 create or replace stage STAGE.STG_SILVER_ARTIST
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/ARTIST';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/ARTIST/';
     
 list @STAGE.STG_SILVER_ARTIST;
 

@@ -12,8 +12,8 @@ list-bronze:
 transform-bronze-silver:
 	python3 kexp_transform_bronze_to_silver.py
 
-deploy-s3:
-	aws s3 cp ${DELTA_LAKE_FOLDER}/kexp s3://${ExportBucket}/stage/kexp/delta/ --recursive # --dryrun
+sync-s3:
+	aws s3 sync ${DELTA_LAKE_FOLDER}/kexp s3://${ExportBucket}/stage/kexp/delta/ # --dryrun
 
 generate-ddl:
 	python3 create_snowflake_external_tables.py

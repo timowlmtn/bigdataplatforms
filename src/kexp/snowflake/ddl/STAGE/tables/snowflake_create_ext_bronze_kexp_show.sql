@@ -2,7 +2,7 @@
 --------------------------------------- KEXP_SHOW
 create or replace stage STAGE.STG_BRONZE_KEXP_SHOW
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_SHOW';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_SHOW/';
     
 list @STAGE.STG_BRONZE_KEXP_SHOW;
 
@@ -30,4 +30,5 @@ host_names variant as (value:host_names::variant)
     
 alter external table STAGE.EXT_BRONZE_KEXP_SHOW refresh;
 
-select * from STAGE.EXT_BRONZE_KEXP_SHOW;
+select * from STAGE.EXT_BRONZE_KEXP_SHOW
+order by START_TIME desc;

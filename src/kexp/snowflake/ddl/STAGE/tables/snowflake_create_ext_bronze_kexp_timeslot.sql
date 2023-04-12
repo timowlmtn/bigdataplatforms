@@ -2,7 +2,7 @@
 --------------------------------------- KEXP_TIMESLOT
 create or replace stage STAGE.STG_BRONZE_KEXP_TIMESLOT
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_TIMESLOT';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_TIMESLOT/';
     
 list @STAGE.STG_BRONZE_KEXP_TIMESLOT;
 

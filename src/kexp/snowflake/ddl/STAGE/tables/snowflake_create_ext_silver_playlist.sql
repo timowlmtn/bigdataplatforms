@@ -2,7 +2,7 @@
 --------------------------------------- PLAYLIST
 create or replace stage STAGE.STG_SILVER_PLAYLIST
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/PLAYLIST';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/PLAYLIST/';
     
 list @STAGE.STG_SILVER_PLAYLIST;
 

@@ -2,7 +2,7 @@
 --------------------------------------- PROGRAM_GENRE
 create or replace stage STAGE.STG_SILVER_PROGRAM_GENRE
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/PROGRAM_GENRE';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/silver/PROGRAM_GENRE/';
     
 list @STAGE.STG_SILVER_PROGRAM_GENRE;
 

@@ -1,7 +1,7 @@
 --------------------------------------- KEXP_PLAYLIST
 create or replace stage STAGE.STG_BRONZE_KEXP_PLAYLIST
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_PLAYLIST';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_PLAYLIST/';
 
 list @STAGE.STG_BRONZE_KEXP_PLAYLIST;
 
@@ -43,4 +43,5 @@ create or replace external table STAGE.EXT_BRONZE_KEXP_PLAYLIST(
 alter external table STAGE.EXT_BRONZE_KEXP_PLAYLIST refresh;
 
 select *
-from STAGE.EXT_BRONZE_KEXP_PLAYLIST;
+from STAGE.EXT_BRONZE_KEXP_PLAYLIST
+order by AIRDATE desc;

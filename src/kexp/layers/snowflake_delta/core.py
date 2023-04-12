@@ -27,7 +27,7 @@ def generate_aws_external_stage_ddl(s3_bucket,
     result = f"""
 create or replace stage {table_schema.upper()}.STG_{delta_schema}_{table_name}
     storage_integration = {storage_integration}
-    url = 's3://{s3_bucket}/{s3_stage}/{delta_file}';
+    url = 's3://{s3_bucket}/{s3_stage}/{delta_file}/';
     """
 
     return result

@@ -2,7 +2,7 @@
 --------------------------------------- KEXP_HOST
 create or replace stage STAGE.STG_BRONZE_KEXP_HOST
     storage_integration = OWLMTN_S3_DATA
-    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_HOST';
+    url = 's3://owlmtn-stage-data/stage/kexp/delta/bronze/KEXP_HOST/';
     
 list @STAGE.STG_BRONZE_KEXP_HOST;
 
