@@ -372,3 +372,12 @@ class SparkCatalog:
             .withColumn(column_name, explode(f"{column_name}_splitted")) \
             .drop(f"{column_name}_splitted")
 
+    def get_schema_json(self, table_schema, table_name):
+        result = {}
+        show_sql = self.get_data_frame(table_schema, table_name)
+
+        for element in show_sql.schema:
+            element_json = json.loads(element.json())
+            result[element_json["name"]] = element_json["type"]
+
+        return result

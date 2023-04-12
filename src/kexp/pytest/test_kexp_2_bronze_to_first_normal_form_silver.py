@@ -51,12 +51,10 @@ class SparkCatalogTest(unittest.TestCase):
 
     def test_explode_artist(self):
         self.catalog.get_data_frame("bronze", "KEXP_PLAYLIST")
-        artist_df = self.catalog.sql("""
-select artist_ids id, artist
-from KEXP_PLAYLIST 
-where artist is not null 
-order by artist
-        """)
+        artist_df = self.catalog.sql("select artist_ids id, artist "
+                                     "from KEXP_PLAYLIST "
+                                     "where artist is not null "
+                                     "order by artist")
 
         artist_df = self.catalog.explode_array(artist_df, "id")
 
@@ -67,12 +65,6 @@ order by artist
                          list(map(lambda x: 'df.' + x, artist_df.columns)))
         self.assertEqual("df.id, df.artist",
                          ", ".join(list(map(lambda x: 'df.' + x, artist_df.columns))))
-
-        print(self.catalog.append_incremental(data_frame=artist_df,
-                                              source_schema="bronze",
-                                              source_temp_view_name="KEXP_PLAYLIST",
-                                              table_schema="silver",
-                                              table_name="ARTIST"))
 
     def test_identifier_logic(self):
         identifier_columns = ["genre", "program_id"]
@@ -92,12 +84,6 @@ order by artist
 
         genre_df = self.catalog.explode_string(genre_df, "genre")
         genre_df.show()
-
-        print(self.catalog.append_incremental(data_frame=genre_df,
-                                              source_schema="bronze",
-                                              source_temp_view_name="KEXP_PROGRAM",
-                                              table_schema="silver",
-                                              table_name="PROGRAM_GENRE"))
 
     def test_append_show(self):
         show_bronze = self.catalog.get_data_frame("bronze", "KEXP_SHOW")
