@@ -372,12 +372,23 @@ class SparkCatalog:
             .withColumn(column_name, explode(f"{column_name}_splitted")) \
             .drop(f"{column_name}_splitted")
 
-    def get_schema_json(self, table_schema, table_name):
+    def get_schema_json(self, table_schema, table_name, default_type="variant"):
+        """
+        Creates a JSON object of the schema.  Default for variant
+
+        @param table_schema: The schema (folder) for the Delta table
+        @param table_name: The Delta Table
+        @param default_type: A default type
+        @return:
+        """
         result = {}
         show_sql = self.get_data_frame(table_schema, table_name)
 
         for element in show_sql.schema:
             element_json = json.loads(element.json())
-            result[element_json["name"]] = element_json["type"]
+            element_type = element_json["type"]
+            if type(element_type) != str:
+                element_type = "variant"
+            result[element_json["name"]] = element_type
 
         return result

@@ -4,8 +4,9 @@ def generate_external_table_ddl(table_name, stage, column_spec):
         columns.append(f"{column_name} {column_spec[column_name]} as "
                        f"(value:{column_name}::{column_spec[column_name]})")
     # id integer AS (value:id::integer)
+    delimiter = "\n, "
     result = f"""
-create or replace external table {table_name}({', '.join(columns)})
+create or replace external table {table_name}(\n{delimiter.join(columns)})
   location=@{stage}
   auto_refresh = false
   refresh_on_create = false

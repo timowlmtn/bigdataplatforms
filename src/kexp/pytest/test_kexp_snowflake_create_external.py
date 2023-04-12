@@ -2,6 +2,7 @@ import unittest
 import spark_catalog
 from snowflake_delta import generate_external_table_ddl
 
+
 class SnowflakeCreateExternalTest(unittest.TestCase):
     DELTA_LAKE_FOLDER = "../../../data/spark/kexp"
 
@@ -40,3 +41,32 @@ class SnowflakeCreateExternalTest(unittest.TestCase):
                 'uri': 'string'}
 
         print(generate_external_table_ddl("STAGE.EXT_SILVER_SHOW", "STAGE.STG_SILVER_SHOW", spec))
+
+    def test_variant(self):
+        self.assertEqual({'airdate': 'timestamp',
+                          'album': 'string',
+                          'artist': 'string',
+                          'artist_ids': 'variant',
+                          'bronze_created_timestamp': 'timestamp',
+                          'bronze_modified_timestamp': 'timestamp',
+                          'bronze_source': 'string',
+                          'comment': 'string',
+                          'id': 'integer',
+                          'image_uri': 'string',
+                          'is_live': 'boolean',
+                          'is_local': 'boolean',
+                          'is_request': 'boolean',
+                          'label_ids': 'variant',
+                          'labels': 'variant',
+                          'play_type': 'string',
+                          'recording_id': 'integer',
+                          'release_date': 'date',
+                          'release_group_id': 'integer',
+                          'release_id': 'integer',
+                          'rotation_status': 'string',
+                          'show': 'integer',
+                          'show_uri': 'string',
+                          'song': 'string',
+                          'thumbnail_uri': 'string',
+                          'track_id': 'integer',
+                          'uri': 'string'}, self.catalog.get_schema_json("bronze", "KEXP_PLAYLIST"))

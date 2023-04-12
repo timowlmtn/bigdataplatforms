@@ -27,3 +27,4 @@
 /src/kexp/pytest/None/silver/KEXP_PLAYLIST_1NF/.part-00000-2352e69b-0546-4df7-a28f-aba2acd5ac87-c000.snappy.parquet.crc
 /data/raw/kexp/
 /data/spark/kexp/
+/src/kexp/data/sql/
