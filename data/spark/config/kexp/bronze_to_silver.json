@@ -14,7 +14,7 @@
       "explode_array": [
         "id"
       ],
-      "enabled": true
+      "enabled": false
     },
     "PLAYLIST": {
       "source_columns": [

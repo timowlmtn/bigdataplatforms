@@ -29,6 +29,7 @@ from delta.tables import *
 import time
 import datetime
 
+
 class SparkCatalog:
     source_name = None
 
@@ -344,7 +345,6 @@ class SparkCatalog:
         """
         data_frame = data_frame.alias('df1')
         new_dataframe = self.get_data_frame(table_schema, table_name)
-        new_dataframe = new_dataframe.alias('df2')
 
         changes = data_frame
         if new_dataframe is not None:

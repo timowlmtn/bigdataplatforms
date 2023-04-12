@@ -66,5 +66,9 @@ pipeline-kexp-program: pipeline-kexp-import
 
 get-export: clean export_data get-export-s3 translate-comma concatenat-data # compress-data
 
-install:
+install-requirements:
 	pip3 install -r requirements.txt
+
+install-java:
+	brew install java
+

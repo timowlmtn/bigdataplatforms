@@ -1,8 +1,7 @@
 beautifulsoup4==4.12.2
-lxml
 html5lib
 requests
-boto3==1.26.109
+boto3==1.26.111
 pytz
 pytest==7.3.0
 tzlocal
