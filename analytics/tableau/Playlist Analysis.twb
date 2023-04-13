@@ -1,0 +1,2488 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20231.23.0310.1044                               -->
+<workbook original-version='18.1' source-build='2023.1.0 (20231.23.0310.1044)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST) (STAGE)' inline='true' name='federated.0cxcp3y1kfguvk121gcd10uuof33' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='cba79392.snowflakecomputing.com' name='snowflake.0o12lx41stmkjx10degc51jcnyiy'>
+            <connection authentication='Username Password' class='snowflake' dbname='OWLMTN' odbc-connect-string-extras='' one-time-sql='' schema='STAGE' server='cba79392.snowflakecomputing.com' service='' username='tableau_app' warehouse='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='snowflake.0o12lx41stmkjx10degc51jcnyiy' name='KEXP_PLAYLIST' table='[OWLMTN].[STAGE].[KEXP_PLAYLIST]' type='table' />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='snowflake.0o12lx41stmkjx10degc51jcnyiy' name='KEXP_PLAYLIST' table='[OWLMTN].[STAGE].[KEXP_PLAYLIST]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>VALUE</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[VALUE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>VALUE</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AIRDATE</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[AIRDATE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>AIRDATE</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ALBUM</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ALBUM]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>ALBUM</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ARTIST</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ARTIST]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>ARTIST</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ARTIST_IDS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ARTIST_IDS]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>ARTIST_IDS</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>COMMENT</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[COMMENT]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>COMMENT</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ID</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[ID]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>ID</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IMAGE_URI</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IMAGE_URI]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>IMAGE_URI</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IS_LIVE</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IS_LIVE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>IS_LIVE</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_BIT&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_BIT&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IS_LOCAL</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IS_LOCAL]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>IS_LOCAL</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_BIT&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_BIT&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IS_REQUEST</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IS_REQUEST]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>IS_REQUEST</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_BIT&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_BIT&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LABEL_IDS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LABEL_IDS]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>LABEL_IDS</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LABELS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LABELS]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>LABELS</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PLAY_TYPE</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PLAY_TYPE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>PLAY_TYPE</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RECORDING_ID</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[RECORDING_ID]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>RECORDING_ID</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RELEASE_DATE</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[RELEASE_DATE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>RELEASE_DATE</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_DATE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_DATE&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RELEASE_GROUP_ID</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[RELEASE_GROUP_ID]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>RELEASE_GROUP_ID</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RELEASE_ID</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[RELEASE_ID]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>RELEASE_ID</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROTATION_STATUS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ROTATION_STATUS]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>ROTATION_STATUS</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SHOW</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[SHOW]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>SHOW</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SHOW_URI</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SHOW_URI]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>SHOW_URI</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SONG</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SONG]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>SONG</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>THUMBNAIL_URI</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[THUMBNAIL_URI]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>THUMBNAIL_URI</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TRACK_ID</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[TRACK_ID]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>TRACK_ID</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>38</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>URI</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[URI]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>URI</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PLAY_COUNT</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[PLAY_COUNT]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>PLAY_COUNT</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>1</precision>
+            <scale>0</scale>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DECIMAL&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BRONZE_SOURCE</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[BRONZE_SOURCE]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>BRONZE_SOURCE</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>16777216</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BRONZE_CREATED_TIMESTAMP</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[BRONZE_CREATED_TIMESTAMP]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>BRONZE_CREATED_TIMESTAMP</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BRONZE_MODIFIED_TIMESTAMP</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[BRONZE_MODIFIED_TIMESTAMP]</local-name>
+            <parent-name>[KEXP_PLAYLIST]</parent-name>
+            <remote-alias>BRONZE_MODIFIED_TIMESTAMP</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Airdate' datatype='datetime' name='[AIRDATE]' role='dimension' type='ordinal' />
+      <column caption='Album' datatype='string' name='[ALBUM]' role='dimension' type='nominal' />
+      <column caption='Artist' datatype='string' name='[ARTIST]' role='dimension' type='nominal' />
+      <column caption='Artist Ids' datatype='string' name='[ARTIST_IDS]' role='dimension' type='nominal' />
+      <column caption='Bronze Created Timestamp' datatype='datetime' name='[BRONZE_CREATED_TIMESTAMP]' role='dimension' type='ordinal' />
+      <column caption='Bronze Modified Timestamp' datatype='datetime' name='[BRONZE_MODIFIED_TIMESTAMP]' role='dimension' type='ordinal' />
+      <column caption='Bronze Source' datatype='string' name='[BRONZE_SOURCE]' role='dimension' type='nominal' />
+      <column caption='Comment' datatype='string' name='[COMMENT]' role='dimension' type='nominal' />
+      <column datatype='integer' name='[ID]' role='dimension' type='ordinal' />
+      <column caption='Image Uri' datatype='string' name='[IMAGE_URI]' role='dimension' type='nominal' />
+      <column caption='Is Live' datatype='boolean' name='[IS_LIVE]' role='dimension' type='nominal' />
+      <column caption='Is Local' datatype='boolean' name='[IS_LOCAL]' role='dimension' type='nominal' />
+      <column caption='Is Request' datatype='boolean' name='[IS_REQUEST]' role='dimension' type='nominal' />
+      <column caption='Labels' datatype='string' name='[LABELS]' role='dimension' type='nominal' />
+      <column caption='Label Ids' datatype='string' name='[LABEL_IDS]' role='dimension' type='nominal' />
+      <column caption='Play Count' datatype='integer' name='[PLAY_COUNT]' role='measure' type='quantitative' />
+      <column caption='Play Type' datatype='string' name='[PLAY_TYPE]' role='dimension' type='nominal' />
+      <column caption='Rank Percentile' datatype='real' name='[Percentile (copy)_1754644651208982530]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RANK_PERCENTILE(sum([PLAY_COUNT]), &apos;desc&apos;)'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Window Count' datatype='integer' name='[Play Count (copy)_1646417522645106691]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='WINDOW_SUM(COUNT([PLAY_COUNT]))'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Recording Id' datatype='integer' name='[RECORDING_ID]' role='dimension' type='ordinal' />
+      <column caption='Release Date' datatype='date' name='[RELEASE_DATE]' role='dimension' type='ordinal' />
+      <column caption='Release Group Id' datatype='integer' name='[RELEASE_GROUP_ID]' role='dimension' type='ordinal' />
+      <column caption='Release Id' datatype='integer' name='[RELEASE_ID]' role='dimension' type='ordinal' />
+      <column caption='Rotation Status' datatype='string' name='[ROTATION_STATUS]' role='dimension' type='nominal' />
+      <column caption='Window Percentile' datatype='real' name='[Rank Percentile (copy)_1754644651209191427]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='WINDOW_PERCENTILE(SUM([PLAY_COUNT]), 0.25, -1*10, 0)'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Rank' datatype='integer' name='[Rank Percentile (copy)_1754644651212038149]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RANK(sum([PLAY_COUNT]), &apos;desc&apos;)'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Size' datatype='integer' name='[Row Number (copy)_1754644651206610944]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='size()'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column aggregation='Sum' caption='Show' datatype='integer' name='[SHOW]' role='dimension' type='ordinal' />
+      <column caption='Show Uri' datatype='string' name='[SHOW_URI]' role='dimension' type='nominal' />
+      <column caption='Song' datatype='string' name='[SONG]' role='dimension' type='nominal' />
+      <column caption='Percentile' datatype='real' name='[Size (copy)_1754644651208478721]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='PERCENTILE([PLAY_COUNT], 0.2)' />
+      </column>
+      <column caption='Thumbnail Uri' datatype='string' name='[THUMBNAIL_URI]' role='dimension' type='nominal' />
+      <column caption='Track Id' datatype='integer' name='[TRACK_ID]' role='dimension' type='ordinal' />
+      <column caption='Value' datatype='string' name='[VALUE]' role='dimension' type='nominal' />
+      <column caption='Row Number' datatype='integer' name='[Window Count (copy)_1646417522649432068]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='index()'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <_.fcp.ObjectModelTableType.true...column caption='KEXP_PLAYLIST' datatype='table' name='[__tableau_internal_object_id__].[KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418]' role='measure' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='KEXP_PLAYLIST' id='KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST)_55B4E4D582B0478F81302553469A2418'>
+            <properties context=''>
+              <relation connection='snowflake.0o12lx41stmkjx10degc51jcnyiy' name='KEXP_PLAYLIST' table='[OWLMTN].[STAGE].[KEXP_PLAYLIST]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Artist'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Artist Playlist Counts</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='KEXP_PLAYLIST (OWLMTN.KEXP_PLAYLIST) (STAGE)' name='federated.0cxcp3y1kfguvk121gcd10uuof33' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0cxcp3y1kfguvk121gcd10uuof33'>
+            <column caption='Artist' datatype='string' name='[ARTIST]' role='dimension' type='nominal' />
+            <column caption='Play Count' datatype='integer' name='[PLAY_COUNT]' role='measure' type='quantitative' />
+            <column caption='Rank Percentile' datatype='real' name='[Percentile (copy)_1754644651208982530]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_PERCENTILE(sum([PLAY_COUNT]), &apos;desc&apos;)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Window Percentile' datatype='real' name='[Rank Percentile (copy)_1754644651209191427]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='WINDOW_PERCENTILE(SUM([PLAY_COUNT]), 0.25, -1*10, 0)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Rank' datatype='integer' name='[Rank Percentile (copy)_1754644651212038149]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK(sum([PLAY_COUNT]), &apos;desc&apos;)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Size' datatype='integer' name='[Row Number (copy)_1754644651206610944]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='size()'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Percentile' datatype='real' name='[Size (copy)_1754644651208478721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='PERCENTILE([PLAY_COUNT], 0.2)' />
+            </column>
+            <column caption='Row Number' datatype='integer' name='[Window Count (copy)_1646417522649432068]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='index()'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column-instance column='[ARTIST]' derivation='None' name='[none:ARTIST:nk]' pivot='key' type='nominal' />
+            <column-instance column='[PLAY_COUNT]' derivation='Sum' name='[sum:PLAY_COUNT:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Percentile (copy)_1754644651208982530]' derivation='User' name='[usr:Percentile (copy)_1754644651208982530:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Rank Percentile (copy)_1754644651209191427]' derivation='User' name='[usr:Rank Percentile (copy)_1754644651209191427:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Rank Percentile (copy)_1754644651212038149]' derivation='User' name='[usr:Rank Percentile (copy)_1754644651212038149:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Row Number (copy)_1754644651206610944]' derivation='User' name='[usr:Row Number (copy)_1754644651206610944:qk:5]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Size (copy)_1754644651208478721]' derivation='User' name='[usr:Size (copy)_1754644651208478721:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Window Count (copy)_1646417522649432068]' derivation='User' name='[usr:Window Count (copy)_1646417522649432068:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0cxcp3y1kfguvk121gcd10uuof33].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Size (copy)_1754644651208478721:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[sum:PLAY_COUNT:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Percentile (copy)_1754644651208982530:qk:1]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Rank Percentile (copy)_1754644651212038149:qk:1]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Window Count (copy)_1646417522649432068:qk:1]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Row Number (copy)_1754644651206610944:qk:5]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Rank Percentile (copy)_1754644651209191427:qk:1]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0cxcp3y1kfguvk121gcd10uuof33].[none:ARTIST:nk]'>
+            <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:ARTIST:nk]' />
+              <groupfilter function='member' level='[none:ARTIST:nk]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0cxcp3y1kfguvk121gcd10uuof33].[none:ARTIST:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Ryuichi Sakamoto&quot;</bucket>
+              <bucket>&quot;Merle Haggard&quot;</bucket>
+              <bucket>&quot;Merle Haggard and The Strangers&quot;</bucket>
+              <bucket>&quot;Luscious Jackson&quot;</bucket>
+              <bucket>&quot;Yaeji&quot;</bucket>
+              <bucket>&quot;Little Dragon&quot;</bucket>
+              <bucket>&quot;The Murder Capital&quot;</bucket>
+              <bucket>&quot;Jungle feat. Erick the Architect&quot;</bucket>
+              <bucket>&quot;Sound &amp; Vision&quot;</bucket>
+              <bucket>&quot;Petite Noir&quot;</bucket>
+              <bucket>&quot;Depeche Mode&quot;</bucket>
+              <bucket>&quot;Black Ends&quot;</bucket>
+              <bucket>&quot;Altın Gün&quot;</bucket>
+              <bucket>&quot;Yves Tumor&quot;</bucket>
+              <bucket>&quot;Nirvana&quot;</bucket>
+              <bucket>&quot;Dinner Party feat. Arin Ray&quot;</bucket>
+              <bucket>&quot;Blondshell&quot;</bucket>
+              <bucket>&quot;A Tribe Called Quest&quot;</bucket>
+              <bucket>&quot;WITCH feat. Sampa the Great&quot;</bucket>
+              <bucket>&quot;Wednesday&quot;</bucket>
+              <bucket>&quot;Vieux Farka Touré&quot;</bucket>
+              <bucket>&quot;The Cure&quot;</bucket>
+              <bucket>&quot;Stephanie Anne Johnson&quot;</bucket>
+              <bucket>&quot;Public Enemy&quot;</bucket>
+              <bucket>&quot;NAVVI&quot;</bucket>
+              <bucket>&quot;Nation of Language&quot;</bucket>
+              <bucket>&quot;El Michels Affair &amp; Black Thought&quot;</bucket>
+              <bucket>&quot;Durand Jones&quot;</bucket>
+              <bucket>&quot;Caroline Polachek&quot;</bucket>
+              <bucket>&quot;beabadoobee&quot;</bucket>
+              <bucket>&quot;Baltra&quot;</bucket>
+              <bucket>&quot;ABRA&quot;</bucket>
+              <bucket>&quot;Yeah Yeah Yeahs&quot;</bucket>
+              <bucket>&quot;Unknown Mortal Orchestra&quot;</bucket>
+              <bucket>&quot;The New Pornographers&quot;</bucket>
+              <bucket>&quot;Spirit Award&quot;</bucket>
+              <bucket>&quot;Radiohead&quot;</bucket>
+              <bucket>&quot;Petite Noir feat. Sampa the Great&quot;</bucket>
+              <bucket>&quot;New Order&quot;</bucket>
+              <bucket>&quot;Nas&quot;</bucket>
+              <bucket>&quot;Mudhoney&quot;</bucket>
+              <bucket>&quot;Moreish Idols&quot;</bucket>
+              <bucket>&quot;M83&quot;</bucket>
+              <bucket>&quot;Liv.e&quot;</bucket>
+              <bucket>&quot;Lil Yachty&quot;</bucket>
+              <bucket>&quot;LCD Soundsystem&quot;</bucket>
+              <bucket>&quot;Kendrick Lamar&quot;</bucket>
+              <bucket>&quot;Kassa Overall&quot;</bucket>
+              <bucket>&quot;Kali Uchis&quot;</bucket>
+              <bucket>&quot;Hole&quot;</bucket>
+              <bucket>&quot;Fontaines D.C.&quot;</bucket>
+              <bucket>&quot;Everything but the Girl&quot;</bucket>
+              <bucket>&quot;Echo &amp; The Bunnymen&quot;</bucket>
+              <bucket>&quot;CHAI&quot;</bucket>
+              <bucket>&quot;Bully&quot;</bucket>
+              <bucket>&quot;Billie Holiday&quot;</bucket>
+              <bucket>&quot;Beastie Boys&quot;</bucket>
+              <bucket>&quot;Youth Lagoon&quot;</bucket>
+              <bucket>&quot;Young Fathers&quot;</bucket>
+              <bucket>&quot;U.S. Girls&quot;</bucket>
+              <bucket>&quot;TV on the Radio&quot;</bucket>
+              <bucket>&quot;Tricky&quot;</bucket>
+              <bucket>&quot;The National&quot;</bucket>
+              <bucket>&quot;The Knife&quot;</bucket>
+              <bucket>&quot;The Drums&quot;</bucket>
+              <bucket>&quot;The Clash&quot;</bucket>
+              <bucket>&quot;The Chemical Brothers&quot;</bucket>
+              <bucket>&quot;Tears for Fears&quot;</bucket>
+              <bucket>&quot;Stevie Wonder&quot;</bucket>
+              <bucket>&quot;Sigur Rós&quot;</bucket>
+              <bucket>&quot;Screaming Females&quot;</bucket>
+              <bucket>&quot;SAULT&quot;</bucket>
+              <bucket>&quot;Saint Etienne&quot;</bucket>
+              <bucket>&quot;OutKast&quot;</bucket>
+              <bucket>&quot;Nina Simone&quot;</bucket>
+              <bucket>&quot;Nappy Nina feat. Nathan Bajar&quot;</bucket>
+              <bucket>&quot;Massive Attack&quot;</bucket>
+              <bucket>&quot;London Brew&quot;</bucket>
+              <bucket>&quot;Lil B&quot;</bucket>
+              <bucket>&quot;Jungle Brothers&quot;</bucket>
+              <bucket>&quot;Jessy Lanza&quot;</bucket>
+              <bucket>&quot;Jessie Ware&quot;</bucket>
+              <bucket>&quot;Jayda G&quot;</bucket>
+              <bucket>&quot;Heartworms&quot;</bucket>
+              <bucket>&quot;Hannah Jadagu&quot;</bucket>
+              <bucket>&quot;Gorillaz&quot;</bucket>
+              <bucket>&quot;Fugazi&quot;</bucket>
+              <bucket>&quot;Fort Romeau&quot;</bucket>
+              <bucket>&quot;Enumclaw&quot;</bucket>
+              <bucket>&quot;Debby Friday&quot;</bucket>
+              <bucket>&quot;Death Cab for Cutie&quot;</bucket>
+              <bucket>&quot;Daughter&quot;</bucket>
+              <bucket>&quot;Coral Grief&quot;</bucket>
+              <bucket>&quot;Built to Spill&quot;</bucket>
+              <bucket>&quot;Black Belt Eagle Scout&quot;</bucket>
+              <bucket>&quot;Arlo Parks&quot;</bucket>
+              <bucket>&quot;Air&quot;</bucket>
+              <bucket>&quot;坂本龍一&quot;</bucket>
+              <bucket>&quot;Yo La Tengo&quot;</bucket>
+              <bucket>&quot;Yellow Magic Orchestra&quot;</bucket>
+              <bucket>&quot;Yazmin Lacey&quot;</bucket>
+              <bucket>&quot;Working Men’s Club&quot;</bucket>
+              <bucket>&quot;Viagra Boys&quot;</bucket>
+              <bucket>&quot;TV Star&quot;</bucket>
+              <bucket>&quot;Tkay Maidza&quot;</bucket>
+              <bucket>&quot;Thee Sacred Souls&quot;</bucket>
+              <bucket>&quot;The Zombies&quot;</bucket>
+              <bucket>&quot;The Transmissionary Six&quot;</bucket>
+              <bucket>&quot;The Police&quot;</bucket>
+              <bucket>&quot;The Kinks&quot;</bucket>
+              <bucket>&quot;The Emotions&quot;</bucket>
+              <bucket>&quot;The Breeders&quot;</bucket>
+              <bucket>&quot;The Beths&quot;</bucket>
+              <bucket>&quot;Television&quot;</bucket>
+              <bucket>&quot;Tei Shi&quot;</bucket>
+              <bucket>&quot;Teenage Fanclub&quot;</bucket>
+              <bucket>&quot;Talking Heads&quot;</bucket>
+              <bucket>&quot;T. Rex&quot;</bucket>
+              <bucket>&quot;STRFKR&quot;</bucket>
+              <bucket>&quot;St. Vincent&quot;</bucket>
+              <bucket>&quot;Soul II Soul&quot;</bucket>
+              <bucket>&quot;Sonic Youth&quot;</bucket>
+              <bucket>&quot;Skrillex, Starrah &amp; Four Tet&quot;</bucket>
+              <bucket>&quot;Sheri Washington&quot;</bucket>
+              <bucket>&quot;shame&quot;</bucket>
+              <bucket>&quot;Sebadoh&quot;</bucket>
+              <bucket>&quot;Seaweed&quot;</bucket>
+              <bucket>&quot;SBTRKT feat. Toro y Moi&quot;</bucket>
+              <bucket>&quot;Say She She&quot;</bucket>
+              <bucket>&quot;Sasami&quot;</bucket>
+              <bucket>&quot;Robert Glasper feat. Q‐Tip &amp; Esperanza Spalding&quot;</bucket>
+              <bucket>&quot;Robag Wruhme&quot;</bucket>
+              <bucket>&quot;Randy Weston&quot;</bucket>
+              <bucket>&quot;Rahill feat. Beck&quot;</bucket>
+              <bucket>&quot;R.E.M.&quot;</bucket>
+              <bucket>&quot;Prince &amp; The Revolution&quot;</bucket>
+              <bucket>&quot;Prince&quot;</bucket>
+              <bucket>&quot;Primal Scream&quot;</bucket>
+              <bucket>&quot;Portugal. The Man&quot;</bucket>
+              <bucket>&quot;Portishead&quot;</bucket>
+              <bucket>&quot;Pixies&quot;</bucket>
+              <bucket>&quot;Parliament&quot;</bucket>
+              <bucket>&quot;ODESZA feat. Claud&quot;</bucket>
+              <bucket>&quot;ODESZA&quot;</bucket>
+              <bucket>&quot;Nia Archives&quot;</bucket>
+              <bucket>&quot;Natalia Lafourcade&quot;</bucket>
+              <bucket>&quot;Nappy Nina feat. Mavi&quot;</bucket>
+              <bucket>&quot;Mystic&quot;</bucket>
+              <bucket>&quot;Mt Fog&quot;</bucket>
+              <bucket>&quot;Momma&quot;</bucket>
+              <bucket>&quot;Mogwai&quot;</bucket>
+              <bucket>&quot;Modest Mouse&quot;</bucket>
+              <bucket>&quot;MIKE&quot;</bucket>
+              <bucket>&quot;Metric&quot;</bucket>
+              <bucket>&quot;Lloyd Nolan&quot;</bucket>
+              <bucket>&quot;Little Simz&quot;</bucket>
+              <bucket>&quot;L&apos;Eclair&quot;</bucket>
+              <bucket>&quot;Kraftwerk&quot;</bucket>
+              <bucket>&quot;King Tuff&quot;</bucket>
+              <bucket>&quot;King Gizzard &amp; The Lizard Wizard&quot;</bucket>
+              <bucket>&quot;King Crimson&quot;</bucket>
+              <bucket>&quot;Khruangbin&quot;</bucket>
+              <bucket>&quot;Kelela&quot;</bucket>
+              <bucket>&quot;Kate Bush&quot;</bucket>
+              <bucket>&quot;Kassian&quot;</bucket>
+              <bucket>&quot;José González&quot;</bucket>
+              <bucket>&quot;John Lee Hooker&quot;</bucket>
+              <bucket>&quot;John Coltrane&quot;</bucket>
+              <bucket>&quot;Jimmy Smith&quot;</bucket>
+              <bucket>&quot;Jimmy Reed&quot;</bucket>
+              <bucket>&quot;Jimmy Nolen&quot;</bucket>
+              <bucket>&quot;Jenny Lewis&quot;</bucket>
+              <bucket>&quot;James Brown&quot;</bucket>
+              <bucket>&quot;Howlin&apos; Wolf&quot;</bucket>
+              <bucket>&quot;Hot Chip&quot;</bucket>
+              <bucket>&quot;Herbie Hancock&quot;</bucket>
+              <bucket>&quot;Heaven 17&quot;</bucket>
+              <bucket>&quot;Hal Winer&quot;</bucket>
+              <bucket>&quot;Gorillaz feat. Tame Impala and Bootie Brown&quot;</bucket>
+              <bucket>&quot;Georgia&quot;</bucket>
+              <bucket>&quot;Frankie Rose&quot;</bucket>
+              <bucket>&quot;Fastbacks&quot;</bucket>
+              <bucket>&quot;Essam &amp; Petty Pro&quot;</bucket>
+              <bucket>&quot;ESG&quot;</bucket>
+              <bucket>&quot;Eddie Hazel&quot;</bucket>
+              <bucket>&quot;Dusty Trails&quot;</bucket>
+              <bucket>&quot;Drake&quot;</bucket>
+              <bucket>&quot;Dinner Party feat. Ant Clemons&quot;</bucket>
+              <bucket>&quot;Dijon&quot;</bucket>
+              <bucket>&quot;Desire Marea&quot;</bucket>
+              <bucket>&quot;Deerhoof&quot;</bucket>
+              <bucket>&quot;Deee‐Lite&quot;</bucket>
+              <bucket>&quot;Debby Friday feat. Unas&quot;</bucket>
+              <bucket>&quot;Death Valley Girls&quot;</bucket>
+              <bucket>&quot;De La Soul&quot;</bucket>
+              <bucket>&quot;David Bowie&quot;</bucket>
+              <bucket>&quot;Curtis Mayfield&quot;</bucket>
+              <bucket>&quot;Chief Keef&quot;</bucket>
+              <bucket>&quot;Chic&quot;</bucket>
+              <bucket>&quot;Cassandra Lewis&quot;</bucket>
+              <bucket>&quot;Brother Ali&quot;</bucket>
+              <bucket>&quot;boygenius&quot;</bucket>
+              <bucket>&quot;Bop&quot;</bucket>
+              <bucket>&quot;Blondie&quot;</bucket>
+              <bucket>&quot;Björk&quot;</bucket>
+              <bucket>&quot;Bar Italia&quot;</bucket>
+              <bucket>&quot;BAMBII&quot;</bucket>
+              <bucket>&quot;Bad Bunny&quot;</bucket>
+              <bucket>&quot;Baby Rose feat. Smino&quot;</bucket>
+              <bucket>&quot;B.B. King&quot;</bucket>
+              <bucket>&quot;Azizzi Romeo&quot;</bucket>
+              <bucket>&quot;Aster Aweke&quot;</bucket>
+              <bucket>&quot;Ari Lennox &amp; Anthony Ramos&quot;</bucket>
+              <bucket>&quot;Aretha Franklin&quot;</bucket>
+              <bucket>&quot;Andrew Tibbs&quot;</bucket>
+              <bucket>&quot;Andre Williams&quot;</bucket>
+              <bucket>&quot;All Them Witches&quot;</bucket>
+              <bucket>&quot;Alison Goldfrapp &amp; Paul Woolford&quot;</bucket>
+              <bucket>&quot;Algiers feat. billy woods &amp; Backxwash&quot;</bucket>
+              <bucket>&quot;Algiers feat. Big Rube&quot;</bucket>
+              <bucket>&quot;Adi Oasis&quot;</bucket>
+              <bucket>&quot;Acid Tongue&quot;</bucket>
+              <bucket>&quot;8fatfat8&quot;</bucket>
+              <bucket>&quot;竹村延和&quot;</bucket>
+              <bucket>&quot;Σtella&quot;</bucket>
+              <bucket>&quot;Zuco 103&quot;</bucket>
+              <bucket>&quot;Zoon&quot;</bucket>
+              <bucket>&quot;Zola Jesus&quot;</bucket>
+              <bucket>&quot;Zeta&quot;</bucket>
+              <bucket>&quot;Zazou Bikaye&quot;</bucket>
+              <bucket>&quot;Young Thug&quot;</bucket>
+              <bucket>&quot;Young Stunna, Nkulee 501, Skroef 28&quot;</bucket>
+              <bucket>&quot;Yordanka Hristova&quot;</bucket>
+              <bucket>&quot;YELLE&quot;</bucket>
+              <bucket>&quot;Yaya Bey&quot;</bucket>
+              <bucket>&quot;Yanna&quot;</bucket>
+              <bucket>&quot;Yahritza y su Esencia &amp; Grupo Frontera&quot;</bucket>
+              <bucket>&quot;Yaeji feat. Enayet&quot;</bucket>
+              <bucket>&quot;Y La Bamba&quot;</bucket>
+              <bucket>&quot;Xenia Rubinos&quot;</bucket>
+              <bucket>&quot;X&quot;</bucket>
+              <bucket>&quot;Wynne&quot;</bucket>
+              <bucket>&quot;Worriers&quot;</bucket>
+              <bucket>&quot;Woody Herman&quot;</bucket>
+              <bucket>&quot;Winston McAnuff &amp; Johnny Osbourne&quot;</bucket>
+              <bucket>&quot;Wings&quot;</bucket>
+              <bucket>&quot;Wiltsmusic&quot;</bucket>
+              <bucket>&quot;Willis Earl Beal&quot;</bucket>
+              <bucket>&quot;William &amp; The Young Five&quot;</bucket>
+              <bucket>&quot;Willi Williams&quot;</bucket>
+              <bucket>&quot;Wilco&quot;</bucket>
+              <bucket>&quot;White Noise&quot;</bucket>
+              <bucket>&quot;Whit Dickey&quot;</bucket>
+              <bucket>&quot;Wham!&quot;</bucket>
+              <bucket>&quot;Weval&quot;</bucket>
+              <bucket>&quot;Wet Leg&quot;</bucket>
+              <bucket>&quot;Westside Gunn feat. Black Star&quot;</bucket>
+              <bucket>&quot;Western Addiction&quot;</bucket>
+              <bucket>&quot;Weak Knees&quot;</bucket>
+              <bucket>&quot;Wayne County &amp; The Electric Chairs&quot;</bucket>
+              <bucket>&quot;Waves Crashing&quot;</bucket>
+              <bucket>&quot;Waterbaby&quot;</bucket>
+              <bucket>&quot;Water From Your Eyes&quot;</bucket>
+              <bucket>&quot;Warren Dunes&quot;</bucket>
+              <bucket>&quot;Vox Sambou feat. Nora Toutain &amp; Naxx Bitota&quot;</bucket>
+              <bucket>&quot;Vivian Girls&quot;</bucket>
+              <bucket>&quot;Vitamin D&quot;</bucket>
+              <bucket>&quot;Vince Gill&quot;</bucket>
+              <bucket>&quot;Villano Antillano&quot;</bucket>
+              <bucket>&quot;Viji&quot;</bucket>
+              <bucket>&quot;Vieux Farka Toure &amp; Khrugbin&quot;</bucket>
+              <bucket>&quot;Victor Uwaifo&quot;</bucket>
+              <bucket>&quot;Vicious Blonde&quot;</bucket>
+              <bucket>&quot;Vibekulture Sa, Mcdeez Fboy&quot;</bucket>
+              <bucket>&quot;Vanessa Wagner&quot;</bucket>
+              <bucket>&quot;Vampire Weekend&quot;</bucket>
+              <bucket>&quot;Upchuck&quot;</bucket>
+              <bucket>&quot;Unwound&quot;</bucket>
+              <bucket>&quot;Underworld&quot;</bucket>
+              <bucket>&quot;UK Subs&quot;</bucket>
+              <bucket>&quot;U2&quot;</bucket>
+              <bucket>&quot;Typical Cats&quot;</bucket>
+              <bucket>&quot;Tyler, the Creator, Frank Ocean &amp; Syd Tha Kyd&quot;</bucket>
+              <bucket>&quot;Tyler, the Creator&quot;</bucket>
+              <bucket>&quot;Tubeway Army&quot;</bucket>
+              <bucket>&quot;Trueno&quot;</bucket>
+              <bucket>&quot;Trentemøller feat. Sune Rose Wagner&quot;</bucket>
+              <bucket>&quot;Travis&quot;</bucket>
+              <bucket>&quot;Tramhaus&quot;</bucket>
+              <bucket>&quot;Totally Enormous Extinct Dinosaurs&quot;</bucket>
+              <bucket>&quot;Toss, Felo Le Tee&quot;</bucket>
+              <bucket>&quot;TORRES&quot;</bucket>
+              <bucket>&quot;Toro Y Moi&quot;</bucket>
+              <bucket>&quot;Toro y Moi&quot;</bucket>
+              <bucket>&quot;Tori Amos&quot;</bucket>
+              <bucket>&quot;Tomu DJ&quot;</bucket>
+              <bucket>&quot;Tommy McCook&quot;</bucket>
+              <bucket>&quot;Tomahawk&quot;</bucket>
+              <bucket>&quot;Tom Russell&quot;</bucket>
+              <bucket>&quot;Tom Petty&quot;</bucket>
+              <bucket>&quot;Tokyo Police Club&quot;</bucket>
+              <bucket>&quot;TNGHT&quot;</bucket>
+              <bucket>&quot;Tman Xpress, Djy Jaivane, Demented Soul&quot;</bucket>
+              <bucket>&quot;Tinashe&quot;</bucket>
+              <bucket>&quot;Tim Rice&quot;</bucket>
+              <bucket>&quot;Tim Bernardes&quot;</bucket>
+              <bucket>&quot;Tiken Jah Fakoly&quot;</bucket>
+              <bucket>&quot;Tigran Hamasyan, Arve Henriksen, Eivind Aarset &amp; Jan Bang&quot;</bucket>
+              <bucket>&quot;Thys &amp; Nikki Nair&quot;</bucket>
+              <bucket>&quot;THUS LOVE&quot;</bucket>
+              <bucket>&quot;Thelonious Monk&quot;</bucket>
+              <bucket>&quot;Thelma Houston&quot;</bucket>
+              <bucket>&quot;Theatre&apos;s Kiss&quot;</bucket>
+              <bucket>&quot;The Young Gods&quot;</bucket>
+              <bucket>&quot;The Young Evils&quot;</bucket>
+              <bucket>&quot;The Whags&quot;</bucket>
+              <bucket>&quot;The Weeknd&quot;</bucket>
+              <bucket>&quot;The Waterboys&quot;</bucket>
+              <bucket>&quot;The Walkmen&quot;</bucket>
+              <bucket>&quot;The True Loves&quot;</bucket>
+              <bucket>&quot;The Touré-Raichel Collective&quot;</bucket>
+              <bucket>&quot;The Toms&quot;</bucket>
+              <bucket>&quot;The Sundays&quot;</bucket>
+              <bucket>&quot;The Sugarcubes&quot;</bucket>
+              <bucket>&quot;The Strokes&quot;</bucket>
+              <bucket>&quot;The Stooges&quot;</bucket>
+              <bucket>&quot;The Stone Roses&quot;</bucket>
+              <bucket>&quot;The Specials feat. Rico&quot;</bucket>
+              <bucket>&quot;The Specials&quot;</bucket>
+              <bucket>&quot;The Sonics&quot;</bucket>
+              <bucket>&quot;The Smiths&quot;</bucket>
+              <bucket>&quot;The Slits&quot;</bucket>
+              <bucket>&quot;The Runaways&quot;</bucket>
+              <bucket>&quot;The Roots and Amel Larrieux&quot;</bucket>
+              <bucket>&quot;The RH Factor feat. Q‐Tip&quot;</bucket>
+              <bucket>&quot;The Psychedelic Furs&quot;</bucket>
+              <bucket>&quot;The Presidents of the United States of America&quot;</bucket>
+              <bucket>&quot;The Postal Service&quot;</bucket>
+              <bucket>&quot;The Plimsouls&quot;</bucket>
+              <bucket>&quot;The Pharcyde&quot;</bucket>
+              <bucket>&quot;The Partisans&quot;</bucket>
+              <bucket>&quot;The Paradise&quot;</bucket>
+              <bucket>&quot;The Ones&quot;</bucket>
+              <bucket>&quot;The Minders&quot;</bucket>
+              <bucket>&quot;The Meters&quot;</bucket>
+              <bucket>&quot;The Meanies&quot;</bucket>
+              <bucket>&quot;The Mauskovic Dance Band&quot;</bucket>
+              <bucket>&quot;The Malcolm X College African-American Jazz Ensemble&quot;</bucket>
+              <bucket>&quot;The Magnetic Fields&quot;</bucket>
+              <bucket>&quot;The Lumineers&quot;</bucket>
+              <bucket>&quot;The Linda Lindas&quot;</bucket>
+              <bucket>&quot;The Len Price 3&quot;</bucket>
+              <bucket>&quot;The La’s&quot;</bucket>
+              <bucket>&quot;The Jimi Hendrix Experience&quot;</bucket>
+              <bucket>&quot;The Jam&quot;</bucket>
+              <bucket>&quot;The Illustrious Blacks&quot;</bucket>
+              <bucket>&quot;The Horace Silver Quintet&quot;</bucket>
+              <bucket>&quot;The Hives&quot;</bucket>
+              <bucket>&quot;The Helio Sequence&quot;</bucket>
+              <bucket>&quot;The Gun Club&quot;</bucket>
+              <bucket>&quot;The Gloryholes&quot;</bucket>
+              <bucket>&quot;The Futureheads&quot;</bucket>
+              <bucket>&quot;The Fall&quot;</bucket>
+              <bucket>&quot;The Exploding Hearts&quot;</bucket>
+              <bucket>&quot;The Eat&quot;</bucket>
+              <bucket>&quot;The Dukes of Stratosphear&quot;</bucket>
+              <bucket>&quot;The Dopamines&quot;</bucket>
+              <bucket>&quot;The Doors&quot;</bucket>
+              <bucket>&quot;The Depressions&quot;</bucket>
+              <bucket>&quot;The Dandy Warhols&quot;</bucket>
+              <bucket>&quot;The Dahmers&quot;</bucket>
+              <bucket>&quot;The Cult&quot;</bucket>
+              <bucket>&quot;The Cranberries&quot;</bucket>
+              <bucket>&quot;The Coup feat. Black Thought &amp; Talib Kweli&quot;</bucket>
+              <bucket>&quot;The Coup&quot;</bucket>
+              <bucket>&quot;The Chemical Brothers feat. Q‐Tip&quot;</bucket>
+              <bucket>&quot;The Cardigans&quot;</bucket>
+              <bucket>&quot;The Bug feat. Warrior Queen&quot;</bucket>
+              <bucket>&quot;The Boys&quot;</bucket>
+              <bucket>&quot;The Blow Monkeys&quot;</bucket>
+              <bucket>&quot;The Black Disciples&quot;</bucket>
+              <bucket>&quot;The Black Angels&quot;</bucket>
+              <bucket>&quot;The Backyard Heavies&quot;</bucket>
+              <bucket>&quot;The Avalanches&quot;</bucket>
+              <bucket>&quot;The Artist (Formerly Known As Prince)&quot;</bucket>
+              <bucket>&quot;The Andrea True Connection&quot;</bucket>
+              <bucket>&quot;The Alchemist&quot;</bucket>
+              <bucket>&quot;The Airborne Toxic Event&quot;</bucket>
+              <bucket>&quot;The 4‐Skins&quot;</bucket>
+              <bucket>&quot;Thandiswa&quot;</bucket>
+              <bucket>&quot;Terry&quot;</bucket>
+              <bucket>&quot;Terra Nobody&quot;</bucket>
+              <bucket>&quot;Teraphonique, DNZL444&quot;</bucket>
+              <bucket>&quot;Tep No&quot;</bucket>
+              <bucket>&quot;Tennis&quot;</bucket>
+              <bucket>&quot;Tems&quot;</bucket>
+              <bucket>&quot;Temps feat. Quelle Chris, Xenia Rubinos, NNAMDÏ &amp; Shamir&quot;</bucket>
+              <bucket>&quot;Telex&quot;</bucket>
+              <bucket>&quot;TEKE::TEKE&quot;</bucket>
+              <bucket>&quot;Teitanblood&quot;</bucket>
+              <bucket>&quot;Tarholes&quot;</bucket>
+              <bucket>&quot;Tanukichan feat Enumclaw&quot;</bucket>
+              <bucket>&quot;Tamar Aphek&quot;</bucket>
+              <bucket>&quot;Taleen Kali&quot;</bucket>
+              <bucket>&quot;Taggy Matcher feat. Birdy Nixon&quot;</bucket>
+              <bucket>&quot;Tacocat&quot;</bucket>
+              <bucket>&quot;T.L.B.M.&quot;</bucket>
+              <bucket>&quot;SZA&quot;</bucket>
+              <bucket>&quot;Sylvester&quot;</bucket>
+              <bucket>&quot;Sylvan Esso&quot;</bucket>
+              <bucket>&quot;Swell&quot;</bucket>
+              <bucket>&quot;Sweet Female Attitude&quot;</bucket>
+              <bucket>&quot;Swans&quot;</bucket>
+              <bucket>&quot;Swami Sound&quot;</bucket>
+              <bucket>&quot;Suzanne Vega feat. Joe Jackson on piano&quot;</bucket>
+              <bucket>&quot;Superlean&quot;</bucket>
+              <bucket>&quot;Super Deluxe&quot;</bucket>
+              <bucket>&quot;Sun Ra and His Arkestra&quot;</bucket>
+              <bucket>&quot;Sugar Pie DeSanto&quot;</bucket>
+              <bucket>&quot;Subatomic Sound System &amp; Yaadcore &amp; Jah9&quot;</bucket>
+              <bucket>&quot;Subatomic Sound System &amp; Screechy Dan&quot;</bucket>
+              <bucket>&quot;Stranger Atttractor&quot;</bucket>
+              <bucket>&quot;Steve Monite&quot;</bucket>
+              <bucket>&quot;Steve Mason&quot;</bucket>
+              <bucket>&quot;Steve Cobby&quot;</bucket>
+              <bucket>&quot;Stereolab&quot;</bucket>
+              <bucket>&quot;Stan Getz &amp; J.J. Johnson&quot;</bucket>
+              <bucket>&quot;Stan Getz / João Gilberto featuring Antônio Carlos Jobim&quot;</bucket>
+              <bucket>&quot;Stäläg 13&quot;</bucket>
+              <bucket>&quot;St. Paul &amp; The Broken Bones&quot;</bucket>
+              <bucket>&quot;Squid&quot;</bucket>
+              <bucket>&quot;Squeeze&quot;</bucket>
+              <bucket>&quot;Spoon&quot;</bucket>
+              <bucket>&quot;Split System&quot;</bucket>
+              <bucket>&quot;Spitting Image&quot;</bucket>
+              <bucket>&quot;Spiritualized&quot;</bucket>
+              <bucket>&quot;Spirit Possession&quot;</bucket>
+              <bucket>&quot;Spirit of Brotherhood&quot;</bucket>
+              <bucket>&quot;Spiral XP&quot;</bucket>
+              <bucket>&quot;Spank Rock&quot;</bucket>
+              <bucket>&quot;Spacehog&quot;</bucket>
+              <bucket>&quot;Soul Coughing&quot;</bucket>
+              <bucket>&quot;Soul Brothers&quot;</bucket>
+              <bucket>&quot;SOOHAN&quot;</bucket>
+              <bucket>&quot;Sonny Boy Holmes&quot;</bucket>
+              <bucket>&quot;Soljie&quot;</bucket>
+              <bucket>&quot;Solange&quot;</bucket>
+              <bucket>&quot;Sol Messiah feat. Evidence&quot;</bucket>
+              <bucket>&quot;Soft Machine&quot;</bucket>
+              <bucket>&quot;Soft Cell&quot;</bucket>
+              <bucket>&quot;Sofia Kourtesis&quot;</bucket>
+              <bucket>&quot;Sofi Tukker&quot;</bucket>
+              <bucket>&quot;Sneaker Pimps&quot;</bucket>
+              <bucket>&quot;Smokey Brights&quot;</bucket>
+              <bucket>&quot;Smino&quot;</bucket>
+              <bucket>&quot;Slow Pulp&quot;</bucket>
+              <bucket>&quot;Sleigh Bells&quot;</bucket>
+              <bucket>&quot;Sleep Eaters&quot;</bucket>
+              <bucket>&quot;Slaughtbbath&quot;</bucket>
+              <bucket>&quot;Slang&quot;</bucket>
+              <bucket>&quot;Skull Practitioners&quot;</bucket>
+              <bucket>&quot;Skrillex, Joker &amp; Sleepnet&quot;</bucket>
+              <bucket>&quot;Skip James&quot;</bucket>
+              <bucket>&quot;Skelethal&quot;</bucket>
+              <bucket>&quot;Sjijo Majikijo, OSKIDO, Toss, Dj Riley&quot;</bucket>
+              <bucket>&quot;Sirens of Lesbos&quot;</bucket>
+              <bucket>&quot;Siouxsie and the Banshees&quot;</bucket>
+              <bucket>&quot;Sinéad O’Connor&quot;</bucket>
+              <bucket>&quot;Sima&quot;</bucket>
+              <bucket>&quot;Silvana Estrada&quot;</bucket>
+              <bucket>&quot;Siglo XX&quot;</bucket>
+              <bucket>&quot;Shuggie Otis&quot;</bucket>
+              <bucket>&quot;Shriekback&quot;</bucket>
+              <bucket>&quot;Sheila E.&quot;</bucket>
+              <bucket>&quot;Shearwater&quot;</bucket>
+              <bucket>&quot;ShaunMusiq, Ftears, Xduppy, Myztro, Mellow &amp; Sleazy, QuayR Musiq, Matuteboy&quot;</bucket>
+              <bucket>&quot;Sharon Van Etten&quot;</bucket>
+              <bucket>&quot;Sharon Jones and the Dap‐Kings&quot;</bucket>
+              <bucket>&quot;Sharon Jones and the Dap-Kings&quot;</bucket>
+              <bucket>&quot;Shaolinn&quot;</bucket>
+              <bucket>&quot;Shamir&quot;</bucket>
+              <bucket>&quot;Shalom&quot;</bucket>
+              <bucket>&quot;Shadowy Men on a Shadowy Planet&quot;</bucket>
+              <bucket>&quot;Shabazz Palaces feat. Thaddillac&quot;</bucket>
+              <bucket>&quot;Sevdaliza&quot;</bucket>
+              <bucket>&quot;Seun Kuti &amp; Black Thought feat. Vic Mensa&quot;</bucket>
+              <bucket>&quot;Seu Jorge&quot;</bucket>
+              <bucket>&quot;Sensible Soccers&quot;</bucket>
+              <bucket>&quot;Secret Machines&quot;</bucket>
+              <bucket>&quot;Screaming Trees&quot;</bucket>
+              <bucket>&quot;Scissor Sisters&quot;</bucket>
+              <bucket>&quot;ScHoolboy Q&quot;</bucket>
+              <bucket>&quot;SBTRKT&quot;</bucket>
+              <bucket>&quot;Savage Master&quot;</bucket>
+              <bucket>&quot;Saul Williams&quot;</bucket>
+              <bucket>&quot;Santigold&quot;</bucket>
+              <bucket>&quot;Samia&quot;</bucket>
+              <bucket>&quot;Sam Evian&quot;</bucket>
+              <bucket>&quot;Sam &amp; Dave&quot;</bucket>
+              <bucket>&quot;Salt‐N‐Pepa&quot;</bucket>
+              <bucket>&quot;Salami Rose Joe Louis feat. Brijean&quot;</bucket>
+              <bucket>&quot;Salaam Remi feat. Black Thought, Syleena Johnson, Anthony Hamilton, CeeLo Green &amp; Stephen Marley&quot;</bucket>
+              <bucket>&quot;Saeko Killy&quot;</bucket>
+              <bucket>&quot;Sade&quot;</bucket>
+              <bucket>&quot;SA-ROC feat. David Banner&quot;</bucket>
+              <bucket>&quot;Ryuichi Sakamoto &amp; Morelenbaum²&quot;</bucket>
+              <bucket>&quot;Ryuichi Sakamoto &amp; Alva Noto&quot;</bucket>
+              <bucket>&quot;Ruth Durand&quot;</bucket>
+              <bucket>&quot;Rustie&quot;</bucket>
+              <bucket>&quot;Russ D&quot;</bucket>
+              <bucket>&quot;Rupa&quot;</bucket>
+              <bucket>&quot;Run the Jewels feat. Big Boi&quot;</bucket>
+              <bucket>&quot;rum.gold feat. Mereba&quot;</bucket>
+              <bucket>&quot;Rufus Gore&quot;</bucket>
+              <bucket>&quot;RÜFÜS DU SOL&quot;</bucket>
+              <bucket>&quot;Rudy Norman&quot;</bucket>
+              <bucket>&quot;Ruby Lustre&quot;</bucket>
+              <bucket>&quot;RUB&quot;</bucket>
+              <bucket>&quot;Roxanne Shanté&quot;</bucket>
+              <bucket>&quot;Ross From Friends&quot;</bucket>
+              <bucket>&quot;Rose City Band&quot;</bucket>
+              <bucket>&quot;ROSALÍA feat. Tokischa&quot;</bucket>
+              <bucket>&quot;Roni Size&quot;</bucket>
+              <bucket>&quot;Romy&quot;</bucket>
+              <bucket>&quot;Romain Virgo&quot;</bucket>
+              <bucket>&quot;Róisín Murphy&quot;</bucket>
+              <bucket>&quot;Roger C. Reale &amp; Rue Morgue&quot;</bucket>
+              <bucket>&quot;Rocky Rivera&quot;</bucket>
+              <bucket>&quot;Roc Marciano &amp; The Alchemist&quot;</bucket>
+              <bucket>&quot;Robyn Hitchcock&quot;</bucket>
+              <bucket>&quot;Robyn feat. Mapei&quot;</bucket>
+              <bucket>&quot;Robson Jorge x Licoln Olivetti&quot;</bucket>
+              <bucket>&quot;Robin Holcomb&quot;</bucket>
+              <bucket>&quot;Robert Glasper feat. Lalah Hathaway &amp; Common&quot;</bucket>
+              <bucket>&quot;Riz All Stars&quot;</bucket>
+              <bucket>&quot;Riuichi Sakamoto&quot;</bucket>
+              <bucket>&quot;Ritual Death&quot;</bucket>
+              <bucket>&quot;Ricky J. Lewis&quot;</bucket>
+              <bucket>&quot;Rick James&quot;</bucket>
+              <bucket>&quot;Richard &amp; Linda Thompson&quot;</bucket>
+              <bucket>&quot;Rhoda Scott&quot;</bucket>
+              <bucket>&quot;Resistance Revival Chorus&quot;</bucket>
+              <bucket>&quot;Ren&quot;</bucket>
+              <bucket>&quot;Regina Spektor&quot;</bucket>
+              <bucket>&quot;redveil &amp; JPEGMAFIA&quot;</bucket>
+              <bucket>&quot;Red House Painters&quot;</bucket>
+              <bucket>&quot;Red Garland&quot;</bucket>
+              <bucket>&quot;Rebeca Lane feat. Sara Curruchich&quot;</bucket>
+              <bucket>&quot;Rayelle&quot;</bucket>
+              <bucket>&quot;Ray Charles&quot;</bucket>
+              <bucket>&quot;Rats Nest&quot;</bucket>
+              <bucket>&quot;Ratpajama&quot;</bucket>
+              <bucket>&quot;Rapsody&quot;</bucket>
+              <bucket>&quot;Ramones&quot;</bucket>
+              <bucket>&quot;Rage Against the Machine&quot;</bucket>
+              <bucket>&quot;Rae Sremmurd&quot;</bucket>
+              <bucket>&quot;Quincy Jones&quot;</bucket>
+              <bucket>&quot;Quelle Chris&quot;</bucket>
+              <bucket>&quot;Q‐Tip feat. Norah Jones&quot;</bucket>
+              <bucket>&quot;Q‐Tip&quot;</bucket>
+              <bucket>&quot;Python&quot;</bucket>
+              <bucket>&quot;Purling Hiss&quot;</bucket>
+              <bucket>&quot;Pure Hell&quot;</bucket>
+              <bucket>&quot;Pulp&quot;</bucket>
+              <bucket>&quot;Public Service Broadcasting&quot;</bucket>
+              <bucket>&quot;Prometheus Brown&quot;</bucket>
+              <bucket>&quot;Project&quot;</bucket>
+              <bucket>&quot;Problem Patterns&quot;</bucket>
+              <bucket>&quot;Pro McClam&quot;</bucket>
+              <bucket>&quot;Possession&quot;</bucket>
+              <bucket>&quot;Porter Ray&quot;</bucket>
+              <bucket>&quot;Pop-O-Pies&quot;</bucket>
+              <bucket>&quot;Pongo&quot;</bucket>
+              <bucket>&quot;Pomplamoose&quot;</bucket>
+              <bucket>&quot;Playin’ 4 the City&quot;</bucket>
+              <bucket>&quot;Plasmatics&quot;</bucket>
+              <bucket>&quot;Plague Pits&quot;</bucket>
+              <bucket>&quot;PJ Morton feat. Susan Carol&quot;</bucket>
+              <bucket>&quot;PJ Harvey&quot;</bucket>
+              <bucket>&quot;Pistol McFly&quot;</bucket>
+              <bucket>&quot;Pig’s Blood&quot;</bucket>
+              <bucket>&quot;Phish&quot;</bucket>
+              <bucket>&quot;Phil Kieran feat. Bush Tetras&quot;</bucket>
+              <bucket>&quot;Petrona Martinez (feat. Nidia Gongora &amp; Eryen Korath)&quot;</bucket>
+              <bucket>&quot;Petite Noir feat. Theo Croker&quot;</bucket>
+              <bucket>&quot;Peter Gabriel&quot;</bucket>
+              <bucket>&quot;Peter Croce&quot;</bucket>
+              <bucket>&quot;Pet Shop Boys&quot;</bucket>
+              <bucket>&quot;Perry Porter&quot;</bucket>
+              <bucket>&quot;Perfume Genius&quot;</bucket>
+              <bucket>&quot;Pep Love feat. The Grouch&quot;</bucket>
+              <bucket>&quot;Penelope Isles&quot;</bucket>
+              <bucket>&quot;Pavement&quot;</bucket>
+              <bucket>&quot;Paul Simon&quot;</bucket>
+              <bucket>&quot;Patsy Cline&quot;</bucket>
+              <bucket>&quot;Pat Wright &amp; Wheedle&apos;s Groove&quot;</bucket>
+              <bucket>&quot;Parquet Courts&quot;</bucket>
+              <bucket>&quot;Palma Violets&quot;</bucket>
+              <bucket>&quot;Paget King&quot;</bucket>
+              <bucket>&quot;Pages Of History&quot;</bucket>
+              <bucket>&quot;Pabi Cooper, Mellow &amp; Sleazy&quot;</bucket>
+              <bucket>&quot;P.R. Kantate&quot;</bucket>
+              <bucket>&quot;Overmono&quot;</bucket>
+              <bucket>&quot;Outside&quot;</bucket>
+              <bucket>&quot;Outre-Tombe&quot;</bucket>
+              <bucket>&quot;Oscar Barila&quot;</bucket>
+              <bucket>&quot;Orphans of Love&quot;</bucket>
+              <bucket>&quot;Ornette Coleman&quot;</bucket>
+              <bucket>&quot;Orishas&quot;</bucket>
+              <bucket>&quot;Orgone feat. Lakan&quot;</bucket>
+              <bucket>&quot;Open Mike Eagle&quot;</bucket>
+              <bucket>&quot;One Day as a Lion&quot;</bucket>
+              <bucket>&quot;Ojerime&quot;</bucket>
+              <bucket>&quot;of Montreal&quot;</bucket>
+              <bucket>&quot;Of Monsters and Men&quot;</bucket>
+              <bucket>&quot;Oddisee&quot;</bucket>
+              <bucket>&quot;Odd Future&quot;</bucket>
+              <bucket>&quot;Octavian&quot;</bucket>
+              <bucket>&quot;Oblique Occasions&quot;</bucket>
+              <bucket>&quot;Oblé Reed&quot;</bucket>
+              <bucket>&quot;Nuovo Testamento&quot;</bucket>
+              <bucket>&quot;Nphonix &amp; Matrika&quot;</bucket>
+              <bucket>&quot;Noname feat. Eryn Allen Kane &amp; Akenya.&quot;</bucket>
+              <bucket>&quot;NOIA&quot;</bucket>
+              <bucket>&quot;NOFX&quot;</bucket>
+              <bucket>&quot;Noel Brass Jr.&quot;</bucket>
+              <bucket>&quot;Njelic &amp; Thabza Tee&quot;</bucket>
+              <bucket>&quot;Niña Lobo&quot;</bucket>
+              <bucket>&quot;Nightmarer&quot;</bucket>
+              <bucket>&quot;Nicole Bus&quot;</bucket>
+              <bucket>&quot;Nick Hakim&quot;</bucket>
+              <bucket>&quot;Nick Cave &amp; The Bad Seeds&quot;</bucket>
+              <bucket>&quot;Nice Biscuit&quot;</bucket>
+              <bucket>&quot;New Track City&quot;</bucket>
+              <bucket>&quot;New Sector Movements&quot;</bucket>
+              <bucket>&quot;New Radicals&quot;</bucket>
+              <bucket>&quot;Nekus&quot;</bucket>
+              <bucket>&quot;Nekromantheon&quot;</bucket>
+              <bucket>&quot;Neal Francis&quot;</bucket>
+              <bucket>&quot;Naya Rockers &amp; Mad Professor &amp; Johnny Clarke&quot;</bucket>
+              <bucket>&quot;Navy Blue feat. Liv.e &amp; Venna&quot;</bucket>
+              <bucket>&quot;Navy Blue feat. Kelly Moonstone&quot;</bucket>
+              <bucket>&quot;Navy Blue&quot;</bucket>
+              <bucket>&quot;Nas &amp; Damien Marley&quot;</bucket>
+              <bucket>&quot;Nappy Nina feat. Stas THEE Boss&quot;</bucket>
+              <bucket>&quot;Nappy Nina feat. Moor Mother&quot;</bucket>
+              <bucket>&quot;Nakhane feat. Moonchild Sanelly &amp; Nile Rodgers&quot;</bucket>
+              <bucket>&quot;Nada Surf&quot;</bucket>
+              <bucket>&quot;Nabihah Iqbal&quot;</bucket>
+              <bucket>&quot;N2N &amp; Clavette&quot;</bucket>
+              <bucket>&quot;myztro&quot;</bucket>
+              <bucket>&quot;Mystic 100&apos;s&quot;</bucket>
+              <bucket>&quot;Mylo&quot;</bucket>
+              <bucket>&quot;My Morning Jacket&quot;</bucket>
+              <bucket>&quot;Mungo&apos;s Hifi&quot;</bucket>
+              <bucket>&quot;Muddy Waters&quot;</bucket>
+              <bucket>&quot;Mr. Dinkles&quot;</bucket>
+              <bucket>&quot;Movida Distinta &amp; Junior H&quot;</bucket>
+              <bucket>&quot;Mount Kimbie &amp; King Krule&quot;</bucket>
+              <bucket>&quot;Mos Def&quot;</bucket>
+              <bucket>&quot;Moresounds&quot;</bucket>
+              <bucket>&quot;Mongo Santamaria&quot;</bucket>
+              <bucket>&quot;Money Mark&quot;</bucket>
+              <bucket>&quot;Mon Laferte&quot;</bucket>
+              <bucket>&quot;Modern English&quot;</bucket>
+              <bucket>&quot;Model/Actriz&quot;</bucket>
+              <bucket>&quot;Mobb Deep&quot;</bucket>
+              <bucket>&quot;Miyagi&quot;</bucket>
+              <bucket>&quot;Missing Persons&quot;</bucket>
+              <bucket>&quot;Mint Royale feat. Pos from De La Soul&quot;</bucket>
+              <bucket>&quot;Minnie Riperton&quot;</bucket>
+              <bucket>&quot;Ministry&quot;</bucket>
+              <bucket>&quot;Miklós Rózsa&quot;</bucket>
+              <bucket>&quot;Miguel&quot;</bucket>
+              <bucket>&quot;Midlake&quot;</bucket>
+              <bucket>&quot;Mick Jenkins&quot;</bucket>
+              <bucket>&quot;Michael Kiwanuka&quot;</bucket>
+              <bucket>&quot;Michael Franti &amp; Spearhead&quot;</bucket>
+              <bucket>&quot;MFnMelo&quot;</bucket>
+              <bucket>&quot;MF DOOM feat. Mr. Fantastik&quot;</bucket>
+              <bucket>&quot;Mexican Institute of Sound&quot;</bucket>
+              <bucket>&quot;Mew&quot;</bucket>
+              <bucket>&quot;Meshell Ndegeocello feat. Brandee Younger &amp; Julius Rodriguez&quot;</bucket>
+              <bucket>&quot;Merle Haggard &amp; The Strangers&quot;</bucket>
+              <bucket>&quot;Mereba&quot;</bucket>
+              <bucket>&quot;Merchandise&quot;</bucket>
+              <bucket>&quot;Mercedes Sosa&quot;</bucket>
+              <bucket>&quot;Menace&quot;</bucket>
+              <bucket>&quot;Memphis Slim&quot;</bucket>
+              <bucket>&quot;Melody Beecher&quot;</bucket>
+              <bucket>&quot;Meklit Hadero &amp; Quinn DeVeaux&quot;</bucket>
+              <bucket>&quot;Meklit&quot;</bucket>
+              <bucket>&quot;Meade Lux Lewis&quot;</bucket>
+              <bucket>&quot;Mea Culpa&quot;</bucket>
+              <bucket>&quot;MC Lyte&quot;</bucket>
+              <bucket>&quot;MC Abdul&quot;</bucket>
+              <bucket>&quot;Mazzy Star&quot;</bucket>
+              <bucket>&quot;Mazen&quot;</bucket>
+              <bucket>&quot;Mayer Hawthorne&quot;</bucket>
+              <bucket>&quot;Maya Marie&quot;</bucket>
+              <bucket>&quot;Max Romeo &amp; The Congos&quot;</bucket>
+              <bucket>&quot;Mavi&quot;</bucket>
+              <bucket>&quot;Matt &amp; Kim&quot;</bucket>
+              <bucket>&quot;Masahiro Takahashi&quot;</bucket>
+              <bucket>&quot;Maryam Saleh&quot;</bucket>
+              <bucket>&quot;Mary J. Blige feat. Grand Puba&quot;</bucket>
+              <bucket>&quot;Martyn X Om Unit&quot;</bucket>
+              <bucket>&quot;Martyn Bootyspoon&quot;</bucket>
+              <bucket>&quot;Markis Precise feat. Brother Ali&quot;</bucket>
+              <bucket>&quot;Mark Erenstus Rhythm Force&quot;</bucket>
+              <bucket>&quot;Maribou State&quot;</bucket>
+              <bucket>&quot;Margaritas Podridas&quot;</bucket>
+              <bucket>&quot;Mandrill&quot;</bucket>
+              <bucket>&quot;Malibu&quot;</bucket>
+              <bucket>&quot;Malia&quot;</bucket>
+              <bucket>&quot;MAKiNA GiRGiR&quot;</bucket>
+              <bucket>&quot;Magic Sam&quot;</bucket>
+              <bucket>&quot;Maggot House&quot;</bucket>
+              <bucket>&quot;Madonna&quot;</bucket>
+              <bucket>&quot;Madlib, Meyhem Lauren &amp; DJ Muggs&quot;</bucket>
+              <bucket>&quot;Madlib&quot;</bucket>
+              <bucket>&quot;Madison McFerrin&quot;</bucket>
+              <bucket>&quot;MAD RAD&quot;</bucket>
+              <bucket>&quot;Macklemore feat. Jerm D, Orko Elohiem &amp; Asun&quot;</bucket>
+              <bucket>&quot;Macchiatto&quot;</bucket>
+              <bucket>&quot;Mac DeMarco&quot;</bucket>
+              <bucket>&quot;M.E.B&quot;</bucket>
+              <bucket>&quot;Lydia Ainsworth&quot;</bucket>
+              <bucket>&quot;Luxury SA&quot;</bucket>
+              <bucket>&quot;Lunar Chamber&quot;</bucket>
+              <bucket>&quot;Lula Reed&quot;</bucket>
+              <bucket>&quot;Luiza Brina&quot;</bucket>
+              <bucket>&quot;Luísa Maita&quot;</bucket>
+              <bucket>&quot;Luis Bacalov&quot;</bucket>
+              <bucket>&quot;Lucy Dacus&quot;</bucket>
+              <bucket>&quot;Lowly&quot;</bucket>
+              <bucket>&quot;Lowkey feat. Maverick Sabre, Frankie Boyle, Ken Loach, Chakabars, Khaled Siddiq &amp; Mai Khalil&quot;</bucket>
+              <bucket>&quot;Lowell Fulson&quot;</bucket>
+              <bucket>&quot;Love and Rockets&quot;</bucket>
+              <bucket>&quot;Lous and the Yakuza&quot;</bucket>
+              <bucket>&quot;Louis Vega&quot;</bucket>
+              <bucket>&quot;Lou Reed&quot;</bucket>
+              <bucket>&quot;Lotte Kestner&quot;</bucket>
+              <bucket>&quot;Lost Horizons&quot;</bucket>
+              <bucket>&quot;Los Mundos Posibles&quot;</bucket>
+              <bucket>&quot;Los Mirlos&quot;</bucket>
+              <bucket>&quot;Los Cogelones&quot;</bucket>
+              <bucket>&quot;Lootpack feat. Dilated Peoples&quot;</bucket>
+              <bucket>&quot;Loleatta Holloway&quot;</bucket>
+              <bucket>&quot;Logic feat. C Dot Castro&quot;</bucket>
+              <bucket>&quot;Lo-Fives&quot;</bucket>
+              <bucket>&quot;Lo Trio Joubran&quot;</bucket>
+              <bucket>&quot;Lloyd Price&quot;</bucket>
+              <bucket>&quot;Lloyd Parks&quot;</bucket>
+              <bucket>&quot;LL Cool J&quot;</bucket>
+              <bucket>&quot;Liz Phair&quot;</bucket>
+              <bucket>&quot;Living Colour&quot;</bucket>
+              <bucket>&quot;LIVE ON KEXP&quot;</bucket>
+              <bucket>&quot;Little Roy&quot;</bucket>
+              <bucket>&quot;Little Milton&quot;</bucket>
+              <bucket>&quot;Little Johnny Taylor&quot;</bucket>
+              <bucket>&quot;Little Esther&quot;</bucket>
+              <bucket>&quot;Lionel Richie&quot;</bucket>
+              <bucket>&quot;LION BABE&quot;</bucket>
+              <bucket>&quot;Lila Iké&quot;</bucket>
+              <bucket>&quot;Lila Ike&quot;</bucket>
+              <bucket>&quot;Lido Pimienta&quot;</bucket>
+              <bucket>&quot;Liberated Gospel choir&quot;</bucket>
+              <bucket>&quot;Les Singes Verts&quot;</bucket>
+              <bucket>&quot;Leon Bridges feat. Terrace Martin&quot;</bucket>
+              <bucket>&quot;Leon Bridges &amp; Keite Young&quot;</bucket>
+              <bucket>&quot;Lenny Kravitz&quot;</bucket>
+              <bucket>&quot;Left at London&quot;</bucket>
+              <bucket>&quot;Lee Hazlewood&quot;</bucket>
+              <bucket>&quot;LEATHERS&quot;</bucket>
+              <bucket>&quot;Le Tigre&quot;</bucket>
+              <bucket>&quot;LDNE &amp; Alex Favela&quot;</bucket>
+              <bucket>&quot;Lavarr the Starr &amp; Shabazz Palaces&quot;</bucket>
+              <bucket>&quot;Lavarr the Starr&quot;</bucket>
+              <bucket>&quot;Lauryn Hill&quot;</bucket>
+              <bucket>&quot;Laura Mvula&quot;</bucket>
+              <bucket>&quot;Latter Day Skanks&quot;</bucket>
+              <bucket>&quot;Las Áñez&quot;</bucket>
+              <bucket>&quot;Larry McDonald &amp; Anant Pradhan&quot;</bucket>
+              <bucket>&quot;Larry June &amp; The Alchemist feat. Boldy James&quot;</bucket>
+              <bucket>&quot;Land of the Loops&quot;</bucket>
+              <bucket>&quot;Lana Del Rey feat. Tommy Genesis&quot;</bucket>
+              <bucket>&quot;Lana Del Rey&quot;</bucket>
+              <bucket>&quot;Lana Del Rabies&quot;</bucket>
+              <bucket>&quot;Lamp of Murmuur&quot;</bucket>
+              <bucket>&quot;La Fonda&quot;</bucket>
+              <bucket>&quot;Kurt Vile&quot;</bucket>
+              <bucket>&quot;KRS‐One&quot;</bucket>
+              <bucket>&quot;Kristin Hersh&quot;</bucket>
+              <bucket>&quot;kris tidjan&quot;</bucket>
+              <bucket>&quot;Kris Davis feat. Val Jeanty &amp; Terri Lyne Carrington&quot;</bucket>
+              <bucket>&quot;Kostars&quot;</bucket>
+              <bucket>&quot;Koko Taylor&quot;</bucket>
+              <bucket>&quot;Kodama and the Dub Station Band&quot;</bucket>
+              <bucket>&quot;KIRBY&quot;</bucket>
+              <bucket>&quot;King Tre&quot;</bucket>
+              <bucket>&quot;King Missile&quot;</bucket>
+              <bucket>&quot;Kim Gordon&quot;</bucket>
+              <bucket>&quot;Killer Mike&quot;</bucket>
+              <bucket>&quot;Kid Koala&quot;</bucket>
+              <bucket>&quot;Kid Creole and the Coconuts&quot;</bucket>
+              <bucket>&quot;Khruangbin feat. Quantic&quot;</bucket>
+              <bucket>&quot;Khalil Crisis&quot;</bucket>
+              <bucket>&quot;Keyuntae&quot;</bucket>
+              <bucket>&quot;Kero Kero Bonito&quot;</bucket>
+              <bucket>&quot;Kendrick Lamar, Blxst &amp; Amanda Reifer&quot;</bucket>
+              <bucket>&quot;Kendrick Lamar feat. Jay Rock&quot;</bucket>
+              <bucket>&quot;Kendrick Lamar feat. Gunplay&quot;</bucket>
+              <bucket>&quot;Kendrick Lamar feat. Drake&quot;</bucket>
+              <bucket>&quot;Kelvin Momo, Babalwa M&quot;</bucket>
+              <bucket>&quot;Keith &amp; Tex&quot;</bucket>
+              <bucket>&quot;KAYTRANADA feat. H.E.R.&quot;</bucket>
+              <bucket>&quot;KayGee DaKing, Bizizi, DJ Taptobetsa&quot;</bucket>
+              <bucket>&quot;Kay Young&quot;</bucket>
+              <bucket>&quot;Kassi Valazza&quot;</bucket>
+              <bucket>&quot;Kassa Overall feat. Nick Hakim &amp; Theo Croker&quot;</bucket>
+              <bucket>&quot;Kassa Overall feat. Jonathan Hoard&quot;</bucket>
+              <bucket>&quot;Karriem&quot;</bucket>
+              <bucket>&quot;Kari Faux FT. Big K.r.i.t.&quot;</bucket>
+              <bucket>&quot;Kamo Mphela, Daliwonga, Felo Le Tee&quot;</bucket>
+              <bucket>&quot;Kali Uchis feat. Don Toliver&quot;</bucket>
+              <bucket>&quot;Kah‐Lo&quot;</bucket>
+              <bucket>&quot;Kae Tempest&quot;</bucket>
+              <bucket>&quot;Kabza De Small feat. DJ Tira, Young Stunna, Dladla Mshunqisi, Felo Le Tee &amp; Beast Rsa&quot;</bucket>
+              <bucket>&quot;K.ZIA&quot;</bucket>
+              <bucket>&quot;JVKE&quot;</bucket>
+              <bucket>&quot;Justice&quot;</bucket>
+              <bucket>&quot;Just Mustard&quot;</bucket>
+              <bucket>&quot;Jurassic 5 feat. Percee P &amp; Big Daddy Kane&quot;</bucket>
+              <bucket>&quot;Jurassic 5&quot;</bucket>
+              <bucket>&quot;Julieta Venegas&quot;</bucket>
+              <bucket>&quot;Julia Lee&quot;</bucket>
+              <bucket>&quot;Julia Jean Baptiste&quot;</bucket>
+              <bucket>&quot;Judy and the Jerks&quot;</bucket>
+              <bucket>&quot;Juan Wauters&quot;</bucket>
+              <bucket>&quot;JPEGMAFIA &amp; Danny Brown feat. redveil&quot;</bucket>
+              <bucket>&quot;JPEGMAFIA &amp; Danny Brown&quot;</bucket>
+              <bucket>&quot;Joy Division&quot;</bucket>
+              <bucket>&quot;Joss Stone&quot;</bucket>
+              <bucket>&quot;Jordana &amp; TV Girl&quot;</bucket>
+              <bucket>&quot;Jónsi&quot;</bucket>
+              <bucket>&quot;Jonathan Emile&quot;</bucket>
+              <bucket>&quot;Johnny Osbourne&quot;</bucket>
+              <bucket>&quot;Johnny Cash&quot;</bucket>
+              <bucket>&quot;John Zorn&quot;</bucket>
+              <bucket>&quot;John Vanderslice&quot;</bucket>
+              <bucket>&quot;John Legend &amp; The Roots&quot;</bucket>
+              <bucket>&quot;Joey Valence &amp; Brae&quot;</bucket>
+              <bucket>&quot;Joey Bada$$&quot;</bucket>
+              <bucket>&quot;Joe Gibbs &amp; The Professionals&quot;</bucket>
+              <bucket>&quot;Jody Williams&quot;</bucket>
+              <bucket>&quot;João do Pife&quot;</bucket>
+              <bucket>&quot;Joan Jett and the Blackhearts&quot;</bucket>
+              <bucket>&quot;Jimpster&quot;</bucket>
+              <bucket>&quot;Jimmy Witherspoon&quot;</bucket>
+              <bucket>&quot;Jim Lauderdale&quot;</bucket>
+              <bucket>&quot;Jill Scott&quot;</bucket>
+              <bucket>&quot;Jet Set Fever&quot;</bucket>
+              <bucket>&quot;Jeru the Damaja&quot;</bucket>
+              <bucket>&quot;Jeremiah Chiu &amp; Marta Sofia Honer&quot;</bucket>
+              <bucket>&quot;Jenny and Johnny&quot;</bucket>
+              <bucket>&quot;Jennifer Lara&quot;</bucket>
+              <bucket>&quot;Jeff Buckley&quot;</bucket>
+              <bucket>&quot;Jeb Loy Nichols&quot;</bucket>
+              <bucket>&quot;Jazz Gillum&quot;</bucket>
+              <bucket>&quot;Jaz Elise&quot;</bucket>
+              <bucket>&quot;Jaymie Silk&quot;</bucket>
+              <bucket>&quot;Jay‐Z&quot;</bucket>
+              <bucket>&quot;Jay Worthy &amp; DJ Muggs feat. T.F&quot;</bucket>
+              <bucket>&quot;Jay Som&quot;</bucket>
+              <bucket>&quot;Jay Dee&quot;</bucket>
+              <bucket>&quot;Jason Isbell and the 400 Unit&quot;</bucket>
+              <bucket>&quot;Jarv Dee feat. Nacho Picasso &amp; Jerm D&quot;</bucket>
+              <bucket>&quot;Japan&quot;</bucket>
+              <bucket>&quot;Janet Jackson&quot;</bucket>
+              <bucket>&quot;Janet feat. Q‐Tip &amp; Joni Mitchell&quot;</bucket>
+              <bucket>&quot;Janet&quot;</bucket>
+              <bucket>&quot;Janelle Monáe&quot;</bucket>
+              <bucket>&quot;Jane’s Addiction&quot;</bucket>
+              <bucket>&quot;Jamiroquai&quot;</bucket>
+              <bucket>&quot;Jamila Woods&quot;</bucket>
+              <bucket>&quot;James Curd, Gettoblaster, Mizbee&quot;</bucket>
+              <bucket>&quot;James And The Cold Gun&quot;</bucket>
+              <bucket>&quot;Jah Warrior&quot;</bucket>
+              <bucket>&quot;Jah Cure &amp; Kaylan Arnold&quot;</bucket>
+              <bucket>&quot;Jah Cure &amp; Alborosie&quot;</bucket>
+              <bucket>&quot;Jacques Greene&quot;</bucket>
+              <bucket>&quot;Jackie Mittoo&quot;</bucket>
+              <bucket>&quot;Jack Endino&quot;</bucket>
+              <bucket>&quot;Ivy Sole&quot;</bucket>
+              <bucket>&quot;Iron Void&quot;</bucket>
+              <bucket>&quot;Indigo De Souza&quot;</bucket>
+              <bucket>&quot;In Trance 95&quot;</bucket>
+              <bucket>&quot;Imperial Teen&quot;</bucket>
+              <bucket>&quot;Immanuel Wilkins&quot;</bucket>
+              <bucket>&quot;Illya Kuryaki and the Valderramas&quot;</bucket>
+              <bucket>&quot;Ill Considered&quot;</bucket>
+              <bucket>&quot;Ileana Cabra&quot;</bucket>
+              <bucket>&quot;IDK&quot;</bucket>
+              <bucket>&quot;Icho Candy&quot;</bucket>
+              <bucket>&quot;Ibibio Sound Machine&quot;</bucket>
+              <bucket>&quot;Ibeyi feat. BERWYN&quot;</bucket>
+              <bucket>&quot;Hüsker Dü&quot;</bucket>
+              <bucket>&quot;Hum&quot;</bucket>
+              <bucket>&quot;Hubble Bubble&quot;</bucket>
+              <bucket>&quot;hrlum&quot;</bucket>
+              <bucket>&quot;HotWax&quot;</bucket>
+              <bucket>&quot;Hoshina Anniversary&quot;</bucket>
+              <bucket>&quot;Horsegirl&quot;</bucket>
+              <bucket>&quot;Horace Andy&quot;</bucket>
+              <bucket>&quot;Homeboy Sandman &amp; Edan&quot;</bucket>
+              <bucket>&quot;HMLTD&quot;</bucket>
+              <bucket>&quot;Hit‐Boy, Dom Kennedy&quot;</bucket>
+              <bucket>&quot;Hit Boy&quot;</bucket>
+              <bucket>&quot;Henry Mancini&quot;</bucket>
+              <bucket>&quot;Henry &amp; Louis Meets Blue &amp; Red feat. Shalom&quot;</bucket>
+              <bucket>&quot;Helmet&quot;</bucket>
+              <bucket>&quot;Hellripper&quot;</bucket>
+              <bucket>&quot;Helado Negro&quot;</bucket>
+              <bucket>&quot;Heatwave&quot;</bucket>
+              <bucket>&quot;Heartbeeps&quot;</bucket>
+              <bucket>&quot;Hatchie feat. Liam Benzvi&quot;</bucket>
+              <bucket>&quot;Hatchie&quot;</bucket>
+              <bucket>&quot;Harry Nilsson&quot;</bucket>
+              <bucket>&quot;Harrison feat. MED &amp; Guilty Simpson&quot;</bucket>
+              <bucket>&quot;Harlem River Drive&quot;</bucket>
+              <bucket>&quot;Harish Raghavan&quot;</bucket>
+              <bucket>&quot;Hamilton Leithauser + Rostam&quot;</bucket>
+              <bucket>&quot;Halley Greg&quot;</bucket>
+              <bucket>&quot;Hælos&quot;</bucket>
+              <bucket>&quot;Hadowka&quot;</bucket>
+              <bucket>&quot;Hadit&quot;</bucket>
+              <bucket>&quot;Guiding Star Orchestra&quot;</bucket>
+              <bucket>&quot;Guerilla Toss&quot;</bucket>
+              <bucket>&quot;Guardian Singles&quot;</bucket>
+              <bucket>&quot;Grove&quot;</bucket>
+              <bucket>&quot;Grimes&quot;</bucket>
+              <bucket>&quot;Gregory Isaacs&quot;</bucket>
+              <bucket>&quot;Greg Ginn&quot;</bucket>
+              <bucket>&quot;Greentea Peng&quot;</bucket>
+              <bucket>&quot;Great Falls&quot;</bucket>
+              <bucket>&quot;Grateful Dead&quot;</bucket>
+              <bucket>&quot;Grass Widow&quot;</bucket>
+              <bucket>&quot;Grange&quot;</bucket>
+              <bucket>&quot;Grafh&quot;</bucket>
+              <bucket>&quot;Grace Love &amp; True Loves&quot;</bucket>
+              <bucket>&quot;Grace Love&quot;</bucket>
+              <bucket>&quot;Grace Jones&quot;</bucket>
+              <bucket>&quot;Goya Gumbani &amp; Oliver Palfreyman&quot;</bucket>
+              <bucket>&quot;Gorillaz feat. Stevie Nicks&quot;</bucket>
+              <bucket>&quot;Gorillaz feat. Fatoumata Diawara&quot;</bucket>
+              <bucket>&quot;Gorillaz feat. De La Soul and Dawn Penn&quot;</bucket>
+              <bucket>&quot;Goldfrapp&quot;</bucket>
+              <bucket>&quot;Glüme feat. STRFKR&quot;</bucket>
+              <bucket>&quot;Glüme&quot;</bucket>
+              <bucket>&quot;Glen Brown&quot;</bucket>
+              <bucket>&quot;Glass Heart String Choir&quot;</bucket>
+              <bucket>&quot;Girma Bèyènè &amp; Akalé Wubé&quot;</bucket>
+              <bucket>&quot;Girl Unit&quot;</bucket>
+              <bucket>&quot;Girl Ray&quot;</bucket>
+              <bucket>&quot;Ghetto Kumbé&quot;</bucket>
+              <bucket>&quot;George Clinton&quot;</bucket>
+              <bucket>&quot;George Clanton&quot;</bucket>
+              <bucket>&quot;Gentleman&apos;s Dub Club &amp; Eva Lazarus&quot;</bucket>
+              <bucket>&quot;ĠENN&quot;</bucket>
+              <bucket>&quot;Genesis&quot;</bucket>
+              <bucket>&quot;Geese&quot;</bucket>
+              <bucket>&quot;Gavin Turek&quot;</bucket>
+              <bucket>&quot;Gang of Youths&quot;</bucket>
+              <bucket>&quot;Gabriola&quot;</bucket>
+              <bucket>&quot;G.L.O.S.S.&quot;</bucket>
+              <bucket>&quot;FUTURENOT&quot;</bucket>
+              <bucket>&quot;Future Islands&quot;</bucket>
+              <bucket>&quot;Funkadelic&quot;</bucket>
+              <bucket>&quot;Fugees&quot;</bucket>
+              <bucket>&quot;Fucked Up&quot;</bucket>
+              <bucket>&quot;Fruit Bats&quot;</bucket>
+              <bucket>&quot;Front 242&quot;</bucket>
+              <bucket>&quot;Frightened Rabbit&quot;</bucket>
+              <bucket>&quot;Friends&quot;</bucket>
+              <bucket>&quot;Friendly Fires&quot;</bucket>
+              <bucket>&quot;Frida&quot;</bucket>
+              <bucket>&quot;Frenzal Rhomb&quot;</bucket>
+              <bucket>&quot;Free Nationals feat. Chronixx&quot;</bucket>
+              <bucket>&quot;Freddy King&quot;</bucket>
+              <bucket>&quot;Frazier Chorus&quot;</bucket>
+              <bucket>&quot;Frankie Knuckles&quot;</bucket>
+              <bucket>&quot;Frank Ocean&quot;</bucket>
+              <bucket>&quot;Françoise Hardy&quot;</bucket>
+              <bucket>&quot;Franc Moody&quot;</bucket>
+              <bucket>&quot;For Against&quot;</bucket>
+              <bucket>&quot;Focalistic, Mellow &amp; Sleazy, M.J, Pabi Cooper&quot;</bucket>
+              <bucket>&quot;Focalistic, Mellow &amp; Sleazy &amp; Madumane&quot;</bucket>
+              <bucket>&quot;Foals&quot;</bucket>
+              <bucket>&quot;Flyying Colours&quot;</bucket>
+              <bucket>&quot;Flume&quot;</bucket>
+              <bucket>&quot;Florence + the Machine&quot;</bucket>
+              <bucket>&quot;Flop&quot;</bucket>
+              <bucket>&quot;Flo Rida feat. Sage the Gemini &amp; Lookas&quot;</bucket>
+              <bucket>&quot;Flo Morrissey and Matthew E. White&quot;</bucket>
+              <bucket>&quot;Fleetwood Mac&quot;</bucket>
+              <bucket>&quot;Fleet Foxes&quot;</bucket>
+              <bucket>&quot;Five Fingers of Funk&quot;</bucket>
+              <bucket>&quot;Fishbone&quot;</bucket>
+              <bucket>&quot;Fine Arts&quot;</bucket>
+              <bucket>&quot;Final Warning&quot;</bucket>
+              <bucket>&quot;Fifth of Heaven&quot;</bucket>
+              <bucket>&quot;Ferreck Dawn &amp; Todd Terry&quot;</bucket>
+              <bucket>&quot;Fennesz &amp; Ryuichi Sakamoto&quot;</bucket>
+              <bucket>&quot;Fenne Lily&quot;</bucket>
+              <bucket>&quot;Fela Kuti &amp; Africa 70 w/ Ginger Baker&quot;</bucket>
+              <bucket>&quot;Feeble Little Horse&quot;</bucket>
+              <bucket>&quot;Father John Misty&quot;</bucket>
+              <bucket>&quot;Fat Freddy&apos;s Drop&quot;</bucket>
+              <bucket>&quot;Fake Names&quot;</bucket>
+              <bucket>&quot;Eyelids&quot;</bucket>
+              <bucket>&quot;Exhumed&quot;</bucket>
+              <bucket>&quot;Everything Is Recorded feat. Sampha&quot;</bucket>
+              <bucket>&quot;Everything But The Girl&quot;</bucket>
+              <bucket>&quot;Essam&quot;</bucket>
+              <bucket>&quot;ESP&quot;</bucket>
+              <bucket>&quot;Eskorbuto&quot;</bucket>
+              <bucket>&quot;Esha J&quot;</bucket>
+              <bucket>&quot;Erykah Badu &amp; James Poyser&quot;</bucket>
+              <bucket>&quot;Ernie Andrews &amp; Terrell Prude Trio&quot;</bucket>
+              <bucket>&quot;Eric OS&quot;</bucket>
+              <bucket>&quot;Eric Hilton&quot;</bucket>
+              <bucket>&quot;Equinoxious feat. Nina Belief&quot;</bucket>
+              <bucket>&quot;EPMD&quot;</bucket>
+              <bucket>&quot;Entombed&quot;</bucket>
+              <bucket>&quot;Empire of the Sun&quot;</bucket>
+              <bucket>&quot;eLZhi &amp; Georgia Anne Muldrow&quot;</bucket>
+              <bucket>&quot;Elton Motello&quot;</bucket>
+              <bucket>&quot;Elliott Smith&quot;</bucket>
+              <bucket>&quot;Ellie Sax&quot;</bucket>
+              <bucket>&quot;Elegant Pleasures&quot;</bucket>
+              <bucket>&quot;El Mató a un Policía Motorizado&quot;</bucket>
+              <bucket>&quot;Effie Smith&quot;</bucket>
+              <bucket>&quot;Eddie Chacon&quot;</bucket>
+              <bucket>&quot;Eater&quot;</bucket>
+              <bucket>&quot;Easy Star All-Stars &amp; Naomi Cowan&quot;</bucket>
+              <bucket>&quot;Earl Sweatshirt feat. Armand Hammer &amp; Zelooperz&quot;</bucket>
+              <bucket>&quot;Earl King&quot;</bucket>
+              <bucket>&quot;Dylan Wall&quot;</bucket>
+              <bucket>&quot;Duval Timothy feat. Mansa Maca, KBangs &amp; Sammy Sosa&quot;</bucket>
+              <bucket>&quot;Dungeon Family&quot;</bucket>
+              <bucket>&quot;Dum Dum Girls&quot;</bucket>
+              <bucket>&quot;Duckworth&quot;</bucket>
+              <bucket>&quot;dsrt flwr&quot;</bucket>
+              <bucket>&quot;Dryad&quot;</bucket>
+              <bucket>&quot;Dry Cleaning&quot;</bucket>
+              <bucket>&quot;Drones&quot;</bucket>
+              <bucket>&quot;Dream Wife&quot;</bucket>
+              <bucket>&quot;Downpilot&quot;</bucket>
+              <bucket>&quot;Down The Scope&quot;</bucket>
+              <bucket>&quot;Doug Gomez&quot;</bucket>
+              <bucket>&quot;Dominatrix&quot;</bucket>
+              <bucket>&quot;Doja Cat&quot;</bucket>
+              <bucket>&quot;Dlala Regal, Maximum, Cowboy&quot;</bucket>
+              <bucket>&quot;Django Django feat. Yuuko Sings&quot;</bucket>
+              <bucket>&quot;Django Django feat. Refound*&quot;</bucket>
+              <bucket>&quot;DJ Raff, Solo Di Medina &amp; Zaturno&quot;</bucket>
+              <bucket>&quot;DJ Q &amp; Todd Edwards&quot;</bucket>
+              <bucket>&quot;DJ Premier feat. Slick Rick &amp; Lil Wayne&quot;</bucket>
+              <bucket>&quot;DJ Panthr&quot;</bucket>
+              <bucket>&quot;DJ Maphorisa, Visca, 2woshortrsa, Stompiiey, ShaunMusiq, Ftears&quot;</bucket>
+              <bucket>&quot;DJ Jaivane, Record L Jones, Slenda Vocals&quot;</bucket>
+              <bucket>&quot;DJ doughboy&quot;</bucket>
+              <bucket>&quot;DiscoSteps&quot;</bucket>
+              <bucket>&quot;Dirt Russell&quot;</bucket>
+              <bucket>&quot;Dinosaur Jr.&quot;</bucket>
+              <bucket>&quot;Dinah Washington&quot;</bucket>
+              <bucket>&quot;Dick Dale&quot;</bucket>
+              <bucket>&quot;Dez Dare&quot;</bucket>
+              <bucket>&quot;Dexter Gordon&quot;</bucket>
+              <bucket>&quot;Devours&quot;</bucket>
+              <bucket>&quot;Devon Gilfillian&quot;</bucket>
+              <bucket>&quot;Detroit in Effect&quot;</bucket>
+              <bucket>&quot;Destroyer&quot;</bucket>
+              <bucket>&quot;Destiny II&quot;</bucket>
+              <bucket>&quot;Dennis Bovell&quot;</bucket>
+              <bucket>&quot;Demob&quot;</bucket>
+              <bucket>&quot;Dehd&quot;</bucket>
+              <bucket>&quot;Deerhunter&quot;</bucket>
+              <bucket>&quot;Deeper Purpose&quot;</bucket>
+              <bucket>&quot;Deep London, Boohle&quot;</bucket>
+              <bucket>&quot;Decry&quot;</bucket>
+              <bucket>&quot;Debi Newberry&quot;</bucket>
+              <bucket>&quot;Debbie Taylor&quot;</bucket>
+              <bucket>&quot;Debbie Deb&quot;</bucket>
+              <bucket>&quot;Death Valley Girls &amp; Jack Stafford&quot;</bucket>
+              <bucket>&quot;Death Spa&quot;</bucket>
+              <bucket>&quot;Dean Blunt&quot;</bucket>
+              <bucket>&quot;Dead Kennedys&quot;</bucket>
+              <bucket>&quot;Dead Energy&quot;</bucket>
+              <bucket>&quot;Dead Can Dance&quot;</bucket>
+              <bucket>&quot;De La Soul feat. Jungle Brothers &amp; Q‐Tip&quot;</bucket>
+              <bucket>&quot;DBN Gogo, Sino Msolo, Kamo Mphela, Young Stunna &amp; Busiswa&quot;</bucket>
+              <bucket>&quot;Dazzle Drums&quot;</bucket>
+              <bucket>&quot;Dazzle drums&quot;</bucket>
+              <bucket>&quot;dazegxd w/ Dirty Bird&quot;</bucket>
+              <bucket>&quot;David Gray&quot;</bucket>
+              <bucket>&quot;Dark Horse&quot;</bucket>
+              <bucket>&quot;Dancing Strangers&quot;</bucket>
+              <bucket>&quot;Damian Marley feat. Stephen Marley &amp; Black Thought&quot;</bucket>
+              <bucket>&quot;Dame Area&quot;</bucket>
+              <bucket>&quot;DAM&quot;</bucket>
+              <bucket>&quot;Daft Punk feat. Giorgio Moroder&quot;</bucket>
+              <bucket>&quot;Daft Punk&quot;</bucket>
+              <bucket>&quot;Dafs&quot;</bucket>
+              <bucket>&quot;D’Angelo&quot;</bucket>
+              <bucket>&quot;D.O.A.&quot;</bucket>
+              <bucket>&quot;D Sharp&quot;</bucket>
+              <bucket>&quot;Cymbals Eat Guitars&quot;</bucket>
+              <bucket>&quot;Cub Sport&quot;</bucket>
+              <bucket>&quot;Crushed&quot;</bucket>
+              <bucket>&quot;Crosby, Stills, Nash &amp; Young&quot;</bucket>
+              <bucket>&quot;Crocodiles&quot;</bucket>
+              <bucket>&quot;Cracker&quot;</bucket>
+              <bucket>&quot;Courtney Barnett&quot;</bucket>
+              <bucket>&quot;Costa Titch, Sdida, Alfa Kat, Man T, C&apos;buda M, Banaba Des&quot;</bucket>
+              <bucket>&quot;Cory Hanson&quot;</bucket>
+              <bucket>&quot;Cortex&quot;</bucket>
+              <bucket>&quot;Connie Pitts&quot;</bucket>
+              <bucket>&quot;Cola&quot;</bucket>
+              <bucket>&quot;Cody Currie&quot;</bucket>
+              <bucket>&quot;Cocteau Twins&quot;</bucket>
+              <bucket>&quot;Coast Contra&quot;</bucket>
+              <bucket>&quot;Clyde Hopkins&quot;</bucket>
+              <bucket>&quot;Clyde Alexander&quot;</bucket>
+              <bucket>&quot;Clive Tanaka y su Orquesta&quot;</bucket>
+              <bucket>&quot;Class&quot;</bucket>
+              <bucket>&quot;Circuit des Yeux&quot;</bucket>
+              <bucket>&quot;Circle Jerks&quot;</bucket>
+              <bucket>&quot;CIEL&quot;</bucket>
+              <bucket>&quot;Cibo Matto&quot;</bucket>
+              <bucket>&quot;CHVRCHES feat. Robert Smith&quot;</bucket>
+              <bucket>&quot;Chromeo&quot;</bucket>
+              <bucket>&quot;Chromatics&quot;</bucket>
+              <bucket>&quot;Christopher Willits &amp; Ryuichi Sakamoto&quot;</bucket>
+              <bucket>&quot;Christian McBride&apos;s New Jawn&quot;</bucket>
+              <bucket>&quot;Chris Carroll&quot;</bucket>
+              <bucket>&quot;Choncy&quot;</bucket>
+              <bucket>&quot;Choir Boy&quot;</bucket>
+              <bucket>&quot;Childish Gambino&quot;</bucket>
+              <bucket>&quot;Chestnut People&quot;</bucket>
+              <bucket>&quot;CHERRY CHEEKS&quot;</bucket>
+              <bucket>&quot;Cheekface&quot;</bucket>
+              <bucket>&quot;Che Nior&quot;</bucket>
+              <bucket>&quot;Chaz Jankel&quot;</bucket>
+              <bucket>&quot;Chastity Belt&quot;</bucket>
+              <bucket>&quot;Chastain&quot;</bucket>
+              <bucket>&quot;Charlie Parker &amp; Dizzy Gillespie&quot;</bucket>
+              <bucket>&quot;Charlie Christian&quot;</bucket>
+              <bucket>&quot;Charles Mingus&quot;</bucket>
+              <bucket>&quot;Charles Bradley and Menahan Street Band&quot;</bucket>
+              <bucket>&quot;Chancha Via Circuito&quot;</bucket>
+              <bucket>&quot;Chance the Rapper feat. Knox Fortune&quot;</bucket>
+              <bucket>&quot;Champion Jack Dupree&quot;</bucket>
+              <bucket>&quot;Chaka Khan&quot;</bucket>
+              <bucket>&quot;Cecil Gant&quot;</bucket>
+              <bucket>&quot;Catherine Wheel&quot;</bucket>
+              <bucket>&quot;Casket Cassette&quot;</bucket>
+              <bucket>&quot;Casiokids&quot;</bucket>
+              <bucket>&quot;Caroline Polachek feat. Grimes and Dido&quot;</bucket>
+              <bucket>&quot;Carolina Durante&quot;</bucket>
+              <bucket>&quot;Caribou&quot;</bucket>
+              <bucket>&quot;Carcass&quot;</bucket>
+              <bucket>&quot;Cannons&quot;</bucket>
+              <bucket>&quot;Calyx&quot;</bucket>
+              <bucket>&quot;Calvin Harris feat. Normani, Tinashe &amp; Offset&quot;</bucket>
+              <bucket>&quot;Calvin Harris feat. Florence Welch&quot;</bucket>
+              <bucket>&quot;Caixa Cubo&quot;</bucket>
+              <bucket>&quot;Caetano Veloso&quot;</bucket>
+              <bucket>&quot;Cable Ties&quot;</bucket>
+              <bucket>&quot;Bustié&quot;</bucket>
+              <bucket>&quot;Buscabulla&quot;</bucket>
+              <bucket>&quot;Bunny Wailer&quot;</bucket>
+              <bucket>&quot;Buffalo Tom&quot;</bucket>
+              <bucket>&quot;Bryce Bowden /Greg Cypher&quot;</bucket>
+              <bucket>&quot;Bryan John Appleby&quot;</bucket>
+              <bucket>&quot;Brothers of Love&quot;</bucket>
+              <bucket>&quot;Broadcast&quot;</bucket>
+              <bucket>&quot;Brittany Davis&quot;</bucket>
+              <bucket>&quot;Briana Marela&quot;</bucket>
+              <bucket>&quot;Brian Eno&quot;</bucket>
+              <bucket>&quot;Bria&quot;</bucket>
+              <bucket>&quot;Braxe + Falcon / Panda Bear&quot;</bucket>
+              <bucket>&quot;Brass Construction&quot;</bucket>
+              <bucket>&quot;Brandee Younger feat. Mumu Fresh&quot;</bucket>
+              <bucket>&quot;Brandee Younger&quot;</bucket>
+              <bucket>&quot;Brad Mehldau&quot;</bucket>
+              <bucket>&quot;Bow Wow Wow&quot;</bucket>
+              <bucket>&quot;Boss&apos; Daughter&quot;</bucket>
+              <bucket>&quot;Booker T. &amp; The MG’s&quot;</bucket>
+              <bucket>&quot;Book of Love&quot;</bucket>
+              <bucket>&quot;Bonobo &amp; Jacques Greene&quot;</bucket>
+              <bucket>&quot;Boney M.&quot;</bucket>
+              <bucket>&quot;Bone Thugs‐n‐Harmony&quot;</bucket>
+              <bucket>&quot;Bole 2 Harlem&quot;</bucket>
+              <bucket>&quot;Bobby Jones&quot;</bucket>
+              <bucket>&quot;Bobby James&quot;</bucket>
+              <bucket>&quot;Bobby &amp; The Innkeepers&quot;</bucket>
+              <bucket>&quot;Bob Dylan with Johnny Cash&quot;</bucket>
+              <bucket>&quot;Bob &amp; The Rustlers&quot;</bucket>
+              <bucket>&quot;Blur&quot;</bucket>
+              <bucket>&quot;Blundetto &amp; Grandmagneto&quot;</bucket>
+              <bucket>&quot;Blue Scholars&quot;</bucket>
+              <bucket>&quot;Blue Grass&quot;</bucket>
+              <bucket>&quot;Blowers&quot;</bucket>
+              <bucket>&quot;Blow Up&quot;</bucket>
+              <bucket>&quot;Blood Orange&quot;</bucket>
+              <bucket>&quot;Bliss Station, Flamingosis&quot;</bucket>
+              <bucket>&quot;Blaqnick, MasterBlaq, Major League DJz&quot;</bucket>
+              <bucket>&quot;Blaqnick &amp; MasterBlaq&quot;</bucket>
+              <bucket>&quot;Black Nasty&quot;</bucket>
+              <bucket>&quot;black midi&quot;</bucket>
+              <bucket>&quot;Black Market Brass&quot;</bucket>
+              <bucket>&quot;Black Coffee feat. Celeste&quot;</bucket>
+              <bucket>&quot;Black Buster&quot;</bucket>
+              <bucket>&quot;Black Box&quot;</bucket>
+              <bucket>&quot;BJ Coulson&quot;</bucket>
+              <bucket>&quot;binki&quot;</bucket>
+              <bucket>&quot;Billy The Baron&quot;</bucket>
+              <bucket>&quot;Billy John&quot;</bucket>
+              <bucket>&quot;Billy Idol&quot;</bucket>
+              <bucket>&quot;Billy Boy Arnold&quot;</bucket>
+              <bucket>&quot;Big Walter Horton&quot;</bucket>
+              <bucket>&quot;Big Sis Andrews &amp; Her Blues Busters&quot;</bucket>
+              <bucket>&quot;Big Mama Thornton&quot;</bucket>
+              <bucket>&quot;Big Joanie&quot;</bucket>
+              <bucket>&quot;Big Country&quot;</bucket>
+              <bucket>&quot;Beyoncé&quot;</bucket>
+              <bucket>&quot;Bettye Swann&quot;</bucket>
+              <bucket>&quot;Betty Everett&quot;</bucket>
+              <bucket>&quot;Benny the Butcher feat. Stove God Cooks&quot;</bucket>
+              <bucket>&quot;Belle and Sebastian&quot;</bucket>
+              <bucket>&quot;Bela Fleck, Pandit Vishwa&quot;</bucket>
+              <bucket>&quot;Bebel Gilberto&quot;</bucket>
+              <bucket>&quot;Beans Bowles&quot;</bucket>
+              <bucket>&quot;Beach House&quot;</bucket>
+              <bucket>&quot;Beach Fossils&quot;</bucket>
+              <bucket>&quot;BDF &amp; Natty Keyz&quot;</bucket>
+              <bucket>&quot;Battlebeats&quot;</bucket>
+              <bucket>&quot;Bartees Strange feat. Daniel Kleederman&quot;</bucket>
+              <bucket>&quot;Bartees Strange&quot;</bucket>
+              <bucket>&quot;Barrie&quot;</bucket>
+              <bucket>&quot;Barons Ltd.&quot;</bucket>
+              <bucket>&quot;Bappi Lahiri&quot;</bucket>
+              <bucket>&quot;Balún&quot;</bucket>
+              <bucket>&quot;Bajofondo con Julieta Venegas&quot;</bucket>
+              <bucket>&quot;Baby Rose&quot;</bucket>
+              <bucket>&quot;Babes In Canyon&quot;</bucket>
+              <bucket>&quot;Baba Ali&quot;</bucket>
+              <bucket>&quot;B. Cool-Aid feat. Quelle Chris, Denmark Vessey, Jimetta Rose, V.C.R, MoRuf &amp; Kamilah&quot;</bucket>
+              <bucket>&quot;B. Cool-Aid feat. Liv.e, Jimetta Rose &amp; V.C.R&quot;</bucket>
+              <bucket>&quot;B. Cool-Aid feat. Liv.e, Butcher Brown, Jimetta Rose, V.C.R &amp; Maurice II&quot;</bucket>
+              <bucket>&quot;B. Cool-Aid feat. DJ Harrison &amp; V.C.R&quot;</bucket>
+              <bucket>&quot;B‐15 Project featuring Crissy D &amp; Lady G&quot;</bucket>
+              <bucket>&quot;Avalon Emerson&quot;</bucket>
+              <bucket>&quot;Automatic&quot;</bucket>
+              <bucket>&quot;Autocratic$&quot;</bucket>
+              <bucket>&quot;ATK MusiQ&quot;</bucket>
+              <bucket>&quot;Aterciopelados&quot;</bucket>
+              <bucket>&quot;Aswad&quot;</bucket>
+              <bucket>&quot;Asha Puthli&quot;</bucket>
+              <bucket>&quot;Art Tatum&quot;</bucket>
+              <bucket>&quot;Arrested Development&quot;</bucket>
+              <bucket>&quot;Arooj Aftab, Vijay Iyer, Shahzad Ismaily&quot;</bucket>
+              <bucket>&quot;Arooj Aftab&quot;</bucket>
+              <bucket>&quot;Armitage Shanks&quot;</bucket>
+              <bucket>&quot;Apollos Show Band&quot;</bucket>
+              <bucket>&quot;Apoena&quot;</bucket>
+              <bucket>&quot;Anunaku&quot;</bucket>
+              <bucket>&quot;Anoushka Shankar&quot;</bucket>
+              <bucket>&quot;Anoesis&quot;</bucket>
+              <bucket>&quot;Annie&quot;</bucket>
+              <bucket>&quot;Anna King&quot;</bucket>
+              <bucket>&quot;Anita Ward&quot;</bucket>
+              <bucket>&quot;Angst&quot;</bucket>
+              <bucket>&quot;Angie Stone&quot;</bucket>
+              <bucket>&quot;Angel Olsen&quot;</bucket>
+              <bucket>&quot;Andrew Brown&quot;</bucket>
+              <bucket>&quot;Andrew \&quot;Big Voice\&quot; Odom &amp; Earl Hooker&quot;</bucket>
+              <bucket>&quot;Andrea Olivaj &amp; Arodes&quot;</bucket>
+              <bucket>&quot;Andre Crouch &amp; The Disciples&quot;</bucket>
+              <bucket>&quot;Andra Day&quot;</bucket>
+              <bucket>&quot;anaiis&quot;</bucket>
+              <bucket>&quot;Ana Tijoux&quot;</bucket>
+              <bucket>&quot;Amyl and The Sniffers&quot;</bucket>
+              <bucket>&quot;Ampersan&quot;</bucket>
+              <bucket>&quot;Amor fou&quot;</bucket>
+              <bucket>&quot;Amber Mark&quot;</bucket>
+              <bucket>&quot;Amal Nemer&quot;</bucket>
+              <bucket>&quot;Alvvays&quot;</bucket>
+              <bucket>&quot;Alton Ellis&quot;</bucket>
+              <bucket>&quot;alt-J&quot;</bucket>
+              <bucket>&quot;Alpha Centauri&quot;</bucket>
+              <bucket>&quot;Allan Holdsworth&quot;</bucket>
+              <bucket>&quot;Alison Moyet&quot;</bucket>
+              <bucket>&quot;Alison Goldfrapp &amp; Claptone&quot;</bucket>
+              <bucket>&quot;Alison Goldfrapp&quot;</bucket>
+              <bucket>&quot;Alinka&quot;</bucket>
+              <bucket>&quot;Alien Nosejob&quot;</bucket>
+              <bucket>&quot;Alicia Myers&quot;</bucket>
+              <bucket>&quot;Alice in Chains&quot;</bucket>
+              <bucket>&quot;Ali Farka Touré&quot;</bucket>
+              <bucket>&quot;Algiers feat. Zack de la Rocha&quot;</bucket>
+              <bucket>&quot;Algiers feat. Nadah El Shazly&quot;</bucket>
+              <bucket>&quot;Alfa Mist feat. Bongeziwe Mabandla&quot;</bucket>
+              <bucket>&quot;Alex Lahey&quot;</bucket>
+              <bucket>&quot;Albert King&quot;</bucket>
+              <bucket>&quot;Al‐Dos Band&quot;</bucket>
+              <bucket>&quot;Al Brown &amp; Inner Force &amp; Paolo Baldini&quot;</bucket>
+              <bucket>&quot;Akua Naru&quot;</bucket>
+              <bucket>&quot;Afro Gang&quot;</bucket>
+              <bucket>&quot;African Head Charge&quot;</bucket>
+              <bucket>&quot;Adorable&quot;</bucket>
+              <bucket>&quot;Adi Oasis feat. Jamila Woods&quot;</bucket>
+              <bucket>&quot;Adam and The Ants&quot;</bucket>
+              <bucket>&quot;Acid Arab feat. Sofiane Saidi&quot;</bucket>
+              <bucket>&quot;Aceyalone, Abstract Rude &amp; Moka Only&quot;</bucket>
+              <bucket>&quot;Aceyalone&quot;</bucket>
+              <bucket>&quot;Abstract Rude + Tribe Unique&quot;</bucket>
+              <bucket>&quot;Abraham&quot;</bucket>
+              <bucket>&quot;Ab-Soul feat. Anna Wise&quot;</bucket>
+              <bucket>&quot;Ab-Soul&quot;</bucket>
+              <bucket>&quot;Aaliyah feat. Timbaland&quot;</bucket>
+              <bucket>&quot;A. Maceo Smith High School&quot;</bucket>
+              <bucket>&quot;A Tribe Called Quest vs. Groove Armada&quot;</bucket>
+              <bucket>&quot;A House&quot;</bucket>
+              <bucket>&quot;A Certain Ratio feat. Ellen Beth Abdi&quot;</bucket>
+              <bucket>&quot;$wingin’ Utter$&quot;</bucket>
+              <bucket>&quot;310&quot;</bucket>
+              <bucket>&quot;79rs Gang&quot;</bucket>
+              <bucket>&quot;38 Spesh&quot;</bucket>
+              <bucket>&quot;9umba, Toss &amp; Mdoovar feat. Sir Trill, Sino Msolo, Lady Du, Young Stunna &amp; Slade&quot;</bucket>
+              <bucket>&quot;9th Wonder feat. Swank &amp; King Draft&quot;</bucket>
+              <bucket>&quot;9th Wonder feat. Amber Navran &amp; King Draft&quot;</bucket>
+              <bucket>&quot;6LACK&quot;</bucket>
+              <bucket>%all%</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='quantitative' column='[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Rank Percentile (copy)_1754644651212038149:qk:1]' included-values='in-range'>
+            <max>18</max>
+          </filter>
+          <slices>
+            <column>[federated.0cxcp3y1kfguvk121gcd10uuof33].[none:ARTIST:nk]</column>
+            <column>[federated.0cxcp3y1kfguvk121gcd10uuof33].[:Measure Names]</column>
+            <column>[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Rank Percentile (copy)_1754644651212038149:qk:1]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='size-bar' field='[federated.0cxcp3y1kfguvk121gcd10uuof33].[sum:PLAY_COUNT:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0cxcp3y1kfguvk121gcd10uuof33].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0cxcp3y1kfguvk121gcd10uuof33].[none:ARTIST:nk]</rows>
+        <cols>[federated.0cxcp3y1kfguvk121gcd10uuof33].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{7B744899-D497-4411-8AE4-69EBD31D1067}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Artist'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='241'>
+            <card param='[federated.0cxcp3y1kfguvk121gcd10uuof33].[usr:Rank Percentile (copy)_1754644651212038149:qk:1]' show-domain='false' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{2A3D7310-CEC3-4792-9BE9-92D95B905170}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Artist' width='192'>
+      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
+      PXg8njt3ibRarfT09JCYmMiyZcsoKiqis7OT6Oholi9fTktLC3l5eSQlJbFq1SqamprIzMyU
+      smx9fX2kpqbyhS98AZVKRVJSEgkJCXR3d6PT6SgsLCQ/P5+xsTHm5uZ47rnnKCsrY8OGDRQU
+      FKDRaEhJSSEmJiYk1Yr/lBAEgbq6Omw2W1AlkTdiNBq5cOECycnJ5OfnBz0xFZBE1tbWhkQS
+      KYoiTU1NtLS0cN9996HX6++tJFIQBD788EPpvSIU6fcwYW4k3CUyzJImLIkMs6QJSyLDLGlu
+      6wBms5mKigrKy8u5du0aFRUVC/7QlStXpAJZDQ0Nd5S42Ww2qTvh7XA4HFRWVi4oC/T5fDQ2
+      NuJ2uzEajbf8fWBg4DMr1XS73bS2toYsM+t2u6mvr6epqSlk2dnx8XGqq6uxWCxBt+V2u2lq
+      aqK+vl7KRd0UBfrolwcHBzl79izFxcWcOXMGrVaLIAioVCrq6uoAiImJQSaT8bd/+7fExcUR
+      ExPDv//7v0sqH51Ox+joKHa7HZvNhs1mw2q1Ul1dTVdXF7m5udTW1hIdHc3s7KxURlGn03Hg
+      wAGUSiVarRadTse1a9fwer2o1Wra29sZGBggKSmJwcFBXC4Xb7zxBikpKZIT6lMq8ZEAACAA
+      SURBVHQ6urq6cDgcUl+xzwqBiEVtbS0lJSUhyQQ3NTVJVQAFQSAhISGo9lwuF+fPnyc7O5ur
+      V6+GJPIUWNbT0dFBUVHR7UeA2NhYNm7cSFpaGsXFxbhcLkZHRzly5AinTp1icHCQw4cP43Q6
+      AVi1ahW9vb309vayatUqfD4fJ06cwOFwUFpayvnz5/nlL3/J9PQ0v/vd7yQl2aFDh5iZmeHg
+      wYOcP3+eX/ziF5L4xmQy8fjjj0tFcufm5njllVfo6+vj/fffp6mpiStXrnDt2jV8Ph8OhwOf
+      z8fMzAxut5vf//73QT2ZwSbUksjU1FSqqqpobW0N+s0P/yeJDNwvwZZEKpVK0tPTMRqNbN26
+      9c5dIm8kKiqKhx56CIVCweDgIBMTE2g0Gml4DggMOjo6yM/PB5ByCoEaly+88AKZmZnExMSw
+      detW5HI5Q0NDGAwGdDodXq+Xb37zm6xevRq5XI7f75eG4v7+fq5fv87s7Cw+n4+8vDwefvhh
+      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
+      nBzSh0U30n8AX4t5HQDQeusAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>
