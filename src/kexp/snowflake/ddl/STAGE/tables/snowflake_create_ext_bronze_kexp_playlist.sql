@@ -1,3 +1,5 @@
+use role APPADMIN;
+
 --------------------------------------- KEXP_PLAYLIST
 create or replace stage STAGE.STG_BRONZE_KEXP_PLAYLIST
     storage_integration = OWLMTN_S3_DATA
@@ -42,6 +44,7 @@ create or replace external table STAGE.EXT_BRONZE_KEXP_PLAYLIST(
 
 alter external table STAGE.EXT_BRONZE_KEXP_PLAYLIST refresh;
 
-select *
+select BRONZE_CREATED_TIMESTAMP, count(*)
 from STAGE.EXT_BRONZE_KEXP_PLAYLIST
-order by AIRDATE desc;
+group by BRONZE_CREATED_TIMESTAMP
+order by BRONZE_CREATED_TIMESTAMP desc;

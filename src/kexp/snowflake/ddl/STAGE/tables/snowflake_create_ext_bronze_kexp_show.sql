@@ -1,3 +1,4 @@
+use role APPADMIN;
 
 --------------------------------------- KEXP_SHOW
 create or replace stage STAGE.STG_BRONZE_KEXP_SHOW
@@ -30,5 +31,9 @@ host_names variant as (value:host_names::variant)
     
 alter external table STAGE.EXT_BRONZE_KEXP_SHOW refresh;
 
-select * from STAGE.EXT_BRONZE_KEXP_SHOW
-order by START_TIME desc;
+select BRONZE_CREATED_TIMESTAMP
+from STAGE.EXT_BRONZE_KEXP_SHOW
+group by BRONZE_CREATED_TIMESTAMP
+order by BRONZE_CREATED_TIMESTAMP desc;
+
+grant select on all tables in schema stage to role ANALYTICS;

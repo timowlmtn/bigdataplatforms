@@ -1,7 +1,7 @@
 /.idea/.gitignore
 /src/security/ddl/user_role_grants.sql
 /src/security/ddl/network_policy.sql
-/ui/metabase/secrets.sh
+/analytics/metabase/secrets.sh
 /src/awslayers/setenv.sh
 /src/aws_kexp_cloudformation/build/
 /src/aws_kexp_cloudformation/setenv_dev_blue.sh

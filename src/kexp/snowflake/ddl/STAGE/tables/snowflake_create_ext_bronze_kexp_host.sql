@@ -1,3 +1,4 @@
+use role APPADMIN;
 
 --------------------------------------- KEXP_HOST
 create or replace stage STAGE.STG_BRONZE_KEXP_HOST
