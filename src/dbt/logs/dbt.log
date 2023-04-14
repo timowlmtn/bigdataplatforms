@@ -1,0 +1,139 @@
+
+
+============================== 2023-04-14 14:53:54.024358 | 1d5c6adc-f5fd-4dc8-9b78-99533b5fe57d ==============================
+[0m14:53:54.024358 [info ] [MainThread]: Running with dbt=1.4.5
+[0m14:53:54.025082 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/timburns/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m14:53:54.025170 [debug] [MainThread]: Tracking: tracking
+[0m14:53:54.033451 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1033dca00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10339b3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1033ad400>]}
+[0m14:53:54.034002 [info ] [MainThread]: Creating dbt configuration folder at /Users/timburns/.dbt
+[0m14:54:13.271779 [debug] [MainThread]: Starter project path: /Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/include/starter_project
+[0m15:08:24.436777 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1267104c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1267105e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x126710a00>]}
+[0m15:08:24.441350 [debug] [MainThread]: Flushing usage events
+[0m15:08:24.634780 [error] [MainThread]: Encountered an error:
+
+[0m15:08:24.657371 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 136, in main
+    results, succeeded = handle_and_check(args)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 206, in handle_and_check
+    task, res = run_from_args(parsed)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 253, in run_from_args
+    results = task.run()
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 305, in run
+    self.create_profile_from_target(adapter, profile_name=project_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 180, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 164, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 130, in generate_target_from_input
+    target[key] = click.prompt(
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 166, in prompt
+    value = prompt_func(prompt)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 149, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+
+
+============================== 2023-04-14 15:08:26.917878 | 89a750e2-0355-48b7-b372-2625ceece0a6 ==============================
+[0m15:08:26.917878 [info ] [MainThread]: Running with dbt=1.4.5
+[0m15:08:26.918543 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/timburns/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m15:08:26.918621 [debug] [MainThread]: Tracking: tracking
+[0m15:08:26.928382 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108279a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108237fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10824aa30>]}
+[0m15:08:33.130121 [debug] [MainThread]: Starter project path: /Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/include/starter_project
+[0m15:14:07.419969 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12b02f280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12b02f3a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12b02f3d0>]}
+[0m15:14:07.421391 [debug] [MainThread]: Flushing usage events
+[0m15:14:07.584700 [error] [MainThread]: Encountered an error:
+
+[0m15:14:07.601377 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 136, in main
+    results, succeeded = handle_and_check(args)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 206, in handle_and_check
+    task, res = run_from_args(parsed)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 253, in run_from_args
+    results = task.run()
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 305, in run
+    self.create_profile_from_target(adapter, profile_name=project_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 180, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 164, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 117, in generate_target_from_input
+    target = self.generate_target_from_input(
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 130, in generate_target_from_input
+    target[key] = click.prompt(
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 166, in prompt
+    value = prompt_func(prompt)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 149, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+
+
+============================== 2023-04-14 15:15:03.347310 | 75c045de-21e1-437b-a76a-2acfc2d9169a ==============================
+[0m15:15:03.347310 [info ] [MainThread]: Running with dbt=1.4.5
+[0m15:15:03.348133 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/timburns/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m15:15:03.348214 [debug] [MainThread]: Tracking: tracking
+[0m15:15:03.357197 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085dbbe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085b5d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085baaf0>]}
+[0m15:15:07.818788 [info ] [MainThread]: A project called bigdataplatforms already exists here.
+[0m15:15:07.819615 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085b5d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085baaf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1085dbbe0>]}
+[0m15:15:07.820079 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2023-04-14 15:16:57.867152 | 6f3254f0-e726-4a0d-92c3-3b7eb435696b ==============================
+[0m15:16:57.867152 [info ] [MainThread]: Running with dbt=1.4.5
+[0m15:16:57.868023 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/timburns/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m15:16:57.868110 [debug] [MainThread]: Tracking: tracking
+[0m15:16:57.881571 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108163be0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108163040>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1081420d0>]}
+[0m15:17:01.091002 [debug] [MainThread]: Starter project path: /Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/include/starter_project
+[0m15:17:22.785427 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12aa173d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12aa170d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12aa175e0>]}
+[0m15:17:22.787286 [debug] [MainThread]: Flushing usage events
+[0m15:17:22.956885 [error] [MainThread]: Encountered an error:
+
+[0m15:17:22.968272 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 136, in main
+    results, succeeded = handle_and_check(args)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 206, in handle_and_check
+    task, res = run_from_args(parsed)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/main.py", line 253, in run_from_args
+    results = task.run()
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 305, in run
+    self.create_profile_from_target(adapter, profile_name=project_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 180, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 164, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/task/init.py", line 130, in generate_target_from_input
+    target[key] = click.prompt(
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 166, in prompt
+    value = prompt_func(prompt)
+  File "/Users/timburns/.venv/dbt/lib/python3.9/site-packages/click/termui.py", line 149, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+
+
+============================== 2023-04-14 15:17:30.552650 | c653450e-b491-43f9-8f37-2357fa774e6f ==============================
+[0m15:17:30.552650 [info ] [MainThread]: Running with dbt=1.4.5
+[0m15:17:30.553321 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/timburns/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m15:17:30.553404 [debug] [MainThread]: Tracking: tracking
+[0m15:17:30.562483 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10789bbb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10789b0a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10787b550>]}
+[0m15:17:46.816430 [debug] [MainThread]: Starter project path: /Users/timburns/.venv/dbt/lib/python3.9/site-packages/dbt/include/starter_project
+[0m15:18:53.206500 [info ] [MainThread]: Profile yardstick_snowflake written to /Users/timburns/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:18:53.207207 [info ] [MainThread]: 
+Your new dbt project "yardstick_snowflake" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:18:53.207704 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10789bbb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10789b0a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106ab46a0>]}
+[0m15:18:53.208131 [debug] [MainThread]: Flushing usage events
