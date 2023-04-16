@@ -21,7 +21,8 @@ class SparkCatalogTest(unittest.TestCase):
 
         self.assertEqual("odif yltsaeb", "".join(test_string))
 
-    def string_is_in(self, test_string):
+    @staticmethod
+    def string_is_in(test_string):
         char_sequence = set()
         start_idx = 0
         result = 0
