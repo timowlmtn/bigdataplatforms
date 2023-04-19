@@ -6,52 +6,52 @@
   "stage_name": "RADIO_STAGE_KEXP",
   "s3_url": "s3://owlmtn-stage-data/stage/kexp/shows/",
   "columns": {
-    "ID": {
+    "id": {
       "DATA_TYPE": "NUMBER",
       "IS_NULLABLE": false
     },
-    "HOST_NAMES": {
+    "host_names": {
       "DATA_TYPE": "VARIANT",
       "IS_NULLABLE": true
     },
-    "HOST_URIS": {
+    "host_uris": {
       "DATA_TYPE": "VARIANT",
       "IS_NULLABLE": true
     },
-    "HOSTS": {
+    "hosts": {
       "DATA_TYPE": "VARIANT",
       "IS_NULLABLE": true
     },
 
-    "IMAGE_URI": {
+    "image_uri": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
-    "PROGRAM": {
+    "program": {
       "DATA_TYPE": "NUMBER",
       "IS_NULLABLE": true
     },
-    "PROGRAM_NAME": {
+    "program_name": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
-    "PROGRAM_TAGS": {
+    "program_tags": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
-    "PROGRAM_URI": {
+    "program_uri": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
-    "START_TIME": {
+    "start_time": {
       "DATA_TYPE": "TIMESTAMP",
       "IS_NULLABLE": true
     },
-    "TAGLINE": {
+    "tagline": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
-    "URI": {
+    "uri": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },

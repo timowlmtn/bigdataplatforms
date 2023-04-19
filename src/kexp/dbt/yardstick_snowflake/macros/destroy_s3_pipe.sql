@@ -17,6 +17,7 @@ begin;
 drop pipe if exists {{ schema_name }}.{{ pipe_name }};
 drop table if exists {{ schema_name }}.{{ table_name }};
 drop stage if exists {{ schema_name }}.{{ stage_name }};
+
 commit;
 {%- endset -%}
 
