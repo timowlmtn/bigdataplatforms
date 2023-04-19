@@ -27,8 +27,17 @@ create table if not exists {{ schema_name }}.{{ table_name }} (
 
 create pipe {{ schema_name }}.{{ pipe_name }}
     auto_ingest = true as
-    copy into {{ schema_name }}.{{ table_name }}
-    from @{{ schema_name }}.{{ stage_name }}
+    copy into {{ schema_name }}.{{ table_name }}(
+        {%- for col, column_mapping in columns.items() %}
+            {{ col }}{% if not loop.last %},{% endif %}
+        {%- endfor %}
+        )
+    from (
+        select {%- for col, column_mapping in columns.items() %}
+            $1:{{ col }}::{{ column_mapping['DATA_TYPE'] }} {{ col }}{% if not loop.last %},{% endif %}
+        {%- endfor %}
+        from @{{ schema_name }}.{{ stage_name }}
+    )
     file_format = (
      type = '{{ file_type }}'
    );
