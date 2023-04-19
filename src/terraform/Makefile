@@ -19,3 +19,6 @@ init-databricks:
 
 install:
 	brew install hashicorp/tap/terraform
+
+get-session-token:
+	aws --profile databricks_user sts get-session-token --duration-seconds 129600

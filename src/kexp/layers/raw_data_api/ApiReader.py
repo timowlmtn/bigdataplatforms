@@ -41,9 +41,14 @@ class ApiReader:
         return api_requests
 
     def get_default_start_date(self, date_timestamp):
+        """
+        Get a default start date.  Defaults to last x days if none specified
+        :param date_timestamp:
+        :return:
+        """
         if date_timestamp is None:
             now_pst = datetime.now(tz=self.timezone)
-            return now_pst - timedelta(days=1)
+            return now_pst - timedelta(days=14)
         else:
             current_tz = get_localzone()
             target_dt = current_tz.localize(date_timestamp).astimezone(self.timezone)

@@ -1,0 +1,89 @@
+{
+  "integration_name": "OWLMTN_S3_DATA",
+  "schema_name": "LANDING_ZONE",
+  "table_name": "RADIO_SHOW_KEXP",
+  "pipe_name": "RADIO_PIPE_KEXP",
+  "stage_name": "RADIO_STAGE_KEXP",
+  "s3_url": "s3://owlmtn-stage-data/stage/kexp/shows/",
+  "columns": {
+    "ID": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": false
+    },
+    "HOST_NAMES": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+    "HOST_URIS": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+    "HOSTS": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+
+    "IMAGE_URI": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "PROGRAM": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": true
+    },
+    "PROGRAM_NAME": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "PROGRAM_TAGS": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "PROGRAM_URI": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "START_TIME": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": true
+    },
+    "TAGLINE": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "URI": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "LANDING_ZONE_SOURCE": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": false
+    },
+    "LANDING_ZONE_CREATED_TIMESTAMP": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": false,
+      "DEFAULT": "current_timestamp()"
+    },
+    "LANDING_ZONE_MODIFIED_TIMESTAMP": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": false,
+      "DEFAULT": "current_timestamp()"
+    },
+    "LANDING_ZONE_HIDDEN": {
+      "DATA_TYPE": "BOOLEAN",
+      "IS_NULLABLE": false,
+      "DEFAULT": "FALSE"
+    },
+    "LANDING_ZONE_FILENAME": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": false,
+      "DEFAULT": "metadata$filename"
+    },
+    "LANDING_ZONE_FILE_ROW_NUMBER": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": false,
+      "DEFAULT": "metadata$file_row_number"
+    }
+  },
+  "file_type": "JSON"
+}

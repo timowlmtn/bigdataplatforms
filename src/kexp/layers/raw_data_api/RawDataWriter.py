@@ -48,7 +48,7 @@ class RawDataWriter:
 
                 if len(body_object["results"]) > 0:
                     folder = output_folders[api_key]
-                    file_name = f"{folder}/{api_key}.jsonl"
+                    file_name = f"{folder}/{api_key}.json"
 
                     self.data_lake_handler.storage_provider.put_object(file_name=file_name,
                                                                        body=body_object['results'])
