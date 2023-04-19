@@ -15,9 +15,8 @@
 begin;
 
    {%- for col, column_mapping in columns.items() %}
-       select '{{ col }}', to_json({{ column_mapping }}
+       select '{{ col }}', {{ column_mapping['DATA_TYPE'] }}
    {%- endfor %}
- );
 
 commit;
 {%- endset -%}

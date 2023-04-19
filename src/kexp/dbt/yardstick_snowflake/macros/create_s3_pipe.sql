@@ -20,8 +20,8 @@ storage_integration = {{ integration_name }}
 url = "{{ s3_url }}";
 
 create table if not exists {{ schema_name }}.{{ table_name }} (
-   {%- for col, type in columns.items() %}
-   {{ col }} {{ type }}{% if not loop.last %},{% endif %}
+   {%- for col, column_mapping in columns.items() %}
+   {{ col }} {{ column_mapping['DATA_TYPE'] }}{% if not loop.last %},{% endif %}
    {%- endfor %}
  );
 
