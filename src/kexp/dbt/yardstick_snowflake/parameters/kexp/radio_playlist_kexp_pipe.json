@@ -1,0 +1,136 @@
+{
+  "integration_name": "OWLMTN_S3_DATA",
+  "schema_name": "LANDING_ZONE",
+  "table_name": "RADIO_KEXP_PLAYLIST",
+  "pipe_name": "RADIO_KEXP_PLAYLIST_PIPE",
+  "stage_name": "RADIO_KEXP_PLAYLIST_STAGE",
+  "s3_url": "s3://owlmtn-stage-data/stage/kexp/playlists/",
+  "columns": {
+    "id": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": false
+    },
+    "uri": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "airdate": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": false
+    },
+    "show": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": false
+    },
+    "show_uri": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "image_uri": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "thumbnail_uri": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "song": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "track_id": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": true
+    },
+    "recording_id": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": true
+    },
+    "artist": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "artist_ids": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+    "album": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "release_id": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": true
+    },
+    "release_group_id": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": true
+    },
+    "labels": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+    "label_ids": {
+      "DATA_TYPE": "VARIANT",
+      "IS_NULLABLE": true
+    },
+    "release_date": {
+      "DATA_TYPE": "DATE",
+      "IS_NULLABLE": true
+    },
+    "rotation_status": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "is_local": {
+      "DATA_TYPE": "BOOLEAN",
+      "IS_NULLABLE": true
+    },
+    "is_request": {
+      "DATA_TYPE": "BOOLEAN",
+      "IS_NULLABLE": true
+    },
+    "is_live": {
+      "DATA_TYPE": "BOOLEAN",
+      "IS_NULLABLE": true
+    },
+    "comment": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },
+    "play_type": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": true
+    },"LANDING_ZONE_SOURCE": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": false,
+      "DEFAULT": "'kexp'"
+    },
+    "LANDING_ZONE_CREATED_TIMESTAMP": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": false,
+      "DEFAULT": "current_timestamp()"
+    },
+    "LANDING_ZONE_MODIFIED_TIMESTAMP": {
+      "DATA_TYPE": "TIMESTAMP",
+      "IS_NULLABLE": false,
+      "DEFAULT": "current_timestamp()"
+    },
+    "LANDING_ZONE_HIDDEN": {
+      "DATA_TYPE": "BOOLEAN",
+      "IS_NULLABLE": false,
+      "DEFAULT": "FALSE"
+    },
+    "LANDING_ZONE_FILENAME": {
+      "DATA_TYPE": "TEXT",
+      "IS_NULLABLE": false,
+      "DEFAULT": "metadata$filename"
+    },
+    "LANDING_ZONE_FILE_ROW_NUMBER": {
+      "DATA_TYPE": "NUMBER",
+      "IS_NULLABLE": false,
+      "DEFAULT": "metadata$file_row_number"
+    }
+  },
+  "file_type": "JSON"
+}

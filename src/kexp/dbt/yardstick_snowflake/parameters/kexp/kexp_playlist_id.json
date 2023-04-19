@@ -1,0 +1,30 @@
+{
+  "id": 3106375,
+  "uri": "https://api.kexp.org/v2/plays/3106375/?format=json",
+  "airdate": "2022-10-22T07:08:26-07:00",
+  "show": 55122,
+  "show_uri": "https://api.kexp.org/v2/shows/55122/?format=json",
+  "image_uri": "https://www.kexp.org/filer/canonical/1588181844/22496/",
+  "thumbnail_uri": "https://www.kexp.org/filer/canonical/1588181847/22497/",
+  "song": "Klein",
+  "track_id": null,
+  "recording_id": null,
+  "artist": "Yu Su",
+  "artist_ids": [],
+  "album": "Live on KEXP",
+  "release_id": null,
+  "release_group_id": null,
+  "labels": [
+    "KEXP"
+  ],
+  "label_ids": [
+    "89e0503e-96f0-41b4-835f-2c542b7fcb44"
+  ],
+  "release_date": "2021-06-02",
+  "rotation_status": null,
+  "is_local": false,
+  "is_request": false,
+  "is_live": false,
+  "comment": "On this episode of Live on KEXP, the composer, DJ, and sound artist speaks to Mike Ramos about the significance of the title of her latest album, Yellow River Blue, her tough journey towards feeling comfortable in her new home, and how accessibility to electronic programs helped her on her journey towards the pop dance sound she found on the new record\n\nhttps://www.kexp.org/podcasts/live-on-kexp/2022/10/18/yu-su/",
+  "play_type": "trackplay"
+}

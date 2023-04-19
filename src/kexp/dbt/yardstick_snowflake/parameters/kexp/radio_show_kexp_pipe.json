@@ -57,7 +57,8 @@
     },
     "LANDING_ZONE_SOURCE": {
       "DATA_TYPE": "TEXT",
-      "IS_NULLABLE": false
+      "IS_NULLABLE": false,
+      "DEFAULT": "'kexp'"
     },
     "LANDING_ZONE_CREATED_TIMESTAMP": {
       "DATA_TYPE": "TIMESTAMP",
