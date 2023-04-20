@@ -39,11 +39,11 @@
       "IS_NULLABLE": true
     },
     "track_id": {
-      "DATA_TYPE": "NUMBER",
+      "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
     "recording_id": {
-      "DATA_TYPE": "NUMBER",
+      "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
     "artist": {
@@ -59,11 +59,11 @@
       "IS_NULLABLE": true
     },
     "release_id": {
-      "DATA_TYPE": "NUMBER",
+      "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
     "release_group_id": {
-      "DATA_TYPE": "NUMBER",
+      "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
     },
     "labels": {
@@ -101,10 +101,6 @@
     "play_type": {
       "DATA_TYPE": "TEXT",
       "IS_NULLABLE": true
-    },"LANDING_ZONE_SOURCE": {
-      "DATA_TYPE": "TEXT",
-      "IS_NULLABLE": false,
-      "DEFAULT": "'kexp'"
     },
     "LANDING_ZONE_CREATED_TIMESTAMP": {
       "DATA_TYPE": "TIMESTAMP",

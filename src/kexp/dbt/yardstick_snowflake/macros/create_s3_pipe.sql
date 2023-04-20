@@ -25,8 +25,10 @@ create table if not exists {{ schema_name }}.{{ table_name }} (
    {%- endfor %}
  );
 
-create pipe {{ schema_name }}.{{ pipe_name }}
-    auto_ingest = true as
+create pipe if not exists {{ schema_name }}.{{ pipe_name }}
+    AUTO_INGEST = true
+    ERROR_INTEGRATION = S3_LAKE_KEXP_NOTIFICATION
+as
     copy into {{ schema_name }}.{{ table_name }}(
         {%- for col, column_mapping in columns.items() %}
             {{ col }}{% if not loop.last %},{% endif %}
@@ -34,13 +36,13 @@ create pipe {{ schema_name }}.{{ pipe_name }}
         )
     from (
         select {%- for col, column_mapping in columns.items() %}
-            $1:{{ col }}::{{ column_mapping['DATA_TYPE'] }} {{ col }}{% if not loop.last %},{% endif %}
+            {% if column_mapping['DEFAULT'] is defined %}{{ column_mapping['DEFAULT'] }} {{ col }}
+            {% else %}$1:{{ col }}::{{ column_mapping['DATA_TYPE'] }} {{ col }}{% endif %}{% if not loop.last %},{% endif %}
         {%- endfor %}
         from @{{ schema_name }}.{{ stage_name }}
     )
-    file_format = (
-     type = '{{ file_type }}'
-   );
+    FILE_FORMAT = (type = '{{ file_type }}')
+    PATTERN = '.*.json';
 
 commit;
 {%- endset -%}
