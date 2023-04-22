@@ -1,3 +1,5 @@
+default: sync-kexp-s3
+
 sync-kexp-s3:
 	python3 ../../../kexp/python/sync_kexp_s3.py
 
