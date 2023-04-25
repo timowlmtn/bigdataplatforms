@@ -1,6 +1,3 @@
-provider "snowflake" {
-}
-
 resource "snowflake_database" "catalog" {
   name                        = upper("${var.environment}_CATALOG")
   comment                     = "The Database Catalog for Building Data Products using Value Gap Matrix"

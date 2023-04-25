@@ -1,13 +1,20 @@
 apply-datalake:
 	terraform -chdir=layers/datalake apply   -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
-		-var="domain=${DOMAIN}"  -auto-approve
+		-var="domain=${DOMAIN}" -var="aws_account_id=${AWS_ACCOUNT_ID}"  -auto-approve
 
 plan-datalake:
 	terraform -chdir=layers/datalake plan -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
-		-var="domain=${DOMAIN}"
+		-var="domain=${DOMAIN}" -var="aws_account_id=${AWS_ACCOUNT_ID}"
 
 init-datalake:
 	terraform -chdir=layers/datalake init
+
+output-snowflake:
+	terraform -chdir=layers/snowflake output
+
+destroy-snowflake:
+	terraform -chdir=layers/snowflake destroy -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
+		-var="domain=${DOMAIN}" -var="aws_account_id=${AWS_ACCOUNT_ID}" -auto-approve
 
 apply-snowflake:
 	terraform -chdir=layers/snowflake apply -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
