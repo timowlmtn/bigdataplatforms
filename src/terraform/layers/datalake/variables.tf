@@ -8,3 +8,14 @@ variable "prefix" {
   description = "A unique prefix for the project."
   type = string
 }
+
+variable "domain" {
+  description = "The domain of the project."
+  type = string
+}
+
+
+variable "environment" {
+  description = "The environment for the project"
+  type = string
+}
