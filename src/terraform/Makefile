@@ -11,11 +11,11 @@ init-datalake:
 
 apply-snowflake:
 	terraform -chdir=layers/snowflake apply -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
-		-var="domain=${DOMAIN}" -auto-approve
+		-var="domain=${DOMAIN}" -var="aws_account_id=${AWS_ACCOUNT_ID}" -auto-approve
 
 plan-snowflake:
 	terraform -chdir=layers/snowflake plan -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
-		-var="domain=${DOMAIN}"
+		-var="domain=${DOMAIN}" -var="aws_account_id=${AWS_ACCOUNT_ID}"
 
 init-snowflake:
 	terraform -chdir=layers/snowflake init
