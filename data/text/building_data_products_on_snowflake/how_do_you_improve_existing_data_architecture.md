@@ -54,7 +54,7 @@
 
 ### Normalized Data Store, Dimensional Data Store, Data Mart
 
-1. A Data Warehouse Can Compine any of these
+1. A Data Warehouse can combine any of these
 2. A Data Warehouse must store history
 3. 
 ### OLAP and Cubes
