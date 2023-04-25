@@ -1,8 +1,21 @@
+apply-datalake:
+	terraform -chdir=layers/datalake apply   -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
+		-var="domain=${DOMAIN}"  -auto-approve
+
+plan-datalake:
+	terraform -chdir=layers/datalake plan -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
+		-var="domain=${DOMAIN}"
+
+init-datalake:
+	terraform -chdir=layers/datalake init
+
 apply-snowflake:
-	terraform -chdir=layers/snowflake apply -var="prefix=owlmtn"
+	terraform -chdir=layers/snowflake apply -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
+		-var="domain=${DOMAIN}" -auto-approve
 
 plan-snowflake:
-	terraform -chdir=layers/snowflake plan -var="prefix=owlmtn"
+	terraform -chdir=layers/snowflake plan -var="prefix=${PREFIX}" -var="environment=${ENVIRONMENT}" \
+		-var="domain=${DOMAIN}"
 
 init-snowflake:
 	terraform -chdir=layers/snowflake init
