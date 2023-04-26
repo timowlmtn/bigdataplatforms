@@ -72,3 +72,10 @@ install-requirements:
 install-java:
 	brew install java
 
+migrate-datalake-playlist:
+	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-dev/stage/  \
+		--exclude="*" --include="*/playlists/*"
+
+migrate-datalake-show:
+	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-dev/stage/  \
+		--exclude="*" --include="*/shows/*"

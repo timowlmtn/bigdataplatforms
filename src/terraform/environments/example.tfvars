@@ -1,7 +1,0 @@
-region = "us-east-1"
-prefix = "myproject"
-aws_data_stage_bucket = "project-stage-data"
-aws_data_stage_folder = "stage"
-aws_databricks_role = "arn:aws:iam::aws_account_id:role/databricks-workspace-stack-access-data-buckets"
-databricks_account_id = "abbbb-db-id"
-databricks_principal = "arn:aws:iam::aws_account_id:root"
