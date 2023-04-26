@@ -29,3 +29,9 @@ variable "stage_folder" {
   type = string
   default = "stage"
 }
+
+variable "landing_zone_schema" {
+  description = "The Schema for the Landing Zone"
+  type = string
+  default = "LANDING_ZONE"
+}

@@ -59,3 +59,5 @@ resource "aws_iam_role_policy" "snowflake" {
   policy   = data.aws_iam_policy_document.snowflake.json
   role     = aws_iam_role.snowflake.name
 }
+
+

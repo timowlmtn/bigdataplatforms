@@ -27,6 +27,10 @@ plan-snowflake:
 init-snowflake:
 	terraform -chdir=layers/snowflake init
 
+
+init-snowflake-module:
+	terraform -chdir=modules/snowflake init
+
 apply-databricks:
 	terraform -chdir=layers/databricks apply -auto-approve -var-file="../../environments/owlmtn.tfvars"
 
