@@ -23,3 +23,9 @@ variable "aws_account_id" {
   description = "The AWS account ID"
   type = string
 }
+
+variable "stage_folder" {
+  description = "A default root folder for staging data in the lake"
+  type = string
+  default = "stage"
+}

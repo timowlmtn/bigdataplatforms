@@ -1,12 +1,3 @@
-module "snowflake_storage_integration" {
-  source = "../snowflake"
-  aws_account_id = var.aws_account_id
-  environment = var.environment
-  prefix = var.prefix
-  region = var.region
-  domain = var.domain
-}
-
 resource "aws_iam_role" "snowflake" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -15,11 +6,11 @@ resource "aws_iam_role" "snowflake" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          AWS = module.snowflake_storage_integration.storage_aws_iam_user_arn
+          AWS = snowflake_storage_integration.datalake_integration.storage_aws_iam_user_arn
         }
         Condition = {
           StringEquals = {
-            "sts:ExternalId" = module.snowflake_storage_integration.storage_aws_external_id
+            "sts:ExternalId" = snowflake_storage_integration.datalake_integration.storage_aws_external_id
           }
         }
       }
@@ -42,7 +33,8 @@ data "aws_iam_policy_document" "snowflake" {
     ]
 
     resources = [
-      "${aws_s3_bucket.datalake_s3_resource.arn}/stage/*"
+      "arn:aws:s3:::${var.prefix}-datalake-${var.environment}",
+      "arn:aws:s3:::${var.prefix}-datalake-${var.environment}/*"
     ]
   }
 
@@ -57,7 +49,7 @@ data "aws_iam_policy_document" "snowflake" {
     ]
 
     resources = [
-      "${aws_s3_bucket.datalake_s3_resource.arn}/stage/*"
+      "arn:aws:s3:::${var.prefix}-datalake-${var.environment}/${var.stage_folder}/*"
     ]
   }
 }
