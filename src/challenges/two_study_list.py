@@ -129,13 +129,11 @@ class StudyListTest(unittest.TestCase):
                              [1, 0, 0, 1]]
 
         def count_neighbors(input_graph):
-            result = len(input_graph) * [0]
-
+            result = []
             for idx in range(0, len(input_graph)):
-                for col in range(idx+1, len(input_graph)):
-                    result[col] = input_graph[idx][col]
-                    result[idx] = sum(input_graph[idx])-1
-                    print(f"{idx} {col} | {input_graph[idx][col]} {result}")
+                result.append(0)
+                result[idx] = sum(input_graph[idx])-1
+                print(f"{idx}  | {input_graph[idx]} {result}")
             print('***')
 
             return result
