@@ -8,7 +8,7 @@
 #
 # Revised 9/25/022 - Refactor to support STREAMS article on Medium.
 #
-default: sync-kexp-api # get-export
+default: sync-kexp-api get-export
 
 clean:
 	rm -f  data/export/import_kexp_playlist.csv data/export/import_kexp_playlist_0_*.csv
@@ -50,7 +50,10 @@ pipeline-extract-data:
 pipeline-extract-header:
 	snowsql -f snowflake/pipeline/7_extract_playlist_show_header.sql
 
-export_data: pipeline-simple pipeline-extract-data pipeline-extract-header
+sleep_time:
+	sleep 30
+
+export_data: sleep_time pipeline-extract-data pipeline-extract-header
 
 create-ddl-stage-kexp:
 	make -f snowflake/Makefile create-kexp-program-stage
@@ -72,10 +75,11 @@ install-requirements:
 install-java:
 	brew install java
 
+migrate: migrate-datalake-show migrate-datalake-playlist
 migrate-datalake-playlist:
-	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-dev/stage/  \
+	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-prod/stage/  \
 		--exclude="*" --include="*/playlists/*"
 
 migrate-datalake-show:
-	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-dev/stage/  \
+	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-prod/stage/  \
 		--exclude="*" --include="*/shows/*"
