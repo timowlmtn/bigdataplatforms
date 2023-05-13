@@ -8,7 +8,10 @@
 #
 # Revised 9/25/022 - Refactor to support STREAMS article on Medium.
 #
-default: sync-kexp-api get-export
+default: sync-kexp-api get-export view-results
+
+view-results:
+	head -10 data/export/import_kexp_playlist.csv
 
 clean:
 	rm -f  data/export/import_kexp_playlist.csv data/export/import_kexp_playlist_0_*.csv
