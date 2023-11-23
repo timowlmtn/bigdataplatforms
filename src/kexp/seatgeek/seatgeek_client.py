@@ -54,7 +54,6 @@ def main():
     parser.add_argument("--range", help="A range to include if specified")
 
     parser.add_argument("--type", help="Type of event: concert or theatre for example")
-
     parser.add_argument("--performers", help="The performers of the event")
 
     args = parser.parse_args()
