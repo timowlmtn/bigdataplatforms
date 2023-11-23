@@ -86,3 +86,6 @@ migrate-datalake-playlist:
 migrate-datalake-show:
 	aws s3 sync s3://owlmtn-stage-data/stage/ s3://owlmtn-datalake-prod/stage/  \
 		--exclude="*" --include="*/shows/*"
+
+install-heroku:
+	brew tap heroku/brew && brew install heroku
