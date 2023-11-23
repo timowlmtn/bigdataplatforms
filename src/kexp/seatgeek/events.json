@@ -1,0 +1,3573 @@
+{
+  "events": [
+    {
+      "type": "ncaa_basketball",
+      "id": 6111607,
+      "datetime_utc": "2023-11-23T08:30:00",
+      "venue": {
+        "state": "FL",
+        "name_v2": "State Farm Field House - ESPN Wide World of Sports Complex",
+        "postal_code": "34747",
+        "name": "State Farm Field House - ESPN Wide World of Sports Complex",
+        "links": [],
+        "timezone": "America\/New_York",
+        "url": "https:\/\/seatgeek.com\/venues\/state-farm-field-house-espn-wide-world-of-sports-complex\/tickets",
+        "score": 0.4,
+        "location": {
+          "lat": 28.5381,
+          "lon": -81.3794
+        },
+        "address": "700 S Victory Way",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 6,
+        "city": "Kissimmee",
+        "slug": "state-farm-field-house-espn-wide-world-of-sports-complex",
+        "extended_address": "Kissimmee, FL 34747",
+        "id": 393762,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 534,
+        "capacity": 0,
+        "display_location": "Kissimmee, FL"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_basketball",
+          "name": "ESPN Events Invitational",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/espn-events-invitational-886e34\/794540\/huge.jpg",
+          "id": 794540,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/espn-events-invitational-886e34\/794540\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 6
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/espn-events-invitational-tickets",
+          "score": 0.31,
+          "slug": "espn-events-invitational",
+          "home_venue_id": null,
+          "short_name": "ESPN Events Invitational",
+          "num_upcoming_events": 6,
+          "colors": null,
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "home_team": true,
+          "location": null,
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Iowa State Cyclones Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/iowa-state-cyclones-mens-basketball-5d8712\/4014\/huge.jpg",
+          "id": 4014,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/iowa-state-cyclones-mens-basketball-5d8712\/4014\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big 12",
+              "display_name": "Big 12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/3\/35\/Hilton_Coliseum_Inside_View.jpg",
+          "url": "https:\/\/seatgeek.com\/iowa-state-cyclones-mens-basketball-tickets",
+          "score": 0.58,
+          "slug": "iowa-state-cyclones-mens-basketball",
+          "home_venue_id": 3458,
+          "short_name": "Iowa State",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#C8102E",
+              "#F1BE48",
+              "#C8102E"
+            ],
+            "iconic": "#C8102E",
+            "primary": [
+              "#C8102E",
+              "#F1BE48"
+            ]
+          },
+          "image_license": "https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/",
+          "popularity": 0,
+          "location": {
+            "lat": 42.021,
+            "lon": -93.6348
+          },
+          "image_rights_message": "[This image](https:\/\/upload.wikimedia.org\/wikipedia\/commons\/3\/35\/Hilton_Coliseum_Inside_View.jpg) is available through [Creative Commons](https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/) on Wikimedia and has been modified from the original. Email [images@seatgeek.com](mailto:images@seatgeek.com) with any questions."
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Texas A&M Aggies Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-a-m-aggies-mens-basketball-1-e9b54a\/4021\/huge.jpg",
+          "id": 4021,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-a-m-aggies-mens-basketball-1-e9b54a\/4021\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "SEC",
+              "display_name": "Southeastern",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "sec"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 24
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/texas-a-m-aggies-mens-basketball-1-tickets",
+          "score": 0.59,
+          "slug": "texas-a-m-aggies-mens-basketball-1",
+          "home_venue_id": 1879,
+          "short_name": "Texas A&M",
+          "num_upcoming_events": 24,
+          "colors": {
+            "all": [
+              "#5D0025",
+              "#BCBFC2",
+              "#5D0025"
+            ],
+            "iconic": "#5D0025",
+            "primary": [
+              "#5D0025",
+              "#BCBFC2"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 30.6056,
+            "lon": -96.3469
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Penn State Nittany Lions Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/penn-state-nittany-lions-mens-basketball-0eeb27\/4061\/huge.jpg",
+          "id": 4061,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/penn-state-nittany-lions-mens-basketball-0eeb27\/4061\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/penn-state-nittany-lions-mens-basketball-tickets",
+          "score": 0.6,
+          "slug": "penn-state-nittany-lions-mens-basketball",
+          "home_venue_id": 108,
+          "short_name": "Penn State",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#093162",
+              "#093162"
+            ],
+            "iconic": "#093162",
+            "primary": [
+              "#093162"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 40.8099,
+            "lon": -77.8562
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Boise State Broncos Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/boise-state-broncos-mens-basketball-4013ff\/6400\/huge.jpg",
+          "id": 6400,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/boise-state-broncos-mens-basketball-4013ff\/6400\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "MWC",
+              "display_name": "Mountain West",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "mountain-west"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 26
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/boise-state-broncos-mens-basketball-tickets",
+          "score": 0.49,
+          "slug": "boise-state-broncos-mens-basketball",
+          "home_venue_id": 336,
+          "short_name": "Boise State",
+          "num_upcoming_events": 26,
+          "colors": null,
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "location": {
+            "lat": 43.605,
+            "lon": -116.207
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Butler Bulldogs Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/butler-bulldogs-mens-basketball-1f68a3\/6468\/huge.jpg",
+          "id": 6468,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/butler-bulldogs-mens-basketball-1f68a3\/6468\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big East",
+              "display_name": "Big East",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-east"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/butler-bulldogs-mens-basketball-tickets",
+          "score": 0.54,
+          "slug": "butler-bulldogs-mens-basketball",
+          "home_venue_id": 3147,
+          "short_name": "Butler",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#13294B",
+              "#747678",
+              "#13294B"
+            ],
+            "iconic": "#13294B",
+            "primary": [
+              "#13294B",
+              "#747678"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "location": {
+            "lat": 39.8436,
+            "lon": -86.1673
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "VCU Rams Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/vcu-rams-mens-basketball-f6cd52\/6548\/huge.jpg",
+          "id": 6548,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/vcu-rams-mens-basketball-f6cd52\/6548\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "A-10",
+              "display_name": "Atlantic 10",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "atlantic-10"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/vcu-rams-mens-basketball-tickets",
+          "score": 0.52,
+          "slug": "vcu-rams-mens-basketball",
+          "home_venue_id": 6625,
+          "short_name": "VCU",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#181818",
+              "#FFB300",
+              "#181818"
+            ],
+            "iconic": "#FFB300",
+            "primary": [
+              "#181818",
+              "#FFB300"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 37.5407,
+            "lon": -77.4361
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Florida Atlantic Owls Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/florida-atlantic-owls-mens-basketball-c707ff\/6630\/huge.jpg",
+          "id": 6630,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/florida-atlantic-owls-mens-basketball-c707ff\/6630\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Conference USA",
+              "display_name": "Conference USA",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "conference-usa"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 24
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/florida-atlantic-owls-mens-basketball-tickets",
+          "score": 0.64,
+          "slug": "florida-atlantic-owls-mens-basketball",
+          "home_venue_id": 6050,
+          "short_name": "Florida Atlantic",
+          "num_upcoming_events": 24,
+          "colors": {
+            "all": [
+              "#003366",
+              "#CC0000",
+              "#003366"
+            ],
+            "iconic": "#003366",
+            "primary": [
+              "#003366",
+              "#CC0000"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "location": {
+            "lat": 26.3738,
+            "lon": -80.1019
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Virginia Tech Hokies Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/virginia-tech-hokies-mens-basketball-a854ec\/4010\/huge.jpg",
+          "id": 4010,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/virginia-tech-hokies-mens-basketball-a854ec\/4010\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "ACC",
+              "display_name": "Atlantic Coast",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "acc"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/virginia-tech-hokies-mens-basketball-tickets",
+          "score": 0.6,
+          "slug": "virginia-tech-hokies-mens-basketball",
+          "home_venue_id": 3460,
+          "short_name": "Virginia Tech",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#6A2C3E",
+              "#CF4520",
+              "#6A2C3E"
+            ],
+            "iconic": "#6A2C3E",
+            "primary": [
+              "#6A2C3E",
+              "#CF4520"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 37.223,
+            "lon": -80.4196
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T03:30:00",
+      "time_tbd": true,
+      "short_title": "ESPN Events Invitational - All Sessions",
+      "visible_until_utc": "2023-11-24T05:00:00",
+      "stats": {
+        "listing_count": null,
+        "average_price": null,
+        "lowest_price_good_deals": null,
+        "lowest_price": null,
+        "highest_price": null,
+        "visible_listing_count": null,
+        "dq_bucket_counts": null,
+        "median_price": null,
+        "lowest_sg_base_price": null,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030200,
+          "name": "ncaa_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/espn-events-invitational-tickets\/ncaa-basketball\/2023-11-23-3-30-am\/6111607",
+      "score": 0.346,
+      "announce_date": "2023-08-07T00:00:00",
+      "created_at": "2023-08-07T23:29:35",
+      "date_tbd": false,
+      "title": "ESPN Events Invitational - All Sessions",
+      "popularity": 0.736,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": null,
+      "is_visible_override": "VISIBLE",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "family",
+      "id": 5851051,
+      "datetime_utc": "2023-11-23T11:30:00",
+      "venue": {
+        "state": "NV",
+        "name_v2": "Le Theatre Des Arts at Paris Las Vegas",
+        "postal_code": "89109",
+        "name": "Le Theatre Des Arts at Paris Las Vegas",
+        "links": [],
+        "timezone": "America\/Los_Angeles",
+        "url": "https:\/\/seatgeek.com\/venues\/le-theatre-des-arts-at-paris-las-vegas-2\/tickets",
+        "score": 0.52,
+        "location": {
+          "lat": 36.11,
+          "lon": -115.171
+        },
+        "address": "3655 Las Vegas Blvd South",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 405,
+        "city": "Las Vegas",
+        "slug": "le-theatre-des-arts-at-paris-las-vegas-2",
+        "extended_address": "Las Vegas, NV 89109",
+        "id": 1610,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 839,
+        "capacity": 0,
+        "display_location": "Las Vegas, NV"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "theater_family",
+          "name": "Eiffel Tower Experience",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/eiffel-tower-experience-ce92de\/605657\/huge.jpg",
+          "id": 605657,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/eiffel-tower-experience-ce92de\/605657\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 405
+          },
+          "taxonomies": [
+            {
+              "id": 3000000,
+              "name": "theater",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "theater"
+            },
+            {
+              "id": 3050000,
+              "name": "family",
+              "parent_id": 3000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "family"
+            }
+          ],
+          "image_attribution": "https:\/\/www.flickr.com\/photos\/30478819@N08\/33015766008\/in\/photolist-SiuqYY-2aAJ6nb-27tFEJr-TfEqvU-5aFqe6-2fRfscU-5DcTqo-aeB1dg-bwAYdx-2bPCenq-8ARy1R-bEMH74-8AVpGL-8hqR5S-VdZ7nk-jxcedC-22scg7N-9xTeGb-JpxkhQ-aZSDGK-TeZcdy-UyCnMt-KAvtd8-Zs5p3j-dAxQMP-wWQ9yZ-SVBXhi-U6EHKs-2avypie-27tFDtv-28L2Gyd-27tFTRP-266CDAq-55FPdQ-cQMWE3-cQMWJC-23gcZ9w-eUSFKb-o7da-6iS3sK-bdJx7r-4Li5MP-aFafGG-4Li66X-7JPSpe-4faxNq-bVSDK2-bVSCu4-bVSyga-bVSzfF",
+          "url": "https:\/\/seatgeek.com\/eiffel-tower-experience-tickets",
+          "score": 0.25,
+          "slug": "eiffel-tower-experience",
+          "home_venue_id": null,
+          "short_name": "Eiffel Tower Experience",
+          "num_upcoming_events": 405,
+          "colors": null,
+          "image_license": "https:\/\/creativecommons.org\/licenses\/by\/2.0\/?ref=ccsearch&atype=rich",
+          "popularity": 0,
+          "location": null,
+          "image_rights_message": "[This image](https:\/\/www.flickr.com\/photos\/30478819@N08\/33015766008\/in\/photolist-SiuqYY-2aAJ6nb-27tFEJr-TfEqvU-5aFqe6-2fRfscU-5DcTqo-aeB1dg-bwAYdx-2bPCenq-8ARy1R-bEMH74-8AVpGL-8hqR5S-VdZ7nk-jxcedC-22scg7N-9xTeGb-JpxkhQ-aZSDGK-TeZcdy-UyCnMt-KAvtd8-Zs5p3j-dAxQMP-wWQ9yZ-SVBXhi-U6EHKs-2avypie-27tFDtv-28L2Gyd-27tFTRP-266CDAq-55FPdQ-cQMWE3-cQMWJC-23gcZ9w-eUSFKb-o7da-6iS3sK-bdJx7r-4Li5MP-aFafGG-4Li66X-7JPSpe-4faxNq-bVSDK2-bVSCu4-bVSyga-bVSzfF) is available through [Creative Commons](https:\/\/creativecommons.org\/licenses\/by\/2.0\/?ref=ccsearch&atype=rich) on Flickr. Email [images@seatgeek.com](mailto:images@seatgeek.com) with any questions."
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T03:30:00",
+      "time_tbd": true,
+      "short_title": "Eiffel Tower Experience - Las Vegas",
+      "visible_until_utc": "2023-11-24T08:00:00",
+      "stats": {
+        "listing_count": null,
+        "average_price": null,
+        "lowest_price_good_deals": null,
+        "lowest_price": null,
+        "highest_price": null,
+        "visible_listing_count": null,
+        "dq_bucket_counts": null,
+        "median_price": null,
+        "lowest_sg_base_price": null,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 3000000,
+          "name": "theater",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "theater"
+        },
+        {
+          "id": 3050000,
+          "name": "family",
+          "parent_id": 3000000,
+          "rank": 0,
+          "seo_event_type": "family"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/eiffel-tower-experience-tickets\/family\/2023-11-23-3-30-am\/5851051",
+      "score": 0.305,
+      "announce_date": "2022-10-23T00:00:00",
+      "created_at": "2022-10-23T16:02:45",
+      "date_tbd": false,
+      "title": "Eiffel Tower Experience - Las Vegas",
+      "popularity": 0.707,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-04-18T00:50:26Z",
+      "is_visible_override": "UNSET",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "ncaa_basketball",
+      "id": 6094703,
+      "datetime_utc": "2023-11-23T11:30:00",
+      "venue": {
+        "state": "CA",
+        "name_v2": "LionTree Arena",
+        "postal_code": "92093",
+        "name": "LionTree Arena",
+        "links": [],
+        "timezone": "America\/Los_Angeles",
+        "url": "https:\/\/seatgeek.com\/venues\/liontree-arena\/tickets",
+        "score": 0.48,
+        "location": {
+          "lat": 32.7157,
+          "lon": -117.161
+        },
+        "address": "9730 Hopkins Drive",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 26,
+        "city": "San Diego",
+        "slug": "liontree-arena",
+        "extended_address": "San Diego, CA 92093",
+        "id": 2714,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 825,
+        "capacity": 0,
+        "display_location": "San Diego, CA"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_basketball",
+          "name": "Rady Children's Invitational",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/rady-children-s-invitational-f837bd\/805029\/huge.jpg",
+          "id": 805029,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/rady-children-s-invitational-f837bd\/805029\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 3
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022 (Performer)",
+          "url": "https:\/\/seatgeek.com\/rady-children-s-invitational-tickets",
+          "score": 0.46,
+          "slug": "rady-children-s-invitational",
+          "home_venue_id": null,
+          "short_name": "Rady Children's Invitational",
+          "num_upcoming_events": 3,
+          "colors": null,
+          "image_license": "SeatGeek - 2022 (Performer)",
+          "popularity": 0,
+          "home_team": true,
+          "location": null,
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Seton Hall Pirates Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/seton-hall-pirates-mens-basketball-f4e510\/4046\/huge.jpg",
+          "id": 4046,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/seton-hall-pirates-mens-basketball-f4e510\/4046\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big East",
+              "display_name": "Big East",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-east"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/8\/84\/SetonHallGameatPruCenter.jpg",
+          "url": "https:\/\/seatgeek.com\/seton-hall-pirates-mens-basketball-tickets",
+          "score": 0.56,
+          "slug": "seton-hall-pirates-mens-basketball",
+          "home_venue_id": 1500,
+          "short_name": "Seton Hall",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#004488",
+              "#A2AAAD",
+              "#004488"
+            ],
+            "iconic": "#004488",
+            "primary": [
+              "#004488",
+              "#A2AAAD"
+            ]
+          },
+          "image_license": "https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 40.7332,
+            "lon": -74.1717
+          },
+          "image_rights_message": "[This image](https:\/\/upload.wikimedia.org\/wikipedia\/commons\/8\/84\/SetonHallGameatPruCenter.jpg) is available through [Creative Commons](https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/) on Wikimedia and has been modified from the original. Email [images@seatgeek.com](mailto:images@seatgeek.com) with any questions."
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "USC Trojans Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/usc-trojans-mens-basketball-bf954f\/4082\/huge.jpg",
+          "id": 4082,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/usc-trojans-mens-basketball-bf954f\/4082\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Pac-12",
+              "display_name": "Pac-12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "pac-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/usc-trojans-mens-basketball-tickets",
+          "score": 0.57,
+          "slug": "usc-trojans-mens-basketball",
+          "home_venue_id": 3451,
+          "short_name": "USC",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#9D2235",
+              "#FFC72C",
+              "#9D2235"
+            ],
+            "iconic": "#9D2235",
+            "primary": [
+              "#9D2235",
+              "#FFC72C"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 34.0208,
+            "lon": -118.28
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Oklahoma Sooners Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/oklahoma-sooners-mens-basketball-f53b5f\/4019\/huge.jpg",
+          "id": 4019,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/oklahoma-sooners-mens-basketball-f53b5f\/4019\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big 12",
+              "display_name": "Big 12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/oklahoma-sooners-mens-basketball-tickets",
+          "score": 0.57,
+          "slug": "oklahoma-sooners-mens-basketball",
+          "home_venue_id": 3426,
+          "short_name": "Oklahoma",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#A51E36",
+              "#3A3C40",
+              "#A51E36"
+            ],
+            "iconic": "#A51E36",
+            "primary": [
+              "#A51E36",
+              "#3A3C40"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 35.1873,
+            "lon": -97.4443
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T03:30:00",
+      "time_tbd": true,
+      "short_title": "Rady Children's Invitational - Day 1",
+      "visible_until_utc": "2023-11-24T08:00:00",
+      "stats": {
+        "listing_count": 6,
+        "average_price": 75,
+        "lowest_price_good_deals": null,
+        "lowest_price": 43,
+        "highest_price": 114,
+        "visible_listing_count": 6,
+        "dq_bucket_counts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_price": 80,
+        "lowest_sg_base_price": 27,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030200,
+          "name": "ncaa_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/rady-children-s-invitational-tickets\/ncaa-basketball\/2023-11-23-3-30-am\/6094703",
+      "score": 0.487,
+      "announce_date": "2023-07-20T00:00:00",
+      "created_at": "2023-07-20T18:45:38",
+      "date_tbd": false,
+      "title": "Rady Children's Invitational - Day 1",
+      "popularity": 0.747,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": null,
+      "is_visible_override": "VISIBLE",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "ncaa_basketball",
+      "id": 6094700,
+      "datetime_utc": "2023-11-23T11:30:00",
+      "venue": {
+        "state": "CA",
+        "name_v2": "LionTree Arena",
+        "postal_code": "92093",
+        "name": "LionTree Arena",
+        "links": [],
+        "timezone": "America\/Los_Angeles",
+        "url": "https:\/\/seatgeek.com\/venues\/liontree-arena\/tickets",
+        "score": 0.48,
+        "location": {
+          "lat": 32.7157,
+          "lon": -117.161
+        },
+        "address": "9730 Hopkins Drive",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 26,
+        "city": "San Diego",
+        "slug": "liontree-arena",
+        "extended_address": "San Diego, CA 92093",
+        "id": 2714,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 825,
+        "capacity": 0,
+        "display_location": "San Diego, CA"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_basketball",
+          "name": "Rady Children's Invitational",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/rady-children-s-invitational-f837bd\/805029\/huge.jpg",
+          "id": 805029,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/rady-children-s-invitational-f837bd\/805029\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 3
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022 (Performer)",
+          "url": "https:\/\/seatgeek.com\/rady-children-s-invitational-tickets",
+          "score": 0.46,
+          "slug": "rady-children-s-invitational",
+          "home_venue_id": null,
+          "short_name": "Rady Children's Invitational",
+          "num_upcoming_events": 3,
+          "colors": null,
+          "image_license": "SeatGeek - 2022 (Performer)",
+          "popularity": 0,
+          "home_team": true,
+          "location": null,
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Seton Hall Pirates Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/seton-hall-pirates-mens-basketball-f4e510\/4046\/huge.jpg",
+          "id": 4046,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/seton-hall-pirates-mens-basketball-f4e510\/4046\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big East",
+              "display_name": "Big East",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-east"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/8\/84\/SetonHallGameatPruCenter.jpg",
+          "url": "https:\/\/seatgeek.com\/seton-hall-pirates-mens-basketball-tickets",
+          "score": 0.56,
+          "slug": "seton-hall-pirates-mens-basketball",
+          "home_venue_id": 1500,
+          "short_name": "Seton Hall",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#004488",
+              "#A2AAAD",
+              "#004488"
+            ],
+            "iconic": "#004488",
+            "primary": [
+              "#004488",
+              "#A2AAAD"
+            ]
+          },
+          "image_license": "https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 40.7332,
+            "lon": -74.1717
+          },
+          "image_rights_message": "[This image](https:\/\/upload.wikimedia.org\/wikipedia\/commons\/8\/84\/SetonHallGameatPruCenter.jpg) is available through [Creative Commons](https:\/\/creativecommons.org\/licenses\/by-sa\/2.0\/) on Wikimedia and has been modified from the original. Email [images@seatgeek.com](mailto:images@seatgeek.com) with any questions."
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "USC Trojans Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/usc-trojans-mens-basketball-bf954f\/4082\/huge.jpg",
+          "id": 4082,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/usc-trojans-mens-basketball-bf954f\/4082\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Pac-12",
+              "display_name": "Pac-12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "pac-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/usc-trojans-mens-basketball-tickets",
+          "score": 0.57,
+          "slug": "usc-trojans-mens-basketball",
+          "home_venue_id": 3451,
+          "short_name": "USC",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#9D2235",
+              "#FFC72C",
+              "#9D2235"
+            ],
+            "iconic": "#9D2235",
+            "primary": [
+              "#9D2235",
+              "#FFC72C"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 34.0208,
+            "lon": -118.28
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Oklahoma Sooners Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/oklahoma-sooners-mens-basketball-f53b5f\/4019\/huge.jpg",
+          "id": 4019,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/oklahoma-sooners-mens-basketball-f53b5f\/4019\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big 12",
+              "display_name": "Big 12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 28
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/oklahoma-sooners-mens-basketball-tickets",
+          "score": 0.57,
+          "slug": "oklahoma-sooners-mens-basketball",
+          "home_venue_id": 3426,
+          "short_name": "Oklahoma",
+          "num_upcoming_events": 28,
+          "colors": {
+            "all": [
+              "#A51E36",
+              "#3A3C40",
+              "#A51E36"
+            ],
+            "iconic": "#A51E36",
+            "primary": [
+              "#A51E36",
+              "#3A3C40"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 35.1873,
+            "lon": -97.4443
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T03:30:00",
+      "time_tbd": true,
+      "short_title": "Rady Children's Invitational - 2 Day Pass",
+      "visible_until_utc": "2023-11-24T08:00:00",
+      "stats": {
+        "listing_count": 1,
+        "average_price": 72,
+        "lowest_price_good_deals": null,
+        "lowest_price": 64,
+        "highest_price": 84,
+        "visible_listing_count": 1,
+        "dq_bucket_counts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_price": 72,
+        "lowest_sg_base_price": 43,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030200,
+          "name": "ncaa_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/rady-children-s-invitational-tickets\/ncaa-basketball\/2023-11-23-3-30-am\/6094700",
+      "score": 0.448,
+      "announce_date": "2023-07-20T00:00:00",
+      "created_at": "2023-07-20T18:45:02",
+      "date_tbd": false,
+      "title": "Rady Children's Invitational - 2 Day Pass",
+      "popularity": 0.727,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": null,
+      "is_visible_override": "VISIBLE",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "auto_racing",
+      "id": 6131258,
+      "datetime_utc": "2023-11-23T16:30:00",
+      "venue": {
+        "state": "KY",
+        "name_v2": "Churchill Downs",
+        "postal_code": "40208",
+        "name": "Churchill Downs",
+        "links": [],
+        "timezone": "America\/Kentucky\/Louisville",
+        "url": "https:\/\/seatgeek.com\/venues\/churchill-downs\/tickets",
+        "score": 0.74,
+        "location": {
+          "lat": 38.2527,
+          "lon": -85.7585
+        },
+        "address": "700 Central Ave",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 7,
+        "city": "Louisville",
+        "slug": "churchill-downs",
+        "extended_address": "Louisville, KY 40208",
+        "id": 1635,
+        "popularity": 0,
+        "access_method": {
+          "method": "NONE",
+          "created_at": "2015-12-03T16:39:21Z",
+          "employee_only": false
+        },
+        "metro_code": 529,
+        "capacity": 0,
+        "display_location": "Louisville, KY"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "auto_racing",
+          "name": "Day At The Races",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/day-at-the-races-6e05c1\/574232\/huge.jpg",
+          "id": 574232,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/day-at-the-races-6e05c1\/574232\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 4
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1060000,
+              "name": "auto_racing",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "auto-racing"
+            }
+          ],
+          "image_attribution": "https:\/\/unsplash.com\/@toddjiang?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+          "url": "https:\/\/seatgeek.com\/day-at-the-races-tickets",
+          "score": 0.31,
+          "slug": "day-at-the-races",
+          "home_venue_id": null,
+          "short_name": "Day At The Races",
+          "num_upcoming_events": 4,
+          "colors": null,
+          "image_license": "https:\/\/unsplash.com\/license",
+          "popularity": 0,
+          "location": null,
+          "image_rights_message": "This image is available through [Unsplash](https:\/\/unsplash.com\/license) and has been modified from the original. Email [images@seatgeek.com](mailto:images@seatgeek.com) with any questions."
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T11:30:00",
+      "time_tbd": false,
+      "short_title": "Day At The Races - Thanksgiving",
+      "visible_until_utc": "2023-11-23T20:30:00",
+      "stats": {
+        "listing_count": 9,
+        "average_price": 65,
+        "lowest_price_good_deals": 27,
+        "lowest_price": 27,
+        "highest_price": 309,
+        "visible_listing_count": 9,
+        "dq_bucket_counts": [
+          1,
+          3,
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        "median_price": 36,
+        "lowest_sg_base_price": 15,
+        "lowest_sg_base_price_good_deals": 15
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1060000,
+          "name": "auto_racing",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "auto-racing"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/day-at-the-races-tickets\/auto-racing\/2023-11-23-11-30-am\/6131258",
+      "score": 0.346,
+      "announce_date": "2023-08-19T00:00:00",
+      "created_at": "2023-08-19T10:59:46",
+      "date_tbd": false,
+      "title": "Day At The Races - Thanksgiving",
+      "popularity": 0.714,
+      "description": "",
+      "status": "normal",
+      "access_method": {
+        "method": "NONE",
+        "created_at": "2015-12-03T16:39:21Z",
+        "employee_only": false
+      },
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-08-19T13:33:05Z",
+      "is_visible_override": "UNSET",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "ncaa_womens_basketball",
+      "id": 6251725,
+      "datetime_utc": "2023-11-23T17:00:00",
+      "venue": {
+        "state": "GA",
+        "name_v2": "GSU Convocation Center",
+        "postal_code": "30312",
+        "name": "GSU Convocation Center",
+        "links": [],
+        "timezone": "America\/New_York",
+        "url": "https:\/\/seatgeek.com\/venues\/gsu-convocation-center-2\/tickets",
+        "score": 0.45,
+        "location": {
+          "lat": 33.7423,
+          "lon": -84.3882
+        },
+        "address": "455 Capitol Ave SE",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 23,
+        "city": "Atlanta",
+        "slug": "gsu-convocation-center-2",
+        "extended_address": "Atlanta, GA 30312",
+        "id": 520616,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 524,
+        "capacity": 0,
+        "display_location": "Atlanta, GA"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_womens_basketball",
+          "name": "Georgia State Panthers Womens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/georgia-state-panthers-womens-basketball-2fe8a9\/12304\/huge.jpg",
+          "id": 12304,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/georgia-state-panthers-womens-basketball-2fe8a9\/12304\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030300,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030300,
+              "short_name": "Sun Belt",
+              "display_name": "Sun Belt",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "sun-belt"
+            }
+          ],
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 23
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030300,
+              "name": "ncaa_womens_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-womens-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022 (Performer)",
+          "url": "https:\/\/seatgeek.com\/georgia-state-panthers-womens-basketball-tickets",
+          "score": 0.29,
+          "slug": "georgia-state-panthers-womens-basketball",
+          "home_venue_id": 7121,
+          "short_name": "Georgia State (Women)",
+          "num_upcoming_events": 23,
+          "colors": null,
+          "image_license": "SeatGeek - 2022 (Performer)",
+          "popularity": 0,
+          "home_team": true,
+          "location": {
+            "lat": 33.7528,
+            "lon": -84.3871
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_womens_basketball",
+          "name": "Elon Phoenix Womens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/elon-phoenix-womens-basketball-9101e1\/61679\/huge.jpg",
+          "id": 61679,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/elon-phoenix-womens-basketball-9101e1\/61679\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030300,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030300,
+              "short_name": "Colonial Athletic",
+              "display_name": "Colonial Athletic",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "colonial-athletic"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 20
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030300,
+              "name": "ncaa_womens_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-womens-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022 (Performer)",
+          "url": "https:\/\/seatgeek.com\/elon-phoenix-womens-basketball-tickets",
+          "score": 0.3,
+          "slug": "elon-phoenix-womens-basketball",
+          "home_venue_id": null,
+          "short_name": "Elon (Women)",
+          "num_upcoming_events": 20,
+          "colors": null,
+          "image_license": "SeatGeek - 2022 (Performer)",
+          "popularity": 0,
+          "away_team": true,
+          "location": null,
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T12:00:00",
+      "time_tbd": false,
+      "short_title": "Preseason: Elon (Women) at Georgia State (Women)",
+      "visible_until_utc": "2023-11-23T21:00:00",
+      "stats": {
+        "listing_count": null,
+        "average_price": null,
+        "lowest_price_good_deals": null,
+        "lowest_price": null,
+        "highest_price": null,
+        "visible_listing_count": null,
+        "dq_bucket_counts": null,
+        "median_price": null,
+        "lowest_sg_base_price": null,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030300,
+          "name": "ncaa_womens_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-womens-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/georgia-state-panthers-womens-basketball-tickets\/ncaa-womens-basketball\/2023-11-23-12-pm\/6251725",
+      "score": 0.284,
+      "announce_date": "2023-10-26T00:00:00",
+      "created_at": "2023-10-26T16:37:22",
+      "date_tbd": false,
+      "title": "GSU Tournament - Day 2",
+      "popularity": 0.699,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": null,
+      "is_visible_override": "VISIBLE",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "ncaa_basketball",
+      "id": 6290440,
+      "datetime_utc": "2023-11-23T17:00:00",
+      "venue": {
+        "state": null,
+        "name_v2": "Atlantis Paradise Island Resort",
+        "postal_code": "00000",
+        "name": "Atlantis Paradise Island Resort",
+        "links": [],
+        "timezone": "America\/Nassau",
+        "url": "https:\/\/seatgeek.com\/venues\/atlantis-paradise-island-resort\/tickets",
+        "score": 0.48,
+        "location": {
+          "lat": 25.0843,
+          "lon": -77.3173
+        },
+        "address": "1 Casino Drive",
+        "country": "Bahamas",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 3,
+        "city": "Nassau",
+        "slug": "atlantis-paradise-island-resort",
+        "extended_address": "Nassau, Bahamas",
+        "id": 16176,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 0,
+        "capacity": 0,
+        "display_location": "Nassau, Bahamas"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_basketball",
+          "name": "Northern Iowa Panthers Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/matchup\/v3_31353\/6640\/4023\/huge.jpg",
+          "id": 6640,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/matchup\/v3_31353\/6640\/4023\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Missouri Valley",
+              "display_name": "Missouri Valley",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "missouri-valley"
+            }
+          ],
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 26
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": null,
+          "url": "https:\/\/seatgeek.com\/northern-iowa-panthers-mens-basketball-tickets",
+          "score": 0.31,
+          "slug": "northern-iowa-panthers-mens-basketball",
+          "home_venue_id": 1877,
+          "short_name": "UNI",
+          "num_upcoming_events": 26,
+          "colors": {
+            "all": [
+              "#500778",
+              "#FFB500",
+              "#500778"
+            ],
+            "iconic": "#500778",
+            "primary": [
+              "#500778",
+              "#FFB500"
+            ]
+          },
+          "image_license": null,
+          "popularity": 0,
+          "home_team": true,
+          "location": {
+            "lat": 42.5144,
+            "lon": -92.4673
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Texas Tech Red Raiders Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-tech-red-raiders-mens-basketball-aa0ac8\/4023\/huge.jpg",
+          "id": 4023,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-tech-red-raiders-mens-basketball-aa0ac8\/4023\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big 12",
+              "display_name": "Big 12",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-12"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 26
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/texas-tech-red-raiders-mens-basketball-tickets",
+          "score": 0.58,
+          "slug": "texas-tech-red-raiders-mens-basketball",
+          "home_venue_id": 3484,
+          "short_name": "Texas Tech",
+          "num_upcoming_events": 26,
+          "colors": {
+            "all": [
+              "#191919",
+              "#CC0000",
+              "#CC0000"
+            ],
+            "iconic": "#CC0000",
+            "primary": [
+              "#191919",
+              "#CC0000"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 33.5813,
+            "lon": -101.887
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T12:00:00",
+      "time_tbd": false,
+      "short_title": "Texas Tech at UNI",
+      "visible_until_utc": "2023-11-23T21:00:00",
+      "stats": {
+        "listing_count": null,
+        "average_price": null,
+        "lowest_price_good_deals": null,
+        "lowest_price": null,
+        "highest_price": null,
+        "visible_listing_count": null,
+        "dq_bucket_counts": null,
+        "median_price": null,
+        "lowest_sg_base_price": null,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030200,
+          "name": "ncaa_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/northern-iowa-panthers-mens-basketball-tickets\/ncaa-basketball\/2023-11-23-12-pm\/6290440",
+      "score": 0,
+      "announce_date": "2023-11-23T00:00:00",
+      "created_at": "2023-11-23T11:55:16",
+      "date_tbd": false,
+      "title": "Texas Tech Red Raiders at Northern Iowa Panthers Mens Basketball",
+      "popularity": 0,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-11-23T13:19:17Z",
+      "is_visible_override": "UNSET",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "ncaa_basketball",
+      "id": 6111609,
+      "datetime_utc": "2023-11-23T17:00:00",
+      "venue": {
+        "state": "FL",
+        "name_v2": "State Farm Field House - ESPN Wide World of Sports Complex",
+        "postal_code": "34747",
+        "name": "State Farm Field House - ESPN Wide World of Sports Complex",
+        "links": [],
+        "timezone": "America\/New_York",
+        "url": "https:\/\/seatgeek.com\/venues\/state-farm-field-house-espn-wide-world-of-sports-complex\/tickets",
+        "score": 0.4,
+        "location": {
+          "lat": 28.5381,
+          "lon": -81.3794
+        },
+        "address": "700 S Victory Way",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 7,
+        "city": "Kissimmee",
+        "slug": "state-farm-field-house-espn-wide-world-of-sports-complex",
+        "extended_address": "Kissimmee, FL 34747",
+        "id": 393762,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 534,
+        "capacity": 0,
+        "display_location": "Kissimmee, FL"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "ncaa_basketball",
+          "name": "ESPN Events Invitational",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/espn-events-invitational-886e34\/794540\/huge.jpg",
+          "id": 794540,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/espn-events-invitational-886e34\/794540\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 7
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 8,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/espn-events-invitational-tickets",
+          "score": 0.3,
+          "slug": "espn-events-invitational",
+          "home_venue_id": null,
+          "short_name": "ESPN Events Invitational",
+          "num_upcoming_events": 7,
+          "colors": null,
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "home_team": true,
+          "location": null,
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Penn State Nittany Lions Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/penn-state-nittany-lions-mens-basketball-0eeb27\/4061\/huge.jpg",
+          "id": 4061,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/penn-state-nittany-lions-mens-basketball-0eeb27\/4061\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 26
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/penn-state-nittany-lions-mens-basketball-tickets",
+          "score": 0.6,
+          "slug": "penn-state-nittany-lions-mens-basketball",
+          "home_venue_id": 108,
+          "short_name": "Penn State",
+          "num_upcoming_events": 26,
+          "colors": {
+            "all": [
+              "#093162",
+              "#093162"
+            ],
+            "iconic": "#093162",
+            "primary": [
+              "#093162"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 40.8099,
+            "lon": -77.8562
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Butler Bulldogs Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/butler-bulldogs-mens-basketball-1f68a3\/6468\/huge.jpg",
+          "id": 6468,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/butler-bulldogs-mens-basketball-1f68a3\/6468\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Big East",
+              "display_name": "Big East",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "big-east"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 26
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/butler-bulldogs-mens-basketball-tickets",
+          "score": 0.54,
+          "slug": "butler-bulldogs-mens-basketball",
+          "home_venue_id": 3147,
+          "short_name": "Butler",
+          "num_upcoming_events": 26,
+          "colors": {
+            "all": [
+              "#13294B",
+              "#747678",
+              "#13294B"
+            ],
+            "iconic": "#13294B",
+            "primary": [
+              "#13294B",
+              "#747678"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "location": {
+            "lat": 39.8436,
+            "lon": -86.1673
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Florida Atlantic Owls Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/florida-atlantic-owls-mens-basketball-c707ff\/6630\/huge.jpg",
+          "id": 6630,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/florida-atlantic-owls-mens-basketball-c707ff\/6630\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "Conference USA",
+              "display_name": "Conference USA",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "conference-usa"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022",
+          "url": "https:\/\/seatgeek.com\/florida-atlantic-owls-mens-basketball-tickets",
+          "score": 0.64,
+          "slug": "florida-atlantic-owls-mens-basketball",
+          "home_venue_id": 6050,
+          "short_name": "Florida Atlantic",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#003366",
+              "#CC0000",
+              "#003366"
+            ],
+            "iconic": "#003366",
+            "primary": [
+              "#003366",
+              "#CC0000"
+            ]
+          },
+          "image_license": "SeatGeek - 2022",
+          "popularity": 0,
+          "location": {
+            "lat": 26.3738,
+            "lon": -80.1019
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "ncaa_basketball",
+          "name": "Texas A&M Aggies Mens Basketball",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-a-m-aggies-mens-basketball-1-e9b54a\/4021\/huge.jpg",
+          "id": 4021,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/texas-a-m-aggies-mens-basketball-1-e9b54a\/4021\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1030200,
+              "short_name": null,
+              "display_name": "Division I",
+              "display_type": "Division",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1030200,
+              "short_name": "SEC",
+              "display_name": "Southeastern",
+              "display_type": "Conference",
+              "division_level": 2,
+              "slug": "sec"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 25
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1030000,
+              "name": "basketball",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "basketball"
+            },
+            {
+              "id": 1030200,
+              "name": "ncaa_basketball",
+              "parent_id": 1030000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "ncaa-basketball"
+            }
+          ],
+          "image_attribution": "Client Provided - 2023",
+          "url": "https:\/\/seatgeek.com\/texas-a-m-aggies-mens-basketball-1-tickets",
+          "score": 0.59,
+          "slug": "texas-a-m-aggies-mens-basketball-1",
+          "home_venue_id": 1879,
+          "short_name": "Texas A&M",
+          "num_upcoming_events": 25,
+          "colors": {
+            "all": [
+              "#5D0025",
+              "#BCBFC2",
+              "#5D0025"
+            ],
+            "iconic": "#5D0025",
+            "primary": [
+              "#5D0025",
+              "#BCBFC2"
+            ]
+          },
+          "image_license": "Client Provided - 2023",
+          "popularity": 0,
+          "location": {
+            "lat": 30.6056,
+            "lon": -96.3469
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T12:00:00",
+      "time_tbd": false,
+      "short_title": "ESPN Events Invitational - Session 1",
+      "visible_until_utc": "2023-11-23T21:00:00",
+      "stats": {
+        "listing_count": 8,
+        "average_price": 64,
+        "lowest_price_good_deals": null,
+        "lowest_price": 39,
+        "highest_price": 107,
+        "visible_listing_count": 8,
+        "dq_bucket_counts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_price": 64,
+        "lowest_sg_base_price": 24,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1030000,
+          "name": "basketball",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "basketball"
+        },
+        {
+          "id": 1030200,
+          "name": "ncaa_basketball",
+          "parent_id": 1030000,
+          "rank": 0,
+          "seo_event_type": "ncaa-basketball"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/espn-events-invitational-tickets\/ncaa-basketball\/2023-11-23-12-pm\/6111609",
+      "score": 0.423,
+      "announce_date": "2023-08-07T00:00:00",
+      "created_at": "2023-08-07T23:29:40",
+      "date_tbd": false,
+      "title": "ESPN Events Invitational - Session 1",
+      "popularity": 0.745,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": null,
+      "is_visible_override": "VISIBLE",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "nfl",
+      "id": 6019323,
+      "datetime_utc": "2023-11-23T17:30:00",
+      "venue": {
+        "state": "MI",
+        "name_v2": "Ford Field",
+        "postal_code": "48226",
+        "name": "Ford Field",
+        "links": [],
+        "timezone": "America\/Detroit",
+        "url": "https:\/\/seatgeek.com\/venues\/ford-field\/tickets",
+        "score": 0.84,
+        "location": {
+          "lat": 42.34,
+          "lon": -83.0459
+        },
+        "address": "2000 Brush St.",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 15,
+        "city": "Detroit",
+        "slug": "ford-field",
+        "extended_address": "Detroit, MI 48226",
+        "id": 346,
+        "popularity": 0,
+        "access_method": {
+          "method": "SECURE_ENTRY_TM",
+          "created_at": "2023-08-11T23:26:09Z",
+          "employee_only": false
+        },
+        "metro_code": 505,
+        "capacity": 0,
+        "display_location": "Detroit, MI"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "nfl",
+          "name": "Detroit Lions",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/detroit-lions-7b9a3d\/2068\/huge.jpg",
+          "id": 2068,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/detroit-lions-7b9a3d\/2068\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1020100,
+              "short_name": null,
+              "display_name": "NFC",
+              "display_type": "Conference",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1020100,
+              "short_name": "NFC North",
+              "display_name": "NFC North",
+              "display_type": "Division",
+              "division_level": 2,
+              "slug": "nfc-north"
+            }
+          ],
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 10
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1020000,
+              "name": "football",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "football"
+            },
+            {
+              "id": 1020100,
+              "name": "nfl",
+              "parent_id": 1020000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "nfl"
+            }
+          ],
+          "image_attribution": "SeatGeek - VFS 2023",
+          "url": "https:\/\/seatgeek.com\/detroit-lions-tickets",
+          "score": 0.78,
+          "slug": "detroit-lions",
+          "home_venue_id": 346,
+          "short_name": "Lions",
+          "num_upcoming_events": 10,
+          "colors": {
+            "all": [
+              "#0076B6",
+              "#B0B7BC",
+              "#0076B6"
+            ],
+            "iconic": "#0076B6",
+            "primary": [
+              "#0076B6",
+              "#B0B7BC"
+            ]
+          },
+          "image_license": "SeatGeek - VFS 2023",
+          "popularity": 0,
+          "home_team": true,
+          "location": {
+            "lat": 42.34,
+            "lon": -83.0459
+          },
+          "image_rights_message": ""
+        },
+        {
+          "type": "nfl",
+          "name": "Green Bay Packers",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/green-bay-packers-0dfd44\/2083\/huge.jpg",
+          "id": 2083,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/green-bay-packers-0dfd44\/2083\/huge.jpg"
+          },
+          "divisions": [
+            {
+              "taxonomy_id": 1020100,
+              "short_name": null,
+              "display_name": "NFC",
+              "display_type": "Conference",
+              "division_level": 1,
+              "slug": null
+            },
+            {
+              "taxonomy_id": 1020100,
+              "short_name": "NFC North",
+              "display_name": "NFC North",
+              "display_type": "Division",
+              "division_level": 2,
+              "slug": "nfc-north"
+            }
+          ],
+          "has_upcoming_events": true,
+          "stats": {
+            "event_count": 7
+          },
+          "taxonomies": [
+            {
+              "id": 1000000,
+              "name": "sports",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "sport"
+            },
+            {
+              "id": 1020000,
+              "name": "football",
+              "parent_id": 1000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "football"
+            },
+            {
+              "id": 1020100,
+              "name": "nfl",
+              "parent_id": 1020000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "nfl"
+            }
+          ],
+          "image_attribution": "SeatGeek - VFS 2023",
+          "url": "https:\/\/seatgeek.com\/green-bay-packers-tickets",
+          "score": 0.77,
+          "slug": "green-bay-packers",
+          "home_venue_id": 1125,
+          "short_name": "Packers",
+          "num_upcoming_events": 7,
+          "colors": {
+            "all": [
+              "#203731",
+              "#FFB612",
+              "#203731"
+            ],
+            "iconic": "#203731",
+            "primary": [
+              "#203731",
+              "#FFB612"
+            ]
+          },
+          "image_license": "SeatGeek - VFS 2023",
+          "popularity": 0,
+          "away_team": true,
+          "location": {
+            "lat": 44.5013,
+            "lon": -88.0622
+          },
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T12:30:00",
+      "time_tbd": false,
+      "short_title": "Packers at Lions",
+      "visible_until_utc": "2023-11-23T21:30:00",
+      "stats": {
+        "listing_count": 94,
+        "average_price": 450,
+        "lowest_price_good_deals": 270,
+        "lowest_price": 239,
+        "highest_price": 2355,
+        "visible_listing_count": 93,
+        "dq_bucket_counts": [
+          0,
+          30,
+          30,
+          24,
+          8,
+          3,
+          2,
+          0
+        ],
+        "median_price": 410,
+        "lowest_sg_base_price": 175,
+        "lowest_sg_base_price_good_deals": 198
+      },
+      "taxonomies": [
+        {
+          "id": 1000000,
+          "name": "sports",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "sport"
+        },
+        {
+          "id": 1020000,
+          "name": "football",
+          "parent_id": 1000000,
+          "rank": 0,
+          "seo_event_type": "football"
+        },
+        {
+          "id": 1020100,
+          "name": "nfl",
+          "parent_id": 1020000,
+          "rank": 0,
+          "seo_event_type": "nfl"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/detroit-lions-tickets\/11-23-2023-detroit-michigan-ford-field\/nfl\/6019323",
+      "score": 0.822,
+      "announce_date": "2023-05-11T00:00:00",
+      "created_at": "2023-05-11T20:19:40",
+      "date_tbd": false,
+      "title": "Green Bay Packers at Detroit Lions",
+      "popularity": 0.925,
+      "description": "",
+      "status": "normal",
+      "access_method": {
+        "method": "SECURE_ENTRY_TM",
+        "created_at": "2023-08-11T23:26:09Z",
+        "employee_only": false
+      },
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-05-12T00:00:00Z",
+      "is_visible_override": "UNSET",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    },
+    {
+      "type": "broadway_tickets_national",
+      "id": 6233694,
+      "datetime_utc": "2023-11-23T18:00:00",
+      "venue": {
+        "state": "ON",
+        "name_v2": "Royal George Theatre Niagara-on-the-Lake",
+        "postal_code": "L0S 1J0",
+        "name": "Royal George Theatre Niagara-on-the-Lake",
+        "links": [],
+        "timezone": "America\/Toronto",
+        "url": "https:\/\/seatgeek.com\/venues\/royal-george-theatre-niagara-on-the-lake\/tickets",
+        "score": 0.52,
+        "location": {
+          "lat": 43.2562,
+          "lon": -79.0733
+        },
+        "address": "85 Queen Street",
+        "country": "Canada",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 71,
+        "city": "Niagara-on-the-Lake",
+        "slug": "royal-george-theatre-niagara-on-the-lake",
+        "extended_address": "Niagara-on-the-Lake, Canada",
+        "id": 339339,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 0,
+        "capacity": 0,
+        "display_location": "Niagara-on-the-Lake, Canada"
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "theater_broadway_national_tours",
+          "name": "Brigadoon",
+          "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/brigadoon-9d6813\/271720\/huge.jpg",
+          "id": 271720,
+          "images": {
+            "huge": "https:\/\/seatgeek.com\/images\/performers-landscape\/brigadoon-9d6813\/271720\/huge.jpg"
+          },
+          "divisions": null,
+          "has_upcoming_events": true,
+          "primary": true,
+          "stats": {
+            "event_count": 35
+          },
+          "taxonomies": [
+            {
+              "id": 3000000,
+              "name": "theater",
+              "parent_id": null,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "theater"
+            },
+            {
+              "id": 3030000,
+              "name": "broadway_tickets_national",
+              "parent_id": 3000000,
+              "document_source": {
+                "source_type": "ELASTIC",
+                "generation_type": "FULL"
+              },
+              "rank": 0,
+              "seo_event_type": "broadway"
+            }
+          ],
+          "image_attribution": "SeatGeek - 2022 (2000 X 2000)",
+          "url": "https:\/\/seatgeek.com\/brigadoon-tickets",
+          "score": 0.3,
+          "slug": "brigadoon",
+          "home_venue_id": null,
+          "short_name": "Brigadoon",
+          "num_upcoming_events": 35,
+          "colors": null,
+          "image_license": "SeatGeek - 2022 (2000 X 2000)",
+          "popularity": 0,
+          "location": null,
+          "image_rights_message": ""
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-11-23T13:00:00",
+      "time_tbd": false,
+      "short_title": "Brigadoon - Niagara-on-the-Lake",
+      "visible_until_utc": "2023-11-23T22:00:00",
+      "stats": {
+        "listing_count": null,
+        "average_price": null,
+        "lowest_price_good_deals": null,
+        "lowest_price": null,
+        "highest_price": null,
+        "visible_listing_count": null,
+        "dq_bucket_counts": null,
+        "median_price": null,
+        "lowest_sg_base_price": null,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 3000000,
+          "name": "theater",
+          "parent_id": null,
+          "rank": 0,
+          "seo_event_type": "theater"
+        },
+        {
+          "id": 3030000,
+          "name": "broadway_tickets_national",
+          "parent_id": 3000000,
+          "rank": 0,
+          "seo_event_type": "broadway"
+        }
+      ],
+      "url": "https:\/\/seatgeek.com\/brigadoon-tickets\/royal-george-theatre-niagara-on-the-lake-2023-11-23-1-pm\/broadway\/6233694",
+      "score": 0.33,
+      "announce_date": "2023-10-13T00:00:00",
+      "created_at": "2023-10-13T11:55:20",
+      "date_tbd": false,
+      "title": "Brigadoon - Niagara-on-the-Lake",
+      "popularity": 0.008,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-10-13T12:45:19Z",
+      "is_visible_override": "UNSET",
+      "tdc_pvo_id": 0,
+      "tdc_pv_id": 0,
+      "is_visible": true,
+      "themes": [],
+      "domain_information": []
+    }
+  ],
+  "meta": {
+    "total": 108181,
+    "took": 10,
+    "page": 1,
+    "per_page": 10,
+    "geolocation": null
+  }
+}
