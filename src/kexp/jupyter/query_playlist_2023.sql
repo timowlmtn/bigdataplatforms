@@ -12,8 +12,10 @@ select weekofyear(show.AIRDATE)       week_number,
        weekofyear(live.first_airdate) week_number_live_show,
        show.ARTIST,
        count(distinct show.AIRDATE)   play_count,
+       iff(weekofyear(show.AIRDATE) > weekofyear(live.first_airdate), 0, 1) * play_count
+                                      play_count_before,
        iff(weekofyear(show.AIRDATE) > weekofyear(live.first_airdate), 1, 0) * play_count
-                                      play_after_live
+                                      play_count_after
 
 
 from kexp_live_artists live
