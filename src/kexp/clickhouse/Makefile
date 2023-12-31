@@ -20,5 +20,8 @@ forward-ports:
 show-head:
 	aws s3 cp s3://owlmtn-datalake-prod/stage/kexp/playlists/20231225110357/playlist20231225110357.json - | head
 
+get-env-vars:
+	kubectl -n test-clickhouse-operator exec -it chi-simple-01-simple-0-0-0 -- env
 
-
+custom-env-variable:
+	curl -s https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/deploy/operator-web-installer/clickhouse-operator-install.sh | TEST_VALUE=hello-world-tim bash
