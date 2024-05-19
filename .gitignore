@@ -29,3 +29,5 @@
 /data/spark/kexp/
 /src/kexp/data/sql/
 /src/kexp/data/import/seatgeek/
+/src/redsox/setenv.sh
+/data/raw/mlb/
