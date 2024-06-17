@@ -1,0 +1,4 @@
+geopandas==0.14.4
+shapely==2.0.4
+h3==3.7.7
+gadm==0.0.5
