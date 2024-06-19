@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 # Path to your ChromeDriver executable
-chrome_driver_path = '/opt/homebrew/bin/chromedriver'  # Update this path if necessary
+chrome_driver_path = "/opt/homebrew/bin/chromedriver"  # Update this path if necessary
 
 # Configure Selenium to use headless mode
 options = Options()

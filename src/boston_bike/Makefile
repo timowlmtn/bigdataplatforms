@@ -1,7 +1,10 @@
-default: download-data
+default: convert-spark
+
+convert-parquet:
+	python python/csv_to_parquet.py
 
 lint:
-	black python/download_bike_data.py
+	black python
 
 download-data:
 	python python/download_bike_data.py
@@ -14,3 +17,12 @@ venv:
 
 get-chromedriver:
 	brew install chromedriver
+
+build-docker:
+	docker build -t spark-arm64 .
+
+run-docker:
+	docker run spark-arm64
+
+ps-docker:
+	docker ps --all | grep spark
