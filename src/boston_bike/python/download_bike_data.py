@@ -32,8 +32,10 @@ soup = BeautifulSoup(html_content, "html.parser")
 # Find all the links to ZIP files
 zip_links = [a["href"] for a in soup.find_all("a") if a["href"].endswith(".zip")]
 
+dryrun = True
 # Download each ZIP file
 for link in zip_links:
-    download_file(link, download_folder)
+    print(f"Debug: {link} {download_folder}")
+    # download_file(link, download_folder)
 
 print(f"All ZIP files have been downloaded to the folder: {download_folder}")

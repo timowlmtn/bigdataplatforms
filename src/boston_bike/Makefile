@@ -1,4 +1,4 @@
-default: convert-spark
+default: download-data
 
 convert-parquet:
 	python python/csv_to_parquet.py

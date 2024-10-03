@@ -96,7 +96,7 @@ seatgeek-clean:
 seatgeek-daily:
 	mkdir -p data/import/seatgeek/events/`date +%Y`/`date +%m`/
 	~/PycharmProjects/OwlMountain/bigdataplatforms/src/kexp/seatgeek/seatgeek_client.py \
-	--get events --geoip --range 50mi --type concert > data/import/seatgeek/events/`date +%Y`/`date +%m`/seatgeek_local_50mi_`date +%F`.json
+	--get events --geoip --range 5mi > data/import/seatgeek/events/`date +%Y`/`date +%m`/seatgeek_local_5mi_`date +%F`.json
 
 seatgeek-sync-s3: seatgeek-daily
 	aws s3 sync data/import s3://$(DATABASE)-datalake-dev/stage

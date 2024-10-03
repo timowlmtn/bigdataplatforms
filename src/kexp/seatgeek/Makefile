@@ -10,4 +10,4 @@ seatgeek-event-id:
 	curl https://api.seatgeek.com/2/events/6233694 -u "$(sg_kexp_client_id)":"$(sg_kexp_secret)"
 
 seatgeek-venues:
-	curl https://api.seatgeek.com/2/venues -u "$(sg_kexp_client_id)":"$(sg_kexp_secret)"
+	curl https://api.seatgeek.com/2/venues?venue.state -u "$(sg_kexp_client_id)":"$(sg_kexp_secret)"
