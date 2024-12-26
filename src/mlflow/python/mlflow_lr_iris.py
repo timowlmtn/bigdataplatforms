@@ -1,4 +1,5 @@
 # Step 1: Import Libraries
+import os
 import mlflow.sklearn
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -19,7 +20,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Step 3: Configure MLflow Tracking URI (Optional)
-# mlflow.set_tracking_uri("YOUR_MLFLOW_TRACKING_URI")  # Uncomment if using a remote tracking server
+mlflow.set_tracking_uri(os.getenv('MLFLOW_TRACKING_URI'))  # Uncomment if using a remote tracking server
 
 # Step 4: Start an MLflow Run
 with mlflow.start_run():
@@ -37,6 +38,9 @@ with mlflow.start_run():
     mlflow.log_metric("accuracy", accuracy)
 
     # Log the model itself
-    mlflow.sklearn.log_model(model, "logistic_regression_model")
+    mlflow.sklearn.log_model(
+        sk_model=model,
+        artifact_path="mlruns/iris_classifier",
+        registered_model_name="iris_classifier")
 
 print(f"Model logged with accuracy: {accuracy}")
