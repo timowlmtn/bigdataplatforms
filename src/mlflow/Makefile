@@ -15,5 +15,11 @@ ui:
 black:
 	black python
 
-venv:
+mlflow_env:
 	python -m venv mlflow
+
+zillow_env:
+	python -m venv zillow
+
+get-chromedriver:
+	brew install chromedriver

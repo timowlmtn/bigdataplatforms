@@ -37,3 +37,4 @@
 /src/boston_bike/data/hubway-data/
 /src/mlflow/mlflow/
 /src/mlflow/mlruns/
+/src/mlflow/zillow/pyvenv.cfg
