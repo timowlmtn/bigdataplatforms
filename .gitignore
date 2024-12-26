@@ -35,3 +35,5 @@
 /src/boston_bike/chrome-mac-arm64/
 /src/boston_bike/data/out/
 /src/boston_bike/data/hubway-data/
+/src/mlflow/mlflow/
+/src/mlflow/mlruns/
