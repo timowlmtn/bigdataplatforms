@@ -20,7 +20,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Step 3: Configure MLflow Tracking URI (Optional)
-mlflow.set_tracking_uri(os.getenv('MLFLOW_TRACKING_URI'))  # Uncomment if using a remote tracking server
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
+
+mlflow.set_experiment("iris_classifier")
 
 # Step 4: Start an MLflow Run
 with mlflow.start_run():
@@ -40,7 +42,8 @@ with mlflow.start_run():
     # Log the model itself
     mlflow.sklearn.log_model(
         sk_model=model,
-        artifact_path="mlruns/iris_classifier",
-        registered_model_name="iris_classifier")
+        artifact_path="iris_classifier",
+        registered_model_name="iris_classifier",
+    )
 
 print(f"Model logged with accuracy: {accuracy}")

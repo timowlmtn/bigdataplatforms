@@ -12,5 +12,8 @@ requirements:
 ui:
 	mlflow ui
 
+black:
+	black python
+
 venv:
 	python -m venv mlflow
