@@ -28,6 +28,10 @@ get-chromedriver:
 zillow-delta:
 	python python/zillow_to_delta_lake.py
 
+zillow-hive:
+	python python/zillow_to_hive.py
+
+
 dbt:
 	dbt init zillow_pipeline --skip-profile-setup
 
