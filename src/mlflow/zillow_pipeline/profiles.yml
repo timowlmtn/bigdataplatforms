@@ -1,0 +1,12 @@
+zillow_pipeline:
+  target: dev
+  outputs:
+    dev:
+      type: spark
+      method: thrift
+      host: localhost
+      port: 10000
+      schema: default  # Adjust schema as needed
+      spark.sql.warehouse.dir: ../zillow_delta
+      spark.driver.extraJavaOptions: -Djava.security.manager=allow
+      spark.executor.extraJavaOptions: -Djava.security.manager=allow

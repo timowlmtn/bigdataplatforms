@@ -14,7 +14,9 @@ chrome_driver_path = "/opt/homebrew/bin/chromedriver"  # Update this path if nec
 options = Options()
 options.headless = False  # Set to True to run in headless mode
 options.add_argument("--start-maximized")  # Open Chrome in maximized mode
-options.add_argument("--disable-blink-features=AutomationControlled")  # Prevent detection as bot
+options.add_argument(
+    "--disable-blink-features=AutomationControlled"
+)  # Prevent detection as bot
 
 # Initialize the WebDriver
 service = Service(chrome_driver_path)
@@ -48,6 +50,7 @@ try:
 
         # Use Python's requests library to download the file
         import requests
+
         response = requests.get(file_url)
         if response.status_code == 200:
             with open(file_path, "wb") as file:

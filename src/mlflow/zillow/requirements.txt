@@ -3,3 +3,4 @@ selenium==4.27.1
 pandas==2.2.3
 scikit-learn==1.6.0
 mlflow==2.19.0
+PyHive==0.7.0

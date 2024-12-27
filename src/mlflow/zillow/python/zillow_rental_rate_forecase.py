@@ -29,8 +29,9 @@ def load_and_transform_data(file_path):
         # Melt the DataFrame to convert time series columns into rows
         id_vars = ["RegionID", "SizeRank", "RegionName", "RegionType", "StateName"]
         value_vars = data.columns[5:]  # Columns containing time series data
-        data_long = data.melt(id_vars=id_vars, value_vars=value_vars,
-                              var_name="Date", value_name="Value")
+        data_long = data.melt(
+            id_vars=id_vars, value_vars=value_vars, var_name="Date", value_name="Value"
+        )
 
         # Convert 'Date' to datetime format
         data_long["Date"] = pd.to_datetime(data_long["Date"])
@@ -73,7 +74,9 @@ def train_logistic_regression(X, y):
     :return: Trained model, accuracy, and AUC score.
     """
     # Split data into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
 
     # Train logistic regression model
     model = LogisticRegression()
