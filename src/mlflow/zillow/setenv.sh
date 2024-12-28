@@ -11,3 +11,5 @@ export SPARK_EXECUTOR_EXTRA_JAVA_OPTIONS=-Djava.security.manager=allow
 export HADOOP_HOME=/opt/homebrew/opt/hadoop
 export JAVA_HOME=/opt/homebrew/opt/openjdk
 export HIVE_VERSION=4.0.0
+
+source ../../../setenv.sh
