@@ -63,7 +63,9 @@ def process_csv_files(selected_table):
     for filename in os.listdir(input_folder):
         if filename.endswith(".csv"):
             file_path = os.path.join(input_folder, filename)
-            table_name = os.path.splitext(filename)[0]  # Use file name (without extension) as table name
+            table_name = os.path.splitext(filename)[
+                0
+            ]  # Use file name (without extension) as table name
 
             # Skip tables not matching the selected table
             if selected_table != "all" and table_name.lower() != selected_table.lower():
@@ -77,7 +79,7 @@ def process_csv_files(selected_table):
             # Infer PostgreSQL schema from the DataFrame
             pg_schema = infer_pg_schema(df)
 
-            drop_table_query = f"DROP TABLE IF EXISTS \"{table_name}\";"
+            drop_table_query = f'DROP TABLE IF EXISTS "{table_name}";'
 
             # Construct the CREATE TABLE query
             create_table_query = f"""
@@ -117,7 +119,9 @@ def process_csv_files(selected_table):
 
 if __name__ == "__main__":
     # Set up argument parser
-    parser = argparse.ArgumentParser(description="Process CSV files into PostgreSQL tables.")
+    parser = argparse.ArgumentParser(
+        description="Process CSV files into PostgreSQL tables."
+    )
     parser.add_argument(
         "--table",
         type=str,

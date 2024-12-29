@@ -2,11 +2,12 @@ zillow_pipeline:
   target: dev
   outputs:
     dev:
-      type: spark
-      method: thrift
-      host: localhost
-      port: 10000
-      schema: default  # Adjust schema as needed
-      spark.sql.warehouse.dir: ../zillow_delta
-      spark.driver.extraJavaOptions: -Djava.security.manager=allow
-      spark.executor.extraJavaOptions: -Djava.security.manager=allow
+      type: postgres
+      host: 127.0.0.1  # Use "localhost" or your local IP
+      port: 5432       # Default PostgreSQL port
+      user: "{{ env_var('PG_USER') }}"
+      password: "{{ env_var('PG_PASSWORD') }}"
+      dbname: postgres
+      schema: public   # Replace with your desired schema
+      threads: 4       # Adjust the number of threads based on your system
+      keepalives_idle: 0  # Optional: set to avoid connection timeouts
