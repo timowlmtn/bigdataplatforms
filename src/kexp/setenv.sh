@@ -1,3 +1,4 @@
+source kexp/bin/activate
 export PYTHONPATH=layers
 
 # Here is where I set my private S3 Bucket and stage locations
