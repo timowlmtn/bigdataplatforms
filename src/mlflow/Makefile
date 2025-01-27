@@ -1,4 +1,11 @@
-default: mlflow-iris
+default: mlflow-server
+
+mlflow-server:
+	mlflow server \
+		--backend-store-uri sqlite:///mlflow.db \
+		--default-artifact-root ./mlruns \
+		--host 0.0.0.0 \
+		--port 5050
 
 mlflow-iris:
 	python python/mlflow_lr_iris.py
