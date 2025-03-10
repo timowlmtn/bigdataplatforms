@@ -1,2 +1,1 @@
-localstack
-awscli-local
+kafka-python
