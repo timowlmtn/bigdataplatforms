@@ -38,3 +38,4 @@
 /src/mlflow/mlflow/
 /src/mlflow/mlruns/
 /src/mlflow/zillow/pyvenv.cfg
+/src/kafka/kafka/

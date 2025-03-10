@@ -1,0 +1,1 @@
+source kafka/bin/activate
