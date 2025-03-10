@@ -1,0 +1,7 @@
+{
+  "BrokerAZDistribution": "DEFAULT",
+  "ClientSubnets": ["subnet-12345678"],
+  "InstanceType": "kafka.t3.small",
+  "SecurityGroups": ["sg-12345678"],
+  "StorageInfo": { "EbsStorageInfo": { "VolumeSize": 100 } }
+}

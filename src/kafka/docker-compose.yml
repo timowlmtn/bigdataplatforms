@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - "4566:4566"  # LocalStack main API
+      - "9092:9092"  # Kafka broker port
+    environment:
+      - SERVICES=kafka
+      - DEFAULT_REGION=us-east-1
+      - KAFKA_BROKER_CONNECT=localhost:9092
+      - KAFKA_ENABLE_SASL=False
+      - KAFKA_HEALTH_THRESHOLD=1
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
